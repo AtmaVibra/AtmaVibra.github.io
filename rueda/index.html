@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rueda de la Vida</title>
+
+<!-- Fuentes -->
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  background-image: url('fondobosque.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* opcional, da efecto más estable */
+}
+
+
+#labelsContainer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#labelsContainer > div {
+  white-space: nowrap;
+}
+
+#wheelCanvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+  }
+
+
+.titulo-gotico {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(3rem, 7vw, 4.5rem);
+  font-weight: 400;
+  color: #b8860b; /* dorado cálido */
+  text-shadow:
+    0 0 10px rgba(0,0,0,0.75),   /* halo fuerte para separar del fondo */
+    3px 3px 12px rgba(0,0,0,0.55), /* sombra profunda */
+    -2px -2px 4px rgba(255,255,255,0.35); /* brillo sutil para volumen */
+  letter-spacing: 1px;
+}
+
+
+.texto-frase {
+  font-family: 'Allura', cursive;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 400;
+  color: #f7e27a; /* amarillo suave y cálido */
+  text-align: center;
+  line-height: 1.2;
+
+  /* Perfil oscuro para contraste sobre fondo claro */
+  text-shadow:
+    0 0 4px rgba(0,0,0,0.85),   /* halo oscuro fuerte */
+    1px 1px 3px rgba(0,0,0,0.7); /* sombra suave */
+}
+
+
+
+  .glass {
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: blur(10px);
+  }
+
+
+@media (max-width: 480px) {
+  #wheelWrapper {
+    max-width: 260px !important;
+  }
+}
+
+
+html, body {
+  height: auto !important;
+  overflow-y: auto !important;
+  display: block !important;
+}
+
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease forwards;
+}
+
+/* LATIDO VERDE NEBULOSA */
+@keyframes pulseGlowGreen {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 14px rgba(184, 241, 213, 0.45);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 26px rgba(184, 241, 213, 0.75);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 14px rgba(184, 241, 213, 0.45);
+  }
+
+@keyframes shinePulseGreenLight {
+  0% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 14px rgba(180,255,200,0.6);
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 0 0 32px rgba(150,255,180,0.9);
+  }
+  100% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 14px rgba(180,255,200,0.6);
+  }
+}
+
+
+}
+
+@keyframes shinePulse {
+  0% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 14px rgba(255, 105, 180, 0.7);
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 0 0 28px rgba(255, 20, 147, 0.9);
+  }
+  100% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 14px rgba(255, 105, 180, 0.7);
+  }
+}
+
+#labelsContainer {
+  width: 100%;
+  height: 100%;
+}
+
+
+</style>
+</head>
+
+<body class="text-slate-800">
+<div id="bodyFix"></div>
+
+
+<!-- CONTENIDO PRINCIPAL -->
+
+<main class="relative max-w-4xl mx-auto px-4 pt-6 pb-10 text-center">
+
+
+<!-- LOGO SUPERPUESTO Y GRANDE -->
+<div class="relative">
+  <div class="absolute top-[-1rem] left-1/2 -translate-x-1/2 -z-10 pointer-events-none">
+    <img src="Logoatma.png" class="w-48 md:w-64 h-auto opacity-95 drop-shadow-xl">
+  </div>
+</div>
+
+
+
+  <h1 class="titulo-gotico">Rueda de la Vida</h1>
+
+  <p class="texto-frase mt-4">
+    Toca cada segmento para reflejar tu nivel de satisfacción.<br>
+    Respira, reflexiona y evalúa con calma.
+  </p>
+
+  <!-- RUEDA -->
+  <section class="flex justify-center mt-10">
+
+    <div class="relative mx-auto" id="wheelWrapper" style="max-width:500px; width:100%; aspect-ratio:1;">
+
+      <canvas id="wheelCanvas" class="rounded-full bg-white/80 cursor-pointer"></canvas>
+
+      <div id="labelsContainer" class="absolute inset-0 pointer-events-none"></div>
+
+    </div>
+  </section>
+
+  <!-- BOTONES -->
+  <div class="flex justify-center gap-6 pt-6">
+    <button id="evaluateButton" class="px-8 py-3 rounded-full bg-white/90 text-sky-700 shadow-lg">
+      Evaluar
+    </button>
+    <button id="resetButton" class="px-8 py-3 rounded-full bg-white/80 text-slate-700 shadow-lg">
+      Volver a empezar
+    </button>
+  </div>
+
+  <!-- RESULTADOS -->
+  <section id="resultsSection" class="hidden space-y-12 mt-10">
+
+    <!-- Radar -->
+    <div class="glass rounded-3xl p-8 shadow-xl">
+      <h3 class="text-2xl mb-6">Tu Equilibrio Interior</h3>
+      <div class="h-80">
+        <canvas id="radarChartCanvas"></canvas>
+      </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="glass rounded-3xl p-8 shadow-xl">
+      <h3 class="text-2xl mb-6">Reflexión por Área</h3>
+      <table class="min-w-full text-sm bg-white/40 rounded-xl p-4">
+        <thead>
+          <tr class="border-b border-slate-300/50">
+            <th class="px-4 py-2 text-left">Área</th>
+            <th class="px-4 py-2 text-left">Nivel</th>
+            <th class="px-4 py-2 text-left">Reflexión</th>
+          </tr>
+        </thead>
+        <tbody id="summaryTableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Sugerencias -->
+    <div class="glass rounded-3xl p-8 shadow-xl">
+      <h3 class="text-2xl mb-6">Caminos de Crecimiento</h3>
+      <ul id="suggestionsList" class="space-y-4 text-left"></ul>
+    </div>
+
+  </section>
+
+
+
+
+<!-- BOTÓN CONSEJO ATMAVIBRA -->
+<div id="atmavibraButtonWrapper" class="hidden flex justify-center mt-10 mb-10">
+  <button
+    id="atmavibraButton"
+    class="relative px-10 py-5 rounded-2xl shadow-2xl text-center transition transform hover:scale-105"
+    style="
+  background: linear-gradient(135deg, #e6ffe6, #c8ffd9, #aaffc4);
+  border: 3px solid #8cd48c;
+  color: #2f5f3a;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 10px 28px;
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.9),
+    0 0 10px rgba(200,255,220,0.8);
+  box-shadow:
+    0 0 18px rgba(180,255,200,0.9),
+    0 0 28px rgba(150,255,180,0.7),
+    inset 0 0 12px rgba(255,255,255,0.5);
+  background-size: 250% 250%;
+  animation: shinePulseGreenLight 3s ease-in-out infinite;
+"
+
+  >
+    <span style="
+  font-style: italic;
+  color: #ffd700;
+  font-weight: 800;
+  text-shadow:
+    0 0 6px rgba(255,215,0,0.9),
+    0 0 12px rgba(255,230,120,0.9),
+    0 0 18px rgba(255,255,180,1);
+">
+  Consejo Atmavibra
+</span>
+<br>
+
+    <img src="Logoatma.png" style="width:100px; margin:8px auto 0; opacity:0.9;">
+  </button>
+</div>
+
+
+</main>
+
+<script>
+/* ============================
+   CONFIGURACIÓN
+============================ */
+const segments = ["Salud","Familia","Amigos","Finanzas","Trabajo","Ocio","Crecimiento Personal","Amor"];
+
+const segmentColours = [
+  "#B3E5FC","#C8E6C9","#F8BBD0","#FFE0B2","#FFECB3","#D1C4E9","#B2DFDB","#F0F4C3"
+];
+
+let values = new Array(segments.length).fill(1);
+
+const canvas = document.getElementById("wheelCanvas");
+const ctx = canvas.getContext("2d");
+const labelsContainer = document.getElementById("labelsContainer");
+
+/* ============================
+   REDIMENSIONAR CANVAS
+============================ */
+
+
+function resizeCanvas() {
+  const wrapper = document.getElementById("wheelWrapper");
+  const size = wrapper.offsetWidth;
+
+  canvas.width = size;
+  canvas.height = size;
+
+  drawWheel();
+}
+
+
+window.addEventListener("load", resizeCanvas);
+window.addEventListener("resize", resizeCanvas);
+
+
+
+/* ============================
+   DIBUJAR RUEDA
+============================ */
+
+
+function drawWheel() {
+  const w = canvas.width;
+  const h = canvas.height;
+  const cx = w / 2;
+  const cy = h / 2;
+
+
+  // RADIO ÚNICO PARA TODO
+  const radius = w * 0.45;
+  const step = (2 * Math.PI) / segments.length;
+
+  ctx.clearRect(0, 0, w, h);
+
+  // Círculos concéntricos
+  ctx.strokeStyle = "#e0e0e0";
+  for (let i = 1; i <= 10; i++) {
+    ctx.beginPath();
+    ctx.arc(cx, cy, (radius * i) / 10, 0, 2 * Math.PI);
+    ctx.stroke();
+  }
+
+  // Segmentos
+  segments.forEach((segment, i) => {
+    const start = i * step - Math.PI / 2;
+    const end = start + step;
+
+    ctx.fillStyle = segmentColours[i];
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, (radius * values[i]) / 10, start, end);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.strokeStyle = "#2c3e50";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, radius, start, end);
+    ctx.closePath();
+    ctx.stroke();
+  });
+
+// ETIQUETAS — POSICIONAMIENTO CORRECTO Y COLOR SUAVE
+labelsContainer.innerHTML = "";
+
+const stepRad = (2 * Math.PI) / segments.length;
+const labelRadius = radius * 1.10; // más afuera, no tapa la rueda
+
+segments.forEach((segment, i) => {
+  const angle = (i * stepRad) + stepRad / 2 - Math.PI / 2;
+
+  const x = cx + labelRadius * Math.cos(angle);
+  const y = cy + labelRadius * Math.sin(angle);
+
+  // color suave basado en el quesito
+  const softColor = segmentColours[i] + "33"; // 20% opacidad
+
+  const label = document.createElement("div");
+  label.className = "absolute transform -translate-x-1/2 -translate-y-1/2 wheel-label";
+  label.style.left = `${x}px`;
+  label.style.top = `${y}px`;
+
+  label.innerHTML = `
+    <div class="rounded-md shadow-md px-1.5 py-0.5 text-center"
+         style="background:${softColor};">
+      <span class="text-xs font-medium block">${segment}</span>
+      <div class="text-[10px] opacity-80">${values[i]}/10</div>
+    </div>
+  `;
+  labelsContainer.appendChild(label);
+});
+}
+
+
+
+
+/* ============================
+   CLICK EN LA RUEDA
+============================ */
+
+function handleCanvasInput(x, y) {
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
+
+  const dx = x - cx;
+  const dy = y - cy;
+  const distance = Math.sqrt(dx * dx + dy * dy);
+  const maxRadius = canvas.width * 0.45;
+
+  if (distance > maxRadius) return;
+
+  let angle = Math.atan2(dy, dx) + Math.PI / 2;
+  if (angle < 0) angle += 2 * Math.PI;
+
+  const index = Math.floor(angle / ((2 * Math.PI) / segments.length));
+  const level = Math.ceil((distance / maxRadius) * 10);
+
+  values[index] = Math.max(1, Math.min(10, level));
+  drawWheel();
+}
+
+
+canvas.addEventListener("touchstart", (event) => {
+  const touch = event.touches[0];
+  const rect = canvas.getBoundingClientRect();
+  const x = touch.clientX - rect.left;
+  const y = touch.clientY - rect.top;
+
+  handleCanvasInput(x, y);
+});
+
+
+canvas.addEventListener("click", (event) => {
+  const rect = canvas.getBoundingClientRect();
+  handleCanvasInput(event.clientX - rect.left, event.clientY - rect.top);
+});
+
+
+/* ============================
+   REFLEXIONES
+============================ */
+function getReflection(value, area) {
+  if (value <= 2) {
+    return `<span class="text-red-600 font-bold">CRÍTICO</span> en ${area}.`;
+  }
+  if (value <= 5) {
+    return `<span class="text-orange-500 font-bold">ATENCIÓN</span> en ${area}.`;
+  }
+  if (value <= 8) {
+    return `<span class="text-blue-600 font-bold">DESARROLLO</span> en ${area}.`;
+  }
+  return `<span class="text-green-600 font-bold">EXCELENTE</span> en ${area}.`;
+}
+
+
+const areaInsights = {
+  Salud: { low: "Tu cuerpo pide descanso.", mid: "Puedes mejorar hábitos.", high: "Buen equilibrio físico." },
+  Familia: { low: "Falta conexión.", mid: "Puedes fortalecer vínculos.", high: "Relaciones familiares sólidas." },
+  Amigos: { low: "Sientes desconexión.", mid: "Puedes estar más presente.", high: "Amistades nutritivas." },
+  Finanzas: { low: "Estrés financiero.", mid: "Puedes mejorar tu control.", high: "Estabilidad económica." },
+  Trabajo: { low: "Falta propósito.", mid: "Puedes alinear valores.", high: "Buen momento profesional." },
+  Ocio: { low: "Falta disfrute.", mid: "Puedes permitirte más ocio.", high: "Buen equilibrio recreativo." },
+  "Crecimiento Personal": { low: "Sensación de estancamiento.", mid: "Puedes profundizar.", high: "Evolución constante." },
+  Amor: { low: "Tu corazón necesita más cariño.", mid: "Puedes abrirte un poco más al amor.", high: "Tu vida afectiva está llena y serena."
+}
+
+};
+
+function getAreaInsight(area, value) {
+  if (value <= 2) return areaInsights[area].low;
+  if (value <= 5) return areaInsights[area].mid;
+  return areaInsights[area].high;
+}
+
+/* ============================
+   SUGERENCIAS
+============================ */
+function getSuggestions() {
+  const suggestionsByArea = {
+    Salud: {
+      r1: "Tu cuerpo está pidiendo auxilio: algo importante necesita tu atención inmediata.",
+      r2: "Hay señales de desgaste que conviene escuchar antes de que crezcan.",
+      r3: "Tu salud está en un punto aceptable, pero pequeños ajustes marcarían la diferencia.",
+      r4: "Tu bienestar físico es un pilar fuerte que te sostiene día a día."
+    },
+    Familia: {
+      r1: "La distancia emocional es profunda: este vínculo necesita presencia y cuidado urgente.",
+      r2: "Hay desconexiones que, si se atienden ahora, pueden evitar heridas futuras.",
+      r3: "La relación familiar es estable, aunque podría enriquecerse con más momentos reales.",
+      r4: "Tu entorno familiar es un refugio seguro y nutritivo."
+    },
+    Amigos: {
+      r1: "Te estás quedando solo emocionalmente: este vacío merece ser atendido.",
+      r2: "Tus amistades existen, pero la conexión se está debilitando.",
+      r3: "Tienes vínculos valiosos, aunque necesitan más presencia y reciprocidad.",
+      r4: "Tu círculo social te sostiene, te inspira y te acompaña."
+    },
+    Finanzas: {
+      r1: "La inestabilidad financiera está afectando tu tranquilidad: urge reorganizar prioridades.",
+      r2: "Hay tensión económica, pero estás a tiempo de recuperar el control.",
+      r3: "Tus finanzas están en equilibrio, aunque con margen para mayor seguridad.",
+      r4: "Tienes una base económica sólida que te permite vivir con calma."
+    },
+    Trabajo: {
+      r1: "Tu energía laboral está al límite: algo esencial necesita replantearse.",
+      r2: "Hay frustración o desgaste, pero aún puedes redirigir tu camino.",
+      r3: "Tu trabajo funciona, aunque podrías buscar más propósito o motivación.",
+      r4: "Estás en un momento profesional pleno y alineado contigo."
+    },
+    Ocio: {
+      r1: "Tu vida carece de disfrute: esto puede afectar tu equilibrio emocional.",
+      r2: "Tienes momentos de descanso, pero no los suficientes para nutrirte.",
+      r3: "Disfrutas de tu tiempo libre, aunque podrías permitirte más espacio personal.",
+      r4: "Tu vida tiene alegría, descanso y actividades que te llenan."
+    },
+    "Crecimiento Personal": {
+      r1: "Te sientes estancado: tu interior pide un cambio profundo.",
+      r2: "Hay movimiento, pero falta dirección y constancia.",
+      r3: "Estás creciendo, aunque podrías profundizar en tu desarrollo.",
+      r4: "Tu evolución es constante y estás expandiendo tu potencial."
+    },
+    Amor: {
+  r1: "Tu corazón está pidiendo ser escuchado. Hay heridas que necesitan ternura y tiempo.",
+  r2: "Hay amor en tu vida, pero quizá no estás permitiendo que llegue del todo a ti.",
+  r3: "Tu capacidad de amar está viva, solo necesita más presencia y pequeños gestos diarios.",
+  r4: "Tu vida está llena de amor que nutre, sostiene y te hace crecer."
+}
+
+  };
+
+  const lowAreas = segments.map((s, i) => ({
+    area: s,
+    value: values[i]
+  }));
+
+  return lowAreas.map(a => {
+    let key = "";
+    if (a.value <= 2) key = "r1";
+    else if (a.value <= 4) key = "r2";
+    else if (a.value <= 7) key = "r3";
+    else key = "r4";
+
+    
+
+if (!suggestionsByArea[a.area]) {
+  console.error("Área no encontrada en suggestionsByArea:", a.area);
+  return `${a.area}: (ERROR: nombre no coincide)`;
+}
+
+
+if (!suggestionsByArea[a.area]) {
+  console.error("Área no encontrada:", a.area);
+  return `${a.area}: (ERROR: nombre no coincide)`;
+}
+return `${a.area}: ${suggestionsByArea[a.area][key]}`;
+
+
+
+
+  });
+}
+
+
+
+/* ============================
+   GENERAR RESULTADOS
+============================ */
+
+document.getElementById("evaluateButton").addEventListener("click", () => {
+  document.getElementById("resultsSection").classList.remove("hidden");
+
+  // Radar
+  const radarCtx = document.getElementById("radarChartCanvas").getContext("2d");
+
+  if (window.radarChartInstance) {
+    window.radarChartInstance.destroy();
+  }
+
+  window.radarChartInstance = new Chart(radarCtx, {
+    type: "radar",
+    data: {
+      labels: segments,
+      datasets: [{
+        label: "Nivel",
+        data: values,
+        backgroundColor: "rgba(108,178,235,0.2)",
+        borderColor: "#6cb2eb",
+        borderWidth: 2,
+        pointBackgroundColor: "#6cb2eb"
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        r: {
+          min: 0,
+          max: 10,
+          ticks: { stepSize: 2 },
+          grid: { color: "#e2e8f0" },
+          pointLabels: { color: "#334155" }
+        }
+      }
+    }
+  });
+
+document.getElementById("atmavibraButtonWrapper").classList.remove("hidden");
+
+  // Tabla
+  const tbody = document.getElementById("summaryTableBody");
+  tbody.innerHTML = "";
+
+  segments.forEach((segment, i) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="px-4 py-2">${segment}</td>
+      <td class="px-4 py-2">${values[i]}/10</td>
+      <td class="px-4 py-2">${getReflection(values[i], segment)} ${getAreaInsight(segment, values[i])}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // Sugerencias
+  const suggestions = getSuggestions();
+  const list = document.getElementById("suggestionsList");
+  list.innerHTML = "";
+
+ suggestions.forEach((text, i) => {
+  const value = values[i]; // valor real del área
+  let color = "bg-green-500"; // por defecto (5 a 10)
+
+  if (value <= 2) color = "bg-red-500";       // 0 a 2
+  else if (value <= 4) color = "bg-orange-500"; // 3 a 4
+
+  const li = document.createElement("li");
+  li.className = "flex items-start";
+  li.innerHTML = `
+    <span class="inline-block w-3 h-3 mt-1 mr-3 rounded-full ${color}"></span>
+    <span>${text}</span>
+  `;
+  list.appendChild(li);
+});
+
+});
+
+/* ============================
+   RESET
+============================ */
+document.getElementById("resetButton").addEventListener("click", () => {
+  values = new Array(segments.length).fill(1);
+  document.getElementById("resultsSection").classList.add("hidden");
+  resizeCanvas();
+});
+</script>
+
+
+<audio id="bgMusic" autoplay muted loop style="display:none">
+  <source src="sonidobosque.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // En móviles, el audio solo puede sonar tras una interacción del usuario.
+  // Este evento activa el sonido en cuanto el usuario toca la pantalla.
+  document.addEventListener("click", () => {
+    const audio = document.getElementById("bgMusic");
+    audio.muted = false;
+    audio.play();
+  }, { once: true });
+</script>
+
+
+
+<!-- FUENTES FINAS Y ARMÓNICAS -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300&family=Quicksand:wght@300&display=swap" rel="stylesheet">
+
+<!-- OVERLAY DE BIENVENIDA VERDE NEBULOSA -->
+<div id="introOverlay" class="fixed inset-0 bg-[#dff7e6]/60 backdrop-blur-xl flex items-center justify-center z-50">
+  <div class="text-center px-10 py-12 rounded-3xl shadow-2xl border border-white/30 max-w-md mx-auto animate-fadeIn"
+       style="
+         background: rgba(240, 255, 245, 0.35);
+         font-family: 'Montserrat', sans-serif;
+         font-weight: 200;
+         letter-spacing: 0.5px;
+         color: #2f4f3e;
+       ">
+
+    <!-- LOGO DENTRO DEL CUADRO -->
+    <img src="Logoatma.png" 
+         alt="Logo" 
+         class="mx-auto mb-6 opacity-90 drop-shadow-lg"
+         style="width: 120px; height: auto;">
+
+    <h2 class="text-3xl mb-6" style="font-family: 'Quicksand', sans-serif; font-weight: 300; color:#3b6f57;">
+      Un instante para ti
+    </h2>
+
+    <p class="text-lg leading-relaxed mb-8" style="font-family: 'Montserrat', sans-serif; font-weight: 200; color:#3a5f4c;">
+      Respira profundo.<br>
+      Suelta el peso del día.<br>
+      Permite que tu interior se aquiete.
+    </p>
+
+    <!-- BOTÓN VERDE NEBULOSA CON LATIDO -->
+    <button id="startButton"
+      class="px-12 py-3 rounded-full shadow-xl transition transform text-white"
+      style="
+        background: linear-gradient(135deg, #b8f1d5, #6bbf8b);
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+        animation: pulseGlowGreen 2.8s ease-in-out infinite;
+      ">
+      Estoy presente
+    </button>
+  </div>
+</div>
+
+
+<style>
+
+</style>
+
+
+
+
+<script>
+  const overlay = document.getElementById("introOverlay");
+  const startBtn = document.getElementById("startButton");
+
+  if (overlay && startBtn) {
+    startBtn.addEventListener("click", () => {
+      // Animación de desvanecimiento
+
+     overlay.style.pointerEvents = "none"; // ← evita que bloquee toques
+	overlay.style.animation = "fadeOut 0.9s ease forwards";
+
+
+	setTimeout(() => {
+  		overlay.style.display = "none";
+		}, 900);
+
+
+
+
+      // Activar música al pulsar
+      const audio = document.getElementById("bgMusic");
+      if (audio) {
+        audio.muted = false;
+        audio.play();
+      }
+    });
+  }
+</script>
+
+
+<!-- MODAL CONSEJO ATMAVIBRA -->
+<div id="atmavibraModal"
+     class="fixed inset-0 bg-[#dff7e6]/70 backdrop-blur-xl flex items-center justify-center z-50 hidden">
+
+  <div class="relative bg-white/60 border border-white/40 rounded-3xl shadow-2xl p-10 max-w-lg mx-4 text-center overflow-y-auto"
+       style="background: rgba(220, 255, 235, 0.55); font-family: 'Quicksand', sans-serif; max-height: 80vh;">
+
+
+    <!-- LOGO -->
+    <img src="Logoatma.png"
+         style="width:140px; margin:0 auto 20px; opacity:0.95;">
+
+    <!-- TEXTO DEL CONSEJO -->
+    <p id="atmavibraMessage"
+       class="text-lg leading-relaxed text-[#2f4f3e] font-light mb-8">
+    </p>
+
+    <!-- BOTÓN CERRAR -->
+    <button id="closeAtmavibra"
+      class="px-10 py-3 rounded-full shadow-lg text-white"
+      style="
+        background: linear-gradient(135deg, #8fe3b0, #5fbf85);
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 400;
+      ">
+      Cerrar
+    </button>
+
+<button id="generateReport"
+  class="px-10 py-3 rounded-full shadow-lg text-white mt-4"
+  style="background: linear-gradient(135deg, #ffd86b, #ffb300); font-weight:600;">
+  Generar informe
+</button>
+
+
+  </div>
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const atmavibraBtn = document.getElementById("atmavibraButton");
+  const atmavibraModal = document.getElementById("atmavibraModal");
+  const atmavibraMessage = document.getElementById("atmavibraMessage");
+  const closeAtmavibra = document.getElementById("closeAtmavibra");
+
+  if (!atmavibraBtn) return;
+
+  const atmavibraAdviceByArea = {
+    "Salud": {
+      low: "Tu cuerpo te está pidiendo una pausa real. Prioriza descanso, hidratación y pequeños momentos de respiración consciente. Un cambio pequeño hoy puede evitar un desgaste mayor mañana.",
+      mid: "Tu bienestar mejorará con pequeños hábitos: caminar un poco más, estirar al despertar, beber más agua o regular tus horarios de sueño. Tu cuerpo te lo agradecerá."
+    },
+    "Familia": {
+      low: "Hay vínculos que necesitan presencia y escucha. Un mensaje sincero, una llamada o un gesto amable pueden abrir un puente donde parecía haber distancia.",
+      mid: "Dedica un momento a compartir algo simple: una comida, una conversación ligera, un recuerdo bonito. La conexión se fortalece con detalles cotidianos."
+    },
+    "Amigos": {
+      low: "Tu corazón necesita compañía auténtica. Un mensaje honesto o una invitación sencilla pueden reactivar una amistad que te nutre.",
+      mid: "Permítete estar más presente. Un café, un paseo o una charla breve pueden revitalizar tus vínculos sociales."
+    },
+    "Finanzas": {
+      low: "Es momento de ordenar con calma. Revisa gastos esenciales, elimina lo que no suma y establece un pequeño plan semanal. Recuperarás control más rápido de lo que crees.",
+      mid: "Un poco de organización te dará mucha tranquilidad. Anota ingresos, gastos y un objetivo pequeño para este mes. La claridad trae paz."
+    },
+    "Trabajo": {
+      low: "Tu energía laboral necesita un respiro. Revisa límites, delega cuando puedas y pregúntate qué te está drenando. Un ajuste puede cambiarlo todo.",
+      mid: "Puedes mejorar tu bienestar laboral con pausas breves, mejor organización o pidiendo apoyo cuando lo necesites. Tu equilibrio importa."
+    },
+    "Ocio": {
+      low: "Tu alma necesita alegría. Regálate un momento de disfrute sin culpa: música, naturaleza, arte o algo que te haga sonreír.",
+      mid: "Incluye pequeñas dosis de placer en tu rutina: una serie, un paseo, un hobby. El descanso también es productividad emocional."
+    },
+    "Crecimiento Personal": {
+      low: "Tu interior pide un cambio profundo. Dedica unos minutos al día a reflexionar, escribir o aprender algo nuevo. Estás listo para un salto evolutivo.",
+      mid: "Estás creciendo, pero puedes profundizar. Lee algo inspirador, escucha un podcast o marca un pequeño objetivo semanal."
+    },
+   "Amor": {
+  low: "Tu corazón necesita un espacio seguro para sentirse visto. Permítete expresar lo que sientes, incluso si es vulnerable. El amor empieza por reconocer tu verdad interior.",
+  mid: "Puedes fortalecer tus vínculos afectivos con pequeños gestos: una palabra amable, un mensaje sincero, un abrazo más largo. El amor crece cuando se cuida con intención."
+}
+
+  };
+
+  atmavibraBtn.addEventListener("click", () => {
+
+    const lowAreas = segments
+      .map((area, i) => ({ area, value: values[i] }))
+      .filter(a => a.value < 5);
+
+    let message = "";
+
+    if (lowAreas.length === 0) {
+
+      message = `
+        Tu rueda está en un momento hermoso de equilibrio.
+        Aun así, recuerda que siempre puedes seguir expandiendo tu luz,
+        explorando nuevas formas de crecer y de disfrutar tu camino.
+      `;
+
+    } else {
+
+      const areasList = lowAreas.map(a => `<strong>${a.area}</strong>`).join(", ");
+
+      const detailedAdvice = lowAreas
+        .map(a => {
+          const adviceSet = atmavibraAdviceByArea[a.area];
+          const advice = (a.value <= 2) ? adviceSet.low : adviceSet.mid;
+          return `<strong style="font-weight:600; color:#2f4f3e;">${a.area}:</strong> ${advice}`;
+        })
+        .join("<br><br>");
+
+      const deepReflection = (lowAreas.length >= 3)
+        ? `
+          <br><br>
+          <em>Tu alma está pidiendo un reajuste amoroso.</em><br><br>
+          No es un signo de debilidad, sino una invitación poderosa a renacer.
+          Cuando varias áreas se mueven al mismo tiempo, la vida te está mostrando
+          que estás entrando en una etapa de transformación profunda.
+          <br><br>
+          Confía en tu capacidad de reconstruirte con suavidad, paso a paso.
+          Cada gesto de autocuidado, cada límite sano, cada respiración consciente
+          te acerca a una versión más alineada contigo.
+          <br><br>
+        `
+        : "";
+
+      message = `
+        Tu interior te está hablando con suavidad.
+        Las áreas que hoy piden un poco más de atención son:
+        <br><br>
+        <strong>${areasList}</strong>
+        <br><br>
+        No es una señal de carencia, sino una invitación amorosa a crecer.
+        Cada pequeño paso que des —una conversación sincera, un descanso merecido,
+        un gesto de autocuidado, un momento de conexión— abrirá nuevas puertas.
+        <br><br>
+
+        <div style="
+          width:100%;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          margin:0;
+          padding:0;
+        ">
+          <img src="Logoatma.png" style="width:140px; opacity:0.9; margin:0; padding:0;">
+        </div>
+
+        <span style="
+          white-space: nowrap;
+          font-size:1.05em;
+          font-weight:700;
+          color:#e6b800;
+          text-shadow: 0 0 4px rgba(230,184,0,0.6);
+          display:block;
+          text-align:center;
+          margin:0;
+          padding:0;
+        ">
+          Atmavibra te regala estos tips:
+        </span>
+
+        <span style="
+          font-size:0.95em;
+          font-weight:600;
+          color:#e6b800;
+          text-shadow: 0 0 3px rgba(230,184,0,0.5);
+          display:block;
+          text-align:center;
+          margin:0;
+          padding:0;
+        ">
+          para que alcances la mejor versión de ti
+        </span>
+
+        <br><br>
+        ${detailedAdvice}
+        ${deepReflection}
+        Confía en tu capacidad de transformar, de equilibrar y de florecer.
+        Estás mucho más cerca de tu armonía de lo que imaginas.
+      `;
+    }
+
+    atmavibraMessage.innerHTML = message;
+    atmavibraModal.classList.remove("hidden");
+  });
+
+  closeAtmavibra.addEventListener("click", () => {
+    atmavibraModal.classList.add("hidden");
+  });
+
+  atmavibraModal.addEventListener("click", (e) => {
+    if (e.target === atmavibraModal) {
+      atmavibraModal.classList.add("hidden");
+    }
+  });
+
+});
+
+
+
+
+</script>
+
+
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const btn = document.getElementById("generateReport");
+
+  btn.addEventListener("click", async () => {
+
+    const jsPDF = window.jspdf.jsPDF;
+    const pdf = new jsPDF("p", "pt", "a4");
+
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    let y = 40;
+
+    function checkPageSpace(neededSpace = 40) {
+      if (y + neededSpace >= pageHeight - 40) {
+        pdf.addPage();
+        y = 40;
+      }
+    }
+
+    /* ============================
+       TÍTULO PRINCIPAL ATMAVIBRA
+    ============================ */
+    pdf.setFont("Helvetica", "bold");
+    pdf.setFontSize(36);
+    pdf.setTextColor(85, 107, 47);
+    pdf.text("Atmavibra", pageWidth / 2, y, { align: "center" });
+    y += 60;
+
+    /* ============================
+       FECHA
+    ============================ */
+    const now = new Date();
+    const fecha = now.toLocaleDateString("es-ES");
+    const hora = now.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" });
+
+    pdf.setFont("Helvetica", "normal");
+    pdf.setFontSize(12);
+    pdf.setTextColor(120, 120, 120);
+    pdf.text(`Informe generado el ${fecha} a las ${hora}`, pageWidth - 60, y, { align: "right" });
+    y += 30;
+
+    /* ============================
+       RUEDA DE LA VIDA
+    ============================ */
+    checkPageSpace(350 + 120); // título + subtítulo + imagen
+
+    pdf.setFont("Helvetica", "bold");
+    pdf.setFontSize(22);
+    pdf.setTextColor(85, 107, 47);
+    pdf.text("Rueda de la Vida", 60, y);
+    y += 25;
+
+    pdf.setFont("Helvetica", "normal");
+    pdf.setFontSize(12);
+    pdf.setTextColor(120, 120, 120);
+    pdf.text("Tu equilibrio general representado visualmente", 60, y);
+    y += 20;
+
+    const wheelWrapper = document.getElementById("wheelWrapper");
+
+    const originalWheelWidth = wheelWrapper.style.width;
+    const originalWheelHeight = wheelWrapper.style.height;
+
+    wheelWrapper.style.width = "520px";
+    wheelWrapper.style.height = "520px";
+
+    const wheelImgCanvas = await html2canvas(wheelWrapper, {
+      backgroundColor: null,
+      scale: 2
+    });
+
+    const wheelImg = wheelImgCanvas.toDataURL("image/png");
+
+    wheelWrapper.style.width = originalWheelWidth;
+    wheelWrapper.style.height = originalWheelHeight;
+
+    const wheelW = wheelImgCanvas.width;
+    const wheelH = wheelImgCanvas.height;
+
+    const maxWheel = 350;
+    const wheelScale = Math.min(maxWheel / wheelW, maxWheel / wheelH);
+
+    const finalWheelW = wheelW * wheelScale;
+    const finalWheelH = wheelH * wheelScale;
+
+    const wheelX = (pageWidth - finalWheelW) / 2;
+
+    checkPageSpace(finalWheelH + 40);
+    pdf.addImage(wheelImg, "PNG", wheelX, y, finalWheelW, finalWheelH);
+    y += finalWheelH + 40;
+
+    /* ============================
+       RADAR
+    ============================ */
+    checkPageSpace(400); // título + subtítulo + radar
+
+    pdf.setFont("Helvetica", "bold");
+    pdf.setFontSize(22);
+    pdf.setTextColor(85, 107, 47);
+    pdf.text("Radar", 60, y);
+    y += 25;
+
+    pdf.setFont("Helvetica", "normal");
+    pdf.setFontSize(12);
+    pdf.setTextColor(120, 120, 120);
+    pdf.text("Comparativa visual entre tus áreas", 60, y);
+    y += 20;
+
+    const radarCanvas = document.getElementById("radarChartCanvas");
+    const radarImg = radarCanvas.toDataURL("image/png");
+
+    const radarW = radarCanvas.width;
+    const radarH = radarCanvas.height;
+
+    const radarTarget = 350 * 1.60;
+    const radarScale = Math.min(radarTarget / radarW, radarTarget / radarH);
+
+    const finalRadarW = radarW * radarScale;
+    const finalRadarH = radarH * radarScale;
+
+    const radarX = (pageWidth - finalRadarW) / 2;
+
+    checkPageSpace(finalRadarH + 40);
+    pdf.addImage(radarImg, "PNG", radarX, y, finalRadarW, finalRadarH);
+    y += finalRadarH + 40;
+
+    /* ============================
+       REFLEXIÓN POR ÁREA
+    ============================ */
+    checkPageSpace(80);
+
+    pdf.setFont("Helvetica", "bold");
+    pdf.setFontSize(22);
+    pdf.setTextColor(85, 107, 47);
+    pdf.text("Reflexión por Área", 60, y);
+    y += 25;
+
+    pdf.setFont("Helvetica", "normal");
+    pdf.setFontSize(12);
+    pdf.setTextColor(120, 120, 120);
+    pdf.text("Interpretación detallada de tus puntuaciones", 60, y);
+    y += 20;
+
+    pdf.setFont("Helvetica", "normal");
+    pdf.setFontSize(12);
+    pdf.setTextColor(0, 0, 0);
+
+    const lineHeight = 14;
+
+    segments.forEach((segment, i) => {
+      const reflection = getReflection(values[i], segment).replace(/<[^>]*>?/gm, '');
+      const insight = getAreaInsight(segment, values[i]);
+      const fullText = `${reflection} ${insight}`;
+
+      const lines = pdf.splitTextToSize(fullText, pageWidth - 120);
+      const blockHeight = 16 + lines.length * lineHeight + 10;
+
+      checkPageSpace(blockHeight);
+
+      pdf.setFont("Helvetica", "bold");
+      pdf.setFontSize(12);
+      pdf.setTextColor(0, 0, 0);
+      pdf.text(`${segment}:`, 60, y);
+      y += 16;
+
+      pdf.setFont("Helvetica", "normal");
+      pdf.setFontSize(12);
+      pdf.setTextColor(0, 0, 0);
+
+      lines.forEach(line => {
+        pdf.text(line, 60, y);
+        y += lineHeight;
+      });
+
+      y += 10;
+    });
+
+    /* ============================
+       CAMINOS DE CRECIMIENTO
+    ============================ */
+    checkPageSpace(80);
+
+    pdf.setFont("Helvetica", "bold");
+    pdf.setFontSize(22);
+    pdf.setTextColor(85, 107, 47);
+    pdf.text("Caminos de Crecimiento", 60, y);
+    y += 25;
+
+    pdf.setFont("Helvetica", "normal");
+    pdf.setFontSize(12);
+    pdf.setTextColor(120, 120, 120);
+    pdf.text("Recomendaciones personalizadas para avanzar", 60, y);
+    y += 20;
+
+    const suggestions = getSuggestions();
+
+    suggestions.forEach((text, i) => {
+      const value = values[i];
+      const lines = pdf.splitTextToSize(text, pageWidth - 120);
+
+      const blockHeight = lines.length * lineHeight + 20;
+      checkPageSpace(blockHeight + 20);
+
+      let color = [0, 150, 0];
+      if (value <= 2) color = [255, 0, 0];
+      else if (value <= 4) color = [255, 140, 0];
+
+      pdf.setFillColor(...color);
+      pdf.circle(70, y - 4, 4, "F");
+
+      pdf.setTextColor(0, 0, 0);
+      pdf.text(lines, 90, y);
+      y += lines.length * lineHeight + 12;
+    });
+
+    y += 20;
+
+    /* ============================
+       CONSEJO ATMAVIBRA
+    ============================ */
+    checkPageSpace(100);
+
+    pdf.setFont("Helvetica", "bold");
+    pdf.setFontSize(22);
+    pdf.setTextColor(85, 107, 47);
+    pdf.text("Consejo Atmavibra", 60, y);
+    y += 25;
+
+    pdf.setFont("Helvetica", "normal");
+    pdf.setFontSize(12);
+    pdf.setTextColor(120, 120, 120);
+    pdf.text("Un mensaje final para tu bienestar", 60, y);
+    y += 20;
+
+    pdf.setFont("Helvetica", "normal");
+    pdf.setFontSize(12);
+    pdf.setTextColor(0, 0, 0);
+
+    const adviceText = document.getElementById("atmavibraMessage").innerText;
+    const adviceLines = pdf.splitTextToSize(adviceText, pageWidth - 120);
+
+    adviceLines.forEach(line => {
+      checkPageSpace(lineHeight + 10);
+      pdf.text(line, 60, y);
+      y += lineHeight;
+    });
+
+    pdf.save("Informe-Atmavibra.pdf");
+
+  });
+
+});
+</script>
+
+
+
+
+
+<style>
+  /* CONTADOR ATMAVIBRA ABAJO A LA DERECHA */
+  #visitorCounter {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 0.95rem;
+    font-style: italic;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    color: #2f4f3e;
+    z-index: 999999;
+    font-weight: 400;
+    backdrop-filter: blur(6px);
+    text-align: right;
+    display: none; /* 🔥 OCULTO POR DEFECTO */
+  }
+
+  #visitorNumber {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2f7f4f;
+  }
+</style>
+
+<div id="visitorCounter">
+  Personas que han dado un paso hacia su equilibrio con Atmavibra<br>
+  <span id="visitorNumber">0</span>
+</div>
+
+<script>
+async function updateGlobalCounter() {
+  const counterEl = document.getElementById("visitorNumber");
+
+  counterEl.textContent = "...";
+
+  try {
+    console.log("🔎 Llamando a CountAPI…");
+
+  const res = await fetch("https://api.countapi.xyz/hit/atmavibra/visitas", {
+      method: "GET",
+      cache: "no-store"
+    });
+
+    if (!res.ok) throw new Error("Respuesta no válida");
+
+    const data = await res.json();
+    console.log("📦 Respuesta CountAPI:", data);
+
+    if (!data || typeof data.value !== "number") {
+      throw new Error("Valor inesperado");
+    }
+
+    counterEl.textContent = data.value.toLocaleString("es-ES");
+
+  } catch (error) {
+    console.error("❌ Error CountAPI:", error);
+
+    let fallback = localStorage.getItem("atmavibra_fallback") || 0;
+    fallback = parseInt(fallback) + 1;
+    localStorage.setItem("atmavibra_fallback", fallback);
+
+    counterEl.textContent = fallback.toLocaleString("es-ES") + " *";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnPresente = document.getElementById("startButton");
+  const counterBox = document.getElementById("visitorCounter");
+
+  if (!btnPresente) {
+    console.error("❌ ERROR: No existe un botón con id='startButton'");
+    return;
+  }
+
+  btnPresente.addEventListener("click", () => {
+    console.log("👉 Pulsado 'Estoy presente'");
+
+    counterBox.style.display = "block";
+
+    updateGlobalCounter();
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const btn = document.getElementById("generateReport");
+
+  if (!btn) {
+    console.error("❌ No se encontró el botón generateReport");
+    return;
+  }
+
+
+
+
+  btn.addEventListener("click", async () => {
+    console.log("✔ Botón detectado, iniciando PDF...");
+
+    // Aquí irá tu código del PDF
+  
+console.log("Generando PDF...");
+
+const jsPDF = window.jspdf.jsPDF;
+const pdf = new jsPDF("p", "pt", "a4");
+
+const pageWidth = pdf.internal.pageSize.getWidth();
+let y = 40;
+
+/* ============================
+   LOGO
+============================ */
+/* ============================
+   TÍTULO ATMAVIBRA
+============================ */
+pdf.setFont("Helvetica", "bold");
+pdf.setFontSize(36);
+pdf.setTextColor(85, 107, 47); // verde oliva
+pdf.text("Atmavibra", pageWidth / 2, y, { align: "center" });
+y += 60;
+
+
+/* ============================
+   RUEDA DE LA VIDA
+============================ */
+
+const wheelWrapper = document.getElementById("wheelWrapper");
+
+const wheelImgCanvas = await html2canvas(wheelWrapper, {
+  backgroundColor: null,
+  scale: 2,
+  useCORS: true,
+  allowTaint: true,
+  logging: true,
+  onclone: (clonedDoc) => {
+    const clonedLabels = clonedDoc.querySelector("#labelsContainer");
+    if (clonedLabels) {
+      clonedLabels.style.position = "absolute";
+      clonedLabels.style.zIndex = "999999";
+      clonedLabels.style.pointerEvents = "auto";
+      clonedLabels.style.width = "100%";
+      clonedLabels.style.height = "100%";
+    }
+  }
+});
+
+const wheelImg = wheelImgCanvas.toDataURL("image/png");
+
+pdf.addImage(wheelImg, "PNG", 60, y, pageWidth - 120, pageWidth - 120);
+
+y += (pageWidth - 120) + 30;
+
+/* ============================
+   RADAR CHART
+============================ */
+const radarCanvas = document.getElementById("radarChartCanvas");
+const radarImg = radarCanvas.toDataURL("image/png");
+
+pdf.addImage(radarImg, "PNG", 60, y, pageWidth - 120, (pageWidth - 120) * 0.7);
+y += (pageWidth - 120) * 0.7 + 40;
+
+/* ============================
+   REFLEXIÓN POR ÁREA
+============================ */
+pdf.setFont("Helvetica", "bold");
+pdf.setFontSize(18);
+pdf.setTextColor(255, 200, 0);
+pdf.text("Reflexión por Área", 60, y);
+y += 25;
+
+pdf.setFont("Helvetica", "normal");
+pdf.setFontSize(12);
+pdf.setTextColor(0, 0, 0);
+
+segments.forEach((segment, i) => {
+  const text = `${segment}: ${getReflection(values[i], segment).replace(/<[^>]*>?/gm, '')} ${getAreaInsight(segment, values[i])}`;
+  const lines = pdf.splitTextToSize(text, pageWidth - 120);
+  pdf.text(lines, 60, y);
+  y += lines.length * 14 + 10;
+});
+
+y += 20;
+
+/* ============================
+   CAMINOS DE CRECIMIENTO
+============================ */
+pdf.setFont("Helvetica", "bold");
+pdf.setFontSize(18);
+pdf.setTextColor(255, 200, 0);
+pdf.text("Caminos de Crecimiento", 60, y);
+y += 25;
+
+const suggestions = getSuggestions();
+
+suggestions.forEach((text, i) => {
+  const value = values[i];
+
+  let color = [0, 150, 0]; // verde
+  if (value <= 2) color = [255, 0, 0]; // rojo
+  else if (value <= 4) color = [255, 140, 0]; // naranja
+
+  pdf.setFillColor(...color);
+  pdf.circle(70, y - 4, 4, "F");
+
+  pdf.setTextColor(0, 0, 0);
+  const lines = pdf.splitTextToSize(text, pageWidth - 120);
+  pdf.text(lines, 90, y);
+  y += lines.length * 14 + 12;
+});
+
+y += 20;
+
+/* ============================
+   CONSEJO ATMAVIBRA
+============================ */
+pdf.setFont("Helvetica", "bold");
+pdf.setFontSize(18);
+pdf.setTextColor(255, 200, 0);
+pdf.text("Consejo Atmavibra", 60, y);
+y += 25;
+
+pdf.setFont("Helvetica", "normal");
+pdf.setFontSize(12);
+pdf.setTextColor(0, 0, 0);
+
+const adviceText = document.getElementById("atmavibraMessage").innerText;
+const adviceLines = pdf.splitTextToSize(adviceText, pageWidth - 120);
+pdf.text(adviceLines, 60, y);
+
+/* ============================
+   DESCARGA
+============================ */
+pdf.save("Informe-Atmavibra.pdf");
+
+
+
+});
+</script>
+
+
+</body>
+</html>
