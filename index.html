@@ -9,9 +9,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+
+  
 body {
   margin: 0;
   padding: 0;
+  padding-bottom: 40px; /* sube todo un poco */
   font-family: "Arial", sans-serif;
   background: linear-gradient(to bottom, #dfffe9, #c8f7df);
   text-align: center;
@@ -23,6 +26,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 
 .logo-container {
   margin: 30px auto;
@@ -56,20 +60,26 @@ h1 {
   max-width: 300px;
   margin: 15px auto;
   padding: 18px 30px;
-  background: #b8e6c9;
+  background: transparent; /* fondo limpio */
   border-radius: 12px;
+  border: 2px solid #d4af37; /* borde dorado */
   text-decoration: none;
+
   font-size: 5vw;
-  color: #d4af37;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0, 60, 30, 0.15);
-  transition: 0.2s;
+  color: #d4af37; /* dorado brillante */
+  font-weight: 300; /* letra fina */
+  letter-spacing: 1px;
+
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.4); /* brillo dorado suave */
+  transition: 0.25s;
 }
 
 .btn:hover {
-  background: #a9dbbc;
-  transform: scale(1.03);
+  background: rgba(212, 175, 55, 0.15); /* dorado suave al pasar */
+  transform: scale(1.04);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.6);
 }
+
 
 .bottom-space {
   margin: 40px 0;
@@ -118,6 +128,7 @@ h1 {
 
 </body>
 </html>
+
 
 
 
