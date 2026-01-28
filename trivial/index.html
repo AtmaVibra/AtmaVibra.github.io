@@ -708,10 +708,6 @@ const QUESTIONS = [
 
 
 
-
-
-
-
 let selectedQuestions = [];
 let index = 0;
 let score = 0;
@@ -727,8 +723,18 @@ const finalScore = document.getElementById("finalScore");
 const finalMessage = document.getElementById("finalMessage");
 const restartBtn = document.getElementById("restartBtn");
 
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+ 
+    
 function startGame() {
-  selectedQuestions = QUESTIONS.sort(() => Math.random() - 0.5).slice(0,10);
+  selectedQuestions = shuffle([...QUESTIONS]).slice(0, 10);
   index = 0;
   score = 0;
   scoreEl.textContent = score;
