@@ -6,19 +6,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <style>
-  body {
+body {
     margin: 0;
     padding: 0;
     font-family: system-ui, sans-serif;
     background: linear-gradient(135deg, #e8f5e9, #c8e6c9, #a5d6a7);
-    min-height: 100vh;
+    min-height: 100dvh;                 /* más fiable en móviles */
     display: flex;
     justify-content: center;
     align-items: center;
     color: #2e4d36;
-  }
+}
 
-  .container {
+.container {
     width: min(900px, 95%);
     background: #f6fff7;
     border-radius: 20px;
@@ -28,7 +28,10 @@
     gap: 1rem;
     border: 1px solid rgba(46, 77, 54, 0.2);
     box-shadow: 0 10px 30px rgba(46, 77, 54, 0.15);
-  }
+
+    margin: auto;                       /* centra incluso si crece */
+}
+
 
 
 /* Ajuste general para pantallas menores de 900px */
@@ -68,10 +71,6 @@
     }
   }
 
-
-
-
-
   .logo {
     display: flex;
     justify-content: center;
@@ -87,7 +86,6 @@
     padding: 8px;
     box-shadow: 0 0 18px rgba(76, 175, 80, 0.18);
 }
-
 
   .content {
     display: flex;
@@ -126,7 +124,6 @@
     font-family: "Lucida Handwriting", "Brush Script MT", "Segoe Script", cursive;
     letter-spacing: 0.5px;           /* toque premium */
 }
-
 
   .answers {
     display: flex;
