@@ -272,86 +272,135 @@ const QUESTIONS = [
     ]
   },
 
-{
-  q: "Cuando piensas en un deseo grande —una casa, un cambio de vida, una nueva versión de ti— y notas que la realidad actual no se parece en nada, ¿qué diálogo interno aparece primero?",
-  a: [
-    { t: "Siento que la distancia es tan grande que me cuesta creer que algo así pueda ser para mí, y termino enfocándome en lo que falta más que en lo que podría construirse.", p: 0 },
-    { t: "Me digo que quizá podría acercarme un poco, aunque todavía no sé cómo, y trato de no perder del todo la esperanza.", p: 1 },
-    { t: "Reconozco que mi realidad actual es solo un punto del camino, y que si sostengo la visión, la energía y las acciones, el puente hacia eso se irá formando.", p: 3 }
-  ]
-},
-{
-  q: "Cuando notas que tu vibración baja —cansancio, frustración, pensamientos repetitivos—, ¿cómo interpretas ese estado?",
-  a: [
-    { t: "Lo vivo como una señal de que algo está mal conmigo o con mi vida, y me cuesta salir de la sensación de bloqueo.", p: 0 },
-    { t: "Lo noto, me incomoda, pero intento seguir adelante esperando que pase por sí solo.", p: 1 },
-    { t: "Lo observo como un ajuste energético natural, un recordatorio de que necesito pausa, presencia y volver a mi centro.", p: 3 }
-  ]
-},
-{
-  q: "Cuando ves a alguien manifestar con facilidad lo que tú llevas tiempo intentando atraer, ¿qué historia te cuentas?",
-  a: [
-    { t: "Pienso que esa facilidad no es para mí, que a otros les llega porque tienen algo que yo no tengo, y eso me hace sentir más lejos de mis metas.", p: 0 },
-    { t: "Me da una mezcla de envidia y curiosidad, como si algo dentro de mí quisiera creer pero aún no supiera cómo.", p: 1 },
-    { t: "Lo tomo como evidencia de que el campo de posibilidades está abierto, y que si existe para alguien, también puede existir para mí.", p: 3 }
-  ]
-},
-{
-  q: "Cuando te encuentras en un periodo de incertidumbre —sin señales, sin claridad, sin avances visibles—, ¿cómo lo interpretas?",
-  a: [
-    { t: "Como un vacío peligroso donde siento que todo puede salir mal, y me cuesta confiar en cualquier proceso.", p: 0 },
-    { t: "Como un momento incómodo donde no sé qué pensar, pero trato de mantenerme ocupada para no sentirlo tanto.", p: 1 },
-    { t: "Como un espacio cuántico donde lo nuevo aún no ha colapsado en forma, y donde mi vibración es más importante que mis circunstancias.", p: 3 }
-  ]
-},
-{
-  q: "Cuando piensas en el dinero como energía, ¿qué emoción aparece primero en tu cuerpo?",
-  a: [
-    { t: "Una sensación de tensión o miedo, como si el dinero fuera algo escaso o difícil de sostener.", p: 0 },
-    { t: "Una mezcla de deseo y preocupación, como si quisiera confiar pero aún no supiera cómo hacerlo del todo.", p: 1 },
-    { t: "Una sensación de apertura, como si el dinero fuera un flujo natural que puedo aprender a recibir y sostener con más calma.", p: 3 }
-  ]
-},
-{
-  q: "Cuando te propones cambiar un patrón —relacional, económico, emocional— y vuelves a caer en lo mismo, ¿qué interpretación haces?",
-  a: [
-    { t: "Creo que no tengo la capacidad de cambiar realmente, y que mis patrones son más fuertes que yo.", p: 0 },
-    { t: "Me frustro, pero pienso que quizá necesito más tiempo o más práctica.", p: 1 },
-    { t: "Lo veo como parte del proceso de reprogramación: un eco del pasado que aparece justo antes de consolidar una nueva versión de mí.", p: 3 }
-  ]
-},
-{
-  q: "Cuando imaginas tu futuro ideal y aparece una voz interna que duda, ¿cómo reaccionas?",
-  a: [
-    { t: "Le doy mucho peso a esa voz y termino creyendo que mis sueños son demasiado grandes o poco realistas.", p: 0 },
-    { t: "Intento equilibrar la duda con algo de esperanza, aunque no siempre lo consigo.", p: 1 },
-    { t: "Reconozco la duda como un mecanismo antiguo, no como una verdad, y vuelvo a conectar con la visión que sí quiero sostener.", p: 3 }
-  ]
-},
-{
-  q: "Cuando te encuentras con una oportunidad inesperada —un mensaje, una invitación, una idea—, ¿qué piensas primero?",
-  a: [
-    { t: "Que probablemente no es para mí o que algo malo podría venir detrás, así que me cuesta confiar.", p: 0 },
-    { t: "Me sorprende y me genera dudas, pero intento no cerrarme del todo.", p: 1 },
-    { t: "Lo interpreto como una sincronía, una señal de que mi vibración está moviendo cosas a mi favor.", p: 3 }
-  ]
-},
-{
-  q: "Cuando reflexionas sobre tu pasado, ¿qué narrativa domina tu interpretación?",
-  a: [
-    { t: "Me enfoco en lo que hice mal, en los errores y en lo que debería haber sido distinto.", p: 0 },
-    { t: "Veo una mezcla de momentos difíciles y aprendizajes, aunque algunos aún me pesan.", p: 1 },
-    { t: "Reconozco lo duro, pero también veo mi crecimiento, mi evolución y la fuerza que desarrollé.", p: 3 }
-  ]
-},
-{
-  q: "Cuando piensas en la física cuántica aplicada a tu vida —observador, vibración, colapso de posibilidades—, ¿cómo lo integras?",
-  a: [
-    { t: "Me parece demasiado abstracto y siento que no tiene un impacto real en mi día a día.", p: 0 },
-    { t: "Me interesa, aunque a veces lo entiendo y a veces no, pero intento aplicarlo como puedo.", p: 1 },
-    { t: "Lo vivo como una guía práctica: mi atención crea dirección, mi vibración abre caminos y mis decisiones colapsan nuevas realidades.", p: 3 }
-  ]
-}, 
+  {
+    q: "Cuando piensas en un deseo grande —una casa, un cambio de vida, una nueva versión de ti— y notas que la realidad actual no se parece en nada, ¿qué diálogo interno aparece primero?",
+    a: [
+      { 
+        t: "Siento que la distancia es tan grande que me cuesta creer que algo así pueda ser para mí, y termino enfocándome en lo que falta más que en lo que podría construirse.", 
+        p: 0,
+        why: "Enfocarte en la distancia en lugar del proceso bloquea tu creatividad y te hace olvidar que todo cambio empieza desde un primer paso." 
+      },
+      { t: "Me digo que quizá podría acercarme un poco, aunque todavía no sé cómo, y trato de no perder del todo la esperanza.", p: 1 },
+      { t: "Reconozco que mi realidad actual es solo un punto del camino, y que si sostengo la visión, la energía y las acciones, el puente hacia eso se irá formando.", p: 3 }
+    ]
+  },
+
+  {
+    q: "Cuando notas que tu vibración baja —cansancio, frustración, pensamientos repetitivos—, ¿cómo interpretas ese estado?",
+    a: [
+      { 
+        t: "Lo vivo como una señal de que algo está mal conmigo o con mi vida, y me cuesta salir de la sensación de bloqueo.", 
+        p: 0,
+        why: "Interpretar un bajón como un fallo personal te impide verlo como una señal natural de que necesitas descanso, presencia y ajuste interno." 
+      },
+      { t: "Lo noto, me incomoda, pero intento seguir adelante esperando que pase por sí solo.", p: 1 },
+      { t: "Lo observo como un ajuste energético natural, un recordatorio de que necesito pausa, presencia y volver a mi centro.", p: 3 }
+    ]
+  },
+
+  {
+    q: "Cuando ves a alguien manifestar con facilidad lo que tú llevas tiempo intentando atraer, ¿qué historia te cuentas?",
+    a: [
+      { 
+        t: "Pienso que esa facilidad no es para mí, que a otros les llega porque tienen algo que yo no tengo, y eso me hace sentir más lejos de mis metas.", 
+        p: 0,
+        why: "Compararte desde la carencia crea una ilusión de separación que te desconecta de tu propio potencial." 
+      },
+      { t: "Me da una mezcla de envidia y curiosidad, como si algo dentro de mí quisiera creer pero aún no supiera cómo.", p: 1 },
+      { t: "Lo tomo como evidencia de que el campo de posibilidades está abierto, y que si existe para alguien, también puede existir para mí.", p: 3 }
+    ]
+  },
+
+  {
+    q: "Cuando te encuentras en un periodo de incertidumbre —sin señales, sin claridad, sin avances visibles—, ¿cómo lo interpretas?",
+    a: [
+      { 
+        t: "Como un vacío peligroso donde siento que todo puede salir mal, y me cuesta confiar en cualquier proceso.", 
+        p: 0,
+        why: "Ver la incertidumbre como amenaza bloquea tu intuición y te impide percibirla como el espacio donde lo nuevo empieza a formarse." 
+      },
+      { t: "Como un momento incómodo donde no sé qué pensar, pero trato de mantenerme ocupada para no sentirlo tanto.", p: 1 },
+      { t: "Como un espacio cuántico donde lo nuevo aún no ha colapsado en forma, y donde mi vibración es más importante que mis circunstancias.", p: 3 }
+    ]
+  },
+
+  {
+    q: "Cuando piensas en el dinero como energía, ¿qué emoción aparece primero en tu cuerpo?",
+    a: [
+      { 
+        t: "Una sensación de tensión o miedo, como si el dinero fuera algo escaso o difícil de sostener.", 
+        p: 0,
+        why: "La tensión frente al dinero suele ser un reflejo de creencias heredadas, no de tu realidad actual; observarlo abre espacio a una relación más sana." 
+      },
+      { t: "Una mezcla de deseo y preocupación, como si quisiera confiar pero aún no supiera cómo hacerlo del todo.", p: 1 },
+      { t: "Una sensación de apertura, como si el dinero fuera un flujo natural que puedo aprender a recibir y sostener con más calma.", p: 3 }
+    ]
+  },
+
+  {
+    q: "Cuando te propones cambiar un patrón —relacional, económico, emocional— y vuelves a caer en lo mismo, ¿qué interpretación haces?",
+    a: [
+      { 
+        t: "Creo que no tengo la capacidad de cambiar realmente, y que mis patrones son más fuertes que yo.", 
+        p: 0,
+        why: "Confundir un tropiezo con un destino te hace olvidar que la repetición es parte natural del proceso de reprogramación." 
+      },
+      { t: "Me frustro, pero pienso que quizá necesito más tiempo o más práctica.", p: 1 },
+      { t: "Lo veo como parte del proceso de reprogramación: un eco del pasado que aparece justo antes de consolidar una nueva versión de mí.", p: 3 }
+    ]
+  },
+
+  {
+    q: "Cuando imaginas tu futuro ideal y aparece una voz interna que duda, ¿cómo reaccionas?",
+    a: [
+      { 
+        t: "Le doy mucho peso a esa voz y termino creyendo que mis sueños son demasiado grandes o poco realistas.", 
+        p: 0,
+        why: "Dar autoridad a la duda refuerza viejas heridas y te aleja de la visión que realmente quieres sostener." 
+      },
+      { t: "Intento equilibrar la duda con algo de esperanza, aunque no siempre lo consigo.", p: 1 },
+      { t: "Reconozco la duda como un mecanismo antiguo, no como una verdad, y vuelvo a conectar con la visión que sí quiero sostener.", p: 3 }
+    ]
+  },
+
+  {
+    q: "Cuando te encuentras con una oportunidad inesperada —un mensaje, una invitación, una idea—, ¿qué piensas primero?",
+    a: [
+      { 
+        t: "Que probablemente no es para mí o que algo malo podría venir detrás, así que me cuesta confiar.", 
+        p: 0,
+        why: "Desconfiar de lo bueno por defecto es un mecanismo de autoprotección que termina cerrando puertas valiosas." 
+      },
+      { t: "Me sorprende y me genera dudas, pero intento no cerrarme del todo.", p: 1 },
+      { t: "Lo interpreto como una sincronía, una señal de que mi vibración está moviendo cosas a mi favor.", p: 3 }
+    ]
+  },
+
+  {
+    q: "Cuando reflexionas sobre tu pasado, ¿qué narrativa domina tu interpretación?",
+    a: [
+      { 
+        t: "Me enfoco en lo que hice mal, en los errores y en lo que debería haber sido distinto.", 
+        p: 0,
+        why: "Mirar tu pasado solo desde el error distorsiona tu historia y te impide ver tu evolución real." 
+      },
+      { t: "Veo una mezcla de momentos difíciles y aprendizajes, aunque algunos aún me pesan.", p: 1 },
+      { t: "Reconozco lo duro, pero también veo mi crecimiento, mi evolución y la fuerza que desarrollé.", p: 3 }
+    ]
+  },
+
+  {
+    q: "Cuando piensas en la física cuántica aplicada a tu vida —observador, vibración, colapso de posibilidades—, ¿cómo lo integras?",
+    a: [
+      { 
+        t: "Me parece demasiado abstracto y siento que no tiene un impacto real en mi día a día.", 
+        p: 0,
+        why: "Descartar lo que no entiendes a la primera te impide explorar herramientas que podrían expandirte." 
+      },
+      { t: "Me interesa, aunque a veces lo entiendo y a veces no, pero intento aplicarlo como puedo.", p: 1 },
+      { t: "Lo vivo como una guía práctica: mi atención crea dirección, mi vibración abre caminos y mis decisiones colapsan nuevas realidades.", p: 3 }
+    ]
+  },
 
   {
     q: "Si alguien te habla mal sin motivo, ¿qué interpretación haces primero?",
@@ -361,6 +410,7 @@ const QUESTIONS = [
       { t: "Su reacción habla de su mundo, no del mío.", p: 3 }
     ]
   },
+
   {
     q: "Cuando tienes que tomar una decisión difícil, ¿qué pesa más?",
     a: [
@@ -370,22 +420,26 @@ const QUESTIONS = [
     ]
   },
 
-{
-  q: "Ves un curso que te inspira, pero te da miedo invertir. ¿Qué piensas primero?",
-  a: [
-    { t: "Seguro que no me servirá, mejor no arriesgo.", p: 0, why: "El miedo a invertir en ti bloquea la expansión y refuerza la escasez." },
-    { t: "Quizá más adelante, ahora no lo veo claro.", p: 1 },
-    { t: "Si me expande, es una señal de crecimiento.", p: 3 }
-  ]
-},
-{
-  q: "Te llega un pago inesperado. ¿Qué haces?",
-  a: [
-    { t: "Lo guardo por si pasa algo malo.", p: 0, why: "Guardar desde el miedo refuerza la vibración de carencia." },
-    { t: "Lo ahorro, pero con un poco de tensión.", p: 1 },
-    { t: "Agradezco y decido desde tranquilidad, no desde miedo.", p: 3 }
-  ]
-},
+  {
+    q: "Ves un curso que te inspira, pero te da miedo invertir. ¿Qué piensas primero?",
+    a: [
+      { t: "Seguro que no me servirá, mejor no arriesgo.", p: 0, why: "El miedo a invertir en ti bloquea la expansión y refuerza la escasez." },
+      { t: "Quizá más adelante, ahora no lo veo claro.", p: 1 },
+      { t: "Si me expande, es una señal de crecimiento.", p: 3 }
+    ]
+  },
+
+  {
+    q: "Te llega un pago inesperado. ¿Qué haces?",
+    a: [
+      { t: "Lo guardo por si pasa algo malo.", p: 0, why: "Guardar desde el miedo refuerza la vibración de carencia." },
+      { t: "Lo ahorro, pero con un poco de tensión.", p: 1 },
+      { t: "Agradezco y decido desde tranquilidad, no desde miedo.", p: 3 }
+    ]
+  },
+
+
+    
 {
   q: "Un amigo te invita a un plan que te apetece, pero piensas en el dinero. ¿Qué haces?",
   a: [
@@ -522,6 +576,12 @@ const QUESTIONS = [
     { t: "Puedo expandirme para sostener lo que deseo, paso a paso.", p: 3 }
   ]
 },
+
+
+
+
+
+    
 {
   q: "Cuando piensas en tu futuro ideal, ¿cómo interpretas el tiempo que tardará en llegar?",
   a: [
@@ -635,6 +695,11 @@ const QUESTIONS = [
     { t: "Lo recibo como una señal de expansión.", p: 3 }
   ]
 },
+
+
+
+
+    
 {
   q: "Quieres manifestar un cambio laboral, pero te da miedo equivocarte. ¿Qué haces?",
   a: [
@@ -644,175 +709,13 @@ const QUESTIONS = [
   ]
 },
 {
-  q: "Te llega una invitación a algo que te expande, pero no te sientes 'lista'. ¿Qué haces?",
-  a: [
-    { t: "Lo rechazo porque no estoy preparada.", p: 0, why: "Esperar sentirte lista bloquea la abundancia." },
-    { t: "Dudo, pero lo considero.", p: 1 },
-    { t: "Acepto y confío en que creceré dentro de la experiencia.", p: 3 }
-  ]
-},
-    
-  {
-    q: "Si un plan importante se cancela, ¿qué piensas primero?",
-    a: [
-      { t: "Seguro que no era tan importante para ellos.", p: 0, why: "Interpretar rechazo donde no lo hay alimenta inseguridad y dependencia emocional." },
-      { t: "Me fastidia, pero puede pasar.", p: 1 },
-      { t: "Quizá la vida me está dando espacio para otra cosa.", p: 3 }
-    ]
-  },
-  {
-    q: "Cuando te equivocas delante de otros, ¿qué historia te cuentas?",
-    a: [
-      { t: "Ya está, he quedado fatal.", p: 0, why: "Pensar que un error define tu valor te encierra en perfeccionismo y miedo al juicio." },
-      { t: "Bueno, fue incómodo, pero ya está.", p: 1 },
-      { t: "Es humano equivocarse, puedo aprender de esto.", p: 3 }
-    ]
-  },
-  {
-    q: "Si alguien no te contesta un mensaje importante, ¿qué piensas?",
-    a: [
-      { t: "Me están ignorando a propósito.", p: 0, why: "Asumir intenciones negativas sin evidencia alimenta ansiedad y dependencia emocional." },
-      { t: "Quizá está ocupado.", p: 1 },
-      { t: "No puedo controlar su tiempo, pero sí mi paz.", p: 3 }
-    ]
-  },
-  {
-    q: "Cuando te sientes insegura, ¿qué haces con esa sensación?",
-    a: [
-      { t: "La escondo para que nadie lo note.", p: 0, why: "Ocultar tu vulnerabilidad te desconecta de tu autenticidad y te deja sola con la carga." },
-      { t: "Intento seguir adelante como puedo.", p: 1 },
-      { t: "La escucho y me trato con más suavidad.", p: 3 }
-    ]
-  },
-  {
-    q: "Si alguien te critica injustamente, ¿qué haces primero?",
-    a: [
-      { t: "Me lo creo y me hundo.", p: 0, why: "Creer críticas injustas sin filtrar debilita tu autoestima y te hace depender del juicio externo." },
-      { t: "Me afecta, pero intento relativizar.", p: 1 },
-      { t: "Evalúo si hay algo útil y suelto el resto.", p: 3 }
-    ]
-  },
-  {
-    q: "Cuando piensas en tu futuro, ¿qué imagen predomina?",
-    a: [
-      { t: "Problemas y riesgos.", p: 0, why: "Anticipar catástrofes bloquea tu creatividad y tu capacidad de avanzar." },
-      { t: "Una mezcla de miedo y posibilidad.", p: 1 },
-      { t: "Un camino donde puedo crecer y adaptarme.", p: 3 }
-    ]
-  },
-  {
-    q: "Si alguien te pone un límite, ¿cómo lo vives?",
-    a: [
-      { t: "Como un rechazo hacia mí.", p: 0, why: "Tomar los límites como ataques personales dificulta relaciones sanas y maduras." },
-      { t: "Me duele, pero lo entiendo.", p: 1 },
-      { t: "Lo veo como honestidad y autocuidado.", p: 3 }
-    ]
-  },
-
-   {
-    q: "Cuando tienes un mal día, ¿qué narrativa aparece primero?",
-    a: [
-      { t: "Todo me sale mal, siempre igual.", p: 0, why: "Generalizar desde un mal día crea una identidad negativa que no es real." },
-      { t: "Hoy no es mi mejor día.", p: 1 },
-      { t: "Es solo un día, no define mi camino.", p: 3 }
-    ]
-  },
-  {
-    q: "Si alguien se aleja sin explicación, ¿qué piensas?",
-    a: [
-      { t: "He hecho algo mal.", p: 0, why: "Asumir culpa automática te coloca en inferioridad emocional." },
-      { t: "No entiendo qué ha pasado.", p: 1 },
-      { t: "Respeto su proceso aunque no lo comprenda.", p: 3 }
-    ]
-  },
-  {
-    q: "Cuando te comparas con alguien, ¿qué haces después?",
-    a: [
-      { t: "Me siento peor conmigo misma.", p: 0, why: "Compararte desde la carencia erosiona tu autoestima y tu identidad." },
-      { t: "Intento dejar de compararme.", p: 1 },
-      { t: "Vuelvo a mi propio camino y mis ritmos.", p: 3 }
-    ]
-  },
-  {
-    q: "Si tienes miedo a fallar, ¿qué haces?",
-    a: [
-      { t: "No lo intento.", p: 0, why: "Evitar por miedo te impide crecer y te encierra en tu zona conocida." },
-      { t: "Lo intento a medias.", p: 1 },
-      { t: "Lo hago aunque tiemble.", p: 3 }
-    ]
-  },
-  {
-    q: "Cuando alguien te decepciona varias veces, ¿qué haces?",
-    a: [
-      { t: "Le doy más oportunidades de las que debería.", p: 0, why: "Sostener vínculos que te desgastan es una forma de abandono propio." },
-      { t: "Me distancio un poco.", p: 1 },
-      { t: "Reviso mis límites y actúo en consecuencia.", p: 3 }
-    ]
-  },
-
-  {
-    q: "Si te cuesta decir que no, ¿qué te dices?",
-    a: [
-      { t: "Mejor digo que sí para evitar problemas.", p: 0, why: "Evitar el conflicto a costa de ti misma te desconecta de tu autenticidad." },
-      { t: "Intentaré decir que no la próxima vez.", p: 1 },
-      { t: "Decir no también es un acto de amor propio.", p: 3 }
-    ]
-  },
-  {
-    q: "Cuando alguien te habla desde el enfado, ¿qué haces?",
-    a: [
-      { t: "Me pongo a la defensiva.", p: 0, why: "Reaccionar desde la defensa bloquea la comunicación y aumenta el conflicto." },
-      { t: "Intento entender qué pasa.", p: 1 },
-      { t: "Escucho sin absorber su emoción.", p: 3 }
-    ]
-  },
-  {
-    q: "Si sientes que no avanzas, ¿qué piensas?",
-    a: [
-      { t: "Nunca voy a conseguirlo.", p: 0, why: "Pensar en términos absolutos te paraliza y te desconecta de tus recursos." },
-      { t: "Voy más lento de lo que esperaba.", p: 1 },
-      { t: "Todo proceso tiene ritmos, sigo caminando.", p: 3 }
-    ]
-  },
-
-  {
-    q: "Cuando te sientes sola, ¿qué haces?",
-    a: [
-      { t: "Pienso que algo está mal conmigo.", p: 0, why: "Convertir la soledad en un juicio personal profundiza la herida." },
-      { t: "Intento distraerme.", p: 1 },
-      { t: "Busco conexión genuina conmigo o con alguien seguro.", p: 3 }
-    ]
-  },
-  {
-    q: "Si alguien te da un cumplido, ¿cómo lo recibes?",
-    a: [
-      { t: "Creo que exagera.", p: 0, why: "Invalidar lo positivo refuerza una autoimagen pobre." },
-      { t: "Lo agradezco, pero me cuesta creerlo.", p: 1 },
-      { t: "Lo recibo y lo dejo entrar.", p: 3 }
-    ]
-  },
-
-  {
-    q: "Cuando piensas en tu pasado, ¿qué narrativa domina?",
-    a: [
-      { t: "Lo que hice mal.", p: 0, why: "Fijarte solo en errores distorsiona tu historia y tu identidad." },
-      { t: "Una mezcla de dolor y aprendizajes.", p: 1 },
-      { t: "Reconozco lo difícil y también mi crecimiento.", p: 3 }
-    ]
-  },
-  {
-    q: "Si te sientes bloqueada, ¿qué haces?",
-    a: [
-      { t: "Me quedo en el bloqueo.", p: 0, why: "Quedarte atrapada en la parálisis refuerza la sensación de incapacidad." },
-      { t: "Hago algo pequeño.", p: 1 },
-      { t: "Doy un paso mínimo y lo celebro.", p: 3 }
-    ]
-  },
-
-{
   q: "Cuando te despiertas con la sensación de que el día será pesado, ¿qué haces con ese primer pensamiento?",
   a: [
-    { t: "Lo doy por hecho y empiezo el día desde la tensión, como si ya estuviera escrito que todo irá cuesta arriba.", p: 0 },
+    { 
+      t: "Lo doy por hecho y empiezo el día desde la tensión, como si ya estuviera escrito que todo irá cuesta arriba.", 
+      p: 0,
+      why: "Dar por cierta una sensación inicial convierte una emoción pasajera en una profecía que condiciona tu día." 
+    },
     { t: "Intento cambiarlo, aunque sigo con la sensación de arrastre durante un rato.", p: 1 },
     { t: "Lo observo sin pelearme con él y elijo un pequeño gesto que me devuelva a una vibración más ligera.", p: 3 }
   ]
@@ -820,7 +723,11 @@ const QUESTIONS = [
 {
   q: "Cuando ves que alguien celebra un logro pequeño —una compra, un avance, un gesto—, ¿qué reacción interna aparece?",
   a: [
-    { t: "Pienso que exagera y que no es para tanto, como si celebrar lo pequeño fuera una pérdida de tiempo.", p: 0 },
+    { 
+      t: "Pienso que exagera y que no es para tanto, como si celebrar lo pequeño fuera una pérdida de tiempo.", 
+      p: 0,
+      why: "Despreciar lo pequeño te desconecta de la gratitud y te impide reconocer tus propios avances cotidianos." 
+    },
     { t: "Me sorprende, pero entiendo que cada quien vive sus procesos a su manera.", p: 1 },
     { t: "Me inspira a valorar mis propios microavances y a recordar que la abundancia empieza en lo cotidiano.", p: 3 }
   ]
@@ -828,7 +735,11 @@ const QUESTIONS = [
 {
   q: "Cuando tienes un pensamiento negativo recurrente, ¿cómo lo interpretas?",
   a: [
-    { t: "Como una prueba de que algo malo va a pasar o de que no estoy preparada para lo que quiero.", p: 0 },
+    { 
+      t: "Como una prueba de que algo malo va a pasar o de que no estoy preparada para lo que quiero.", 
+      p: 0,
+      why: "Interpretar un pensamiento como una señal real le da un poder que no tiene y alimenta el miedo." 
+    },
     { t: "Como un ruido mental molesto que intento ignorar, aunque vuelve de vez en cuando.", p: 1 },
     { t: "Como un eco de una versión antigua de mí que está pidiendo ser escuchada y transformada.", p: 3 }
   ]
@@ -836,15 +747,26 @@ const QUESTIONS = [
 {
   q: "Cuando alguien te dice que 'todo es energía', ¿qué te pasa por dentro?",
   a: [
-    { t: "Siento que es una frase bonita pero vacía, algo que no tiene impacto real en mi vida diaria.", p: 0 },
+    { 
+      t: "Siento que es una frase bonita pero vacía, algo que no tiene impacto real en mi vida diaria.", 
+      p: 0,
+      why: "Descartar una idea sin explorarla cierra puertas a herramientas que podrían ayudarte a comprenderte mejor." 
+    },
     { t: "Me interesa, aunque no siempre sé cómo aplicarlo en situaciones reales.", p: 1 },
     { t: "Lo vivo como un recordatorio de que mi vibración influye en mis decisiones, mis relaciones y mis resultados.", p: 3 }
   ]
 },
+
+
+    
 {
   q: "Cuando te encuentras con un obstáculo inesperado, ¿qué historia te cuentas?",
   a: [
-    { t: "Que siempre me pasa lo mismo y que la vida se complica justo cuando intento avanzar.", p: 0 },
+    { 
+      t: "Que siempre me pasa lo mismo y que la vida se complica justo cuando intento avanzar.", 
+      p: 0,
+      why: "Generalizar desde un obstáculo convierte un hecho puntual en una narrativa limitante que frena tu avance." 
+    },
     { t: "Que es un fastidio, pero que quizá pueda manejarlo si me organizo.", p: 1 },
     { t: "Que puede ser un reajuste del camino, una invitación a mirar algo que no había visto.", p: 3 }
   ]
@@ -852,7 +774,11 @@ const QUESTIONS = [
 {
   q: "Cuando alguien te pregunta por tus sueños, ¿qué emoción aparece primero?",
   a: [
-    { t: "Vergüenza o miedo a sonar ingenua, así que los minimizo o los digo a medias.", p: 0 },
+    { 
+      t: "Vergüenza o miedo a sonar ingenua, así que los minimizo o los digo a medias.", 
+      p: 0,
+      why: "Ocultar tus sueños por miedo al juicio apaga tu brújula interna y limita tu expansión." 
+    },
     { t: "Una mezcla de ilusión y duda, como si no supiera si puedo sostenerlos.", p: 1 },
     { t: "Una chispa interna que me recuerda que mis sueños son brújulas, no caprichos.", p: 3 }
   ]
@@ -860,7 +786,11 @@ const QUESTIONS = [
 {
   q: "Cuando tienes un momento de calma inesperada —un silencio, un respiro, un hueco—, ¿qué haces con él?",
   a: [
-    { t: "Lo lleno enseguida con tareas, móvil o ruido, porque me incomoda quedarme quieta.", p: 0 },
+    { 
+      t: "Lo lleno enseguida con tareas, móvil o ruido, porque me incomoda quedarme quieta.", 
+      p: 0,
+      why: "Llenar cada espacio evita que escuches tu interior y te desconecta de tu regulación natural." 
+    },
     { t: "Lo disfruto un poco, aunque me cuesta mantenerlo.", p: 1 },
     { t: "Lo tomo como un regalo para reconectar con mi energía y escucharme mejor.", p: 3 }
   ]
@@ -868,7 +798,11 @@ const QUESTIONS = [
 {
   q: "Cuando ves que algo tarda más de lo que esperabas, ¿cómo lo interpretas?",
   a: [
-    { t: "Como una señal de que no va a funcionar y que debería rendirme antes de decepcionarme.", p: 0 },
+    { 
+      t: "Como una señal de que no va a funcionar y que debería rendirme antes de decepcionarme.", 
+      p: 0,
+      why: "Interpretar la espera como fracaso anticipado bloquea procesos que aún están madurando." 
+    },
     { t: "Como un retraso molesto, pero no necesariamente un no.", p: 1 },
     { t: "Como un ajuste del universo para que llegue en el momento exacto, no antes.", p: 3 }
   ]
@@ -876,15 +810,144 @@ const QUESTIONS = [
 {
   q: "Cuando alguien te dice que te mereces cosas buenas, ¿qué parte de ti responde primero?",
   a: [
-    { t: "La parte que piensa que exagera o que no me conoce lo suficiente para decir eso.", p: 0 },
+    { 
+      t: "La parte que piensa que exagera o que no me conoce lo suficiente para decir eso.", 
+      p: 0,
+      why: "Desconfiar del reconocimiento externo refleja creencias internas de poco merecimiento que pueden transformarse." 
+    },
     { t: "La parte que quiere creerlo, aunque aún no lo siente del todo.", p: 1 },
     { t: "La parte que reconoce que merecer no es un premio, sino un estado natural.", p: 3 }
   ]
 },
 {
+  q: "Cuando imaginas una vida completamente distinta a la que tienes hoy, ¿qué parte de ti se activa primero?",
+  a: [
+    { 
+      t: "La parte que piensa que es demasiado tarde para cambiar.", 
+      p: 0,
+      why: "Creer que el tiempo te limita te desconecta de tu capacidad de crear nuevas líneas de realidad en cualquier momento." 
+    },
+    { t: "La parte que duda, pero siente curiosidad.", p: 1 },
+    { t: "La parte que reconoce que siempre puedo reinventarme si sostengo la visión.", p: 3 }
+  ]
+},
+{
+  q: "Cuando piensas en recibir más de lo que jamás has recibido, ¿qué emoción aparece primero?",
+  a: [
+    { 
+      t: "Miedo a no saber sostenerlo.", 
+      p: 0,
+      why: "El miedo a sostener lo nuevo suele ser un eco del pasado, no una medida real de tu capacidad actual." 
+    },
+    { t: "Incertidumbre mezclada con ilusión.", p: 1 },
+    { t: "Apertura y disposición a expandir mi capacidad de recibir.", p: 3 }
+  ]
+},
+{
+  q: "Cuando algo bueno tarda en llegar, ¿qué interpretación surge en tu mente?",
+  a: [
+    { 
+      t: "Que la vida se ha olvidado de mí.", 
+      p: 0,
+      why: "Sentirte olvidada te coloca en una narrativa de carencia que bloquea tu magnetismo natural." 
+    },
+    { t: "Que quizá necesita más tiempo del que imaginaba.", p: 1 },
+    { t: "Que el tiempo perfecto existe y no depende de mi impaciencia.", p: 3 }
+  ]
+},
+{
+  q: "Cuando te visualizas viviendo en abundancia emocional, ¿qué resistencia aparece?",
+  a: [
+    { 
+      t: "La sensación de que no sé cómo se siente eso realmente.", 
+      p: 0,
+      why: "No reconocer una emoción no significa que no puedas cultivarla; solo indica que aún no la has practicado lo suficiente." 
+    },
+    { t: "La duda de si podré mantenerlo en el tiempo.", p: 1 },
+    { t: "La certeza de que puedo aprender a sostener estados más elevados.", p: 3 }
+  ]
+},
+{
+  q: "Cuando recibes una señal pequeña del universo, ¿cómo la interpretas?",
+  a: [
+    { 
+      t: "Como una coincidencia sin importancia.", 
+      p: 0,
+      why: "Desestimar las señales debilita tu conexión con la intuición y con el campo de posibilidades." 
+    },
+    { t: "Como algo curioso, aunque no sé si significa algo.", p: 1 },
+    { t: "Como un recordatorio de que estoy en sintonía con lo que deseo.", p: 3 }
+  ]
+},
+{
+  q: "Cuando piensas en tu relación con la abundancia, ¿qué narrativa aparece primero?",
+  a: [
+    { 
+      t: "Que la abundancia es para otros, no para mí.", 
+      p: 0,
+      why: "Creer que la abundancia es selectiva crea una barrera mental que te excluye de un flujo que es universal." 
+    },
+    { t: "Que podría mejorar mi relación con ella.", p: 1 },
+    { t: "Que la abundancia es un estado interno antes que un resultado externo.", p: 3 }
+  ]
+},
+{
+  q: "Cuando te propones elevar tu vibración de forma sostenida, ¿qué obstáculo aparece primero?",
+  a: [
+    { 
+      t: "La idea de que es imposible mantenerse bien tanto tiempo.", 
+      p: 0,
+      why: "Confundir estabilidad emocional con perfección te hace olvidar que elevar tu vibración es un proceso, no un estado fijo." 
+    },
+    { t: "La dificultad de mantener hábitos nuevos.", p: 1 },
+    { t: "La conciencia de que puedo regresar a mi centro cada vez que lo necesite.", p: 3 }
+  ]
+},
+{
+  q: "Cuando piensas en tu propósito, ¿qué sensación domina?",
+  a: [
+    { 
+      t: "Confusión, como si no tuviera uno claro.", 
+      p: 0,
+      why: "Creer que no tienes propósito te desconecta de la intuición, que siempre susurra aunque no grite." 
+    },
+    { t: "Una mezcla de intuición y duda.", p: 1 },
+    { t: "Una certeza suave de que mi propósito se revela mientras camino.", p: 3 }
+  ]
+},
+{
+  q: "Cuando imaginas recibir una oportunidad enorme, ¿qué te dices?",
+  a: [
+    { 
+      t: "Que seguramente no estoy lista para algo así.", 
+      p: 0,
+      why: "Esperar sentirte lista antes de avanzar te mantiene atrapada en versiones antiguas de ti misma." 
+    },
+    { t: "Que sería increíble, aunque me daría respeto.", p: 1 },
+    { t: "Que puedo crecer dentro de cualquier oportunidad alineada.", p: 3 }
+  ]
+},
+{
+  q: "Cuando piensas en tu capacidad de crear tu realidad, ¿qué creencia aparece primero?",
+  a: [
+    { 
+      t: "Que no tengo tanto poder como dicen los libros.", 
+      p: 0,
+      why: "Subestimar tu poder creador te hace depender de lo externo y debilita tu magnetismo interno." 
+    },
+    { t: "Que quizá tengo más poder del que imagino.", p: 1 },
+    { t: "Que mi enfoque, mi energía y mis decisiones moldean mi experiencia.", p: 3 }
+  ]
+},
+    
+{
   q: "Cuando te imaginas tomando una decisión valiente, ¿qué sensación aparece en tu cuerpo?",
   a: [
-    { t: "Una contracción inmediata, como si el riesgo fuera demasiado grande para mí.", p: 0 },
+    { 
+      t: "Una contracción inmediata, como si el riesgo fuera demasiado grande para mí.", 
+      p: 0,
+      why: "La contracción inicial suele ser miedo disfrazado de protección; escucharlo sin obedecerlo abre espacio a tu expansión." 
+    },
     { t: "Una mezcla de nervios y curiosidad, como si algo dentro de mí quisiera intentarlo.", p: 1 },
     { t: "Una expansión suave, como si mi cuerpo supiera antes que mi mente que ese es el camino.", p: 3 }
   ]
@@ -892,7 +955,11 @@ const QUESTIONS = [
 {
   q: "Cuando te encuentras con una persona muy positiva, ¿qué reacción interna tienes?",
   a: [
-    { t: "Pienso que es irreal o que está fingiendo, porque nadie puede estar tan bien.", p: 0 },
+    { 
+      t: "Pienso que es irreal o que está fingiendo, porque nadie puede estar tan bien.", 
+      p: 0,
+      why: "Rechazar la luz ajena suele ser un reflejo de las partes de ti que aún no se permiten brillar." 
+    },
     { t: "Me inspira un poco, aunque a veces me incomoda tanta luz.", p: 1 },
     { t: "Me recuerda que la vibración se contagia y que puedo elegir acercarme a esa energía.", p: 3 }
   ]
@@ -900,7 +967,11 @@ const QUESTIONS = [
 {
   q: "Cuando piensas en tu yo del futuro, ¿qué versión aparece primero?",
   a: [
-    { t: "Una versión cansada, que sigue luchando con lo mismo de siempre.", p: 0 },
+    { 
+      t: "Una versión cansada, que sigue luchando con lo mismo de siempre.", 
+      p: 0,
+      why: "Imaginar un futuro agotado suele ser un eco del presente, no una profecía; cambiar la visión cambia el camino." 
+    },
     { t: "Una versión que ha avanzado algo, aunque no tanto como le gustaría.", p: 1 },
     { t: "Una versión más ligera, más consciente y más alineada con lo que realmente quiere.", p: 3 }
   ]
@@ -908,7 +979,11 @@ const QUESTIONS = [
 {
   q: "Cuando recibes una buena noticia pequeña, ¿qué haces con ella?",
   a: [
-    { t: "La minimizo o la paso por alto, como si no fuera suficiente para celebrarla.", p: 0 },
+    { 
+      t: "La minimizo o la paso por alto, como si no fuera suficiente para celebrarla.", 
+      p: 0,
+      why: "Ignorar lo pequeño entrena a tu mente para no reconocer la abundancia cuando llega en formas sutiles." 
+    },
     { t: "La valoro un poco, aunque sigo con mi día sin darle mucha importancia.", p: 1 },
     { t: "La celebro como una señal de que la energía se está moviendo a mi favor.", p: 3 }
   ]
@@ -916,7 +991,11 @@ const QUESTIONS = [
 {
   q: "Cuando te das cuenta de que estás pensando en negativo, ¿qué haces?",
   a: [
-    { t: "Me engancho más al pensamiento y termino imaginando escenarios peores.", p: 0 },
+    { 
+      t: "Me engancho más al pensamiento y termino imaginando escenarios peores.", 
+      p: 0,
+      why: "Alimentar el pensamiento negativo lo convierte en narrativa; observarlo sin seguirlo lo disuelve." 
+    },
     { t: "Intento frenarlo, aunque a veces vuelve sin avisar.", p: 1 },
     { t: "Lo observo sin juicio y elijo conscientemente un pensamiento que me expanda.", p: 3 }
   ]
@@ -924,7 +1003,11 @@ const QUESTIONS = [
 {
   q: "Cuando alguien te muestra una nueva forma de ver la vida, ¿cómo reaccionas?",
   a: [
-    { t: "Me cierro porque siento que cambiar mi perspectiva sería demasiado incómodo.", p: 0 },
+    { 
+      t: "Me cierro porque siento que cambiar mi perspectiva sería demasiado incómodo.", 
+      p: 0,
+      why: "Cerrar la puerta a nuevas perspectivas te mantiene en patrones que ya no te sirven." 
+    },
     { t: "Me interesa, aunque necesito tiempo para procesarlo.", p: 1 },
     { t: "Lo recibo como una oportunidad para ampliar mi conciencia y mi vibración.", p: 3 }
   ]
@@ -933,7 +1016,11 @@ const QUESTIONS = [
 {
   q: "Cuando piensas en un deseo grande —una casa, un cambio de vida, una nueva versión de ti— y notas que la realidad actual no se parece en nada, ¿qué diálogo interno aparece primero?",
   a: [
-    { t: "Siento que la distancia es tan grande que me cuesta creer que algo así pueda ser para mí, y termino enfocándome en lo que falta más que en lo que podría construirse.", p: 0 },
+    { 
+      t: "Siento que la distancia es tan grande que me cuesta creer que algo así pueda ser para mí, y termino enfocándome en lo que falta más que en lo que podría construirse.", 
+      p: 0,
+      why: "Enfocarte en la distancia en lugar del camino bloquea la energía creativa que necesitas para avanzar." 
+    },
     { t: "Me digo que quizá podría acercarme un poco, aunque todavía no sé cómo, y trato de no perder del todo la esperanza.", p: 1 },
     { t: "Reconozco que mi realidad actual es solo un punto del camino, y que si sostengo la visión, la energía y las acciones, el puente hacia eso se irá formando.", p: 3 }
   ]
@@ -941,7 +1028,11 @@ const QUESTIONS = [
 {
   q: "Cuando notas que tu vibración baja —cansancio, frustración, pensamientos repetitivos—, ¿cómo interpretas ese estado?",
   a: [
-    { t: "Lo vivo como una señal de que algo está mal conmigo o con mi vida, y me cuesta salir de la sensación de bloqueo.", p: 0 },
+    { 
+      t: "Lo vivo como una señal de que algo está mal conmigo o con mi vida, y me cuesta salir de la sensación de bloqueo.", 
+      p: 0,
+      why: "Interpretar los bajones como fallos personales te impide usarlos como señales de ajuste y autocuidado." 
+    },
     { t: "Lo noto, me incomoda, pero intento seguir adelante esperando que pase por sí solo.", p: 1 },
     { t: "Lo observo como un ajuste energético natural, un recordatorio de que necesito pausa, presencia y volver a mi centro.", p: 3 }
   ]
@@ -949,7 +1040,11 @@ const QUESTIONS = [
 {
   q: "Cuando ves a alguien manifestar con facilidad lo que tú llevas tiempo intentando atraer, ¿qué historia te cuentas?",
   a: [
-    { t: "Pienso que esa facilidad no es para mí, que a otros les llega porque tienen algo que yo no tengo, y eso me hace sentir más lejos de mis metas.", p: 0 },
+    { 
+      t: "Pienso que esa facilidad no es para mí, que a otros les llega porque tienen algo que yo no tengo, y eso me hace sentir más lejos de mis metas.", 
+      p: 0,
+      why: "Compararte desde la carencia crea una ilusión de separación que no refleja tu verdadero potencial." 
+    },
     { t: "Me da una mezcla de envidia y curiosidad, como si algo dentro de mí quisiera creer pero aún no supiera cómo.", p: 1 },
     { t: "Lo tomo como evidencia de que el campo de posibilidades está abierto, y que si existe para alguien, también puede existir para mí.", p: 3 }
   ]
@@ -957,7 +1052,11 @@ const QUESTIONS = [
 {
   q: "Cuando te encuentras en un periodo de incertidumbre —sin señales, sin claridad, sin avances visibles—, ¿cómo lo interpretas?",
   a: [
-    { t: "Como un vacío peligroso donde siento que todo puede salir mal, y me cuesta confiar en cualquier proceso.", p: 0 },
+    { 
+      t: "Como un vacío peligroso donde siento que todo puede salir mal, y me cuesta confiar en cualquier proceso.", 
+      p: 0,
+      why: "Ver la incertidumbre como amenaza te impide percibirla como el espacio donde lo nuevo empieza a formarse." 
+    },
     { t: "Como un momento incómodo donde no sé qué pensar, pero trato de mantenerme ocupada para no sentirlo tanto.", p: 1 },
     { t: "Como un espacio cuántico donde lo nuevo aún no ha colapsado en forma, y donde mi vibración es más importante que mis circunstancias.", p: 3 }
   ]
@@ -965,7 +1064,11 @@ const QUESTIONS = [
 {
   q: "Cuando piensas en el dinero como energía, ¿qué emoción aparece primero en tu cuerpo?",
   a: [
-    { t: "Una sensación de tensión o miedo, como si el dinero fuera algo escaso o difícil de sostener.", p: 0 },
+    { 
+      t: "Una sensación de tensión o miedo, como si el dinero fuera algo escaso o difícil de sostener.", 
+      p: 0,
+      why: "La tensión frente al dinero suele ser un reflejo de creencias heredadas, no de tu realidad actual." 
+    },
     { t: "Una mezcla de deseo y preocupación, como si quisiera confiar pero aún no supiera cómo hacerlo del todo.", p: 1 },
     { t: "Una sensación de apertura, como si el dinero fuera un flujo natural que puedo aprender a recibir y sostener con más calma.", p: 3 }
   ]
@@ -973,7 +1076,11 @@ const QUESTIONS = [
 {
   q: "Cuando te propones cambiar un patrón —relacional, económico, emocional— y vuelves a caer en lo mismo, ¿qué interpretación haces?",
   a: [
-    { t: "Creo que no tengo la capacidad de cambiar realmente, y que mis patrones son más fuertes que yo.", p: 0 },
+    { 
+      t: "Creo que no tengo la capacidad de cambiar realmente, y que mis patrones son más fuertes que yo.", 
+      p: 0,
+      why: "Confundir un tropiezo con un destino te aleja del proceso real de transformación." 
+    },
     { t: "Me frustro, pero pienso que quizá necesito más tiempo o más práctica.", p: 1 },
     { t: "Lo veo como parte del proceso de reprogramación: un eco del pasado que aparece justo antes de consolidar una nueva versión de mí.", p: 3 }
   ]
@@ -981,7 +1088,11 @@ const QUESTIONS = [
 {
   q: "Cuando imaginas tu futuro ideal y aparece una voz interna que duda, ¿cómo reaccionas?",
   a: [
-    { t: "Le doy mucho peso a esa voz y termino creyendo que mis sueños son demasiado grandes o poco realistas.", p: 0 },
+    { 
+      t: "Le doy mucho peso a esa voz y termino creyendo que mis sueños son demasiado grandes o poco realistas.", 
+      p: 0,
+      why: "Dar autoridad a la duda refuerza viejas heridas y limita tu capacidad de crear nuevas posibilidades." 
+    },
     { t: "Intento equilibrar la duda con algo de esperanza, aunque no siempre lo consigo.", p: 1 },
     { t: "Reconozco la duda como un mecanismo antiguo, no como una verdad, y vuelvo a conectar con la visión que sí quiero sostener.", p: 3 }
   ]
@@ -989,15 +1100,24 @@ const QUESTIONS = [
 {
   q: "Cuando te encuentras con una oportunidad inesperada —un mensaje, una invitación, una idea—, ¿qué piensas primero?",
   a: [
-    { t: "Que probablemente no es para mí o que algo malo podría venir detrás, así que me cuesta confiar.", p: 0 },
+    { 
+      t: "Que probablemente no es para mí o que algo malo podría venir detrás, así que me cuesta confiar.", 
+      p: 0,
+      why: "Desconfiar de lo bueno por defecto es un mecanismo de autoprotección que termina cerrando puertas valiosas." 
+    },
     { t: "Me sorprende y me genera dudas, pero intento no cerrarme del todo.", p: 1 },
     { t: "Lo interpreto como una sincronía, una señal de que mi vibración está moviendo cosas a mi favor.", p: 3 }
   ]
 },
+    
 {
   q: "Cuando reflexionas sobre tu pasado, ¿qué narrativa domina tu interpretación?",
   a: [
-    { t: "Me enfoco en lo que hice mal, en los errores y en lo que debería haber sido distinto.", p: 0 },
+    { 
+      t: "Me enfoco en lo que hice mal, en los errores y en lo que debería haber sido distinto.", 
+      p: 0,
+      why: "Mirar tu pasado solo desde el error distorsiona tu historia y te impide ver tu evolución real." 
+    },
     { t: "Veo una mezcla de momentos difíciles y aprendizajes, aunque algunos aún me pesan.", p: 1 },
     { t: "Reconozco lo duro, pero también veo mi crecimiento, mi evolución y la fuerza que desarrollé.", p: 3 }
   ]
@@ -1005,20 +1125,28 @@ const QUESTIONS = [
 {
   q: "Cuando piensas en la física cuántica aplicada a tu vida —observador, vibración, colapso de posibilidades—, ¿cómo lo integras?",
   a: [
-    { t: "Me parece demasiado abstracto y siento que no tiene un impacto real en mi día a día.", p: 0 },
+    { 
+      t: "Me parece demasiado abstracto y siento que no tiene un impacto real en mi día a día.", 
+      p: 0,
+      why: "Descartar lo que no entiendes a la primera te impide explorar herramientas que podrían expandirte." 
+    },
     { t: "Me interesa, aunque a veces lo entiendo y a veces no, pero intento aplicarlo como puedo.", p: 1 },
     { t: "Lo vivo como una guía práctica: mi atención crea dirección, mi vibración abre caminos y mis decisiones colapsan nuevas realidades.", p: 3 }
   ]
 },
-        
-  {
-    q: "Cuando piensas en tu valor, ¿en qué lo basas?",
-    a: [
-      { t: "En lo que logro.", p: 0, why: "Condicionar tu valor a tu productividad te desconecta de tu esencia." },
-      { t: "En lo que hago y en cómo soy.", p: 1 },
-      { t: "En quién soy, incluso sin hacer nada.", p: 3 }
-    ]
-  },
+
+{
+  q: "Cuando piensas en tu valor, ¿en qué lo basas?",
+  a: [
+    { t: "En lo que logro.", p: 0, why: "Condicionar tu valor a tu productividad te desconecta de tu esencia." },
+    { t: "En lo que hago y en cómo soy.", p: 1 },
+    { t: "En quién soy, incluso sin hacer nada.", p: 3 }
+  ]
+},
+
+
+    
+
   {
     q: "Si alguien no valida tu emoción, ¿qué haces?",
     a: [
