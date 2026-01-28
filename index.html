@@ -12,13 +12,13 @@
 
 <style>
 
-/* ------------------ ESTILOS BASE ------------------ */
+/* ------------------ FONDO PROFESIONAL ------------------ */
 
 body {
   margin: 0;
   padding: 0;
   font-family: "Arial", sans-serif;
-  background: linear-gradient(to bottom, #dfffe9, #c8f7df);
+  background: radial-gradient(circle at center, #e8fff2 0%, #dfffe9 40%, #c8f7df 100%);
   text-align: center;
   color: #2a4d3b;
 }
@@ -38,6 +38,7 @@ html, body {
   align-items: center;
   padding: 0;
   box-sizing: border-box;
+  animation: fadeScreen 1.2s ease forwards;
 }
 
 /* ------------------ LOGOS ------------------ */
@@ -48,7 +49,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 12px rgba(0, 80, 40, 0.15);
+  box-shadow: 0 0 18px rgba(0, 80, 40, 0.18);
 }
 
 .small-logo {
@@ -72,9 +73,10 @@ h1 {
   color: #2f5b45;
   font-weight: 600;
   animation: floatIn 1.2s ease forwards;
+  text-shadow: 0 0 12px rgba(47, 111, 78, 0.25);
 }
 
-/* ------------------ BOTONES ------------------ */
+/* ------------------ BOTONES PREMIUM ------------------ */
 
 .btn {
   display: block;
@@ -83,7 +85,7 @@ h1 {
   margin: 10px auto;
   padding: 18px 30px;
 
-  background: #e9f7ef;
+  background: linear-gradient(135deg, #e9f7ef 0%, #dff5ea 100%);
   border-radius: 14px;
   border: 2px solid #2f6f4e;
 
@@ -95,10 +97,29 @@ h1 {
   letter-spacing: 0.5px;
 
   box-shadow: 0 6px 18px rgba(47, 111, 78, 0.35),
-              0 0 12px rgba(47, 111, 78, 0.25) inset;
+              inset 0 0 14px rgba(47, 111, 78, 0.15);
 
-  transition: 0.25s;
+  transition: 0.3s ease;
   animation: floatIn 1.4s ease forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Microbrillo dinámico */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-20deg);
+  transition: 0.4s;
+}
+
+.btn:hover::after {
+  left: 120%;
 }
 
 .btn:nth-of-type(1) { animation-delay: 0.25s; }
@@ -107,8 +128,8 @@ h1 {
 .btn:hover {
   background: #d9f2e4;
   transform: scale(1.06);
-  box-shadow: 0 8px 22px rgba(47, 111, 78, 0.45),
-              0 0 14px rgba(47, 111, 78, 0.35) inset;
+  box-shadow: 0 10px 26px rgba(47, 111, 78, 0.45),
+              inset 0 0 18px rgba(47, 111, 78, 0.25);
 }
 
 /* ------------------ CENTRADO VERTICAL ------------------ */
@@ -146,12 +167,20 @@ h1 {
 
 /* ------------------ ANIMACIONES ------------------ */
 
+/* Fade global */
+@keyframes fadeScreen {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Respiración */
 @keyframes breathe {
   0% { transform: scale(1); }
   50% { transform: scale(1.06); }
   100% { transform: scale(1); }
 }
 
+/* Profundidad */
 @keyframes floatIn {
   0% {
     opacity: 0;
@@ -169,6 +198,7 @@ h1 {
 }
 
 </style>
+
 
 </head>
 
@@ -200,6 +230,7 @@ h1 {
 </body>
 
 </html>
+
 
 
 
