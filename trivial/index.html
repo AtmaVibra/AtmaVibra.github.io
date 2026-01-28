@@ -459,6 +459,272 @@ const QUESTIONS = [
     { t: "Que necesito ajustar mi energía, no castigarme.", p: 3 }
   ]
 },
+
+{
+  q: "Un mensaje importante tarda horas en responderse. ¿Qué interpretación te surge de forma espontánea?",
+  a: [
+    { 
+      t: "Asumo que me están evitando o que hice algo mal.", 
+      p: 0,
+      why: "Interpretar desde la culpa automática distorsiona la realidad y te hace depender del comportamiento ajeno." 
+    },
+    { t: "Pienso que estarán ocupados o desconectados.", p: 1 },
+    { t: "Doy espacio y sigo con mis asuntos sin crear historias.", p: 3 }
+  ]
+},
+{
+  q: "Un comentario irónico sobre ti aparece en un grupo. ¿Cómo gestionas esa sensación inicial?",
+  a: [
+    { 
+      t: "Lo vivo como una falta de respeto y me quedo rumiando el malestar.", 
+      p: 0,
+      why: "Repetir mentalmente la ofensa amplifica el daño y te resta claridad emocional." 
+    },
+    { t: "Me molesta, pero lo dejo pasar.", p: 1 },
+    { t: "Evalúo si requiere un límite o si es irrelevante.", p: 3 }
+  ]
+},
+{
+  q: "Un imprevisto laboral te obliga a reorganizar tu día. ¿Qué narrativa aparece primero?",
+  a: [
+    { 
+      t: "Siento que todo se descontrola y que no voy a llegar a nada.", 
+      p: 0,
+      why: "El pensamiento catastrofista reduce tu capacidad de adaptación y te bloquea." 
+    },
+    { t: "Me fastidia, pero intento recolocar tareas.", p: 1 },
+    { t: "Repriorizo con calma y avanzo con orden.", p: 3 }
+  ]
+},
+{
+  q: "Alguien cercano se muestra frío sin explicación. ¿Qué lectura haces?",
+  a: [
+    { 
+      t: "Doy por hecho que está enfadado conmigo.", 
+      p: 0,
+      why: "Personalizar el estado emocional ajeno te hace cargar con responsabilidades que no son tuyas." 
+    },
+    { t: "Me genera duda, pero no saco conclusiones.", p: 1 },
+    { t: "Respeto su espacio y mantengo mi centro.", p: 3 }
+  ]
+},
+{
+  q: "Un error tuyo genera un pequeño problema en el trabajo. ¿Cómo te hablas internamente?",
+  a: [
+    { 
+      t: "Me digo que soy un desastre y que no sirvo para esto.", 
+      p: 0,
+      why: "La autocrítica destructiva erosiona tu autoestima y limita tu rendimiento." 
+    },
+    { t: "Me molesta, pero sigo adelante.", p: 1 },
+    { t: "Analizo, corrijo y aprendo sin dramatizar.", p: 3 }
+  ]
+},
+{
+  q: "Una persona que aprecias no tiene en cuenta tu opinión. ¿Qué conclusión sacas?",
+  a: [
+    { 
+      t: "Que mi criterio no vale y que es mejor callar.", 
+      p: 0,
+      why: "Desvalorizar tu voz te coloca en un rol inferior y afecta tus relaciones." 
+    },
+    { t: "Me incomoda, pero lo acepto.", p: 1 },
+    { t: "Expreso mi punto con claridad cuando es necesario.", p: 3 }
+  ]
+},
+{
+  q: "Un conocido presume de éxito económico. ¿Qué reacción interna aparece?",
+  a: [
+    { 
+      t: "Siento que la vida es injusta y que yo nunca llegaré ahí.", 
+      p: 0,
+      why: "Ver la abundancia ajena como amenaza bloquea tu propia expansión." 
+    },
+    { t: "Me incomoda un poco, pero lo dejo pasar.", p: 1 },
+    { t: "Lo tomo como evidencia de posibilidad, no como comparación.", p: 3 }
+  ]
+},
+{
+  q: "Una conversación se vuelve tensa sin motivo claro. ¿Cómo gestionas tu presencia?",
+  a: [
+    { 
+      t: "Me pongo a la defensiva y reacciono impulsivamente.", 
+      p: 0,
+      why: "Reaccionar desde la reactividad te desconecta de tu poder y claridad." 
+    },
+    { t: "Intento mantener la calma.", p: 1 },
+    { t: "Regulo mi tono y busco claridad antes de responder.", p: 3 }
+  ]
+},
+{
+  q: "Un plan que te ilusionaba se cancela. ¿Qué interpretación aparece?",
+  a: [
+    { 
+      t: "Pienso que nada me sale bien y que siempre pasa lo mismo.", 
+      p: 0,
+      why: "Generalizar desde un imprevisto crea una narrativa de fracaso que no es real." 
+    },
+    { t: "Me decepciona, pero lo acepto.", p: 1 },
+    { t: "Aprovecho el tiempo para algo que me aporte.", p: 3 }
+  ]
+},
+{
+  q: "Una persona te pide un favor que no te encaja. ¿Qué impulso aparece primero?",
+  a: [
+    { 
+      t: "Decir que sí para no quedar mal, aunque me perjudique.", 
+      p: 0,
+      why: "Actuar desde la complacencia te desconecta de tus límites y tu bienestar." 
+    },
+    { t: "Dudo, pero valoro si puedo hacerlo.", p: 1 },
+    { t: "Evalúo mis recursos y respondo con claridad.", p: 3 }
+  ]
+},
+{
+  q: "Un día te levantas con baja energía. ¿Qué haces con esa sensación?",
+  a: [
+    { 
+      t: "Me fuerzo a rendir igual, ignorando cómo estoy.", 
+      p: 0,
+      why: "Negar tu estado interno te aleja de la autorregulación y del autocuidado." 
+    },
+    { t: "Intento activarme poco a poco.", p: 1 },
+    { t: "Ajusto mi ritmo y priorizo lo esencial.", p: 3 }
+  ]
+},
+{
+  q: "Una persona te responde con tono pasivo-agresivo. ¿Cómo gestionas tu reacción?",
+  a: [
+    { 
+      t: "Entro en su juego y respondo igual.", 
+      p: 0,
+      why: "Reaccionar desde la misma energía perpetúa dinámicas tóxicas." 
+    },
+    { t: "Intento no engancharme.", p: 1 },
+    { t: "Mantengo mi claridad y no absorbo su actitud.", p: 3 }
+  ]
+},
+{
+  q: "Un proyecto personal avanza más lento de lo esperado. ¿Qué te dices?",
+  a: [
+    { 
+      t: "Que no soy capaz y que debería rendirme.", 
+      p: 0,
+      why: "Abandonar por impaciencia te desconecta de tu proceso y tu constancia." 
+    },
+    { t: "Me frustra, pero sigo.", p: 1 },
+    { t: "Ajusto expectativas y mantengo el enfoque.", p: 3 }
+  ]
+},
+{
+  q: "Una persona cercana no reconoce tu esfuerzo. ¿Qué interpretación haces?",
+  a: [
+    { 
+      t: "Que mi trabajo no vale y que nadie lo ve.", 
+      p: 0,
+      why: "Basar tu valor en la validación externa te hace emocionalmente dependiente." 
+    },
+    { t: "Me molesta, pero lo dejo pasar.", p: 1 },
+    { t: "Reconozco mi propio mérito sin esperar aprobación.", p: 3 }
+  ]
+},
+{
+  q: "Un desconocido te habla con mala educación. ¿Qué haces con esa energía?",
+  a: [
+    { 
+      t: "Me lo tomo personal y me quedo enganchado al enfado.", 
+      p: 0,
+      why: "Personalizar la rudeza ajena te hace cargar con emociones que no te pertenecen." 
+    },
+    { t: "Me molesta, pero sigo.", p: 1 },
+    { t: "Lo suelto rápido y no dejo que marque mi día.", p: 3 }
+  ]
+},
+{
+  q: "Una oportunidad interesante aparece, pero implica salir de tu zona cómoda. ¿Qué pesa más?",
+  a: [
+    { 
+      t: "El miedo a fallar o a no estar preparado.", 
+      p: 0,
+      why: "Dejar que el miedo decida limita tu expansión y tu capacidad de manifestar." 
+    },
+    { t: "La duda, aunque lo valoro.", p: 1 },
+    { t: "El potencial de crecimiento y aprendizaje.", p: 3 }
+  ]
+},
+{
+  q: "Una persona te contradice con firmeza. ¿Cómo lo interpretas?",
+  a: [
+    { 
+      t: "Como un ataque o una desautorización.", 
+      p: 0,
+      why: "Confundir desacuerdo con amenaza te impide dialogar con madurez." 
+    },
+    { t: "Me incomoda, pero escucho.", p: 1 },
+    { t: "Analizo el punto de vista sin perder mi criterio.", p: 3 }
+  ]
+},
+{
+  q: "Un día se vuelve más caótico de lo previsto. ¿Qué haces con esa sensación?",
+  a: [
+    { 
+      t: "Me desbordo y siento que todo está fuera de control.", 
+      p: 0,
+      why: "El descontrol mental amplifica el caos externo y reduce tu eficacia." 
+    },
+    { t: "Intento adaptarme como puedo.", p: 1 },
+    { t: "Respiro, priorizo y avanzo paso a paso.", p: 3 }
+  ]
+},
+{
+  q: "Una persona te pide explicaciones con tono exigente. ¿Cómo respondes internamente?",
+  a: [
+    { 
+      t: "Siento que debo justificarme para evitar conflicto.", 
+      p: 0,
+      why: "Responder desde la sumisión te desconecta de tu poder personal." 
+    },
+    { t: "Me incomoda, pero respondo.", p: 1 },
+    { t: "Aclaro lo necesario sin perder mi centro.", p: 3 }
+  ]
+},
+{
+  q: "Un comentario sobre tu físico te pilla por sorpresa. ¿Qué te dices?",
+  a: [
+    { 
+      t: "Que algo está mal en mí y que debería cambiarlo ya.", 
+      p: 0,
+      why: "La autocrítica corporal daña tu autoestima y tu relación con tu cuerpo." 
+    },
+    { t: "Me afecta un poco, pero lo relativizo.", p: 1 },
+    { t: "Filtro el comentario y mantengo mi autoaceptación.", p: 3 }
+  ]
+},
+{
+  q: "Una persona cercana no te incluye en un plan. ¿Qué interpretación aparece?",
+  a: [
+    { 
+      t: "Que no me quieren o que ya no encajo en su vida.", 
+      p: 0,
+      why: "Sacar conclusiones desde la herida genera distorsiones y sufrimiento innecesario." 
+    },
+    { t: "Me duele un poco, pero lo dejo pasar.", p: 1 },
+    { t: "Valoro si es algo puntual o si debo revisar la relación.", p: 3 }
+  ]
+},
+{
+  q: "Un objetivo importante tarda más de lo previsto. ¿Qué narrativa surge?",
+  a: [
+    { 
+      t: "Que no estoy hecho para esto y que debería rendirme.", 
+      p: 0,
+      why: "Abandonar por impaciencia te aleja de la constancia necesaria para manifestar." 
+    },
+    { t: "Me frustra, pero sigo avanzando.", p: 1 },
+    { t: "Ajusto el ritmo y mantengo la visión.", p: 3 }
+  ]
+},
+
 {
   q: "Cuando alguien te hace una crítica, ¿qué sientes primero?",
   a: [
