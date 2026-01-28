@@ -5,11 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AtmaVibra</title>
 
-<!-- Fuente tipo pluma -->
+<!-- Fuentes -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-/* Fondo con movimiento ambiental más visible */
+<style>
+
+/* ------------------ FONDO PROFESIONAL + ANIMADO ------------------ */
+
 @keyframes ambientMove {
   0% { background-position: 50% 50%; }
   50% { background-position: 56% 44%; }
@@ -17,21 +20,14 @@
 }
 
 body {
-  background: radial-gradient(circle at center, #e8fff2 0%, #dfffe9 40%, #c8f7df 100%);
-  background-size: 140% 140%;
-  animation: ambientMove 10s ease-in-out infinite;
-}
-
-
-<style>
-
-/* ------------------ FONDO PROFESIONAL ------------------ */
-
-body {
   margin: 0;
   padding: 0;
   font-family: "Arial", sans-serif;
+
   background: radial-gradient(circle at center, #e8fff2 0%, #dfffe9 40%, #c8f7df 100%);
+  background-size: 140% 140%;
+  animation: ambientMove 10s ease-in-out infinite;
+
   text-align: center;
   color: #2a4d3b;
 }
@@ -41,15 +37,14 @@ html, body {
   overflow: hidden;
 }
 
-  
 /* ------------------ CONTENEDOR PRINCIPAL ------------------ */
+
 .full-wrapper {
   height: 100dvh;
   display: flex;
   flex-direction: column;
 
-  /* En vez de space-between, usamos un reparto más suave */
-  justify-content: center;
+  justify-content: center; /* centrado suave */
   align-items: center;
 
   padding-top: 40px;     /* baja el logo superior */
@@ -58,7 +53,6 @@ html, body {
   box-sizing: border-box;
   animation: fadeScreen 1.2s ease forwards;
 }
-
 
 /* ------------------ LOGOS ------------------ */
 
@@ -91,6 +85,7 @@ h1 {
   margin: 10px 0 20px 0;
   color: #2f5b45;
   font-weight: 600;
+
   animation: floatIn 1.2s ease forwards;
   text-shadow: 0 0 12px rgba(47, 111, 78, 0.25);
 }
@@ -162,9 +157,8 @@ h1 {
   justify-content: center;
 }
 
-.top, .bottom {
-  flex-shrink: 0;
-}
+.top { margin-bottom: 20px; }
+.bottom { margin-top: 20px; }
 
 /* ------------------ MEDIA QUERIES ------------------ */
 
@@ -186,20 +180,17 @@ h1 {
 
 /* ------------------ ANIMACIONES ------------------ */
 
-/* Fade global */
 @keyframes fadeScreen {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
 
-/* Respiración */
 @keyframes breathe {
   0% { transform: scale(1); }
   50% { transform: scale(1.06); }
   100% { transform: scale(1); }
 }
 
-/* Profundidad */
 @keyframes floatIn {
   0% {
     opacity: 0;
@@ -217,8 +208,6 @@ h1 {
 }
 
 </style>
-
-
 </head>
 
 <body>
@@ -247,8 +236,8 @@ h1 {
 </div>
 
 </body>
-
 </html>
+
 
 
 
