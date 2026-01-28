@@ -360,8 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-</script>
-    
+
 
 const QUESTIONS = [
   {
@@ -537,10 +536,7 @@ const QUESTIONS = [
       { t: "Lo ahorro, pero con un poco de tensión.", p: 1 },
       { t: "Agradezco y decido desde tranquilidad, no desde miedo.", p: 3 }
     ]
-  },
-
-
-    
+  },    
 {
   q: "Un amigo te invita a un plan que te apetece, pero piensas en el dinero. ¿Qué haces?",
   a: [
@@ -676,13 +672,7 @@ const QUESTIONS = [
     { t: "Me gustaría, pero no sé si podría manejarlo.", p: 1 },
     { t: "Puedo expandirme para sostener lo que deseo, paso a paso.", p: 3 }
   ]
-},
-
-
-
-
-
-    
+},   
 {
   q: "Cuando piensas en tu futuro ideal, ¿cómo interpretas el tiempo que tardará en llegar?",
   a: [
@@ -795,12 +785,7 @@ const QUESTIONS = [
     { t: "Me sorprende, pero no sé qué pensar.", p: 1 },
     { t: "Lo recibo como una señal de expansión.", p: 3 }
   ]
-},
-
-
-
-
-    
+},    
 {
   q: "Quieres manifestar un cambio laboral, pero te da miedo equivocarte. ¿Qué haces?",
   a: [
@@ -1244,10 +1229,6 @@ const QUESTIONS = [
     { t: "En quién soy, incluso sin hacer nada.", p: 3 }
   ]
 },
-
-
-    
-
   {
     q: "Si alguien no valida tu emoción, ¿qué haces?",
     a: [
@@ -1264,7 +1245,6 @@ const QUESTIONS = [
       { t: "Mi cuerpo merece descanso.", p: 3 }
     ]
   },
-
   {
     q: "Si piensas en tus sueños, ¿qué crees?",
     a: [
@@ -1283,11 +1263,12 @@ const QUESTIONS = [
   }
 ];
 
+    let selectedQuestions = [];
 
-
-let selectedQuestions = [];
+    
 let index = 0;
 let score = 0;
+
 
 const qNum = document.getElementById("qNum");
 const scoreEl = document.getElementById("score");
@@ -1408,9 +1389,9 @@ function endGame() {
 }
 
 restartBtn.onclick = startGame;
-
-startGame();
+    startGame();
 </script>
+
 
 </body>
 </html>
