@@ -330,25 +330,30 @@ body {
 </div>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
 
+  // Ocultar el trivial al inicio
+  const content = document.querySelector(".content");
+  const resultBox = document.getElementById("resultBox");
 
+  content.style.display = "none";
+  resultBox.style.display = "none";
 
-    // Ocultar solo el contenido central del trivial al inicio (NO los logos)
-document.querySelector(".content").style.display = "none";
-document.getElementById("resultBox").style.display = "none";
+  // Botón de inicio
+  document.getElementById("startBtn").addEventListener("click", () => {
+    const welcome = document.getElementById("welcomeScreen");
+    welcome.style.opacity = "0";
+    welcome.style.transition = "0.8s";
 
-// Botón de inicio
-document.getElementById("startBtn").addEventListener("click", () => {
-  const welcome = document.getElementById("welcomeScreen");
-  welcome.style.opacity = "0";
-  welcome.style.transition = "0.8s";
+    setTimeout(() => {
+      welcome.style.display = "none";
+      content.style.display = "flex"; // ahora sí aparece el trivial
+    }, 800);
+  });
 
-  setTimeout(() => {
-    welcome.style.display = "none";
-    document.querySelector(".content").style.display = "flex";
-  }, 800);
 });
-
+</script>
+    
 
 
 const QUESTIONS = [
