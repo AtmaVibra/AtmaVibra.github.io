@@ -288,9 +288,6 @@ const QUESTIONS = [
     ]
   },
 
-
-
-
 {
   q: "Ves un curso que te inspira, pero te da miedo invertir. ¿Qué piensas primero?",
   a: [
@@ -387,6 +384,87 @@ const QUESTIONS = [
     { t: "Me hablo con respeto aunque aún no vea resultados.", p: 3 }
   ]
 },
+{
+  q: "Cuando imaginas la vida que deseas, pero notas que aún estás lejos de ella, ¿qué narrativa interna aparece primero?",
+  a: [
+    { t: "Seguro que estoy pidiendo demasiado, no es realista.", p: 0, why: "Reducir tus sueños para que encajen en tus miedos limita tu expansión natural." },
+    { t: "Me cuesta creerlo, pero quizá podría acercarme un poco.", p: 1 },
+    { t: "Si puedo imaginarlo, es porque ya existe una versión de mí capaz de sostenerlo.", p: 3 }
+  ]
+},
+{
+  q: "Cuando ves a alguien manifestar con facilidad lo que tú deseas, ¿qué interpretación surge en tu mente?",
+  a: [
+    { t: "Ellos pueden porque tienen suerte o privilegios, yo no.", p: 0, why: "Creer que otros tienen acceso a algo que tú no refuerza la separación y la escasez." },
+    { t: "Me da envidia, pero también curiosidad.", p: 1 },
+    { t: "Lo tomo como evidencia de que el campo de posibilidades también está abierto para mí.", p: 3 }
+  ]
+},
+{
+  q: "Si piensas en un salto grande que quieres dar, pero no sabes cómo sostenerlo, ¿qué te dices?",
+  a: [
+    { t: "Mejor no lo intento, podría perderlo todo.", p: 0, why: "El miedo a perder bloquea la energía de expansión y te mantiene en lo conocido." },
+    { t: "Quizá podría intentarlo, pero me da vértigo.", p: 1 },
+    { t: "No necesito tener todas las respuestas para dar el primer paso.", p: 3 }
+  ]
+},
+{
+  q: "Cuando te encuentras en un periodo de incertidumbre, ¿cómo interpretas ese vacío?",
+  a: [
+    { t: "Como una señal de que algo va mal y debería preocuparme.", p: 0, why: "Interpretar el vacío como amenaza bloquea la creatividad y la manifestación." },
+    { t: "Me incomoda, pero entiendo que es parte del proceso.", p: 1 },
+    { t: "Lo veo como un espacio fértil donde lo nuevo puede empezar a tomar forma.", p: 3 }
+  ]
+},
+{
+  q: "Si piensas en el dinero como energía, ¿qué emoción aparece primero en tu cuerpo?",
+  a: [
+    { t: "Tensión, miedo o sensación de que nunca es suficiente.", p: 0, why: "La contracción emocional bloquea el flujo natural de la abundancia." },
+    { t: "Una mezcla de deseo y preocupación.", p: 1 },
+    { t: "Apertura, curiosidad y disposición a recibir más.", p: 3 }
+  ]
+},
+{
+  q: "Cuando te propones elevar tu vibración, pero te encuentras con pensamientos negativos, ¿qué haces?",
+  a: [
+    { t: "Me culpo por no poder mantenerme positiva.", p: 0, why: "Culparte por tu estado emocional baja aún más tu vibración." },
+    { t: "Intento cambiar el pensamiento, aunque me cuesta.", p: 1 },
+    { t: "Observo el pensamiento sin identificarme con él y vuelvo a mi centro.", p: 3 }
+  ]
+},
+{
+  q: "Si te imaginas recibiendo algo grande que deseas, ¿qué voz interna aparece primero?",
+  a: [
+    { t: "No soy suficiente para sostener eso.", p: 0, why: "La autoexclusión inconsciente bloquea la manifestación incluso cuando la deseas." },
+    { t: "Me gustaría, pero no sé si podría manejarlo.", p: 1 },
+    { t: "Puedo expandirme para sostener lo que deseo, paso a paso.", p: 3 }
+  ]
+},
+{
+  q: "Cuando piensas en tu futuro ideal, ¿cómo interpretas el tiempo que tardará en llegar?",
+  a: [
+    { t: "Seguro que tardará demasiado o nunca llegará.", p: 0, why: "La impaciencia mezclada con desesperanza corta el proceso de manifestación." },
+    { t: "No sé cuánto tardará, pero espero que no sea mucho.", p: 1 },
+    { t: "Confío en que llegará en el momento exacto, ni antes ni después.", p: 3 }
+  ]
+},
+{
+  q: "Si observas un patrón repetitivo en tu vida, ¿qué explicación te das?",
+  a: [
+    { t: "Es mi mala suerte, siempre me pasa lo mismo.", p: 0, why: "Atribuirlo a la suerte te quita poder y te deja atrapada en el patrón." },
+    { t: "No entiendo por qué se repite, pero algo debe haber.", p: 1 },
+    { t: "Lo veo como una invitación a cambiar mi vibración y mis decisiones.", p: 3 }
+  ]
+},
+{
+  q: "Cuando te visualizas viviendo en abundancia plena, ¿qué parte de ti se resiste?",
+  a: [
+    { t: "La parte que cree que no lo merezco.", p: 0, why: "La falta de merecimiento es una de las mayores barreras para recibir." },
+    { t: "La parte que teme perderlo una vez que llegue.", p: 1 },
+    { t: "La parte que sabe que tendré que expandirme, y aun así estoy dispuesta.", p: 3 }
+  ]
+},
+   
 {
   q: "Te llega una oportunidad pequeña. ¿Cómo la ves?",
   a: [
@@ -491,10 +569,6 @@ const QUESTIONS = [
     { t: "Acepto y confío en que creceré dentro de la experiencia.", p: 3 }
   ]
 },
-
-    
-
-
     
   {
     q: "Si un plan importante se cancela, ¿qué piensas primero?",
@@ -553,9 +627,7 @@ const QUESTIONS = [
     ]
   },
 
-  /* --- A partir de aquí añado 35 preguntas más, todas difíciles, profundas y elegantes --- */
-
-  {
+   {
     q: "Cuando tienes un mal día, ¿qué narrativa aparece primero?",
     a: [
       { t: "Todo me sale mal, siempre igual.", p: 0, why: "Generalizar desde un mal día crea una identidad negativa que no es real." },
@@ -596,8 +668,6 @@ const QUESTIONS = [
     ]
   },
 
-  /* --- Continúo con más preguntas profundas --- */
-
   {
     q: "Si te cuesta decir que no, ¿qué te dices?",
     a: [
@@ -623,8 +693,6 @@ const QUESTIONS = [
     ]
   },
 
-  /* --- Añadimos más hasta llegar a 45 --- */
-
   {
     q: "Cuando te sientes sola, ¿qué haces?",
     a: [
@@ -641,8 +709,6 @@ const QUESTIONS = [
       { t: "Lo recibo y lo dejo entrar.", p: 3 }
     ]
   },
-
-  /* --- Continúo hasta completar 45 preguntas --- */
 
   {
     q: "Cuando piensas en tu pasado, ¿qué narrativa domina?",
@@ -668,9 +734,6 @@ const QUESTIONS = [
       { t: "En quién soy, incluso sin hacer nada.", p: 3 }
     ]
   },
-
-  /* --- Añadimos más preguntas profundas --- */
-
   {
     q: "Si alguien no valida tu emoción, ¿qué haces?",
     a: [
@@ -687,8 +750,6 @@ const QUESTIONS = [
       { t: "Mi cuerpo merece descanso.", p: 3 }
     ]
   },
-
-  /* --- Últimas preguntas hasta llegar a 45 --- */
 
   {
     q: "Si piensas en tus sueños, ¿qué crees?",
