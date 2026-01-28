@@ -332,6 +332,25 @@ body {
 <script>
 
 
+
+    // Ocultar solo el contenido central del trivial al inicio (NO los logos)
+document.querySelector(".content").style.display = "none";
+document.getElementById("resultBox").style.display = "none";
+
+// Botón de inicio
+document.getElementById("startBtn").addEventListener("click", () => {
+  const welcome = document.getElementById("welcomeScreen");
+  welcome.style.opacity = "0";
+  welcome.style.transition = "0.8s";
+
+  setTimeout(() => {
+    welcome.style.display = "none";
+    document.querySelector(".content").style.display = "flex";
+  }, 800);
+});
+
+
+
 const QUESTIONS = [
   {
     q: "Cuando alguien te decepciona profundamente, ¿qué es lo primero que piensas?",
