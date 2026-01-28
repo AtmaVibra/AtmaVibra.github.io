@@ -189,6 +189,45 @@ html, body {
   }
 }
 
+/* Animación de respiración suave para los logos */
+@keyframes breathe {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.small-logo {
+  animation: breathe 4.5s ease-in-out infinite;
+}
+
+/* Animación de profundidad al aparecer */
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+h1 {
+  animation: floatIn 1.2s ease forwards;
+}
+
+.btn {
+  animation: floatIn 1.4s ease forwards;
+}
+
+/* Pequeño retraso para que los botones aparezcan con ritmo */
+.btn:nth-of-type(1) {
+  animation-delay: 0.2s;
+}
+
+.btn:nth-of-type(2) {
+  animation-delay: 0.35s;
+}
 
 
   
@@ -223,6 +262,7 @@ html, body {
 </body>
 
 </html>
+
 
 
 
