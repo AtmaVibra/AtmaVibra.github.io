@@ -9,6 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+/* Fondo con movimiento ambiental */
+@keyframes ambientMove {
+  0% { background-position: 50% 50%; }
+  50% { background-position: 52% 48%; }
+  100% { background-position: 50% 50%; }
+}
+
+body {
+  background: radial-gradient(circle at center, #e8fff2 0%, #dfffe9 40%, #c8f7df 100%);
+  background-size: 120% 120%;
+  animation: ambientMove 12s ease-in-out infinite;
+}
 
 <style>
 
@@ -236,6 +248,7 @@ h1 {
 </body>
 
 </html>
+
 
 
 
