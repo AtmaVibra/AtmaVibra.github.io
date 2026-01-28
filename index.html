@@ -27,16 +27,20 @@ html, body {
   height: 100%;
   overflow: hidden;
 }
+
+  
 /* ------------------ CONTENEDOR PRINCIPAL ------------------ */
 .full-wrapper {
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
+  /* En vez de space-between, usamos un reparto más suave */
+  justify-content: center;
   align-items: center;
 
-  padding-top: 25px;     /* baja el logo superior */
-  padding-bottom: 25px;  /* sube el logo inferior */
+  padding-top: 40px;     /* baja el logo superior */
+  padding-bottom: 40px;  /* sube el logo inferior */
 
   box-sizing: border-box;
   animation: fadeScreen 1.2s ease forwards;
@@ -232,6 +236,7 @@ h1 {
 </body>
 
 </html>
+
 
 
 
