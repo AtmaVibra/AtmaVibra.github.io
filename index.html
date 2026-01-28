@@ -61,25 +61,25 @@ h1 {
 
   background: transparent;
   border-radius: 12px;
-  border: 2px solid #f5d76e; /* dorado más cálido */
+
+  border: 1.5px solid #1f3d2b; /* borde fino verde oscuro */
 
   text-decoration: none;
   font-family: "Arial", sans-serif;
-  font-weight: 300; /* letra fina */
+  font-weight: 300;
   font-size: 5vw;
-  color: #f7e08c; /* dorado más amarillento */
-  letter-spacing: 1px;
+  color: #1f3d2b; /* verde oscuro elegante */
+  letter-spacing: 0.5px;
 
-  box-shadow: 0 0 12px rgba(245, 215, 110, 0.4);
+  box-shadow: 0 0 12px rgba(31, 61, 43, 0.25);
   transition: 0.25s;
 }
 
 .btn:hover {
-  background: rgba(245, 215, 110, 0.15);
+  background: rgba(31, 61, 43, 0.12);
   transform: scale(1.04);
-  box-shadow: 0 0 18px rgba(245, 215, 110, 0.6);
+  box-shadow: 0 0 18px rgba(31, 61, 43, 0.35);
 }
-
 
 
 .bottom-space {
@@ -105,30 +105,56 @@ h1 {
     max-width: 320px;
   }
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* evita scroll */
+}
+
+.full-wrapper {
+  height: 100vh; /* ocupa toda la pantalla */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* reparte arriba - centro - abajo */
+  align-items: center;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+  
 </style>
 </head>
 
 <body>
 
-<!-- Logo superior -->
-<div class="logo-container">
-  <img src="Logoatma.png" alt="AtmaVibra">
-</div>
+<div class="full-wrapper">
 
-<!-- Título estilográfico -->
-<h1>AtmaVibra</h1>
+  <!-- Logo superior -->
+  <div class="logo-container">
+    <img src="Logoatma.png" alt="AtmaVibra">
+  </div>
 
-<!-- Botones -->
-<a class="btn" href="rueda/">La Rueda de la Vida</a>
-<a class="btn" href="trivial/">Trivial Atma</a>
+  <!-- Título estilográfico -->
+  <h1>AtmaVibra</h1>
 
-<!-- Logo inferior -->
-<div class="logo-container bottom-space">
-  <img src="Logoatma.png" alt="AtmaVibra">
+  <!-- Botones -->
+  <div class="buttons">
+    <a class="btn" href="rueda/">La Rueda de la Vida</a>
+    <a class="btn" href="trivial/">Trivial Atma</a>
+  </div>
+
+  <!-- Logo inferior -->
+  <div class="logo-container bottom-space">
+    <img src="Logoatma.png" alt="AtmaVibra">
+  </div>
+
 </div>
 
 </body>
+
 </html>
+
 
 
 
