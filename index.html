@@ -12,7 +12,8 @@
 
 <style>
 
-  
+/* ------------------ ESTILOS BASE ------------------ */
+
 body {
   margin: 0;
   padding: 0;
@@ -20,124 +21,15 @@ body {
   background: linear-gradient(to bottom, #dfffe9, #c8f7df);
   text-align: center;
   color: #2a4d3b;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-.logo-container {
-  margin: 30px auto;
-  width: 160px;
-  height: 160px;
-  background: #e8ffef;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 12px rgba(0, 80, 40, 0.15);
-}
-
-.logo-container img {
-  width: 70%;
-  height: auto;
-}
-
-h1 {
-  font-family: "Dancing Script", cursive;
-  font-size: 16vw;        /* más grande */
-  line-height: 1.05;
-  margin: 10px 0 35px 0;
-  color: #2f5b45;
-  font-weight: 600;
-}
-
-/* Botones renovados */
-.btn {
-  display: block;
-  width: 80%;
-  max-width: 300px;
-  margin: 15px auto;
-  padding: 18px 30px;
-
-  background: #e9f7ef; /* verde muy suave */
-  border-radius: 14px;
-
-  border: 2px solid #2f6f4e; /* verde oscuro elegante */
-
-  text-decoration: none;
-  font-family: "Quicksand", sans-serif; /* letra relajante */
-  font-weight: 500;
-  font-size: 5vw;
-  color: #1f3d2b; /* verde oscuro */
-  letter-spacing: 0.5px;
-
-  /* Sombra más llamativa y bonita */
-  box-shadow: 0 6px 18px rgba(47, 111, 78, 0.35),
-              0 0 12px rgba(47, 111, 78, 0.25) inset;
-
-  transition: 0.25s;
-}
-
-.btn:hover {
-  background: #d9f2e4; /* un poco más claro al pasar el ratón */
-  transform: scale(1.06);
-  box-shadow: 0 8px 22px rgba(47, 111, 78, 0.45),
-              0 0 14px rgba(47, 111, 78, 0.35) inset;
-}
-
-
-.bottom-space {
-  margin: 40px 0;
-}
-
-@media (min-width: 600px) {
-  h1 {
-    font-size: 70px;
-  }
-  .btn {
-    font-size: 22px;
-  }
-}
-
-@media (min-width: 900px) {
-  .logo-container {
-    width: 200px;
-    height: 200px;
-  }
-  .btn {
-    font-size: 24px;
-    max-width: 320px;
-  }
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden; /* evita scroll */
-}
-
-.full-wrapper {
-  height: 100vh; /* ocupa toda la pantalla */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* reparte arriba - centro - abajo */
-  align-items: center;
-  padding: 20px 0;
-  box-sizing: border-box;
-}
-
-
-  html, body {
-  margin: 0;
-  padding: 0;
   height: 100%;
   overflow: hidden;
 }
 
-/* Ajuste real de altura compatible con móviles */
+/* ------------------ CONTENEDOR PRINCIPAL ------------------ */
+
 .full-wrapper {
   height: 100dvh;
   display: flex;
@@ -148,25 +40,21 @@ html, body {
   box-sizing: border-box;
 }
 
-/* Centro realmente centrado */
-.center {
+/* ------------------ LOGOS ------------------ */
+
+.logo-container {
+  background: #e8ffef;
+  border-radius: 50%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px; /* menos espacio */
-  flex: 1;
   justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 12px rgba(0, 80, 40, 0.15);
 }
 
-/* Evita que los logos empujen el contenido */
-.top, .bottom {
-  flex-shrink: 0;
-}
-
-/* Logos más pequeños para que no se corten */
 .small-logo {
   width: 120px;
   height: 120px;
+  animation: breathe 5s ease-in-out infinite;
 }
 
 .small-logo img {
@@ -174,64 +62,114 @@ html, body {
   height: auto;
 }
 
-/* Ajustes extra para pantallas muy pequeñas */
-@media (max-height: 700px) {
-  h1 {
-    font-size: 12vw;
-  }
-  .small-logo {
-    width: 90px;
-    height: 90px;
-  }
-  .btn {
-    padding: 14px 20px;
-    font-size: 4.5vw;
-  }
-}
-
-/* Animación de respiración suave para los logos */
-@keyframes breathe {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-  100% { transform: scale(1); }
-}
-
-.small-logo {
-  animation: breathe 4.5s ease-in-out infinite;
-}
-
-/* Animación de profundidad al aparecer */
-@keyframes floatIn {
-  0% {
-    opacity: 0;
-    transform: translateY(18px) scale(0.97);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
+/* ------------------ TÍTULO ------------------ */
 
 h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: 16vw;
+  line-height: 1.05;
+  margin: 10px 0 20px 0;
+  color: #2f5b45;
+  font-weight: 600;
   animation: floatIn 1.2s ease forwards;
 }
 
+/* ------------------ BOTONES ------------------ */
+
 .btn {
+  display: block;
+  width: 80%;
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 18px 30px;
+
+  background: #e9f7ef;
+  border-radius: 14px;
+  border: 2px solid #2f6f4e;
+
+  text-decoration: none;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  font-size: 5vw;
+  color: #1f3d2b;
+  letter-spacing: 0.5px;
+
+  box-shadow: 0 6px 18px rgba(47, 111, 78, 0.35),
+              0 0 12px rgba(47, 111, 78, 0.25) inset;
+
+  transition: 0.25s;
   animation: floatIn 1.4s ease forwards;
 }
 
-/* Pequeño retraso para que los botones aparezcan con ritmo */
-.btn:nth-of-type(1) {
-  animation-delay: 0.2s;
+.btn:nth-of-type(1) { animation-delay: 0.25s; }
+.btn:nth-of-type(2) { animation-delay: 0.45s; }
+
+.btn:hover {
+  background: #d9f2e4;
+  transform: scale(1.06);
+  box-shadow: 0 8px 22px rgba(47, 111, 78, 0.45),
+              0 0 14px rgba(47, 111, 78, 0.35) inset;
 }
 
-.btn:nth-of-type(2) {
-  animation-delay: 0.35s;
+/* ------------------ CENTRADO VERTICAL ------------------ */
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  justify-content: center;
 }
 
+.top, .bottom {
+  flex-shrink: 0;
+}
 
-  
+/* ------------------ MEDIA QUERIES ------------------ */
+
+@media (max-height: 700px) {
+  h1 { font-size: 12vw; }
+  .small-logo { width: 90px; height: 90px; }
+  .btn { padding: 14px 20px; font-size: 4.5vw; }
+}
+
+@media (min-width: 600px) {
+  h1 { font-size: 70px; }
+  .btn { font-size: 22px; }
+}
+
+@media (min-width: 900px) {
+  .small-logo { width: 160px; height: 160px; }
+  .btn { font-size: 24px; max-width: 320px; }
+}
+
+/* ------------------ ANIMACIONES ------------------ */
+
+@keyframes breathe {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(25px) scale(0.92);
+    filter: blur(4px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0) scale(1.02);
+    filter: blur(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 </style>
+
 </head>
 
 <body>
@@ -262,6 +200,7 @@ h1 {
 </body>
 
 </html>
+
 
 
 
