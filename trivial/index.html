@@ -363,7 +363,792 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const QUESTIONS = [
+  
   {
+    q: "Ves que alguien deja de responderte de repente por WhatsApp. ¿Qué piensas primero?",
+    a: [
+      { 
+        t: "Seguro que pasa de mí y no le importo nada.", 
+        p: 0,
+        why: "Interpretar a la gente desde el rechazo automático alimenta la inseguridad y la dependencia emocional."
+      },
+      { t: "Me molesta un poco, pero supongo que estará liado.", p: 1 },
+      { t: "No saco conclusiones rápidas y sigo con mi vida.", p: 3 }
+    ]
+  },
+  {
+    q: "Publicas algo en Instagram y tiene pocas interacciones. ¿Qué te dices?",
+    a: [
+      { 
+        t: "Mi vida no interesa a nadie, soy un fracaso.", 
+        p: 0,
+        why: "Medir tu valor por la atención externa te aleja de tu autenticidad y paz interior."
+      },
+      { t: "Me decepciona un poco, pero lo dejo estar.", p: 1 },
+      { t: "Recuerdo que mi valor no depende de los likes.", p: 3 }
+    ]
+  },
+  {
+    q: "Tu pareja tarda más de lo normal en contestar un mensaje. ¿Qué interpretación aparece?",
+    a: [
+      { 
+        t: "Seguro que está hablando con otra persona o pasando de mí.", 
+        p: 0,
+        why: "Sospechar sin pruebas erosiona la confianza y te encadena al miedo."
+      },
+      { t: "Me inquieta un poco, pero espero a ver qué pasa.", p: 1 },
+      { t: "Confío y, si algo me preocupa, lo hablo con calma.", p: 3 }
+    ]
+  },
+  {
+    q: "En el trabajo te corrigen un informe delante de otros. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Soy incompetente, no valgo para este puesto.", 
+        p: 0,
+        why: "Convertir un error en una identidad limita tu crecimiento y tu capacidad de aprender."
+      },
+      { t: "Me molesta, pero intento no tomármelo tan personal.", p: 1 },
+      { t: "Analizo el fallo y lo uso para mejorar.", p: 3 }
+    ]
+  },
+  {
+    q: "Te llega una multa de tráfico inesperada. ¿Cuál es tu reacción mental?",
+    a: [
+      { 
+        t: "El mundo está en mi contra, siempre me pasa a mí.", 
+        p: 0,
+        why: "Verte como víctima constante te impide asumir responsabilidad y aprender de las situaciones."
+      },
+      { t: "Me fastidia, pago y sigo con mi día.", p: 1 },
+      { t: "Acepto el hecho, reviso qué puedo hacer mejor y suelto la queja.", p: 3 }
+    ]
+  },
+  {
+    q: "Tienes un pequeño golpe con el coche, sin heridos. ¿Qué te dices?",
+    a: [
+      { 
+        t: "Qué desastre soy, todo lo hago mal.", 
+        p: 0,
+        why: "Generalizar un incidente a toda tu identidad refuerza la culpa y el autoataque."
+      },
+      { t: "Vaya lío, pero son cosas que pasan.", p: 1 },
+      { t: "Me centro en resolverlo con calma y aprender del despiste.", p: 3 }
+    ]
+  },
+  {
+    q: "Un amigo cancela un plan a última hora. ¿Qué interpretación aparece?",
+    a: [
+      { 
+        t: "Está claro que no le importo y que soy su última opción.", 
+        p: 0,
+        why: "Tomar cada cambio como desprecio te encierra en la susceptibilidad y el resentimiento."
+      },
+      { t: "Me molesta, pero entiendo que pueden surgir imprevistos.", p: 1 },
+      { t: "Acepto el cambio y aprovecho el tiempo para algo valioso para mí.", p: 3 }
+    ]
+  },
+  {
+    q: "Te equivocas en una transferencia bancaria y pierdes algo de dinero. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Soy un desastre con el dinero, nunca tendré abundancia.", 
+        p: 0,
+        why: "Etiquetarte por un error económico bloquea tu relación sana con el dinero y la abundancia."
+      },
+      { t: "Qué rabia, intentaré que no vuelva a pasar.", p: 1 },
+      { t: "Asumo el error, aprendo y refuerzo mis hábitos financieros.", p: 3 }
+    ]
+  },
+  {
+    q: "Te rechazan en una oferta de trabajo que te hacía mucha ilusión. ¿Qué narrativa surge?",
+    a: [
+      { 
+        t: "No valgo lo suficiente, nadie me va a contratar.", 
+        p: 0,
+        why: "Confundir un ‘no’ con tu valor personal te aleja de la perseverancia y la confianza en tu camino."
+      },
+      { t: "Me frustra, pero seguiré buscando otras opciones.", p: 1 },
+      { t: "Lo tomo como redirección y mantengo la visión a largo plazo.", p: 3 }
+    ]
+  },
+  {
+    q: "Tu jefe te pide cambiar algo que ya habías terminado. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Solo quieren fastidiarme y hacerme perder el tiempo.", 
+        p: 0,
+        why: "Interpretar toda petición como ataque te impide ver oportunidades de mejora y colaboración."
+      },
+      { t: "Me molesta, pero hago los cambios.", p: 1 },
+      { t: "Escucho, ajusto y veo qué puedo aprender del feedback.", p: 3 }
+    ]
+  },
+  {
+    q: "Ves en redes sociales que tus amigos han quedado sin avisarte. ¿Qué te dices?",
+    a: [
+      { 
+        t: "Me han excluido a propósito, no les importo nada.", 
+        p: 0,
+        why: "Construir historias de rechazo sin hablarlo alimenta la paranoia y el dolor innecesario."
+      },
+      { t: "Me duele un poco, pero quizá fue algo improvisado.", p: 1 },
+      { t: "Si me afecta, lo comento con calma; si no, sigo con mi vida.", p: 3 }
+    ]
+  },
+  {
+    q: "Te despiertas de mal humor sin motivo claro. ¿Qué haces con ese estado?",
+    a: [
+      { 
+        t: "Doy por hecho que será un día horrible y lo arrastro todo el día.", 
+        p: 0,
+        why: "Dejar que un estado puntual defina tu día refuerza la inercia negativa y la falta de elección."
+      },
+      { t: "Intento distraerme y que se me pase.", p: 1 },
+      { t: "Acepto el estado, me trato con amabilidad y elijo pequeños actos que me alineen.", p: 3 }
+    ]
+  },
+  {
+    q: "Te hacen una broma pesada en público. ¿Qué piensas primero?",
+    a: [
+      { 
+        t: "Se están riendo de mí porque soy ridículo.", 
+        p: 0,
+        why: "Tomar cada broma como humillación refuerza la vergüenza y la hipersensibilidad."
+      },
+      { t: "No me gusta, pero intento no darle demasiada importancia.", p: 1 },
+      { t: "Pongo límites si hace falta y no dejo que defina mi valor.", p: 3 }
+    ]
+  },
+  {
+    q: "Te equivocas al hablar en una presentación. ¿Qué te dices?",
+    a: [
+      { 
+        t: "He quedado fatal, todos pensarán que soy tonto.", 
+        p: 0,
+        why: "Creer que un tropiezo te define te impide exponerte y crecer en confianza."
+      },
+      { t: "Qué corte, pero sigo adelante como pueda.", p: 1 },
+      { t: "Lo tomo con naturalidad, corrijo y continúo con calma.", p: 3 }
+    ]
+  },
+  {
+    q: "Llevas tiempo intentando crear un hábito saludable y vuelves a fallar. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Está claro que no tengo fuerza de voluntad, nunca cambiaré.", 
+        p: 0,
+        why: "Etiquetarte como incapaz bloquea la disciplina y la posibilidad de construir nuevas versiones de ti."
+      },
+      { t: "Me frustra, pero lo volveré a intentar más adelante.", p: 1 },
+      { t: "Analizo qué me sabotea y ajusto el plan con paciencia.", p: 3 }
+    ]
+  },
+  {
+    q: "Alguien conduce de forma agresiva y casi te golpea. ¿Qué haces mentalmente?",
+    a: [
+      { 
+        t: "Le insulto mentalmente y me quedo rumiando el enfado.", 
+        p: 0,
+        why: "Aferrarte a la rabia por errores ajenos te roba paz sin cambiar la situación."
+      },
+      { t: "Me enfado, pero al rato se me pasa.", p: 1 },
+      { t: "Me centro en mi seguridad y suelto el incidente lo antes posible.", p: 3 }
+    ]
+  },
+  {
+    q: "Te enteras de que alguien ha hablado mal de ti. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Tengo que defenderme y demostrar que se equivocan todos.", 
+        p: 0,
+        why: "Vivir para corregir la opinión ajena te encadena a la aprobación externa."
+      },
+      { t: "Me duele, pero intento no obsesionarme.", p: 1 },
+      { t: "Valoro si hay algo que revisar en mí y suelto lo que no controlo.", p: 3 }
+    ]
+  },
+  {
+    q: "Tienes un día lleno de imprevistos y retrasos. ¿Qué narrativa aparece?",
+    a: [
+      { 
+        t: "Hoy es un día maldito, todo está saliendo mal.", 
+        p: 0,
+        why: "Etiquetar un día como ‘desastre’ refuerza la queja y te impide ver oportunidades."
+      },
+      { t: "Vaya día, solo quiero que termine.", p: 1 },
+      { t: "Acepto los imprevistos y me enfoco en lo que sí puedo manejar.", p: 3 }
+    ]
+  },
+  {
+    q: "Te comparas con la vida ‘perfecta’ que ves en redes. ¿Qué te dices?",
+    a: [
+      { 
+        t: "Mi vida es mediocre comparada con la de los demás.", 
+        p: 0,
+        why: "Compararte con versiones editadas de otros te desconecta de tu propio proceso y gratitud."
+      },
+      { t: "Me genera algo de envidia, pero sé que no es toda la verdad.", p: 1 },
+      { t: "Recuerdo que cada uno muestra solo una parte y vuelvo a enfocarme en mi camino.", p: 3 }
+    ]
+  },
+  {
+    q: "Te llega una factura más alta de lo esperado. ¿Qué piensas?",
+    a: [
+      { 
+        t: "El dinero nunca me alcanza, la vida es injusta.", 
+        p: 0,
+        why: "Ver la economía solo desde la escasez refuerza la sensación de falta y bloqueo."
+      },
+      { t: "Qué faena, tendré que ajustar este mes.", p: 1 },
+      { t: "Acepto el gasto, reviso mis cuentas y busco mejorar mi gestión.", p: 3 }
+    ]
+  },
+  {
+    q: "Alguien no responde a tu mensaje importante, pero está activo en redes. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Lo hace a propósito para ignorarme, no le importo nada.", 
+        p: 0,
+        why: "Interpretar cada silencio como desprecio alimenta la inseguridad y la dependencia."
+      },
+      { t: "Me molesta, pero quizá tenga sus motivos.", p: 1 },
+      { t: "Si es importante, lo hablaré directamente cuando pueda, sin dramatizar.", p: 3 }
+    ]
+  },
+  {
+    q: "Te equivocas al mandar un mensaje al grupo equivocado. ¿Qué te dices?",
+    a: [
+      { 
+        t: "Qué vergüenza, ojalá desaparecer ahora mismo.", 
+        p: 0,
+        why: "Convertir un error cotidiano en tragedia refuerza la vergüenza tóxica."
+      },
+      { t: "Qué corte, pero intento tomármelo con humor.", p: 1 },
+      { t: "Acepto el fallo, lo corrijo y sigo adelante sin machacarme.", p: 3 }
+    ]
+  },
+  {
+    q: "Te despiertas tarde y pierdes una cita importante. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Soy un irresponsable, nunca haré nada bien.", 
+        p: 0,
+        why: "Definirte por un fallo puntual sabotea tu autoestima y tu capacidad de cambio."
+      },
+      { t: "He metido la pata, intentaré compensarlo.", p: 1 },
+      { t: "Asumo el error, pido disculpas y reviso mis hábitos de descanso y organización.", p: 3 }
+    ]
+  },
+  {
+    q: "Te hacen una crítica sobre tu forma de vestir. ¿Qué te dices?",
+    a: [
+      { 
+        t: "Tengo que cambiar para gustar más a los demás.", 
+        p: 0,
+        why: "Adaptar tu esencia a cada opinión externa te aleja de tu autenticidad."
+      },
+      { t: "Me incomoda, pero no le doy demasiada importancia.", p: 1 },
+      { t: "Escucho si aporta algo, pero priorizo sentirme bien conmigo.", p: 3 }
+    ]
+  },
+  {
+    q: "Un proyecto personal no sale como esperabas. ¿Qué narrativa aparece?",
+    a: [
+      { 
+        t: "No sirvo para esto, mejor dejo de intentarlo.", 
+        p: 0,
+        why: "Rendirse ante el primer tropiezo bloquea la manifestación de tus metas."
+      },
+      { t: "Me frustra, pero quizá no era el momento.", p: 1 },
+      { t: "Analizo lo aprendido y ajusto la estrategia para seguir avanzando.", p: 3 }
+    ]
+  },
+  {
+    q: "Te sientes solo un fin de semana sin planes. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Nadie me quiere, por eso estoy solo.", 
+        p: 0,
+        why: "Asociar la soledad con falta de valor personal refuerza la dependencia afectiva."
+      },
+      { t: "Me entristece un poco, pero intento distraerme.", p: 1 },
+      { t: "Aprovecho para cuidarme, reflexionar y disfrutar de mi propia compañía.", p: 3 }
+    ]
+  },
+  {
+    q: "Te proponen un reto laboral que te da miedo. ¿Qué te dices?",
+    a: [
+      { 
+        t: "Mejor no, seguro que lo haré mal y quedaré en ridículo.", 
+        p: 0,
+        why: "Rechazar todo reto por miedo te impide expandir tus capacidades y tu confianza."
+      },
+      { t: "Me da respeto, pero quizá podría intentarlo.", p: 1 },
+      { t: "Reconozco el miedo y lo uso como señal de crecimiento.", p: 3 }
+    ]
+  },
+  {
+    q: "Alguien te habla con mal tono en una tienda. ¿Qué piensas?",
+    a: [
+      { 
+        t: "No voy a dejar que nadie me hable así, le devuelvo el tono.", 
+        p: 0,
+        why: "Responder desde la misma reactividad alimenta el conflicto y te roba serenidad."
+      },
+      { t: "Me molesta, pero intento no engancharme demasiado.", p: 1 },
+      { t: "Pongo límites si hace falta, pero no dejo que su estado arruine el mío.", p: 3 }
+    ]
+  },
+  {
+    q: "Te sientes estancado en tu vida. ¿Qué narrativa aparece?",
+    a: [
+      { 
+        t: "Mi vida es así y no puedo hacer nada para cambiarla.", 
+        p: 0,
+        why: "Creer que no tienes poder de acción te deja atrapado en la resignación."
+      },
+      { t: "No estoy donde quiero, pero al menos tengo algunas cosas buenas.", p: 1 },
+      { t: "Acepto dónde estoy y empiezo a dar pasos pequeños hacia donde quiero ir.", p: 3 }
+    ]
+  },
+  {
+    q: "Te llega una noticia negativa en los medios. ¿Qué haces con esa información?",
+    a: [
+      { 
+        t: "Me hundo y pienso que el mundo es un lugar horrible.", 
+        p: 0,
+        why: "Consumir malas noticias sin filtro alimenta la desesperanza y la impotencia."
+      },
+      { t: "Me afecta, pero luego sigo con mis cosas.", p: 1 },
+      { t: "Me informo lo justo y vuelvo a enfocarme en lo que sí puedo aportar.", p: 3 }
+    ]
+  },
+  {
+    q: "Un familiar critica tus decisiones de vida. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Quizá tiene razón y debería vivir como los demás esperan.", 
+        p: 0,
+        why: "Vivir según las expectativas ajenas te aleja de tu propósito y autenticidad."
+      },
+      { t: "Me duele, pero sé que no todos entenderán mis elecciones.", p: 1 },
+      { t: "Escucho, filtro y sigo alineado con lo que siento correcto para mí.", p: 3 }
+    ]
+  },
+  {
+    q: "Te encuentras con un atasco enorme cuando vas con prisa. ¿Qué te dices?",
+    a: [
+      { 
+        t: "Siempre me pasa a mí, qué injusticia.", 
+        p: 0,
+        why: "Personalizar los imprevistos te mantiene en la queja y la frustración crónica."
+      },
+      { t: "Qué rabia, llegaré tarde otra vez.", p: 1 },
+      { t: "Acepto que no depende de mí y aprovecho para respirar o escuchar algo útil.", p: 3 }
+    ]
+  },
+  {
+    q: "Te equivocas al hablar con tu jefe y dices algo que no querías. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Seguro que ahora pensará lo peor de mí.", 
+        p: 0,
+        why: "Suponer lo peor de cómo te perciben te encadena a la ansiedad social."
+      },
+      { t: "Qué torpeza, intentaré arreglarlo si hace falta.", p: 1 },
+      { t: "Acepto el lapsus, aclaro si es necesario y no dramatizo.", p: 3 }
+    ]
+  },
+  {
+    q: "Te proponen salir de tu zona de confort en un viaje o actividad nueva. ¿Qué te dices?",
+    a: [
+      { 
+        t: "Mejor no, estoy más seguro haciendo lo de siempre.", 
+        p: 0,
+        why: "Aferrarte a lo conocido por miedo te priva de experiencias que podrían expandirte."
+      },
+      { t: "Me da respeto, pero podría estar bien probar.", p: 1 },
+      { t: "Siento el miedo y aun así elijo explorar algo nuevo.", p: 3 }
+    ]
+  },
+  {
+    q: "Te das cuenta de que has hablado mal de alguien sin necesidad. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Bah, todo el mundo critica, no pasa nada.", 
+        p: 0,
+        why: "Normalizar la crítica constante alimenta la negatividad y la desconexión con los demás."
+      },
+      { t: "No ha estado bien, intentaré hacerlo menos.", p: 1 },
+      { t: "Reconozco el error, reflexiono y elijo ser más consciente con mis palabras.", p: 3 }
+    ]
+  },
+  {
+    q: "Te sientes cansado y sin ganas de nada. ¿Qué haces con ese estado?",
+    a: [
+      { 
+        t: "Me machaco por no rendir más y me obligo a seguir igual.", 
+        p: 0,
+        why: "Ignorar tus límites y castigarte por ellos erosiona tu bienestar físico y mental."
+      },
+      { t: "Intento tirar como pueda y ya está.", p: 1 },
+      { t: "Escucho mi cuerpo, ajusto el ritmo y priorizo el descanso consciente.", p: 3 }
+    ]
+  },
+  {
+    q: "Un plan importante se cancela en el último momento. ¿Qué te dices?",
+    a: [
+      { 
+        t: "Nada me sale bien, siempre se arruina todo.", 
+        p: 0,
+        why: "Generalizar desde una decepción alimenta la visión pesimista de tu vida."
+      },
+      { t: "Qué pena, tenía muchas ganas.", p: 1 },
+      { t: "Acepto la cancelación y busco otra forma de disfrutar el tiempo.", p: 3 }
+    ]
+  },
+  {
+    q: "Te das cuenta de que has gastado más de lo previsto en ocio. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Soy un desastre con el dinero, nunca aprenderé.", 
+        p: 0,
+        why: "Castigarte por cada desajuste económico dificulta construir una relación sana con el dinero."
+      },
+      { t: "He gastado de más, tendré que apretarme un poco.", p: 1 },
+      { t: "Reviso mis prioridades, ajusto el presupuesto y aprendo del exceso.", p: 3 }
+    ]
+  },
+  {
+    q: "Te llega un comentario pasivo-agresivo por redes. ¿Qué haces?",
+    a: [
+      { 
+        t: "Entro al trapo y respondo con más dureza.", 
+        p: 0,
+        why: "Alimentar el conflicto digital te roba energía y refuerza la reactividad."
+      },
+      { t: "Me molesta, pero no respondo en caliente.", p: 1 },
+      { t: "Decido si merece respuesta serena o simplemente ignorarlo y seguir.", p: 3 }
+    ]
+  },
+  {
+    q: "Sientes que tus esfuerzos no se reconocen. ¿Qué narrativa aparece?",
+    a: [
+      { 
+        t: "Para qué esforzarme si nadie lo valora.", 
+        p: 0,
+        why: "Condicionar tu esfuerzo al reconocimiento externo limita tu poder personal."
+      },
+      { t: "Me frustra, pero sé que a veces pasa.", p: 1 },
+      { t: "Recuerdo que mi compromiso es conmigo y con mis valores, no solo con el aplauso.", p: 3 }
+    ]
+  },
+  {
+    q: "Te equivocas en algo que ya habías aprendido. ¿Qué te dices?",
+    a: [
+      { 
+        t: "Soy incapaz, ni siquiera lo que sé hago bien.", 
+        p: 0,
+        why: "No permitirte margen de error te vuelve rígido y perfeccionista en tu contra."
+      },
+      { t: "Qué rabia, pensaba que lo tenía dominado.", p: 1 },
+      { t: "Acepto el fallo como parte del proceso y refuerzo el aprendizaje.", p: 3 }
+    ]
+  },
+
+[
+  {
+    q: "Después de una cita importante, dudas de si estuviste a la altura. ¿Qué te dices?",
+    a: [
+      {
+        t: "Seguro que no fui suficiente y la otra persona lo notó.",
+        p: 0,
+        why: "Cuando dudas de tu valor, tu energía se contrae y bloquea la conexión auténtica. La abundancia emocional nace de honrar quién eres, no de buscar aprobación."
+      },
+      { t: "No sé, quizá estuve un poco raro.", p: 1 },
+      { t: "Fui yo mismo y eso siempre es suficiente.", p: 3 }
+    ]
+  },
+  {
+    q: "Tras un encuentro íntimo con alguien nuevo, te asaltan dudas. ¿Qué piensas?",
+    a: [
+      {
+        t: "Creo que no cumplí y que habré decepcionado.",
+        p: 0,
+        why: "Cuando te juzgas desde el rendimiento, desconectas de tu esencia. La energía fluye mejor cuando eliges presencia, no perfección."
+      },
+      { t: "No sé, quizá podría haber estado más relajado.", p: 1 },
+      { t: "La conexión es más importante que la perfección, y eso lo valoro.", p: 3 }
+    ]
+  },
+  {
+    q: "Te levantas con resaca después de haber bebido más de la cuenta. ¿Qué te dices?",
+    a: [
+      {
+        t: "Soy un irresponsable, nunca aprendo.",
+        p: 0,
+        why: "La culpa baja tu vibración y te aleja del autocuidado consciente. La verdadera disciplina nace del amor propio, no del castigo."
+      },
+      { t: "Qué mal cuerpo, hoy me lo tomaré con calma.", p: 1 },
+      { t: "Escucho mi cuerpo, descanso y tomo nota para cuidarme mejor.", p: 3 }
+    ]
+  },
+  {
+    q: "Te arrepientes de haber consumido algo que no te sentó bien. ¿Qué piensas?",
+    a: [
+      {
+        t: "Soy idiota por haberlo hecho, siempre me pasa igual.",
+        p: 0,
+        why: "El juicio severo bloquea tu expansión. Cada error es un maestro que te invita a elevar tu conciencia y elegir mejor."
+      },
+      { t: "No debí hacerlo, pero ya está hecho.", p: 1 },
+      { t: "Reflexiono sobre por qué lo hice y cómo evitar repetirlo.", p: 3 }
+    ]
+  },
+  {
+    q: "Has comido muchísimo y te sientes fatal. ¿Qué te dices?",
+    a: [
+      {
+        t: "No tengo control, soy un desastre.",
+        p: 0,
+        why: "La relación con la comida refleja tu relación contigo. La culpa te desconecta; la presencia te devuelve al equilibrio."
+      },
+      { t: "Me pasé, mañana intentaré compensar.", p: 1 },
+      { t: "Escucho mi cuerpo, descanso y vuelvo a hábitos equilibrados sin castigo.", p: 3 }
+    ]
+  },
+  {
+    q: "Te gastas más dinero del que deberías en una salida. ¿Qué piensas?",
+    a: [
+      {
+        t: "No sirvo para gestionar mi dinero, siempre la lío.",
+        p: 0,
+        why: "Pensar en escasez bloquea la abundancia. La prosperidad fluye cuando eliges consciencia, no culpa."
+      },
+      { t: "Me pasé, tendré que ajustar este mes.", p: 1 },
+      { t: "Reviso mis impulsos y ajusto mis prioridades sin machacarme.", p: 3 }
+    ]
+  },
+  {
+    q: "Dices algo inapropiado en una conversación y luego te arrepientes. ¿Qué te dices?",
+    a: [
+      {
+        t: "Soy un desastre social, siempre meto la pata.",
+        p: 0,
+        why: "La vergüenza te encierra en una versión pequeña de ti. La expansión ocurre cuando aceptas tu humanidad con compasión."
+      },
+      { t: "No debí decir eso, qué torpeza.", p: 1 },
+      { t: "Reflexiono, pido disculpas si hace falta y sigo adelante.", p: 3 }
+    ]
+  },
+  {
+    q: "En una discusión con tu pareja, sientes que actuaste mal. ¿Qué piensas?",
+    a: [
+      {
+        t: "Soy terrible en las relaciones, siempre arruino todo.",
+        p: 0,
+        why: "Cuando te defines por un error, bloqueas tu capacidad de amar mejor. La responsabilidad sin culpa es la vía hacia relaciones conscientes."
+      },
+      { t: "Creo que me pasé un poco, debería haberme calmado.", p: 1 },
+      { t: "Reconozco mi parte, la comunico y busco mejorar.", p: 3 }
+    ]
+  },
+  {
+    q: "Te levantas con ansiedad después de una noche de fiesta. ¿Qué te dices?",
+    a: [
+      {
+        t: "Soy un desastre, no debería salir nunca más.",
+        p: 0,
+        why: "La rigidez mental te desconecta del equilibrio. La calma nace de aceptar tus ciclos, no de castigarlos."
+      },
+      { t: "Qué mal cuerpo, hoy necesito tranquilidad.", p: 1 },
+      { t: "Observo la ansiedad sin juicio y me doy lo que necesito.", p: 3 }
+    ]
+  },
+  {
+    q: "Te arrepientes de haber enviado un mensaje impulsivo. ¿Qué piensas?",
+    a: [
+      {
+        t: "Qué vergüenza, siempre actúo sin pensar.",
+        p: 0,
+        why: "La vergüenza baja tu vibración y te aleja de la claridad. La presencia se cultiva, no se exige."
+      },
+      { t: "No debí enviarlo, pero ya está hecho.", p: 1 },
+      { t: "Aprendo a pausar antes de actuar y, si hace falta, aclaro el mensaje.", p: 3 }
+    ]
+  },
+  {
+    q: "Sientes que no estuviste emocionalmente disponible en una cita. ¿Qué te dices?",
+    a: [
+      {
+        t: "Seguro que pensó que soy frío o aburrido.",
+        p: 0,
+        why: "Interpretar tu vulnerabilidad como defecto bloquea tu expansión emocional. La apertura nace del permiso, no de la presión."
+      },
+      { t: "Quizá estaba más tenso de lo normal.", p: 1 },
+      { t: "Me permito ser humano y mejorar mi apertura poco a poco.", p: 3 }
+    ]
+  },
+  {
+    q: "Te arrepientes de haber aceptado una invitación que no querías. ¿Qué piensas?",
+    a: [
+      {
+        t: "No sé poner límites, soy incapaz.",
+        p: 0,
+        why: "Negarte a ti mismo por complacer baja tu energía vital. Los límites son actos de amor propio, no de egoísmo."
+      },
+      { t: "No quería ir, pero bueno, ya pasó.", p: 1 },
+      { t: "Reflexiono y practico decir no con más claridad la próxima vez.", p: 3 }
+    ]
+  },
+  {
+    q: "Te sientes culpable por no haber rendido bien en el trabajo tras una noche larga. ¿Qué te dices?",
+    a: [
+      {
+        t: "Soy irresponsable, no debería permitirme nada.",
+        p: 0,
+        why: "La autoexigencia extrema bloquea tu creatividad y tu energía. El equilibrio es parte de la productividad consciente."
+      },
+      { t: "Hoy no estoy fino, intentaré cumplir lo básico.", p: 1 },
+      { t: "Acepto mi estado y organizo mi día con realismo y responsabilidad.", p: 3 }
+    ]
+  },
+  {
+    q: "Has gastado dinero impulsivamente en compras online. ¿Qué piensas?",
+    a: [
+      {
+        t: "Soy incapaz de controlarme, siempre hago lo mismo.",
+        p: 0,
+        why: "La culpa financiera bloquea la abundancia. La prosperidad se construye desde la conciencia, no desde el castigo."
+      },
+      { t: "Me pasé, tendré que apretarme un poco.", p: 1 },
+      { t: "Reviso qué emoción buscaba tapar y ajusto mis hábitos.", p: 3 }
+    ]
+  },
+  {
+    q: "Te arrepientes de haber ignorado tus límites en una salida nocturna. ¿Qué te dices?",
+    a: [
+      {
+        t: "Soy débil, nunca sé parar.",
+        p: 0,
+        why: "La dureza contigo mismo bloquea tu evolución. El autocuidado nace de escucharte, no de castigarte."
+      },
+      { t: "Me pasé un poco, hoy necesito calma.", p: 1 },
+      { t: "Observo lo ocurrido y ajusto mis decisiones futuras con más conciencia.", p: 3 }
+    ]
+  },
+  {
+    q: "Te sientes mal por haber comido emocionalmente. ¿Qué piensas?",
+    a: [
+      {
+        t: "No tengo control, soy un desastre.",
+        p: 0,
+        why: "La culpa alimentaria baja tu vibración y te aleja de la conexión con tu cuerpo. La presencia transforma más que el juicio."
+      },
+      { t: "No debí comer tanto, pero ya está.", p: 1 },
+      { t: "Exploro qué emoción buscaba aliviar y me trato con amabilidad.", p: 3 }
+    ]
+  },
+  {
+    q: "Te arrepientes de haber evitado una conversación importante. ¿Qué te dices?",
+    a: [
+      {
+        t: "Soy cobarde, nunca enfrento nada.",
+        p: 0,
+        why: "Definirte por un miedo bloquea tu expansión. La valentía nace de pequeños actos conscientes, no de perfección."
+      },
+      { t: "No era el momento, pero debería hablarlo pronto.", p: 1 },
+      { t: "Reconozco mi miedo y me preparo para abordarlo con calma.", p: 3 }
+    ]
+  },
+  {
+    q: "Te sientes culpable por haber actuado desde los celos. ¿Qué piensas?",
+    a: [
+      {
+        t: "Soy tóxico, no merezco una relación sana.",
+        p: 0,
+        why: "La culpa extrema te desconecta de tu capacidad de amar mejor. La conciencia transforma más que la condena."
+      },
+      { t: "No me gustó cómo reaccioné, pero puedo mejorar.", p: 1 },
+      { t: "Exploro el origen de mis inseguridades y trabajo en comunicarlas mejor.", p: 3 }
+    ]
+  },
+  
+  {
+    q: "Te proponen una oportunidad que implica más responsabilidad. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Seguro que no estaré a la altura, mejor no arriesgar.", 
+        p: 0,
+        why: "Rechazar oportunidades por miedo a fallar limita tu expansión y tu confianza."
+      },
+      { t: "Me da respeto, pero podría ser un buen paso.", p: 1 },
+      { t: "Evalúo con calma y, si encaja con mi visión, avanzo aunque haya incertidumbre.", p: 3 }
+    ]
+  },
+  {
+    q: "Sientes envidia del éxito de alguien cercano. ¿Qué haces con esa emoción?",
+    a: [
+      { 
+        t: "Me comparo y me siento peor conmigo mismo.", 
+        p: 0,
+        why: "Usar la envidia para atacarte refuerza la carencia y la desconexión con tu propio camino."
+      },
+      { t: "Me incomoda, pero intento alegrarme por esa persona.", p: 1 },
+      { t: "La uso como señal de lo que yo también deseo y puedo construir.", p: 3 }
+    ]
+  },
+  {
+    q: "Te das cuenta de que has pasado horas haciendo scroll sin sentido. ¿Qué piensas?",
+    a: [
+      { 
+        t: "Soy un caso perdido, no tengo control sobre nada.", 
+        p: 0,
+        why: "Etiquetarte por un hábito te impide cambiarlo desde la responsabilidad y la compasión."
+      },
+      { t: "He perdido el tiempo, mañana intentaré hacerlo mejor.", p: 1 },
+      { t: "Lo observo sin juicio, ajusto límites y elijo usar mejor mi atención.", p: 3 }
+    ]
+  },
+  {
+    q: "Un sueño o meta parece muy lejana. ¿Qué narrativa aparece?",
+    a: [
+      { 
+        t: "Es imposible para alguien como yo, mejor ni lo intento.", 
+        p: 0,
+        why: "Descartarte de antemano bloquea cualquier posibilidad de manifestar lo que deseas."
+      },
+      { t: "Lo veo difícil, pero quizá algún día se dé.", p: 1 },
+      { t: "Lo veo grande, pero empiezo por pasos pequeños y consistentes.", p: 3 }
+    ]
+  },
+  {
+    q: "Te sientes culpable por un error del pasado. ¿Qué te dices?",
+    a: [
+      { 
+        t: "Nunca me lo perdonaré, siempre seré esa persona.", 
+        p: 0,
+        why: "Aferrarte a la culpa eterna te impide evolucionar y reparar desde una versión más consciente."
+      },
+      { t: "Me pesa, pero intento no pensarlo demasiado.", p: 1 },
+      { t: "Reconozco el daño, aprendo y me permito avanzar con más responsabilidad.", p: 3 }
+    ]
+  },
+  {
+    q: "Notas que tu mente se va constantemente al futuro con preocupación. ¿Qué haces?",
+    a: [
+      { 
+        t: "Sigo dándole vueltas hasta imaginar todos los escenarios posibles.", 
+        p: 0,
+        why: "Rumiar el futuro sin acción te mantiene en ansiedad y te aleja del presente."
+      },
+      { t: "Intento distraerme para no pensar tanto.", p: 1 },
+      { t: "Vuelvo al presente, respiro y me enfoco en la siguiente acción útil.", p: 3 }
+    ]
+  },
+    
+{
     q: "Cuando alguien te decepciona profundamente, ¿qué es lo primero que piensas?",
     a: [
       { t: "Seguro que yo esperaba demasiado.", p: 0, why: "Este pensamiento te coloca como culpable incluso cuando no lo eres. Minimiza tus necesidades y normaliza recibir menos de lo que mereces." },
