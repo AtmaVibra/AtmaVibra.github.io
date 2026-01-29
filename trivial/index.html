@@ -4202,6 +4202,15 @@ const QUESTIONS = [
 
 ];
 
+
+let remainingQuestions = [];
+
+function refillQuestions() {
+  remainingQuestions = shuffle([...QUESTIONS]);
+}
+
+
+    
     let selectedQuestions = [];
 
     
@@ -4231,7 +4240,13 @@ function shuffle(array) {
  
     
 function startGame() {
-  selectedQuestions = shuffle([...QUESTIONS]).slice(0, 10);
+  if (remainingQuestions.length < 10) {
+    refillQuestions();
+  }
+
+  selectedQuestions = remainingQuestions.slice(0, 10);
+  remainingQuestions = remainingQuestions.slice(10);
+
   index = 0;
   score = 0;
   scoreEl.textContent = score;
@@ -4239,6 +4254,7 @@ function startGame() {
   quizBox.style.display = "block";
   loadQuestion();
 }
+
 
 function loadQuestion() {
   nextBtn.disabled = true;
