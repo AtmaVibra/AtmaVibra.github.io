@@ -28,10 +28,12 @@ body {
 
   /* Fondo de tapete ocupando toda la pantalla */
   background-image: url("tapete.png");
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
+
+
 
   color: #1a1a1a;
   display: flex;
@@ -175,9 +177,6 @@ button:disabled {
   opacity: 0.7;
 }
 
-
-  
-
 /* ÁREA ORÁCULO */
 .oracle-area {
   margin-top: 12px;
@@ -187,6 +186,8 @@ button:disabled {
   position: relative;
 }
 
+
+
 .oracle-image-wrapper {
   display: flex;
   justify-content: center;   /* ← centrado horizontal */
@@ -194,6 +195,8 @@ button:disabled {
   position: relative;
   min-height: 0;
 }
+
+
 
 .oracle-circle {
   width: 285px;
@@ -203,8 +206,6 @@ button:disabled {
 }
 
 
-
-  
 
 /* CARTAS */
 .cards-area {
@@ -477,9 +478,9 @@ button:disabled {
 
   <div class="oracle-area">
     <div class="oracle-image-wrapper">
-      <div class="oracle-circle" id="oracleCircle">
-        <div class="oracle-image"></div>
-      </div>
+
+      <img src="tacocartas.png" class="oracle-circle" id="oracleCircle">
+
     </div>
 
     <div class="cards-area">
