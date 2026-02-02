@@ -184,9 +184,6 @@ button:disabled {
   align-items: center;
   position: relative;
   min-height: 260px;
-
-  padding-left: -20px;           /* Más a la izquierda */
-  margin-top: 20px;              /* Más abajo */
 }
 
 
@@ -371,10 +368,10 @@ button:disabled {
 
 
 /* ============================
-   RESPONSIVE DEFINITIVO
+   RESPONSIVE FINAL
    ============================ */
 
-/* Tablets y pantallas medianas */
+/* Tablets */
 @media (max-width: 900px) {
   .oracle-area {
     grid-template-columns: 1fr;
@@ -393,7 +390,7 @@ button:disabled {
   }
 }
 
-/* Móviles grandes y medianos */
+/* Móviles grandes */
 @media (max-width: 600px) {
 
   :root {
@@ -401,7 +398,6 @@ button:disabled {
     --card-height: 200px;
   }
 
-  /* Título */
   .title-block h1 {
     font-size: 1.8rem;
     text-align: center;
@@ -409,14 +405,11 @@ button:disabled {
 
   .title-block p {
     text-align: center;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 
-  /* Oráculo */
   .oracle-image-wrapper {
     justify-content: center !important;
-    padding-left: 0 !important;
-    margin-top: 0 !important;
     min-height: 200px;
   }
 
@@ -429,11 +422,10 @@ button:disabled {
     inset: 16px;
   }
 
-  /* Cartas */
   .cards-row {
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 18px;
     min-height: auto;
     position: relative;
   }
@@ -446,17 +438,9 @@ button:disabled {
     right: auto !important;
     top: auto !important;
   }
-
-  .card-title {
-    font-size: 0.9rem;
-  }
-
-  .card-teaching {
-    font-size: 0.75rem;
-  }
 }
 
-/* Móviles pequeños (iPhone SE, Android compactos) */
+/* Móviles pequeños */
 @media (max-width: 400px) {
 
   .title-block h1 {
@@ -476,20 +460,7 @@ button:disabled {
     --card-width: 120px;
     --card-height: 180px;
   }
-
-  .card-title {
-    font-size: 0.85rem;
-  }
-
-  .card-teaching {
-    font-size: 0.7rem;
-  }
 }
-
-
-
-
-
 
 
   
