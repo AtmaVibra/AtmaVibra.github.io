@@ -31,7 +31,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
 
   color: #1a1a1a;
   display: flex;
@@ -372,8 +372,6 @@ button:disabled {
 
 
 
-
-
 /* ============================
    RESPONSIVE FINAL
    ============================ */
@@ -469,7 +467,13 @@ button:disabled {
   }
 }
 
-
+@media (max-width: 600px) {
+  body {
+    background-size: cover;
+    background-position: center top;
+    background-attachment: scroll;
+  }
+}
   
 </style>
 </head>
