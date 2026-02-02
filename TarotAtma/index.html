@@ -5,17 +5,11 @@
 <title>Oráculo de la Abundancia</title>
 
 <style>
-
-/* ============================
-   VARIABLES
-============================ */
 :root {
   --green-dark: #013524;
-  --green-mid: #046b47;
-  --green-soft: #0a8f5c;
   --gold: #f5d27a;
-  --card-width: 150px;
-  --card-height: 220px;
+  --card-width: 160px;
+  --card-height: 230px;
 }
 
 /* ============================
@@ -23,19 +17,16 @@
 ============================ */
 body {
   margin: 0;
-  min-height: 100dvh;
+  min-height: 100vh;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-
   background-image: url("tapete.png");
-  background-size: cover;        /* PC perfecto */
+  background-size: cover;          /* PC: ocupa bien sin deformar */
   background-position: center;
   background-repeat: no-repeat;
-
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   border: 10px solid #3b2a1a;
-  color: #1a1a1a;
+  color: #f5f5f5;
 }
 
 /* ============================
@@ -43,13 +34,12 @@ body {
 ============================ */
 .table {
   width: 100%;
-  max-width: 1200px;
-  min-height: 80vh;
-  padding: 40px;
+  max-width: 1100px;
+  padding: 32px 24px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 /* ============================
@@ -68,20 +58,18 @@ body {
   font-weight: 300;
   letter-spacing: 0.03em;
   color: var(--gold);
-  text-shadow: 0 0 8px rgba(0,0,0,0.6);
+  text-shadow: 0 0 8px rgba(0,0,0,0.7);
 }
 
 .title-block p {
-  margin: 4px 0 0;
-  font-size: 0.75rem;
+  margin: 6px 0 0;
+  font-size: 0.8rem;
   color: var(--gold);
   font-weight: 600;
-  text-shadow: 0 0 6px rgba(0,0,0,0.6);
+  text-shadow: 0 0 6px rgba(0,0,0,0.7);
 }
 
-/* ============================
-   INTENCIÓN
-============================ */
+/* INTENCIÓN */
 .intention-box {
   display: flex;
   flex-direction: column;
@@ -89,17 +77,25 @@ body {
   max-width: 360px;
 }
 
+.intention-box label {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
 .intention-box input {
   padding: 8px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.18);
-  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(0,0,0,0.45);
   color: #fff;
+  outline: none;
+  font-size: 0.9rem;
 }
 
-/* ============================
-   BOTÓN
-============================ */
+.intention-box input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
 button {
   padding: 9px 18px;
   border-radius: 999px;
@@ -111,21 +107,40 @@ button {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.75rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+}
+
+button:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
 }
 
 /* ============================
    ÁREA ORÁCULO
 ============================ */
 .oracle-area {
-  margin-top: 12px;
   display: flex;
   align-items: center;
-  gap: 24px;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
 }
 
-/* ============================
-   IMAGEN CENTRAL
-============================ */
+/* IMAGEN CENTRAL */
 .oracle-image-wrapper {
   display: flex;
   justify-content: center;
@@ -133,8 +148,11 @@ button {
 }
 
 .oracle-circle {
-  width: 285px;
-  transform: translate(-120px, 80px);
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  object-fit: contain;
+  box-shadow: 0 0 40px rgba(0,0,0,0.9);
 }
 
 /* ============================
@@ -143,91 +161,184 @@ button {
 .cards-area {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .cards-row {
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: relative;
-  min-height: var(--card-height);
-  width: 100%;
+  align-items: stretch;
+  gap: 18px;
+  flex-wrap: nowrap;
 }
 
-
-/* CARTAS EN PC: ABSOLUTAS */
 .card {
   width: var(--card-width);
   height: var(--card-height);
   border-radius: 12px;
-  background: #fff;
-  position: absolute;
-  top: 0;
+  background: linear-gradient(145deg, #fdfdfd, #e7e7e7);
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: default;
   opacity: 0;
-  transform: translateY(40px) scale(0.9);
+  transform: translateY(20px) scale(0.96);
 }
 
-.card-current { left: 0; }
-.card-block { left: calc(50% - var(--card-width)/2); }
-.card-potential { right: 0; }
+/* Orden natural: izquierda → centro → derecha */
+.card-current {}
+.card-block {}
+.card-potential {}
 
-/* ANIMACIONES */
-.deal { animation: dealCard 0.7s ease-out forwards; }
-.deal-1 { animation-delay: 0.1s; }
-.deal-2 { animation-delay: 0.3s; }
-.deal-3 { animation-delay: 0.5s; }
+.card-inner {
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 8px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at top, #ffffff 0%, #f3f3f3 40%, #e2e2e2 100%);
+}
+
+.card-type {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #777;
+  margin-bottom: 4px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #222;
+}
+
+.card-teaching {
+  font-size: 0.8rem;
+  color: #444;
+  flex: 1;
+}
+
+.card-action {
+  font-size: 0.75rem;
+  color: #0b5a3a;
+  margin-top: 6px;
+}
+
+.card-affirmation {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* ANIMACIÓN DE ENTRADA */
+.deal {
+  animation: dealCard 0.6s ease-out forwards;
+}
+
+.deal-1 { animation-delay: 0.05s; }
+.deal-2 { animation-delay: 0.2s; }
+.deal-3 { animation-delay: 0.35s; }
 
 @keyframes dealCard {
-  0% { opacity: 0; transform: translateY(-40px) scale(0.2); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* ============================
-   RESPONSIVE — MÓVIL
+   RESPONSIVE — TABLETS
+============================ */
+@media (max-width: 900px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .intention-box {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .oracle-area {
+    flex-direction: column;
+  }
+}
+
+/* ============================
+   RESPONSIVE — MÓVILES
 ============================ */
 @media (max-width: 600px) {
 
-  /* Fondo perfecto en móvil */
+  /* Fondo centrado y sin deformarse */
   body {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
   }
 
-  /* Imagen centrada */
+  .table {
+    padding: 20px 14px;
+  }
+
+  .title-block h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .title-block p {
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
   .oracle-circle {
-    transform: none;
     width: 200px;
+    height: 200px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.9);
   }
 
-  /* CARTAS EN FILA, CENTRADAS */
   .cards-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    min-height: auto;
+    flex-wrap: nowrap;
+    gap: 10px;
   }
 
-  /* Anular posiciones absolutas */
-  .card,
-  .card-current,
-  .card-block,
-  .card-potential {
-    position: static !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  /* Anular animaciones */
-  .deal,
-  .deal-1,
-  .deal-2,
-  .deal-3 {
-    animation: none !important;
+  .card {
+    width: 130px;
+    height: 200px;
   }
 }
 
+/* ============================
+   MÓVILES MUY PEQUEÑOS
+============================ */
+@media (max-width: 400px) {
+  .card {
+    width: 120px;
+    height: 190px;
+  }
+
+  .oracle-circle {
+    width: 180px;
+    height: 180px;
+  }
+}
 </style>
 </head>
 
@@ -238,7 +349,7 @@ button {
   <div class="header">
     <div class="title-block">
       <h1>Oráculo de la Abundancia</h1>
-      <p>Formula tu intención, baraja y recibe tres mensajes.</p>
+      <p>Formula tu intención, baraja y recibe tres mensajes: Energía Actual, Bloqueo y Potencial.</p>
     </div>
 
     <div class="intention-box">
@@ -257,31 +368,34 @@ button {
     <div class="cards-area">
       <div class="cards-row">
 
+        <!-- Carta 1 -->
         <div class="card card-current" id="card-current">
           <div class="card-inner">
             <div class="card-type">Energía actual</div>
             <div class="card-title">—</div>
-            <div class="card-teaching"></div>
+            <div class="card-teaching">Aquí aparecerá la lectura de tu energía actual.</div>
             <div class="card-action"></div>
             <div class="card-affirmation"></div>
           </div>
         </div>
 
+        <!-- Carta 2 -->
         <div class="card card-block" id="card-block">
           <div class="card-inner">
             <div class="card-type">Bloqueo</div>
             <div class="card-title">—</div>
-            <div class="card-teaching"></div>
+            <div class="card-teaching">Aquí aparecerá el patrón que está frenando tu expansión.</div>
             <div class="card-action"></div>
             <div class="card-affirmation"></div>
           </div>
         </div>
 
+        <!-- Carta 3 -->
         <div class="card card-potential" id="card-potential">
           <div class="card-inner">
             <div class="card-type">Potencial</div>
             <div class="card-title">—</div>
-            <div class="card-teaching"></div>
+            <div class="card-teaching">Aquí aparecerá el potencial que se abre para ti.</div>
             <div class="card-action"></div>
             <div class="card-affirmation"></div>
           </div>
@@ -295,7 +409,165 @@ button {
 </div>
 
 <script>
-/* JS ORIGINAL SIN CAMBIOS */
+// Mazo de ejemplo
+const deck = {
+  current: [
+    {
+      title: "La Presencia",
+      teaching: "Tu energía está aquí y ahora. Cuando habitas el momento, la claridad se abre sola.",
+      action: "Elige una sola cosa en la que enfocarte hoy y hazla con plena atención.",
+      affirmation: "«Cuando estoy presente, la vida me responde.»"
+    },
+    {
+      title: "La Gratitud",
+      teaching: "Tu campo se expande cuando reconoces lo que ya es abundante en tu vida.",
+      action: "Escribe tres cosas que agradeces hoy, aunque parezcan pequeñas.",
+      affirmation: "«Mi gratitud abre puertas que aún no veo.»"
+    },
+    {
+      title: "La Claridad",
+      teaching: "Estás en un punto donde ver con honestidad te da poder.",
+      action: "Resume tu intención en una sola frase simple y directa.",
+      affirmation: "«Merezco una vida clara y coherente.»"
+    },
+    {
+      title: "La Confianza",
+      teaching: "Tu energía actual se sostiene en la idea de que algo bueno viene en camino.",
+      action: "Da un paso hoy como si ya confiaras en el resultado.",
+      affirmation: "«La vida conspira a mi favor.»"
+    }
+  ],
+  block: [
+    {
+      title: "El Miedo",
+      teaching: "El miedo no es tu enemigo, solo te muestra dónde aún no confías en ti.",
+      action: "Nombra tu miedo principal y escribe qué harías si no estuviera.",
+      affirmation: "«Puedo avanzar incluso con miedo.»"
+    },
+    {
+      title: "La Escasez",
+      teaching: "La sensación de falta distorsiona lo que ya está disponible para ti.",
+      action: "Detecta un pensamiento de escasez y cámbialo por uno de posibilidad.",
+      affirmation: "«Siempre hay más opciones de las que creo.»"
+    },
+    {
+      title: "La Impaciencia",
+      teaching: "Querer resultados inmediatos te desconecta del proceso que te fortalece.",
+      action: "Elige un área donde puedas permitirte ir más despacio hoy.",
+      affirmation: "«El tiempo también trabaja a mi favor.»"
+    },
+    {
+      title: "El Control",
+      teaching: "Forzar el cómo y el cuándo bloquea caminos que aún no imaginas.",
+      action: "Identifica algo que estás forzando y decide soltarlo por un día.",
+      affirmation: "«Confío en que la vida sabe el camino.»"
+    }
+  ],
+  potential: [
+    {
+      title: "La Prosperidad",
+      teaching: "Tu campo está listo para recibir más de lo que imaginabas.",
+      action: "Acerca hoy tu energía a una oportunidad concreta que ya conoces.",
+      affirmation: "«Soy un imán natural para la prosperidad.»"
+    },
+    {
+      title: "El Flujo",
+      teaching: "Cuando sueltas la rigidez, la vida encuentra rutas más inteligentes que las tuyas.",
+      action: "Permite que algo hoy suceda sin intervenir ni corregirlo.",
+      affirmation: "«Me dejo llevar por un flujo inteligente.»"
+    },
+    {
+      title: "La Manifestación",
+      teaching: "Tus pensamientos, emociones y acciones pueden alinearse para crear algo nuevo.",
+      action: "Da un paso físico que represente tu intención (un mensaje, una llamada, un gesto).",
+      affirmation: "«Lo que sostengo dentro, se ordena fuera.»"
+    },
+    {
+      title: "La Oportunidad",
+      teaching: "Hay puertas cerca de ti que aún no has mirado con atención.",
+      action: "Revisa hoy una conversación, idea o propuesta que habías pasado por alto.",
+      affirmation: "«Las oportunidades me encuentran cuando estoy disponible.»"
+    }
+  ]
+};
+
+function getRandomCard(type) {
+  const group = deck[type];
+  const index = Math.floor(Math.random() * group.length);
+  return group[index];
+}
+
+function renderCard(elementId, cardData, fallbackText) {
+  const card = document.getElementById(elementId);
+  const titleEl = card.querySelector(".card-title");
+  const teachingEl = card.querySelector(".card-teaching");
+  const actionEl = card.querySelector(".card-action");
+  const affirmationEl = card.querySelector(".card-affirmation");
+
+  if (!cardData) {
+    titleEl.textContent = "—";
+    teachingEl.textContent = fallbackText;
+    actionEl.textContent = "";
+    affirmationEl.textContent = "";
+    return;
+  }
+
+  titleEl.textContent = cardData.title;
+  teachingEl.textContent = cardData.teaching;
+  actionEl.textContent = "Acción: " + cardData.action;
+  affirmationEl.textContent = cardData.affirmation;
+}
+
+function resetCardAnimations() {
+  const cards = document.querySelectorAll(".card");
+  cards.forEach(card => {
+    card.classList.remove("deal", "deal-1", "deal-2", "deal-3");
+  });
+}
+
+document.getElementById("drawBtn").addEventListener("click", () => {
+  const btn = document.getElementById("drawBtn");
+  const oracleCircle = document.getElementById("oracleCircle");
+
+  btn.disabled = true;
+  resetCardAnimations();
+
+  oracleCircle.classList.remove("oracle-pulse");
+  void oracleCircle.offsetWidth;
+  oracleCircle.classList.add("oracle-pulse");
+
+  const currentCard = getRandomCard("current");
+  const blockCard = getRandomCard("block");
+  const potentialCard = getRandomCard("potential");
+
+  renderCard(
+    "card-current",
+    currentCard,
+    "Aquí aparecerá la lectura de tu energía actual."
+  );
+  renderCard(
+    "card-block",
+    blockCard,
+    "Aquí aparecerá el patrón que está frenando tu expansión."
+  );
+  renderCard(
+    "card-potential",
+    potentialCard,
+    "Aquí aparecerá el potencial que se abre para ti."
+  );
+
+  const cardCurrent = document.getElementById("card-current");
+  const cardBlock = document.getElementById("card-block");
+  const cardPotential = document.getElementById("card-potential");
+
+  cardCurrent.classList.add("deal", "deal-1");
+  cardBlock.classList.add("deal", "deal-2");
+  cardPotential.classList.add("deal", "deal-3");
+
+  setTimeout(() => {
+    btn.disabled = false;
+  }, 900);
+});
 </script>
 
 </body>
