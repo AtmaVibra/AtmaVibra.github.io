@@ -14,6 +14,27 @@
   --card-height: 220px;
 }
 
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Fondo de tapete ocupando toda la pantalla */
+  background-image: url("tapete.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+}
+
 /* LOGOS */
 .logo-top,
 .logo-bottom {
@@ -28,49 +49,27 @@
   height: auto;
 }
 
-/* FONDO MÁS SUAVE VERDOSO */
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-
-  /* FONDO MUY SUAVE VERDE OLIVA */
-  background: linear-gradient(
-    180deg,
-    #dfe8d2 0%,   /* verde oliva muy claro */
-    #c7d7b8 40%,  /* verde hoja suave */
-    #b5c7a3 100%  /* verde oliva apagado */
-  );
-
-  color: #1a1a1a;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-/* RECTÁNGULO PRINCIPAL */
 .table {
   width: 100%;
-  max-width: 1100px;
-  padding: 24px;
-  border-radius: 24px;
-  background: linear-gradient(180deg, var(--green-mid), var(--green-dark));
-  box-shadow:
-    0 0 0 2px rgba(255, 255, 255, 0.05),
-    0 30px 80px rgba(0, 0, 0, 0.7);
+  max-width: 1200px;
+  min-height: 80vh;
+
+  background: transparent;   /* ← TAPETE INTERIOR ELIMINADO */
+  box-shadow: none;          /* ← SIN SOMBRAS NI MARCOS */
+  border-radius: 0;          /* ← SIN BORDES REDONDOS */
+
+  padding: 40px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
   position: relative;
-  overflow: hidden;
 }
 
-.table::before {
-  content: "";
-  position: absolute;
-  inset: 18px;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  pointer-events: none;
-}
+
+
 
 /* HEADER */
 .header {
@@ -79,22 +78,29 @@ body {
   align-items: center;
   gap: 16px;
   margin-bottom: 16px;
-  position: relative;
-  z-index: 2;
 }
 
 .title-block h1 {
   margin: 0;
-  font-size: 1.6rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 2.4rem;          /* Un poco más grande */
+  font-weight: 300;           /* Mucho más fino */
+  letter-spacing: 0.03em;     /* Más lineal */
+  color: #f5d27a;             /* Dorado fuerte */
+  text-transform: none;
+  text-shadow: 0 0 8px rgba(0,0,0,0.6); /* Para que destaque sobre el tapete */
 }
+
+
+
 
 .title-block p {
   margin: 4px 0 0;
-  font-size: 0.9rem;
-  opacity: 0.8;
+  font-size: 0.75rem;              /* Más pequeño */
+  color: #f5d27a;                  /* Dorado fuerte */
+  font-weight: 600;                /* Más llamativo */
+  text-shadow: 0 0 6px rgba(0,0,0,0.6); /* Para destacar sobre el verde */
 }
+
 
 /* INTENCIÓN */
 .intention-box {
@@ -177,20 +183,24 @@ button:disabled {
   gap: 24px;
   align-items: center;
   position: relative;
-  z-index: 1;
 }
 
 .oracle-image-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;   /* Se mueve a la izquierda */
   align-items: center;
   position: relative;
   min-height: 260px;
+
+  padding-left: -20px;           /* Más a la izquierda */
+  margin-top: 20px;              /* Más abajo */
 }
 
+
+
 .oracle-circle {
-  width: 220px;
-  height: 220px;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
   background: radial-gradient(circle at top, #f5f5f5 0%, #d9c27a 30%, #5b4a1a 70%, #000 100%);
   box-shadow:
@@ -216,7 +226,7 @@ button:disabled {
 
 .oracle-image {
   position: absolute;
-  inset: 18px;
+  inset: 22px;
   border-radius: 50%;
   background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2), transparent 60%);
   background-size: cover;
@@ -367,12 +377,8 @@ button:disabled {
 
 <body>
 
-<!-- LOGO ARRIBA -->
-<div class="logo-top">
-  <img src="logoatma.png" alt="Logo Atma">
-</div>
 
-<!-- RECTÁNGULO PRINCIPAL -->
+<!-- TAPETE VERDE -->
 <div class="table">
 
   <div class="header">
@@ -440,10 +446,6 @@ button:disabled {
 
 </div> <!-- cierre de .table -->
 
-<!-- LOGO ABAJO -->
-<div class="logo-bottom">
-  <img src="logoatma.png" alt="Logo Atma">
-</div>
 
 <script>
 // Mazo de ejemplo
