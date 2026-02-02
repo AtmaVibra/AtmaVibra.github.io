@@ -69,8 +69,6 @@ body {
 }
 
 
-
-
 /* HEADER */
 .header {
   display: flex;
@@ -89,8 +87,6 @@ body {
   text-transform: none;
   text-shadow: 0 0 8px rgba(0,0,0,0.6); /* Para que destaque sobre el tapete */
 }
-
-
 
 
 .title-block p {
@@ -372,6 +368,140 @@ button:disabled {
     width: 100%;
   }
 }
+
+
+
+
+
+/* ============================
+   RESPONSIVE DEFINITIVO
+   ============================ */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 900px) {
+  .oracle-area {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .intention-box {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+/* Móviles grandes y medianos */
+@media (max-width: 600px) {
+
+  :root {
+    --card-width: 130px;
+    --card-height: 200px;
+  }
+
+  /* Título */
+  .title-block h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .title-block p {
+    text-align: center;
+    font-size: 0.7rem;
+  }
+
+  /* Oráculo */
+  .oracle-image-wrapper {
+    justify-content: center !important;
+    padding-left: 0 !important;
+    margin-top: 0 !important;
+    min-height: 200px;
+  }
+
+  .oracle-circle {
+    width: 200px;
+    height: 200px;
+  }
+
+  .oracle-image {
+    inset: 16px;
+  }
+
+  /* Cartas */
+  .cards-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    min-height: auto;
+    position: relative;
+  }
+
+  .card {
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+  }
+
+  .card-title {
+    font-size: 0.9rem;
+  }
+
+  .card-teaching {
+    font-size: 0.75rem;
+  }
+}
+
+/* Móviles pequeños (iPhone SE, Android compactos) */
+@media (max-width: 400px) {
+
+  .title-block h1 {
+    font-size: 1.5rem;
+  }
+
+  .oracle-circle {
+    width: 170px;
+    height: 170px;
+  }
+
+  .oracle-image {
+    inset: 14px;
+  }
+
+  :root {
+    --card-width: 120px;
+    --card-height: 180px;
+  }
+
+  .card-title {
+    font-size: 0.85rem;
+  }
+
+  .card-teaching {
+    font-size: 0.7rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 </style>
 </head>
 
