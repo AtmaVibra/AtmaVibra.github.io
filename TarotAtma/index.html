@@ -317,13 +317,24 @@ button:disabled {
     text-align: center;
   }
 
+  /* ============================
+   MÓVILES GRANDES
+============================ */
+  @media (max-width: 600px) {
   .oracle-circle {
-    width: 230px;
-    height: 230px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.9);
+    width: 300px;      /* MÁS GRANDE */
+    height: 300px;
+    margin-top: 40px;  /* MÁS ABAJO */
   }
 
-  .cards-row {
+  .oracle-image-wrapper {
+    position: relative;
+    left: 30px;        /* UN POCO MÁS A LA DERECHA */
+    top: 25px;         /* UN POCO MÁS ABAJO */
+  }
+}
+
+    .cards-row {
     flex-wrap: nowrap;
     gap: 10px;
   }
