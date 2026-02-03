@@ -350,21 +350,24 @@ button:disabled {
 
 @media (max-width: 600px) {
   .oracle-area {
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
+    flex-direction: column !important;
+    align-items: center !important;
   }
 
   .oracle-image-wrapper {
-    position: relative !important;
-    left: 110px !important;
-    top: 160px !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 40px !important;
+    margin-bottom: 20px !important;
   }
 
   .oracle-circle {
     width: 330px !important;
-    height: 330px !important;
+    height: auto !important;
   }
 }
+
 
 
 
