@@ -275,6 +275,7 @@ button:disabled {
    RESPONSIVE — TABLETS
 ============================ */
 @media (max-width: 900px) {
+
   .header {
     flex-direction: column;
     align-items: center;
@@ -290,15 +291,18 @@ button:disabled {
     flex-direction: column;
   }
 
-  /* AJUSTES DEL TACO EN TABLETS */
+  /* DESACTIVAR CENTRADO */
   .oracle-image-wrapper {
     position: relative;
-    left: 50px;   /* un poco más a la derecha */
-    top: 100px;    /* un poco más abajo */
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    left: 50px;   /* tu valor */
+    top: 100px;   /* tu valor */
   }
 
   .oracle-circle {
-    width: 320px;   /* más grande */
+    width: 320px;
     height: 320px;
   }
 }
@@ -308,7 +312,6 @@ button:disabled {
 ============================ */
 @media (max-width: 600px) {
 
-  /* Fondo centrado y sin deformarse */
   body {
     background-size: contain;
     background-position: center;
@@ -329,17 +332,20 @@ button:disabled {
     text-align: center;
   }
 
-  /* AJUSTES DEL TACO EN MÓVILES GRANDES */
-  .oracle-circle {
-    width: 330px;      /* más grande */
-    height: 330px;
-    margin-top: 100px;  /* más abajo */
-  }
-
+  /* DESACTIVAR CENTRADO */
   .oracle-image-wrapper {
     position: relative;
-    left: 500px;        /* un poco más a la derecha */
-    top: 70px;         /* un poco más abajo */
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    left: 40px;   /* tu valor */
+    top: 70px;    /* tu valor */
+  }
+
+  .oracle-circle {
+    width: 330px;
+    height: 330px;
+    margin-top: 100px;
   }
 
   .cards-row {
