@@ -318,8 +318,8 @@ button:disabled {
   }
 
   .oracle-circle {
-    width: 200px;
-    height: 200px;
+    width: 230px;
+    height: 230px;
     box-shadow: 0 0 30px rgba(0,0,0,0.9);
   }
 
@@ -344,10 +344,20 @@ button:disabled {
   }
 
   .oracle-circle {
-    width: 180px;
-    height: 180px;
+    width: 210px;
+    height: 210px;
+    margin-top: 50px; /* más abajo */
   }
 }
+
+  @media (min-width: 901px) {
+  .oracle-image-wrapper {
+    position: relative;
+    left: -40px;   /* mueve la imagen hacia la izquierda */
+    top: 40px;     /* mueve la imagen hacia abajo */
+  }
+}
+
 </style>
 </head>
 
