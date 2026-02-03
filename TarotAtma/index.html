@@ -294,14 +294,12 @@ button:disabled {
     flex-direction: column;
   }
 
-  /* DESACTIVAR CENTRADO */
   .oracle-image-wrapper {
     position: relative;
     justify-content: flex-start;
     align-items: flex-start;
-
-    left: 50px;   /* tu valor */
-    top: 100px;   /* tu valor */
+    left: 50px;
+    top: 100px;
   }
 
   .oracle-circle {
@@ -321,17 +319,18 @@ button:disabled {
   }
 
   .oracle-circle {
-    width: 270px;      /* más grande */
+    width: 270px;
     height: 270px;
-    margin-top: 50px;  /* más abajo */
+    margin-top: 50px;
   }
 
   .oracle-image-wrapper {
     position: relative;
-    left: 20px;        /* un poco más a la derecha */
-    top: 30px;         /* más abajo */
+    left: 20px;
+    top: 30px;
   }
 }
+
 
 /* ============================
    PC — SOLO ESCRITORIO
@@ -339,17 +338,15 @@ button:disabled {
 @media (min-width: 901px) {
   .oracle-image-wrapper {
     position: relative;
-    left: -140px;   /* MUCHO más a la izquierda */
-    top: 40px;      /* misma bajada que antes */
+    left: -140px;
+    top: 40px;
   }
 }
 
 
-  /* ============================================
+/* ============================================
    FIX UNIVERSAL PARA TODOS LOS MÓVILES
 ============================================ */
-
-
 @media (max-width: 600px) {
   .oracle-area {
     min-width: 360px !important;
@@ -363,26 +360,14 @@ button:disabled {
     justify-content: center !important;
     margin-top: 40px !important;
     margin-bottom: 20px !important;
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
   }
 
   .oracle-circle {
     width: 330px !important;
     height: auto !important;
-  }
-}
-
-.oracle-image-wrapper {
-  position: relative !important;
-  transform: translate(110px, 160px) !important;
-}
-
-.oracle-image-wrapper {
-  transform: none !important;
-}
-
-  @media (max-width: 600px) {
-  .oracle-image-wrapper {
-    transform: translate(40px, 40px) !important;
   }
 }
 
