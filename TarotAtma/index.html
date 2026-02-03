@@ -348,14 +348,14 @@ button:disabled {
   .oracle-area {
     min-width: 360px !important;
     flex-direction: column !important;
-    align-items: center !important;
+    align-items: flex-start !important; /* ← AHORA SÍ SE MUEVE */
   }
 
   .oracle-image-wrapper {
     width: 100% !important;
     display: flex !important;
-    justify-content: flex-start !important; /* ← IZQUIERDA */
-    padding-left: 10px !important;          /* ← AJUSTE FINO */
+    justify-content: flex-start !important;
+    padding-left: 10px !important;
     margin-top: 40px !important;
     margin-bottom: 20px !important;
     position: relative !important;
@@ -368,6 +368,7 @@ button:disabled {
     height: auto !important;
   }
 }
+
 
 
    
