@@ -370,6 +370,20 @@ button:disabled {
 }
 
 
+@media (max-width: 600px) {
+
+  .cards-row {
+    flex-wrap: wrap !important;        /* ← permite que bajen si no caben */
+    justify-content: center !important; /* ← centradas */
+    gap: 12px !important;               /* ← más juntas */
+    width: 100% !important;
+  }
+
+  .card {
+    width: 130px !important;            /* ← tamaño perfecto para móviles */
+    height: auto !important;
+  }
+}
 
    
   
