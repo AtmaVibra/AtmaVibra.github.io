@@ -289,6 +289,18 @@ button:disabled {
   .oracle-area {
     flex-direction: column;
   }
+
+  /* AJUSTES DEL TACO EN TABLETS */
+  .oracle-image-wrapper {
+    position: relative;
+    left: 20px;   /* un poco más a la derecha */
+    top: 30px;    /* un poco más abajo */
+  }
+
+  .oracle-circle {
+    width: 280px;   /* más grande */
+    height: 280px;
+  }
 }
 
 /* ============================
@@ -317,24 +329,20 @@ button:disabled {
     text-align: center;
   }
 
-  /* ============================
-   MÓVILES GRANDES
-============================ */
-  @media (max-width: 600px) {
+  /* AJUSTES DEL TACO EN MÓVILES GRANDES */
   .oracle-circle {
-    width: 300px;      /* MÁS GRANDE */
+    width: 300px;      /* más grande */
     height: 300px;
-    margin-top: 40px;  /* MÁS ABAJO */
+    margin-top: 40px;  /* más abajo */
   }
 
   .oracle-image-wrapper {
     position: relative;
-    left: 30px;        /* UN POCO MÁS A LA DERECHA */
-    top: 25px;         /* UN POCO MÁS ABAJO */
+    left: 30px;        /* un poco más a la derecha */
+    top: 25px;         /* un poco más abajo */
   }
-}
 
-    .cards-row {
+  .cards-row {
     flex-wrap: nowrap;
     gap: 10px;
   }
@@ -355,20 +363,28 @@ button:disabled {
   }
 
   .oracle-circle {
-    width: 210px;
-    height: 210px;
-    margin-top: 50px; /* más abajo */
+    width: 270px;      /* más grande */
+    height: 270px;
+    margin-top: 50px;  /* más abajo */
+  }
+
+  .oracle-image-wrapper {
+    position: relative;
+    left: 20px;        /* un poco más a la derecha */
+    top: 30px;         /* más abajo */
   }
 }
 
- @media (min-width: 901px) {
+/* ============================
+   PC — SOLO ESCRITORIO
+============================ */
+@media (min-width: 901px) {
   .oracle-image-wrapper {
     position: relative;
     left: -140px;   /* MUCHO más a la izquierda */
     top: 40px;      /* misma bajada que antes */
   }
 }
-
 
 </style>
 </head>
