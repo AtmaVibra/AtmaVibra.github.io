@@ -383,6 +383,63 @@ button:disabled {
   }
 }
 
+
+/* Estado inicial: ocultamos la carta móvil y el botón */
+.mobile-single-card,
+.next-card-btn {
+  display: none;
+}
+
+/* Versión móviles */
+@media (max-width: 600px) {
+
+  /* Ocultamos las 3 cartas normales en móvil */
+  #cardsRow {
+    display: none !important;
+  }
+
+  .mobile-single-card {
+    width: 90%;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    color: #222;
+    font-size: 0.9rem;
+  }
+
+  .next-card-btn {
+    width: 90%;
+    margin: 16px auto 0;
+    display: none; /* se mostrará por JS tras barajar */
+    padding: 12px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #f5d27a, #f29b4c);
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #1b1305;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
    
   
 </style>
@@ -547,6 +604,65 @@ const deck = {
     }
   ]
 };
+
+function getRandomCard(type) {
+  const group = deck[type];
+  const index = Math.floor(Math.random() * group.length);
+  return group[index];
+}
+
+// --- LÓGICA MÓVIL: UNA SOLA CARTA + BOTÓN SIGUIENTE ---
+const mobileSingleCard = document.getElementById("mobileSingleCard");
+const nextCardBtn = document.getElementById("nextCardBtn");
+let mobileCards = [];
+let mobileCardIndex = 0;
+
+// Ocultamos por defecto
+if (mobileSingleCard) mobileSingleCard.style.display = "none";
+if (nextCardBtn) nextCardBtn.style.display = "none";
+
+function renderMobileCard() {
+  if (!mobileSingleCard || !mobileCards.length) return;
+  const card = mobileCards[mobileCardIndex];
+
+  mobileSingleCard.innerHTML = `
+    <div class="card-type">${card.type}</div>
+    <div class="card-title">${card.title}</div>
+    <div class="card-teaching">${card.teaching}</div>
+    <div class="card-action">Acción: ${card.action}</div>
+    <div class="card-affirmation">${card.affirmation}</div>
+  `;
+}
+
+if (nextCardBtn) {
+  nextCardBtn.addEventListener("click", () => {
+    if (!mobileCards.length) return;
+    mobileCardIndex = (mobileCardIndex + 1) % mobileCards.length;
+    renderMobileCard();
+  });
+}
+
+// --- BOTÓN BARAJAR ---
+document.getElementById("drawBtn").addEventListener("click", () => {
+  const currentCard = getRandomCard("current");
+  const blockCard = getRandomCard("block");
+  const potentialCard = getRandomCard("potential");
+
+  // MÓVIL: solo una carta visible + botón siguiente
+  if (window.innerWidth <= 600) {
+    mobileCards = [
+      { type: "Energía actual", ...currentCard },
+      { type: "Bloqueo", ...blockCard },
+      { type: "Potencial", ...potentialCard }
+    ];
+    mobileCardIndex = 0;
+    renderMobileCard();
+    mobileSingleCard.style.display = "block";
+    nextCardBtn.style.display = "block";
+  }
+});
+</script>
+
 
 function getRandomCard(type) {
   const group = deck[type];
