@@ -11,7 +11,6 @@
    VARIABLES
 ============================ */
 :root {
-  --green-dark: #013524;
   --gold: #f5d27a;
   --card-width: 160px;
   --card-height: 230px;
@@ -23,7 +22,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: system-ui, sans-serif;
   background-image: url("tapete.png");
   background-size: cover;
   background-position: center;
@@ -60,7 +59,6 @@ body {
   margin: 0;
   font-size: 2.4rem;
   font-weight: 300;
-  letter-spacing: 0.03em;
   color: var(--gold);
   text-shadow: 0 0 8px rgba(0,0,0,0.7);
 }
@@ -73,7 +71,6 @@ body {
   text-shadow: 0 0 6px rgba(0,0,0,0.7);
 }
 
-/* INTENCIÓN */
 .intention-box {
   display: flex;
   flex-direction: column;
@@ -88,7 +85,6 @@ body {
   background: rgba(0,0,0,0.45);
   color: #fff;
   outline: none;
-  font-size: 0.9rem;
 }
 
 button {
@@ -99,20 +95,15 @@ button {
   background: linear-gradient(135deg, #f5d27a, #f29b4c);
   color: #1b1305;
   font-weight: 600;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.75rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  transition: 0.15s ease;
 }
 
 button:hover {
   transform: translateY(-1px);
   filter: brightness(1.05);
-}
-
-button:active {
-  transform: translateY(1px) scale(0.98);
 }
 
 /* ============================
@@ -122,17 +113,17 @@ button:active {
   width: var(--card-width);
   min-height: var(--card-height);
   border-radius: 12px;
-  background: linear-gradient(145deg, #fdfdfd, #e7e7e7);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(145deg, #ffffff, #e7e7e7);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
   padding: 10px;
   opacity: 0;
-  transform: translateY(20px) scale(0.96);
+  transform: scale(0.85) translateY(20px);
   transition: opacity .5s ease, transform .5s ease;
 }
 
 .card.show {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: scale(1) translateY(0);
 }
 
 .card-inner {
@@ -175,7 +166,6 @@ button:active {
 ============================ */
 @media (max-width: 600px) {
   #cardsRow { display: none !important; }
-  #oracleImageWrapper { display: none !important; }
 }
 </style>
 </head>
@@ -196,8 +186,10 @@ button:active {
     </div>
   </div>
 
+  <!-- Área móvil -->
   <div id="mobileArea" style="display:none; flex-direction:column; align-items:center; gap:20px;"></div>
 
+  <!-- Área PC -->
   <div class="cards-row" id="cardsRow">
     <div class="card" id="card-current"><div class="card-inner">
       <div class="card-type">Energía actual</div>
