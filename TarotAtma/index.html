@@ -81,11 +81,6 @@ body {
   max-width: 360px;
 }
 
-.intention-box label {
-  font-size: 0.8rem;
-  opacity: 0.9;
-}
-
 .intention-box input {
   padding: 8px 12px;
   border-radius: 999px;
@@ -94,10 +89,6 @@ body {
   color: #fff;
   outline: none;
   font-size: 0.9rem;
-}
-
-.intention-box input::placeholder {
-  color: rgba(255,255,255,0.7);
 }
 
 button {
@@ -112,25 +103,12 @@ button {
   text-transform: uppercase;
   font-size: 0.75rem;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+  transition: 0.15s ease;
 }
 
 button:hover {
   transform: translateY(-1px);
   filter: brightness(1.05);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
-}
-
-button:active {
-  transform: translateY(1px) scale(0.98);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-}
-
-button:disabled {
-  opacity: 0.5;
-  cursor: default;
-  transform: none;
-  box-shadow: none;
 }
 
 /* ============================
@@ -176,26 +154,24 @@ button:disabled {
 
 .card {
   width: var(--card-width);
-  height: var(--card-height);
+  min-height: var(--card-height);
   border-radius: 12px;
-  background: linear-gradient(145deg, #fdfdfd, #e7e7e7);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(145deg, #ffffff, #e7e7e7);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
   padding: 10px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
   opacity: 0;
-  transform: translateY(20px) scale(0.96);
-  transition: opacity .4s ease, transform .4s ease;
+  transform: scale(0.85) translateY(20px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+
+.card.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
 }
 
 .card-inner {
   border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
   padding: 8px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
   background: radial-gradient(circle at top, #ffffff 0%, #f3f3f3 40%, #e2e2e2 100%);
 }
 
@@ -204,67 +180,38 @@ button:disabled {
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: #777;
-  margin-bottom: 4px;
 }
 
 .card-title {
   font-size: 1rem;
   font-weight: 700;
-  margin-bottom: 4px;
   color: #222;
 }
 
 .card-teaching {
   font-size: 0.8rem;
   color: #444;
-  flex: 1;
 }
 
 .card-action {
   font-size: 0.75rem;
   color: #0b5a3a;
-  margin-top: 6px;
 }
 
 .card-affirmation {
   font-size: 0.7rem;
   font-style: italic;
   color: #555;
-  margin-top: 4px;
-}
-
-/* ANIMACIÓN */
-.deal {
-  animation: slideIn 0.6s ease-out forwards;
-}
-
-.deal-1 { animation-delay: 0.05s; }
-.deal-2 { animation-delay: 0.20s; }
-.deal-3 { animation-delay: 0.35s; }
-
-@keyframes slideIn {
-  0% { opacity: 0; transform: translateX(-40px) scale(0.95); }
-  60% { opacity: 1; transform: translateX(6px) scale(1.02); }
-  100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
 /* ============================
    RESPONSIVE
 ============================ */
-@media (max-width: 900px) {
-  .header { flex-direction: column; text-align: center; }
-  .oracle-area { flex-direction: column; }
-  .oracle-circle { width: 320px; height: 320px; }
-}
-
 @media (max-width: 600px) {
   #cardsRow { display: none !important; }
-  .mobile-single-card { display: block; }
-  .oracle-circle { width: 150px !important; }
-  .card { width: 130px !important; height: auto !important; }
 }
 
-/* Ocultar botón "Siguiente" en PC */
+/* Ocultar botón siguiente en PC */
 @media (min-width: 601px) {
   #nextCardBtn {
     display: none !important;
@@ -280,12 +227,11 @@ button:disabled {
   <div class="header" id="headerSection">
     <div class="title-block">
       <h1>Tarot Atma Oráculo de la Abundancia</h1>
-      <p>Formula tu intención, baraja y recibe tres mensajes: Energía Actual, Bloqueo y Potencial.</p>
+      <p>Formula tu intención, baraja y recibe tres mensajes.</p>
     </div>
 
     <div class="intention-box">
-      <label for="intention">Escribe tu intención:</label>
-      <input id="intention" type="text" placeholder="Ejemplo: Quiero claridad en mi camino profesional" />
+      <input id="intention" type="text" placeholder="Ejemplo: claridad en mi camino" />
       <button id="drawBtn">Barajar y revelar</button>
     </div>
   </div>
@@ -298,38 +244,39 @@ button:disabled {
 
     <div class="cards-area">
 
-      <!-- Contenedor móvil donde iremos añadiendo las cartas una debajo de otra -->
-      <div class="mobile-single-card" id="mobileSingleCard"></div>
-      <button id="nextCardBtn" class="next-card-btn">Siguiente</button>
+      <!-- Contenedor móvil -->
+      <div id="mobileCardsContainer" style="display:none; flex-direction:column; gap:20px; width:100%; align-items:center;"></div>
+
+      <button id="nextCardBtn" style="display:none;">Siguiente</button>
 
       <!-- Cartas PC -->
       <div class="cards-row" id="cardsRow">
 
-        <div class="card card-current" id="card-current">
+        <div class="card" id="card-current">
           <div class="card-inner">
             <div class="card-type">Energía actual</div>
             <div class="card-title">—</div>
-            <div class="card-teaching">Aquí aparecerá la lectura de tu energía actual.</div>
+            <div class="card-teaching"></div>
             <div class="card-action"></div>
             <div class="card-affirmation"></div>
           </div>
         </div>
 
-        <div class="card card-block" id="card-block">
+        <div class="card" id="card-block">
           <div class="card-inner">
             <div class="card-type">Bloqueo</div>
             <div class="card-title">—</div>
-            <div class="card-teaching">Aquí aparecerá el patrón que está frenando tu expansión.</div>
+            <div class="card-teaching"></div>
             <div class="card-action"></div>
             <div class="card-affirmation"></div>
           </div>
         </div>
 
-        <div class="card card-potential" id="card-potential">
+        <div class="card" id="card-potential">
           <div class="card-inner">
             <div class="card-type">Potencial</div>
             <div class="card-title">—</div>
-            <div class="card-teaching">Aquí aparecerá el potencial que se abre para ti.</div>
+            <div class="card-teaching"></div>
             <div class="card-action"></div>
             <div class="card-affirmation"></div>
           </div>
@@ -346,46 +293,54 @@ button:disabled {
 ============================ */
 const deck = {
   current: [
-    { title: "La Presencia", teaching: "Tu energía está aquí y ahora. Cuando habitas el momento, la claridad se abre sola.", action: "Elige una sola cosa en la que enfocarte hoy y hazla con plena atención.", affirmation: "«Cuando estoy presente, la vida me responde.»" },
-    { title: "La Gratitud", teaching: "Tu campo se expande cuando reconoces lo que ya es abundante en tu vida.", action: "Escribe tres cosas que agradeces hoy, aunque parezcan pequeñas.", affirmation: "«Mi gratitud abre puertas que aún no veo.»" },
-    { title: "La Claridad", teaching: "Estás en un punto donde ver con honestidad te da poder.", action: "Resume tu intención en una sola frase simple y directa.", affirmation: "«Merezco una vida clara y coherente.»" },
-    { title: "La Confianza", teaching: "Tu energía actual se sostiene en la idea de que algo bueno viene en camino.", action: "Da un paso hoy como si ya confiaras en el resultado.", affirmation: "«La vida conspira a mi favor.»" }
+    { title: "La Presencia", teaching: "Tu energía está aquí y ahora.", action: "Enfócate en una sola cosa hoy.", affirmation: "«Estoy presente y la vida me responde.»" },
+    { title: "La Gratitud", teaching: "Reconocer lo que ya tienes expande tu campo.", action: "Escribe 3 cosas que agradeces.", affirmation: "«Mi gratitud abre puertas.»" },
+    { title: "La Claridad", teaching: "Ver con honestidad te da poder.", action: "Resume tu intención en una frase.", affirmation: "«Merezco claridad.»" },
+    { title: "La Confianza", teaching: "Algo bueno viene en camino.", action: "Actúa como si ya confiaras.", affirmation: "«La vida conspira a mi favor.»" }
   ],
   block: [
-    { title: "El Miedo", teaching: "El miedo no es tu enemigo, solo te muestra dónde aún no confías en ti.", action: "Nombra tu miedo principal y escribe qué harías si no estuviera.", affirmation: "«Puedo avanzar incluso con miedo.»" },
-    { title: "La Escasez", teaching: "La sensación de falta distorsiona lo que ya está disponible para ti.", action: "Detecta un pensamiento de escasez y cámbialo por uno de posibilidad.", affirmation: "«Siempre hay más opciones de las que creo.»" },
-    { title: "La Impaciencia", teaching: "Querer resultados inmediatos te desconecta del proceso que te fortalece.", action: "Elige un área donde puedas permitirte ir más despacio hoy.", affirmation: "«El tiempo también trabaja a mi favor.»" },
-    { title: "El Control", teaching: "Forzar el cómo y el cuándo bloquea caminos que aún no imaginas.", action: "Identifica algo que estás forzando y decide soltarlo por un día.", affirmation: "«Confío en que la vida sabe el camino.»" }
+    { title: "El Miedo", teaching: "Solo muestra dónde no confías aún.", action: "Nombra tu miedo.", affirmation: "«Puedo avanzar incluso con miedo.»" },
+    { title: "La Escasez", teaching: "Distorsiona lo que ya tienes.", action: "Cambia un pensamiento limitante.", affirmation: "«Siempre hay más opciones.»" },
+    { title: "La Impaciencia", teaching: "Te desconecta del proceso.", action: "Permítete ir más despacio.", affirmation: "«El tiempo trabaja a mi favor.»" },
+    { title: "El Control", teaching: "Forzar bloquea caminos.", action: "Suelta algo por un día.", affirmation: "«La vida sabe el camino.»" }
   ],
   potential: [
-    { title: "La Prosperidad", teaching: "Tu campo está listo para recibir más de lo que imaginabas.", action: "Acerca hoy tu energía a una oportunidad concreta que ya conoces.", affirmation: "«Soy un imán natural para la prosperidad.»" },
-    { title: "El Flujo", teaching: "Cuando sueltas la rigidez, la vida encuentra rutas más inteligentes que las tuyas.", action: "Permite que algo hoy suceda sin intervenir ni corregirlo.", affirmation: "«Me dejo llevar por un flujo inteligente.»" },
-    { title: "La Manifestación", teaching: "Tus pensamientos, emociones y acciones pueden alinearse para crear algo nuevo.", action: "Da un paso físico que represente tu intención (un mensaje, una llamada, un gesto).", affirmation: "«Lo que sostengo dentro, se ordena fuera.»" },
-    { title: "La Oportunidad", teaching: "Hay puertas cerca de ti que aún no has mirado con atención.", action: "Revisa hoy una conversación, idea o propuesta que habías pasado por alto.", affirmation: "«Las oportunidades me encuentran cuando estoy disponible.»" }
+    { title: "La Prosperidad", teaching: "Estás listo para recibir más.", action: "Acércate a una oportunidad.", affirmation: "«Soy un imán de prosperidad.»" },
+    { title: "El Flujo", teaching: "La vida encuentra rutas mejores.", action: "Permite que algo suceda solo.", affirmation: "«Me dejo llevar.»" },
+    { title: "La Manifestación", teaching: "Puedes crear algo nuevo.", action: "Da un paso físico.", affirmation: "«Lo interno ordena lo externo.»" },
+    { title: "La Oportunidad", teaching: "Hay puertas cerca de ti.", action: "Revisa una idea olvidada.", affirmation: "«Las oportunidades me encuentran.»" }
   ]
 };
 
-/* ============================
-   RANDOM
-============================ */
 function getRandomCard(type) {
   const group = deck[type];
   return group[Math.floor(Math.random() * group.length)];
 }
 
 /* ============================
+   PC RENDER
+============================ */
+function renderCard(id, data) {
+  const card = document.getElementById(id);
+  card.querySelector(".card-title").textContent = data.title;
+  card.querySelector(".card-teaching").textContent = data.teaching;
+  card.querySelector(".card-action").textContent = "Acción: " + data.action;
+  card.querySelector(".card-affirmation").textContent = data.affirmation;
+  card.classList.add("show");
+}
+
+/* ============================
    MÓVIL
 ============================ */
-const mobileSingleCard = document.getElementById("mobileSingleCard");
-const nextCardBtn = document.getElementById("nextCardBtn");
-let mobileCards = [];
-let mobileCardIndex = 0;
-let restartBtn = null;
+const mobileContainer = document.getElementById("mobileCardsContainer");
+const nextBtn = document.getElementById("nextCardBtn");
 
-function appendMobileCard() {
-  const card = mobileCards[mobileCardIndex];
+let mobileCards = [];
+let mobileIndex = 0;
+
+function createMobileCard(card) {
   const div = document.createElement("div");
-  div.className = "card deal";
+  div.className = "card show";
   div.innerHTML = `
     <div class="card-inner">
       <div class="card-type">${card.type}</div>
@@ -395,55 +350,36 @@ function appendMobileCard() {
       <div class="card-affirmation">${card.affirmation}</div>
     </div>
   `;
-  mobileSingleCard.appendChild(div);
+  return div;
 }
 
-nextCardBtn.addEventListener("click", () => {
-  if (mobileCardIndex < mobileCards.length - 1) {
-    mobileCardIndex++;
-    appendMobileCard();
-    if (mobileCardIndex === mobileCards.length - 1) {
-      // Última carta mostrada, preparamos botón de reinicio
-      nextCardBtn.style.display = "none";
-      restartBtn = document.createElement("button");
-      restartBtn.textContent = "Barajar y revelar de nuevo";
-      restartBtn.addEventListener("click", resetMobileView);
-      mobileSingleCard.appendChild(restartBtn);
-    }
+function showNextMobileCard() {
+  if (mobileIndex < mobileCards.length) {
+    mobileContainer.appendChild(createMobileCard(mobileCards[mobileIndex]));
+    mobileIndex++;
   }
-});
 
-/* ============================
-   DESKTOP
-============================ */
-function renderCard(id, data) {
-  const card = document.getElementById(id);
-  card.querySelector(".card-title").textContent = data.title;
-  card.querySelector(".card-teaching").textContent = data.teaching;
-  card.querySelector(".card-action").textContent = "Acción: " + data.action;
-  card.querySelector(".card-affirmation").textContent = data.affirmation;
+  if (mobileIndex === mobileCards.length) {
+    nextBtn.style.display = "none";
+
+    const restart = document.createElement("button");
+    restart.textContent = "Barajar y revelar de nuevo";
+    restart.onclick = resetMobileView;
+    mobileContainer.appendChild(restart);
+  }
 }
 
-function resetCardAnimations() {
-  document.querySelectorAll(".card").forEach(c =>
-    c.classList.remove("deal", "deal-1", "deal-2", "deal-3")
-  );
-}
-
-/* ============================
-   RESET MÓVIL
-============================ */
 function resetMobileView() {
-  // Restaurar pantalla inicial
   document.getElementById("headerSection").style.display = "flex";
   document.getElementById("oracleImageWrapper").style.display = "flex";
   document.getElementById("cardsRow").style.display = "flex";
 
-  mobileSingleCard.innerHTML = "";
-  nextCardBtn.style.display = "none";
-  mobileCardIndex = 0;
+  mobileContainer.style.display = "none";
+  mobileContainer.innerHTML = "";
+  nextBtn.style.display = "none";
+
+  mobileIndex = 0;
   mobileCards = [];
-  restartBtn = null;
 }
 
 /* ============================
@@ -455,44 +391,35 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   const potential = getRandomCard("potential");
 
   /* ============================
-     MODO MÓVIL
+     MÓVIL
   ============================ */
   if (window.innerWidth <= 600) {
-    // Limpiar pantalla: ocultar header, taco de cartas e hilera PC
     document.getElementById("headerSection").style.display = "none";
     document.getElementById("oracleImageWrapper").style.display = "none";
     document.getElementById("cardsRow").style.display = "none";
 
-    // Preparar cartas móviles
     mobileCards = [
       { type: "Energía actual", ...current },
       { type: "Bloqueo", ...block },
       { type: "Potencial", ...potential }
     ];
-    mobileCardIndex = 0;
-    mobileSingleCard.innerHTML = "";
 
-    // Mostrar primera carta
-    appendMobileCard();
+    mobileIndex = 0;
+    mobileContainer.innerHTML = "";
+    mobileContainer.style.display = "flex";
 
-    // Mostrar botón siguiente
-    nextCardBtn.style.display = "block";
+    nextBtn.style.display = "block";
 
+    showNextMobileCard();
     return;
   }
 
   /* ============================
-     MODO PC
+     PC
   ============================ */
-  resetCardAnimations();
-
   renderCard("card-current", current);
   renderCard("card-block", block);
   renderCard("card-potential", potential);
-
-  document.getElementById("card-current").classList.add("deal", "deal-1");
-  document.getElementById("card-block").classList.add("deal", "deal-2");
-  document.getElementById("card-potential").classList.add("deal", "deal-3");
 });
 </script>
 
