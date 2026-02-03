@@ -510,7 +510,9 @@ button:disabled {
 </div>
 
 <script>
-// Mazo de ejemplo
+// =========================
+//   MAZO DE CARTAS
+// =========================
 const deck = {
   current: [
     {
@@ -592,21 +594,23 @@ const deck = {
   ]
 };
 
-</script>
-
+// =========================
+//   FUNCIÓN ÚNICA RANDOM
+// =========================
 function getRandomCard(type) {
   const group = deck[type];
   const index = Math.floor(Math.random() * group.length);
   return group[index];
 }
 
-// --- LÓGICA MÓVIL: UNA SOLA CARTA + BOTÓN SIGUIENTE ---
+// =========================
+//   LÓGICA MÓVIL
+// =========================
 const mobileSingleCard = document.getElementById("mobileSingleCard");
 const nextCardBtn = document.getElementById("nextCardBtn");
 let mobileCards = [];
 let mobileCardIndex = 0;
 
-// Ocultamos por defecto
 if (mobileSingleCard) mobileSingleCard.style.display = "none";
 if (nextCardBtn) nextCardBtn.style.display = "none";
 
@@ -631,13 +635,52 @@ if (nextCardBtn) {
   });
 }
 
-// --- BOTÓN BARAJAR ---
+// =========================
+//   RENDER DESKTOP
+// =========================
+function renderCard(elementId, cardData, fallbackText) {
+  const card = document.getElementById(elementId);
+  const titleEl = card.querySelector(".card-title");
+  const teachingEl = card.querySelector(".card-teaching");
+  const actionEl = card.querySelector(".card-action");
+  const affirmationEl = card.querySelector(".card-affirmation");
+
+  if (!cardData) {
+    titleEl.textContent = "—";
+    teachingEl.textContent = fallbackText;
+    actionEl.textContent = "";
+    affirmationEl.textContent = "";
+    return;
+  }
+
+  titleEl.textContent = cardData.title;
+  teachingEl.textContent = cardData.teaching;
+  actionEl.textContent = "Acción: " + cardData.action;
+  affirmationEl.textContent = cardData.affirmation;
+}
+
+// =========================
+//   ANIMACIONES
+// =========================
+function resetCardAnimations() {
+  const cards = document.querySelectorAll(".card");
+  cards.forEach(card => {
+    card.classList.remove("deal", "deal-1", "deal-2", "deal-3");
+  });
+}
+
+// =========================
+//   BOTÓN BARAJAR
+// =========================
 document.getElementById("drawBtn").addEventListener("click", () => {
+  const btn = document.getElementById("drawBtn");
+  const oracleCircle = document.getElementById("oracleCircle");
+
   const currentCard = getRandomCard("current");
   const blockCard = getRandomCard("block");
   const potentialCard = getRandomCard("potential");
 
-  // MÓVIL: solo una carta visible + botón siguiente
+  // --- MODO MÓVIL ---
   if (window.innerWidth <= 600) {
     mobileCards = [
       { type: "Energía actual", ...currentCard },
@@ -646,11 +689,39 @@ document.getElementById("drawBtn").addEventListener("click", () => {
     ];
     mobileCardIndex = 0;
     renderMobileCard();
-    mobileSingleCard.style.display = "block";
-    nextCardBtn.style.display = "block";
+
+    if (mobileSingleCard) mobileSingleCard.style.display = "block";
+    if (nextCardBtn) nextCardBtn.style.display = "block";
+
+    return;
   }
+
+  // --- MODO DESKTOP ---
+  btn.disabled = true;
+  resetCardAnimations();
+
+  oracleCircle.classList.remove("oracle-pulse");
+  void oracleCircle.offsetWidth;
+  oracleCircle.classList.add("oracle-pulse");
+
+  renderCard("card-current", currentCard, "Aquí aparecerá la lectura de tu energía actual.");
+  renderCard("card-block", blockCard, "Aquí aparecerá el patrón que está frenando tu expansión.");
+  renderCard("card-potential", potentialCard, "Aquí aparecerá el potencial que se abre para ti.");
+
+  const cardCurrent = document.getElementById("card-current");
+  const cardBlock = document.getElementById("card-block");
+  const cardPotential = document.getElementById("card-potential");
+
+  cardCurrent.classList.add("deal", "deal-1");
+  cardBlock.classList.add("deal", "deal-2");
+  cardPotential.classList.add("deal", "deal-3");
+
+  setTimeout(() => {
+    btn.disabled = false;
+  }, 900);
 });
 </script>
+
 
 
 function getRandomCard(type) {
