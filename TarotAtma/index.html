@@ -394,40 +394,22 @@ button:disabled {
 }
 
 
-
-/* ============================================
-   FIX REAL PARA MÓVILES Y TABLETS
-   (iPhone 13 Pro Max incluido)
+  /* ============================================
+   FIX UNIVERSAL PARA TODOS LOS MÓVILES
 ============================================ */
-@media (max-width: 900px) {
+@media (max-width: 600px) {
 
-  /* 1. Desactivar centrado del contenedor grande */
-  .oracle-area {
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-  }
-
-  /* 2. Desactivar centrado del wrapper */
   .oracle-image-wrapper {
-    display: block !important;
     position: relative !important;
-    left: 50px !important;   /* tu valor */
-    top: 100px !important;   /* tu valor */
+    left: 110px !important;   /* mueve a la derecha */
+    top: 160px !important;    /* baja la imagen */
   }
 
-  /* 3. Tamaño del taco */
   .oracle-circle {
-    width: 320px !important;
-    height: 320px !important;
+    width: 330px !important;
+    height: 330px !important;
   }
 }
-
-
-  
-
-
-
-
 
 
   
