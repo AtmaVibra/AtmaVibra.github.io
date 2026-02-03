@@ -28,7 +28,6 @@ body {
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-  border: 10px solid #3b2a1a;
   color: #f5f5f5;
 }
 
@@ -371,11 +370,7 @@ button:disabled {
   }
 }
 
-  
-
-
-
-  
+   
   
 </style>
 </head>
@@ -607,44 +602,6 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   }, 900);
 });
 </script>
-
-
-
-
-  <div id="update-note" style="
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(0,0,0,0.7);
-  color: #fff;
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  z-index: 9999;
-  font-family: system-ui;
-">
-  Última actualización: <span id="update-time"></span>
-</div>
-
-<script>
-  // Genera fecha y hora actual
-  const now = new Date();
-  const formatted = now.toLocaleString("es-ES", {
-    dateStyle: "short",
-    timeStyle: "medium"
-  });
-
-  // La coloca en pantalla
-  document.getElementById("update-time").textContent = formatted;
-</script>
-
-
-
-
-
-
-
-
 
 
   
