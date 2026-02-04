@@ -402,27 +402,296 @@ button:disabled {
 </div>
 
 <script>
+
+
+
+  
 /* Mazo */
+
+
+  
+  
 const deck = {
+
+  /* ───────────────────────────────
+     12 CARTAS — ENERGÍA ACTUAL
+  ─────────────────────────────── */
   current: [
-    { title: "La Presencia", teaching: "Tu energía está aquí y ahora. Cuando habitas el momento, la claridad se abre sola.", action: "Elige una sola cosa en la que enfocarte hoy y hazla con plena atención.", affirmation: "«Cuando estoy presente, la vida me responde.»" },
-    { title: "La Gratitud", teaching: "Tu campo se expande cuando reconoces lo que ya es abundante en tu vida.", action: "Escribe tres cosas que agradeces hoy, aunque parezcan pequeñas.", affirmation: "«Mi gratitud abre puertas que aún no veo.»" },
-    { title: "La Claridad", teaching: "Estás en un punto donde ver con honestidad te da poder.", action: "Resume tu intención en una sola frase simple y directa.", affirmation: "«Merezco una vida clara y coherente.»" },
-    { title: "La Confianza", teaching: "Tu energía actual se sostiene en la idea de que algo bueno viene en camino.", action: "Da un paso hoy como si ya confiaras en el resultado.", affirmation: "«La vida conspira a mi favor.»" }
+
+    {
+      title: "Presencia",
+      teaching: "Cuando vuelves al ahora, todo se ordena.",
+      action: "Haz una pausa de tres respiraciones conscientes.",
+      affirmation: "Estoy aquí, y aquí tengo poder."
+    },
+
+    {
+      title: "Gratitud",
+      teaching: "Lo que agradeces, crece en tu vida.",
+      action: "Reconoce hoy algo que dabas por hecho.",
+      affirmation: "Atraigo más de lo que valoro."
+    },
+
+    {
+      title: "Claridad",
+      teaching: "La claridad llega cuando dejas de forzar respuestas.",
+      action: "Escribe tu intención en una frase simple.",
+      affirmation: "Mi mente es un espacio despejado."
+    },
+
+    {
+      title: "Confianza",
+      teaching: "La confianza abre caminos que la duda no ve.",
+      action: "Da un paso como si ya fuera posible.",
+      affirmation: "La vida sostiene mis decisiones."
+    },
+
+    {
+      title: "Apertura",
+      teaching: "Cuando te abres, la vida encuentra por dónde entrar.",
+      action: "Di sí a algo pequeño que antes evitabas.",
+      affirmation: "Estoy disponible para lo que es mío."
+    },
+
+    {
+      title: "Inspiración",
+      teaching: "La inspiración llega cuando te permites escuchar.",
+      action: "Dedica cinco minutos a algo que te eleve.",
+      affirmation: "Mi energía inspira nuevas posibilidades."
+    },
+
+    {
+      title: "Calma",
+      teaching: "La calma no es ausencia de ruido, sino presencia de centro.",
+      action: "Respira lento antes de responder o actuar.",
+      affirmation: "Mi calma atrae claridad."
+    },
+
+    {
+      title: "Expansión",
+      teaching: "Tu energía se expande cuando dejas espacio para crecer.",
+      action: "Haz hoy algo que te saque un poco de tu zona cómoda.",
+      affirmation: "Estoy en constante expansión."
+    },
+
+    {
+      title: "Creatividad",
+      teaching: "La creatividad es la voz del alma buscando salida.",
+      action: "Crea algo pequeño sin juzgarlo.",
+      affirmation: "Soy un canal abierto a nuevas ideas."
+    },
+
+    {
+      title: "Valentía",
+      teaching: "El coraje no elimina el miedo, lo atraviesa.",
+      action: "Haz una acción que has estado posponiendo.",
+      affirmation: "Me muevo incluso con incertidumbre."
+    },
+
+    {
+      title: "Aceptación",
+      teaching: "Aceptar no es rendirse, es dejar de luchar con lo que es.",
+      action: "Nombra algo que no puedes controlar y suéltalo.",
+      affirmation: "Acepto lo que es, y desde ahí avanzo."
+    },
+
+    {
+      title: "Enfoque",
+      teaching: "Lo que enfocas, se fortalece.",
+      action: "Elige una sola prioridad para hoy.",
+      affirmation: "Mi atención crea mi dirección."
+    }
   ],
+
+  /* ───────────────────────────────
+     12 CARTAS — BLOQUEO
+  ─────────────────────────────── */
   block: [
-    { title: "El Miedo", teaching: "El miedo no es tu enemigo, solo te muestra dónde aún no confías en ti.", action: "Nombra tu miedo principal y escribe qué harías si no estuviera.", affirmation: "«Puedo avanzar incluso con miedo.»" },
-    { title: "La Escasez", teaching: "La sensación de falta distorsiona lo que ya está disponible para ti.", action: "Detecta un pensamiento de escasez y cámbialo por uno de posibilidad.", affirmation: "«Siempre hay más opciones de las que creo.»" },
-    { title: "La Impaciencia", teaching: "Querer resultados inmediatos te desconecta del proceso que te fortalece.", action: "Elige un área donde puedas permitirte ir más despacio hoy.", affirmation: "«El tiempo también trabaja a mi favor.»" },
-    { title: "El Control", teaching: "Forzar el cómo y el cuándo bloquea caminos que aún no imaginas.", action: "Identifica algo que estás forzando y decide soltarlo por un día.", affirmation: "«Confío en que la vida sabe el camino.»" }
+
+    {
+      title: "Miedo",
+      teaching: "El miedo señala el lugar donde aún no confías en ti.",
+      action: "Nombra tu miedo principal sin adornos.",
+      affirmation: "Puedo avanzar incluso con miedo."
+    },
+
+    {
+      title: "Duda",
+      teaching: "La duda aparece cuando olvidas quién eres.",
+      action: "Recuerda un logro que te demostró tu fuerza.",
+      affirmation: "Confío en mi camino."
+    },
+
+    {
+      title: "Impaciencia",
+      teaching: "Lo que es sólido necesita tiempo.",
+      action: "Permítete ir más despacio en una sola cosa.",
+      affirmation: "El tiempo también trabaja a mi favor."
+    },
+
+    {
+      title: "Autoexigencia",
+      teaching: "No necesitas ser perfecto para avanzar.",
+      action: "Haz algo hoy sin buscar el resultado ideal.",
+      affirmation: "Me permito ser humano."
+    },
+
+    {
+      title: "Escasez",
+      teaching: "La sensación de falta nubla lo que ya tienes.",
+      action: "Reconoce una oportunidad que ya está presente.",
+      affirmation: "Vivo en un universo abundante."
+    },
+
+    {
+      title: "Control",
+      teaching: "Forzar lo que no fluye agota tu energía.",
+      action: "Suelta una expectativa que te pesa.",
+      affirmation: "Confío en el orden natural de la vida."
+    },
+
+    {
+      title: "Ruido mental",
+      teaching: "Tu mente no necesita más información, sino más silencio.",
+      action: "Apaga una distracción durante una hora.",
+      affirmation: "Mi mente es un espacio claro."
+    },
+
+    {
+      title: "Procrastinación",
+      teaching: "Retrasar lo inevitable solo aumenta la carga.",
+      action: "Haz la primera acción mínima de eso que evitas.",
+      affirmation: "Elijo avanzar hoy."
+    },
+
+    {
+      title: "Apego",
+      teaching: "Aferrarte te impide recibir algo mejor.",
+      action: "Identifica algo que estás reteniendo por miedo.",
+      affirmation: "Suelto para abrir espacio."
+    },
+
+    {
+      title: "Comparación",
+      teaching: "Compararte te aleja de tu propio camino.",
+      action: "Agradece una cualidad que solo tú tienes.",
+      affirmation: "Mi camino es único."
+    },
+
+    {
+      title: "Culpa",
+      teaching: "La culpa te ancla al pasado y te roba el presente.",
+      action: "Perdónate por algo pequeño hoy.",
+      affirmation: "Me permito avanzar en paz."
+    },
+
+    {
+      title: "Resistencia",
+      teaching: "Lo que resistes, persiste. Lo que aceptas, se transforma.",
+      action: "Observa dónde estás luchando contra la realidad.",
+      affirmation: "Me abro a lo que es, sin lucha."
+    }
   ],
+
+  /* ───────────────────────────────
+     12 CARTAS — POTENCIAL
+  ─────────────────────────────── */
   potential: [
-    { title: "La Prosperidad", teaching: "Tu campo está listo para recibir más de lo que imaginabas.", action: "Acerca hoy tu energía a una oportunidad concreta que ya conoces.", affirmation: "«Soy un imán natural para la prosperidad.»" },
-    { title: "El Flujo", teaching: "Cuando sueltas la rigidez, la vida encuentra rutas más inteligentes que las tuyas.", action: "Permite que algo hoy suceda sin intervenir ni corregirlo.", affirmation: "«Me dejo llevar por un flujo inteligente.»" },
-    { title: "La Manifestación", teaching: "Tus pensamientos, emociones y acciones pueden alinearse para crear algo nuevo.", action: "Da un paso físico que represente tu intención (un mensaje, una llamada, un gesto).", affirmation: "«Lo que sostengo dentro, se ordena fuera.»" },
-    { title: "La Oportunidad", teaching: "Hay puertas cerca de ti que aún no has mirado con atención.", action: "Revisa hoy una conversación, idea o propuesta que habías pasado por alto.", affirmation: "«Las oportunidades me encuentran cuando estoy disponible.»" }
+
+    {
+      title: "Prosperidad",
+      teaching: "La prosperidad empieza en tu forma de mirarte.",
+      action: "Acércate hoy a una oportunidad concreta.",
+      affirmation: "Soy un imán natural para la prosperidad."
+    },
+
+    {
+      title: "Amor Consciente",
+      teaching: "El amor crece donde hay presencia y verdad.",
+      action: "Da un gesto auténtico a alguien importante.",
+      affirmation: "Amo desde la conciencia, no desde el miedo."
+    },
+
+    {
+      title: "Flujo",
+      teaching: "Cuando sueltas la rigidez, la vida encuentra el camino.",
+      action: "Permite que algo suceda sin intervenir.",
+      affirmation: "Me dejo llevar por un flujo inteligente."
+    },
+
+    {
+      title: "Manifestación",
+      teaching: "Lo que sostienes dentro, se ordena fuera.",
+      action: "Da un paso físico que represente tu deseo.",
+      affirmation: "Mi energía crea mi realidad."
+    },
+
+    {
+      title: "Abundancia",
+      teaching: "La abundancia es un estado interno antes que un resultado.",
+      action: "Actúa hoy como si ya tuvieras suficiente.",
+      affirmation: "Vivo en abundancia."
+    },
+
+    {
+      title: "Propósito",
+      teaching: "Tu propósito se revela cuando sigues lo que te enciende.",
+      action: "Haz algo que te conecte con tu esencia.",
+      affirmation: "Mi vida tiene dirección."
+    },
+
+    {
+      title: "Unidad",
+      teaching: "No estás separado de la vida; formas parte de ella.",
+      action: "Conecta con alguien desde la presencia.",
+      affirmation: "Estoy en unidad con todo lo que existe."
+    },
+
+    {
+      title: "Visión",
+      teaching: "Tu visión interior guía tu expansión exterior.",
+      action: "Escribe cómo te ves dentro de un año.",
+      affirmation: "Mi visión es clara y me sostiene."
+    },
+
+    {
+      title: "Expansión Financiera",
+      teaching: "Tu relación con el dinero refleja tu relación contigo.",
+      action: "Da un paso hacia una mejora económica concreta.",
+      affirmation: "Estoy listo para recibir más."
+    },
+
+    {
+      title: "Magnetismo",
+      teaching: "Lo que eres atrae más que lo que haces.",
+      action: "Eleva tu energía antes de actuar.",
+      affirmation: "Mi vibración atrae lo que es para mí."
+    },
+
+    {
+      title: "Oportunidad",
+      teaching: "Hay puertas cerca de ti que aún no has mirado.",
+      action: "Revisa una idea o propuesta que dejaste pasar.",
+      affirmation: "Las oportunidades me encuentran disponible."
+    },
+
+    {
+      title: "Renacimiento",
+      teaching: "Cada día puedes elegir una versión más auténtica de ti.",
+      action: "Cambia hoy un hábito pequeño que ya no te sirve.",
+      affirmation: "Renazco con intención."
+    }
   ]
 };
+
+
+
+
+
+
+
+
+  
 
 function getRandomCard(type) {
   const group = deck[type];
