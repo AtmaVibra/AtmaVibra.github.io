@@ -145,6 +145,15 @@ button:disabled {
   object-fit: contain;
 }
 
+
+
+  
+<div id="atmaMessage" class="atma-message">Tus cartas del Tarot Atma dicen:</div>
+
+
+
+  
+  
 /* Cartas */
 .cards-area {
   display: flex;
@@ -330,6 +339,19 @@ button:disabled {
     display: none !important;
   }
 }
+
+
+.atma-message {
+  display: none;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0b3d2e; /* verde muy oscuro */
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+  
 </style>
 </head>
 <body>
@@ -395,6 +417,8 @@ button:disabled {
             <div class="card-affirmation"></div>
           </div>
         </div>
+
+        <div id="atmaMessage" class="atma-message">Tus cartas del Tarot Atma dicen:</div>
 
       </div>
     </div>
@@ -730,6 +754,7 @@ function createMobileCard(card) {
   return div;
 }
 
+  
 function showNextMobileCard() {
   if (mobileIndex >= mobileCards.length) return;
 
@@ -745,9 +770,15 @@ function showNextMobileCard() {
     restart.onclick = resetMobileView;
     restart.style.marginTop = "20px";
     nextBtn.insertAdjacentElement("afterend", restart);
+
+    /* ⭐ MENSAJE FINAL ⭐ */
+    const msg = document.getElementById("atmaMessage");
+    msg.style.display = "block";
+    nextBtn.insertAdjacentElement("afterend", msg);
   }
 }
 
+  
 function resetMobileView() {
   document.getElementById("headerSection").style.display = "flex";
   document.getElementById("oracleImageWrapper").style.display = "flex";
@@ -764,12 +795,19 @@ function resetMobileView() {
   if (restartBtn && restartBtn.tagName === "BUTTON" && restartBtn.textContent.includes("Barajar y revelar de nuevo")) {
     restartBtn.remove();
   }
+
+  /* ⭐ OCULTAR EL MENSAJE ⭐ */
+  document.getElementById("atmaMessage").style.display = "none";
 }
+
+ 
 
 nextBtn.addEventListener("click", showNextMobileCard);
 
 /* Botón barajar */
 document.getElementById("drawBtn").addEventListener("click", () => {
+document.getElementById("atmaMessage").style.display = "none";
+  
   const current = getRandomCard("current");
   const block = getRandomCard("block");
   const potential = getRandomCard("potential");
@@ -801,6 +839,7 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   renderCard("card-current", current);
   renderCard("card-block", block);
   renderCard("card-potential", potential);
+  document.getElementById("atmaMessage").style.display = "block";
 });
 </script>
 
