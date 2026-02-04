@@ -165,7 +165,7 @@ button:disabled {
   width: var(--card-width);
   min-height: var(--card-height);
   border-radius: 12px;
-  background: linear-gradient(145deg, #fdfdfd, #e7e7e7);
+  background: rgb(216, 232, 214); /* menta apagado cálido */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.4);
   padding: 10px;
   display: flex;
@@ -183,19 +183,20 @@ button:disabled {
 
 .card-inner {
   border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 2px solid #4A5F4A; /* borde tribal fino */
   padding: 8px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: radial-gradient(circle at top, #ffffff 0%, #f3f3f3 40%, #e2e2e2 100%);
+  background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
+  box-sizing: border-box;
 }
 
 .card-type {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: #777;
+  color: #4A5F4A;
   margin-bottom: 4px;
 }
 
@@ -203,12 +204,12 @@ button:disabled {
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 4px;
-  color: #222;
+  color: #1f2b1f;
 }
 
 .card-teaching {
   font-size: 0.8rem;
-  color: #444;
+  color: #2f3b2f;
   flex: 1;
 }
 
@@ -221,8 +222,26 @@ button:disabled {
 .card-affirmation {
   font-size: 0.7rem;
   font-style: italic;
-  color: #555;
+  color: #3b4b3b;
   margin-top: 4px;
+}
+
+/* Animación móvil */
+.mobile-card {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: slideInMobile .4s ease forwards;
+}
+
+@keyframes slideInMobile {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Responsive */
@@ -283,6 +302,25 @@ button:disabled {
     margin-top: 10px;
     margin-bottom: 10px;
   }
+
+  /* Ajuste de cartas para que quepan las 3 en horizontal */
+  .card {
+    width: 30%;
+    min-height: auto;
+    padding: 8px;
+  }
+
+  .card-inner {
+    padding: 6px;
+  }
+
+  #mobileCardsContainer {
+    display: none;
+    width: 100%;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 8px;
+  }
 }
 
 /* Ocultar botón siguiente en PC */
@@ -293,7 +331,6 @@ button:disabled {
 }
 </style>
 </head>
-
 <body>
 
 <div class="table">
@@ -322,8 +359,8 @@ button:disabled {
 
     <div class="cards-area">
 
-      <!-- Contenedor móvil donde se apilan las cartas -->
-      <div id="mobileCardsContainer" style="display:none; flex-direction:column; gap:20px; width:100%; align-items:center;"></div>
+      <!-- Contenedor móvil donde se muestran las cartas en fila -->
+      <div id="mobileCardsContainer" style="display:none; flex-direction:row; width:100%; justify-content:space-between; align-items:stretch; gap:8px;"></div>
 
       <button id="nextCardBtn" style="display:none;">Siguiente</button>
 
@@ -412,7 +449,7 @@ let mobileIndex = 0;
 
 function createMobileCard(card) {
   const div = document.createElement("div");
-  div.className = "card show";
+  div.className = "card show mobile-card";
   div.innerHTML = `
     <div class="card-inner">
       <div class="card-type">${card.type}</div>
@@ -428,7 +465,8 @@ function createMobileCard(card) {
 function showNextMobileCard() {
   if (mobileIndex >= mobileCards.length) return;
 
-  mobileContainer.appendChild(createMobileCard(mobileCards[mobileIndex]));
+  const card = createMobileCard(mobileCards[mobileIndex]);
+  mobileContainer.appendChild(card);
   mobileIndex++;
 
   if (mobileIndex === mobileCards.length) {
