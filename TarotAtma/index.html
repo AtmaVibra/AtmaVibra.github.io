@@ -182,15 +182,62 @@ button:disabled {
 }
 
 .card-inner {
-  border-radius: 8px;
-  border: 2px solid #4A5F4A; /* borde tribal fino */
-  padding: 8px;
+  position: relative;
+  border-radius: 10px;
+  padding: 10px;
   height: 100%;
   display: flex;
   flex-direction: column;
   background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
   box-sizing: border-box;
 }
+
+/* Borde espiritual */
+.card-inner::before {
+  content: "";
+  position: absolute;
+  inset: 4px; /* muy fino, no invade el texto */
+  border-radius: 8px;
+  pointer-events: none;
+
+  background-image: url("data:image/svg+xml;utf8,
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 140'>
+      <path d='M10 10 
+               Q20 20 10 30 
+               M90 10 
+               Q80 20 90 30 
+               M10 110 
+               Q20 120 10 130 
+               M90 110 
+               Q80 120 90 130'
+            stroke='%234A5F4A' stroke-width='1.2' fill='none'/>
+
+      <!-- florecilla espiritual en cada lado -->
+      <path d='M50 8 
+               q2 3 0 6 
+               q-2 -3 0 -6'
+            stroke='%234A5F4A' stroke-width='1' fill='none'/>
+
+      <path d='M50 132 
+               q2 3 0 6 
+               q-2 -3 0 -6'
+            stroke='%234A5F4A' stroke-width='1' fill='none'/>
+
+      <path d='M8 70 
+               q3 2 6 0 
+               q-3 -2 -6 0'
+            stroke='%234A5F4A' stroke-width='1' fill='none'/>
+
+      <path d='M92 70 
+               q3 2 6 0 
+               q-3 -2 -6 0'
+            stroke='%234A5F4A' stroke-width='1' fill='none'/>
+    </svg>");
+  
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
 
 .card-type {
   font-size: 0.7rem;
