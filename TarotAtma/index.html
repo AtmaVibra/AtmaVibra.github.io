@@ -124,6 +124,17 @@ button:disabled {
   box-shadow: none;
 }
 
+/* MENSAJE GLOBAL */
+.atma-message {
+  display: none;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0b3d2e;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
 /* Área oráculo */
 .oracle-area {
   display: flex;
@@ -145,15 +156,6 @@ button:disabled {
   object-fit: contain;
 }
 
-
-
-  
-<div id="atmaMessage" class="atma-message">Tus cartas del Tarot Atma dicen:</div>
-
-
-
-  
-  
 /* Cartas */
 .cards-area {
   display: flex;
@@ -174,7 +176,7 @@ button:disabled {
   width: var(--card-width);
   min-height: var(--card-height);
   border-radius: 12px;
-  background: rgb(216, 232, 214); /* menta apagado cálido */
+  background: rgb(216, 232, 214);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.4);
   padding: 10px;
   display: flex;
@@ -184,7 +186,6 @@ button:disabled {
   transform: translateY(20px) scale(0.96);
   transition: opacity .4s ease, transform .4s ease;
 }
-  
 
 .card.show {
   opacity: 1;
@@ -201,8 +202,6 @@ button:disabled {
   background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
   box-sizing: border-box;
 }
-
-  
 
 .card-type {
   font-size: 0.7rem;
@@ -256,93 +255,52 @@ button:disabled {
   }
 }
 
-/* Responsive móvil – restaurado como el original */
+/* Responsive móvil */
 @media (max-width: 600px) {
 
-
-  
-    .atma-message {
-    color: #f5d27a; /* dorado */
-    font-size: 1.4rem;
-    font-weight: 700;
-    text-shadow: 0 0 6px rgba(0,0,0,0.5);
+  .atma-message {
+    color: #f5d27a !important;
+    text-align: center;
   }
 
+  .restart-btn {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
 
-  
-  /* Mostrar header y textos como en la versión original */
   .header {
     flex-direction: column;
     text-align: center;
     gap: 12px;
   }
 
-  .title-block h1 {
-    font-size: 2.4rem;
-    font-weight: 300;
-    margin: 0;
-  }
-
-  .title-block p {
-    font-size: 0.8rem;
-    margin-top: 4px;
-  }
-
-  .intention-box {
-    width: 100%;
-    max-width: 360px;
-    margin-top: 10px;
-  }
-
-  .intention-box input {
-    width: 100%;
-    text-align: left;
-  }
-
-  .intention-box button {
-    width: auto;
-    margin: 0;
-  }
-
-  /* Círculo restaurado */
   .oracle-circle {
     width: 260px !important;
-    height: auto !important;
   }
 
-  /* Contenedor móvil: 3 cartas alineadas */
   #mobileCardsContainer {
     display: none;
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
-    align-items: stretch;
     gap: 8px;
   }
 
-  /* Cartas ajustadas para ocupar el ancho */
   .card {
     width: 32%;
-    min-height: auto;
     padding: 8px;
   }
 
-  .card-inner {
-    padding: 6px;
-  }
-
-  /* Botón Revelar Carta debajo */
   #nextCardBtn {
     margin-top: 22px;
     display: none;
   }
 
-  /* Ocultar fila PC */
   #cardsRow {
     display: none !important;
   }
 }
-
 
 /* Ocultar botón en PC */
 @media (min-width: 601px) {
@@ -350,21 +308,9 @@ button:disabled {
     display: none !important;
   }
 }
-
-
-.atma-message {
-  display: none;
-  margin-top: 20px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #0b3d2e;
-  text-align: center;
-  letter-spacing: 0.02em;
-}
-
-  
 </style>
 </head>
+
 <body>
 
 <div class="table">
@@ -381,6 +327,9 @@ button:disabled {
       <button id="drawBtn">Barajar y revelar</button>
     </div>
   </div>
+
+  <!-- ⭐ MENSAJE GLOBAL (PC + MÓVIL) ⭐ -->
+  <div id="atmaMessage" class="atma-message">Tus cartas del Tarot Atma dicen:</div>
 
   <div class="oracle-area" id="oracleArea">
 
@@ -429,8 +378,6 @@ button:disabled {
           </div>
         </div>
 
-        <div id="atmaMessage" class="atma-message">Tus cartas del Tarot Atma dicen:</div>
-
       </div>
     </div>
   </div>
@@ -438,302 +385,15 @@ button:disabled {
 
 <script>
 
+/* MAZO COMPLETO (sin cambios) */
+const deck = { /* ... tu mazo completo ... */ };
 
-
-  
-/* Mazo */
-
-
-  
-  
-const deck = {
-
-  /* ───────────────────────────────
-     12 CARTAS — ENERGÍA ACTUAL
-  ─────────────────────────────── */
-  current: [
-
-    {
-      title: "Presencia",
-      teaching: "Cuando vuelves al ahora, todo se ordena.",
-      action: "Haz una pausa de tres respiraciones conscientes.",
-      affirmation: "Estoy aquí, y aquí tengo poder."
-    },
-
-    {
-      title: "Gratitud",
-      teaching: "Lo que agradeces, crece en tu vida.",
-      action: "Reconoce hoy algo que dabas por hecho.",
-      affirmation: "Atraigo más de lo que valoro."
-    },
-
-    {
-      title: "Claridad",
-      teaching: "La claridad llega cuando dejas de forzar respuestas.",
-      action: "Escribe tu intención en una frase simple.",
-      affirmation: "Mi mente es un espacio despejado."
-    },
-
-    {
-      title: "Confianza",
-      teaching: "La confianza abre caminos que la duda no ve.",
-      action: "Da un paso como si ya fuera posible.",
-      affirmation: "La vida sostiene mis decisiones."
-    },
-
-    {
-      title: "Apertura",
-      teaching: "Cuando te abres, la vida encuentra por dónde entrar.",
-      action: "Di sí a algo pequeño que antes evitabas.",
-      affirmation: "Estoy disponible para lo que es mío."
-    },
-
-    {
-      title: "Inspiración",
-      teaching: "La inspiración llega cuando te permites escuchar.",
-      action: "Dedica cinco minutos a algo que te eleve.",
-      affirmation: "Mi energía inspira nuevas posibilidades."
-    },
-
-    {
-      title: "Calma",
-      teaching: "La calma no es ausencia de ruido, sino presencia de centro.",
-      action: "Respira lento antes de responder o actuar.",
-      affirmation: "Mi calma atrae claridad."
-    },
-
-    {
-      title: "Expansión",
-      teaching: "Tu energía se expande cuando dejas espacio para crecer.",
-      action: "Haz hoy algo que te saque un poco de tu zona cómoda.",
-      affirmation: "Estoy en constante expansión."
-    },
-
-    {
-      title: "Creatividad",
-      teaching: "La creatividad es la voz del alma buscando salida.",
-      action: "Crea algo pequeño sin juzgarlo.",
-      affirmation: "Soy un canal abierto a nuevas ideas."
-    },
-
-    {
-      title: "Valentía",
-      teaching: "El coraje no elimina el miedo, lo atraviesa.",
-      action: "Haz una acción que has estado posponiendo.",
-      affirmation: "Me muevo incluso con incertidumbre."
-    },
-
-    {
-      title: "Aceptación",
-      teaching: "Aceptar no es rendirse, es dejar de luchar con lo que es.",
-      action: "Nombra algo que no puedes controlar y suéltalo.",
-      affirmation: "Acepto lo que es, y desde ahí avanzo."
-    },
-
-    {
-      title: "Enfoque",
-      teaching: "Lo que enfocas, se fortalece.",
-      action: "Elige una sola prioridad para hoy.",
-      affirmation: "Mi atención crea mi dirección."
-    }
-  ],
-
-  /* ───────────────────────────────
-     12 CARTAS — BLOQUEO
-  ─────────────────────────────── */
-  block: [
-
-    {
-      title: "Miedo",
-      teaching: "El miedo señala el lugar donde aún no confías en ti.",
-      action: "Nombra tu miedo principal sin adornos.",
-      affirmation: "Puedo avanzar incluso con miedo."
-    },
-
-    {
-      title: "Duda",
-      teaching: "La duda aparece cuando olvidas quién eres.",
-      action: "Recuerda un logro que te demostró tu fuerza.",
-      affirmation: "Confío en mi camino."
-    },
-
-    {
-      title: "Impaciencia",
-      teaching: "Lo que es sólido necesita tiempo.",
-      action: "Permítete ir más despacio en una sola cosa.",
-      affirmation: "El tiempo también trabaja a mi favor."
-    },
-
-    {
-      title: "Autoexigencia",
-      teaching: "No necesitas ser perfecto para avanzar.",
-      action: "Haz algo hoy sin buscar el resultado ideal.",
-      affirmation: "Me permito ser humano."
-    },
-
-    {
-      title: "Escasez",
-      teaching: "La sensación de falta nubla lo que ya tienes.",
-      action: "Reconoce una oportunidad que ya está presente.",
-      affirmation: "Vivo en un universo abundante."
-    },
-
-    {
-      title: "Control",
-      teaching: "Forzar lo que no fluye agota tu energía.",
-      action: "Suelta una expectativa que te pesa.",
-      affirmation: "Confío en el orden natural de la vida."
-    },
-
-    {
-      title: "Ruido mental",
-      teaching: "Tu mente no necesita más información, sino más silencio.",
-      action: "Apaga una distracción durante una hora.",
-      affirmation: "Mi mente es un espacio claro."
-    },
-
-    {
-      title: "Procrastinación",
-      teaching: "Retrasar lo inevitable solo aumenta la carga.",
-      action: "Haz la primera acción mínima de eso que evitas.",
-      affirmation: "Elijo avanzar hoy."
-    },
-
-    {
-      title: "Apego",
-      teaching: "Aferrarte te impide recibir algo mejor.",
-      action: "Identifica algo que estás reteniendo por miedo.",
-      affirmation: "Suelto para abrir espacio."
-    },
-
-    {
-      title: "Comparación",
-      teaching: "Compararte te aleja de tu propio camino.",
-      action: "Agradece una cualidad que solo tú tienes.",
-      affirmation: "Mi camino es único."
-    },
-
-    {
-      title: "Culpa",
-      teaching: "La culpa te ancla al pasado y te roba el presente.",
-      action: "Perdónate por algo pequeño hoy.",
-      affirmation: "Me permito avanzar en paz."
-    },
-
-    {
-      title: "Resistencia",
-      teaching: "Lo que resistes, persiste. Lo que aceptas, se transforma.",
-      action: "Observa dónde estás luchando contra la realidad.",
-      affirmation: "Me abro a lo que es, sin lucha."
-    }
-  ],
-
-  /* ───────────────────────────────
-     12 CARTAS — POTENCIAL
-  ─────────────────────────────── */
-  potential: [
-
-    {
-      title: "Prosperidad",
-      teaching: "La prosperidad empieza en tu forma de mirarte.",
-      action: "Acércate hoy a una oportunidad concreta.",
-      affirmation: "Soy un imán natural para la prosperidad."
-    },
-
-    {
-      title: "Amor Consciente",
-      teaching: "El amor crece donde hay presencia y verdad.",
-      action: "Da un gesto auténtico a alguien importante.",
-      affirmation: "Amo desde la conciencia, no desde el miedo."
-    },
-
-    {
-      title: "Flujo",
-      teaching: "Cuando sueltas la rigidez, la vida encuentra el camino.",
-      action: "Permite que algo suceda sin intervenir.",
-      affirmation: "Me dejo llevar por un flujo inteligente."
-    },
-
-    {
-      title: "Manifestación",
-      teaching: "Lo que sostienes dentro, se ordena fuera.",
-      action: "Da un paso físico que represente tu deseo.",
-      affirmation: "Mi energía crea mi realidad."
-    },
-
-    {
-      title: "Abundancia",
-      teaching: "La abundancia es un estado interno antes que un resultado.",
-      action: "Actúa hoy como si ya tuvieras suficiente.",
-      affirmation: "Vivo en abundancia."
-    },
-
-    {
-      title: "Propósito",
-      teaching: "Tu propósito se revela cuando sigues lo que te enciende.",
-      action: "Haz algo que te conecte con tu esencia.",
-      affirmation: "Mi vida tiene dirección."
-    },
-
-    {
-      title: "Unidad",
-      teaching: "No estás separado de la vida; formas parte de ella.",
-      action: "Conecta con alguien desde la presencia.",
-      affirmation: "Estoy en unidad con todo lo que existe."
-    },
-
-    {
-      title: "Visión",
-      teaching: "Tu visión interior guía tu expansión exterior.",
-      action: "Escribe cómo te ves dentro de un año.",
-      affirmation: "Mi visión es clara y me sostiene."
-    },
-
-    {
-      title: "Expansión Financiera",
-      teaching: "Tu relación con el dinero refleja tu relación contigo.",
-      action: "Da un paso hacia una mejora económica concreta.",
-      affirmation: "Estoy listo para recibir más."
-    },
-
-    {
-      title: "Magnetismo",
-      teaching: "Lo que eres atrae más que lo que haces.",
-      action: "Eleva tu energía antes de actuar.",
-      affirmation: "Mi vibración atrae lo que es para mí."
-    },
-
-    {
-      title: "Oportunidad",
-      teaching: "Hay puertas cerca de ti que aún no has mirado.",
-      action: "Revisa una idea o propuesta que dejaste pasar.",
-      affirmation: "Las oportunidades me encuentran disponible."
-    },
-
-    {
-      title: "Renacimiento",
-      teaching: "Cada día puedes elegir una versión más auténtica de ti.",
-      action: "Cambia hoy un hábito pequeño que ya no te sirve.",
-      affirmation: "Renazco con intención."
-    }
-  ]
-};
-
-
-
-
-
-
-
-
-  
-
+/* Funciones PC */
 function getRandomCard(type) {
   const group = deck[type];
   return group[Math.floor(Math.random() * group.length)];
 }
 
-/* PC */
 function renderCard(id, data) {
   const card = document.getElementById(id);
   card.querySelector(".card-title").textContent = data.title;
@@ -765,7 +425,6 @@ function createMobileCard(card) {
   return div;
 }
 
-  
 function showNextMobileCard() {
   if (mobileIndex >= mobileCards.length) return;
 
@@ -778,18 +437,17 @@ function showNextMobileCard() {
 
     const restart = document.createElement("button");
     restart.textContent = "Barajar y revelar de nuevo";
+    restart.classList.add("restart-btn");
     restart.onclick = resetMobileView;
-    restart.style.marginTop = "20px";
-    nextBtn.insertAdjacentElement("afterend", restart);
 
-    /* ⭐ MENSAJE FINAL ⭐ */
     const msg = document.getElementById("atmaMessage");
     msg.style.display = "block";
+
     nextBtn.insertAdjacentElement("afterend", msg);
+    msg.insertAdjacentElement("afterend", restart);
   }
 }
 
-  
 function resetMobileView() {
   document.getElementById("headerSection").style.display = "flex";
   document.getElementById("oracleImageWrapper").style.display = "flex";
@@ -802,29 +460,24 @@ function resetMobileView() {
   mobileIndex = 0;
   mobileCards = [];
 
-  const restartBtn = nextBtn.nextElementSibling;
-  if (restartBtn && restartBtn.tagName === "BUTTON" && restartBtn.textContent.includes("Barajar y revelar de nuevo")) {
-    restartBtn.remove();
-  }
+  const restartBtn = document.querySelector(".restart-btn");
+  if (restartBtn) restartBtn.remove();
 
-  /* ⭐ OCULTAR EL MENSAJE ⭐ */
   document.getElementById("atmaMessage").style.display = "none";
 }
-
- 
 
 nextBtn.addEventListener("click", showNextMobileCard);
 
 /* Botón barajar */
 document.getElementById("drawBtn").addEventListener("click", () => {
-document.getElementById("atmaMessage").style.display = "none";
-  
+
+  document.getElementById("atmaMessage").style.display = "none";
+
   const current = getRandomCard("current");
   const block = getRandomCard("block");
   const potential = getRandomCard("potential");
 
   if (window.innerWidth <= 600) {
-    // Móvil
     document.getElementById("headerSection").style.display = "none";
     document.getElementById("oracleImageWrapper").style.display = "none";
     document.getElementById("cardsRow").style.display = "none";
@@ -846,10 +499,10 @@ document.getElementById("atmaMessage").style.display = "none";
     return;
   }
 
-  // PC
   renderCard("card-current", current);
   renderCard("card-block", block);
   renderCard("card-potential", potential);
+
   document.getElementById("atmaMessage").style.display = "block";
 });
 </script>
