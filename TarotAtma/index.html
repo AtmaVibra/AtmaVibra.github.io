@@ -370,53 +370,67 @@ button:disabled {
   <!-- Mensaje global, PC y móvil -->
   <div id="atmaMessage" class="atma-message">Tus cartas del Tarot Atma dicen...</div>
 
+
+
+  
   <div class="oracle-area" id="oracleArea">
 
-    <div class="oracle-image-wrapper" id="oracleImageWrapper">
-      <img src="tacocartas.png" class="oracle-circle" id="oracleCircle">
+  <div class="oracle-image-wrapper" id="oracleImageWrapper">
+    <img src="tacocartas.png" class="oracle-circle" id="oracleCircle">
+  </div>
+
+  <div class="cards-area">
+
+    <!-- Contenedor móvil -->
+    <div id="mobileCardsContainer"></div>
+
+    <!-- Botón móvil -->
+    <button id="nextCardBtn">Revelar Carta</button>
+
+    <!-- Cartas PC -->
+    <div class="cards-row" id="cardsRow">
+
+      <div class="card" id="card-current">
+        <div class="card-inner">
+          <div class="card-type">Energía actual</div>
+          <div class="card-title">—</div>
+          <div class="card-teaching">Aquí aparecerá la lectura de tu energía actual.</div>
+          <div class="card-action"></div>
+          <div class="card-affirmation"></div>
+        </div>
+      </div>
+
+      <div class="card" id="card-block">
+        <div class="card-inner">
+          <div class="card-type">Bloqueo</div>
+          <div class="card-title">—</div>
+          <div class="card-teaching">Aquí aparecerá el patrón que está frenando tu expansión.</div>
+          <div class="card-action"></div>
+          <div class="card-affirmation"></div>
+        </div>
+      </div>
+
+      <div class="card" id="card-potential">
+        <div class="card-inner">
+          <div class="card-type">Potencial</div>
+          <div class="card-title">—</div>
+          <div class="card-teaching">Aquí aparecerá el potencial que se abre para ti.</div>
+          <div class="card-action"></div>
+          <div class="card-affirmation"></div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="cards-area">
+    <!-- ⭐ MENSAJE DEBAJO DE LAS CARTAS (PC) ⭐ -->
+    <div id="atmaMessage" class="atma-message">Tus cartas del Tarot Atma dicen...</div>
 
-      <!-- Contenedor móvil -->
-      <div id="mobileCardsContainer"></div>
+  </div>
+</div>
 
-      <!-- Botón móvil -->
-      <button id="nextCardBtn">Revelar Carta</button>
 
-      <!-- Cartas PC -->
-      <div class="cards-row" id="cardsRow">
 
-        <div class="card" id="card-current">
-          <div class="card-inner">
-            <div class="card-type">Energía actual</div>
-            <div class="card-title">—</div>
-            <div class="card-teaching">Aquí aparecerá la lectura de tu energía actual.</div>
-            <div class="card-action"></div>
-            <div class="card-affirmation"></div>
-          </div>
-        </div>
-
-        <div class="card" id="card-block">
-          <div class="card-inner">
-            <div class="card-type">Bloqueo</div>
-            <div class="card-title">—</div>
-            <div class="card-teaching">Aquí aparecerá el patrón que está frenando tu expansión.</div>
-            <div class="card-action"></div>
-            <div class="card-affirmation"></div>
-          </div>
-        </div>
-
-        <div class="card" id="card-potential">
-          <div class="card-inner">
-            <div class="card-type">Potencial</div>
-            <div class="card-title">—</div>
-            <div class="card-teaching">Aquí aparecerá el potencial que se abre para ti.</div>
-            <div class="card-action"></div>
-            <div class="card-affirmation"></div>
-          </div>
-        </div>
-
+        
       </div>
     </div>
   </div>
