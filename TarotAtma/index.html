@@ -244,11 +244,50 @@ button:disabled {
   }
 }
 
-/* Responsive móvil */
+/* Responsive móvil – restaurado como el original */
 @media (max-width: 600px) {
 
-  #cardsRow { display: none !important; }
+  /* Mostrar header y textos como en la versión original */
+  .header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
 
+  .title-block h1 {
+    font-size: 2.4rem;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  .title-block p {
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
+
+  .intention-box {
+    width: 100%;
+    max-width: 360px;
+    margin-top: 10px;
+  }
+
+  .intention-box input {
+    width: 100%;
+    text-align: left;
+  }
+
+  .intention-box button {
+    width: auto;
+    margin: 0;
+  }
+
+  /* Círculo restaurado */
+  .oracle-circle {
+    width: 260px !important;
+    height: auto !important;
+  }
+
+  /* Contenedor móvil: 3 cartas alineadas */
   #mobileCardsContainer {
     display: none;
     width: 100%;
@@ -258,6 +297,7 @@ button:disabled {
     gap: 8px;
   }
 
+  /* Cartas ajustadas para ocupar el ancho */
   .card {
     width: 32%;
     min-height: auto;
@@ -268,11 +308,18 @@ button:disabled {
     padding: 6px;
   }
 
+  /* Botón Revelar Carta debajo */
   #nextCardBtn {
     margin-top: 22px;
     display: none;
   }
+
+  /* Ocultar fila PC */
+  #cardsRow {
+    display: none !important;
+  }
 }
+
 
 /* Ocultar botón en PC */
 @media (min-width: 601px) {
