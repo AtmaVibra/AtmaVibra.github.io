@@ -304,8 +304,17 @@ button:disabled {
   }
 
   /* Ajuste de cartas para que quepan las 3 en horizontal */
+  #mobileCardsContainer {
+    display: none;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 8px;
+  }
+
   .card {
-    width: 30%;
+    width: 32%;
     min-height: auto;
     padding: 8px;
   }
@@ -314,12 +323,8 @@ button:disabled {
     padding: 6px;
   }
 
-  #mobileCardsContainer {
-    display: none;
-    width: 100%;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 8px;
+  #nextCardBtn {
+    margin-top: 20px;
   }
 }
 
@@ -360,9 +365,10 @@ button:disabled {
     <div class="cards-area">
 
       <!-- Contenedor móvil donde se muestran las cartas en fila -->
-      <div id="mobileCardsContainer" style="display:none; flex-direction:row; width:100%; justify-content:space-between; align-items:stretch; gap:8px;"></div>
+      <div id="mobileCardsContainer"></div>
 
-      <button id="nextCardBtn" style="display:none;">Siguiente</button>
+      <!-- Botón móvil corregido -->
+      <button id="nextCardBtn" style="display:none; margin-top:20px;">Revelar Carta</button>
 
       <!-- Cartas PC -->
       <div class="cards-row" id="cardsRow">
@@ -475,60 +481,4 @@ function showNextMobileCard() {
     const restart = document.createElement("button");
     restart.textContent = "Barajar y revelar de nuevo";
     restart.onclick = resetMobileView;
-    mobileContainer.appendChild(restart);
-  }
-}
 
-function resetMobileView() {
-  document.getElementById("headerSection").style.display = "flex";
-  document.getElementById("oracleImageWrapper").style.display = "flex";
-  document.getElementById("cardsRow").style.display = "flex";
-
-  mobileContainer.style.display = "none";
-  mobileContainer.innerHTML = "";
-  nextBtn.style.display = "none";
-
-  mobileIndex = 0;
-  mobileCards = [];
-}
-
-nextBtn.addEventListener("click", showNextMobileCard);
-
-/* Botón barajar */
-document.getElementById("drawBtn").addEventListener("click", () => {
-  const current = getRandomCard("current");
-  const block = getRandomCard("block");
-  const potential = getRandomCard("potential");
-
-  if (window.innerWidth <= 600) {
-    // Móvil
-    document.getElementById("headerSection").style.display = "none";
-    document.getElementById("oracleImageWrapper").style.display = "none";
-    document.getElementById("cardsRow").style.display = "none";
-
-    mobileCards = [
-      { type: "Energía actual", ...current },
-      { type: "Bloqueo", ...block },
-      { type: "Potencial", ...potential }
-    ];
-
-    mobileIndex = 0;
-    mobileContainer.innerHTML = "";
-    mobileContainer.style.display = "flex";
-
-    nextBtn.style.display = "block";
-
-    // Mostrar primera carta
-    showNextMobileCard();
-    return;
-  }
-
-  // PC
-  renderCard("card-current", current);
-  renderCard("card-block", block);
-  renderCard("card-potential", potential);
-});
-</script>
-
-</body>
-</html>
