@@ -244,66 +244,11 @@ button:disabled {
   }
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .header { flex-direction: column; text-align: center; }
-  .oracle-area { flex-direction: column; }
-  .oracle-circle { width: 320px; height: 320px; }
-}
-
+/* Responsive móvil */
 @media (max-width: 600px) {
+
   #cardsRow { display: none !important; }
 
-  .title-block {
-    text-align: center;
-    width: 100%;
-  }
-
-  .title-block h1 {
-    font-size: 2rem !important;
-    font-weight: 600 !important;
-    margin-bottom: 4px;
-  }
-
-  .title-block p {
-    font-size: 0.9rem !important;
-    margin-top: 0;
-    opacity: 0.9;
-  }
-
-  .intention-box label {
-    text-align: center;
-    font-size: 0.85rem;
-    opacity: 0.9;
-  }
-
-  .intention-box input {
-    width: 90%;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .intention-box button {
-    width: 70%;
-    margin: 0 auto;
-  }
-
-  .table {
-    padding-top: 20px;
-    gap: 16px;
-  }
-
-  .oracle-circle {
-    width: 140px !important;
-    height: auto !important;
-  }
-
-  .oracle-image-wrapper {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  /* Ajuste de cartas para que quepan las 3 en horizontal */
   #mobileCardsContainer {
     display: none;
     width: 100%;
@@ -324,11 +269,12 @@ button:disabled {
   }
 
   #nextCardBtn {
-    margin-top: 20px;
+    margin-top: 22px;
+    display: none;
   }
 }
 
-/* Ocultar botón siguiente en PC */
+/* Ocultar botón en PC */
 @media (min-width: 601px) {
   #nextCardBtn {
     display: none !important;
@@ -344,9 +290,6 @@ button:disabled {
     <div class="title-block">
       <h1>Tarot Atma</h1>
       <p>Oráculo de la Abundancia</p>
-      <p style="font-size:0.8rem; margin-top:6px; opacity:0.9;">
-        Formula tu intención, baraja y recibe tres mensajes: Energía Actual, Bloqueo y Potencial.
-      </p>
     </div>
 
     <div class="intention-box">
@@ -364,11 +307,11 @@ button:disabled {
 
     <div class="cards-area">
 
-      <!-- Contenedor móvil donde se muestran las cartas en fila -->
+      <!-- Contenedor móvil -->
       <div id="mobileCardsContainer"></div>
 
-      <!-- Botón móvil corregido -->
-      <button id="nextCardBtn" style="display:none; margin-top:20px;">Revelar Carta</button>
+      <!-- Botón móvil -->
+      <button id="nextCardBtn">Revelar Carta</button>
 
       <!-- Cartas PC -->
       <div class="cards-row" id="cardsRow">
@@ -481,4 +424,66 @@ function showNextMobileCard() {
     const restart = document.createElement("button");
     restart.textContent = "Barajar y revelar de nuevo";
     restart.onclick = resetMobileView;
+    restart.style.marginTop = "20px";
+    nextBtn.insertAdjacentElement("afterend", restart);
+  }
+}
 
+function resetMobileView() {
+  document.getElementById("headerSection").style.display = "flex";
+  document.getElementById("oracleImageWrapper").style.display = "flex";
+  document.getElementById("cardsRow").style.display = "flex";
+
+  mobileContainer.style.display = "none";
+  mobileContainer.innerHTML = "";
+  nextBtn.style.display = "none";
+
+  mobileIndex = 0;
+  mobileCards = [];
+
+  const restartBtn = nextBtn.nextElementSibling;
+  if (restartBtn && restartBtn.tagName === "BUTTON" && restartBtn.textContent.includes("Barajar y revelar de nuevo")) {
+    restartBtn.remove();
+  }
+}
+
+nextBtn.addEventListener("click", showNextMobileCard);
+
+/* Botón barajar */
+document.getElementById("drawBtn").addEventListener("click", () => {
+  const current = getRandomCard("current");
+  const block = getRandomCard("block");
+  const potential = getRandomCard("potential");
+
+  if (window.innerWidth <= 600) {
+    // Móvil
+    document.getElementById("headerSection").style.display = "none";
+    document.getElementById("oracleImageWrapper").style.display = "none";
+    document.getElementById("cardsRow").style.display = "none";
+
+    mobileCards = [
+      { type: "Energía actual", ...current },
+      { type: "Bloqueo", ...block },
+      { type: "Potencial", ...potential }
+    ];
+
+    mobileIndex = 0;
+    mobileContainer.innerHTML = "";
+    mobileContainer.style.display = "flex";
+
+    nextBtn.style.display = "block";
+    nextBtn.textContent = "Revelar Carta";
+
+    showNextMobileCard();
+    return;
+  }
+
+  // PC
+  renderCard("card-current", current);
+  renderCard("card-block", block);
+  renderCard("card-potential", potential);
+});
+</script>
+
+</body>
+</html>
