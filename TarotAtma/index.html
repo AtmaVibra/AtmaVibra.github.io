@@ -368,7 +368,7 @@ button:disabled {
   </div>
 
   <!-- Mensaje global, PC y móvil -->
-  <div id="atmaMessage" class="atma-message">Tus cartas del Tarot Atma dicen:</div>
+  <div id="atmaMessage" class="atma-message">Tus cartas del Tarot Atma dicen...</div>
 
   <div class="oracle-area" id="oracleArea">
 
@@ -813,6 +813,7 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   }
 
   // PC
+  document.getElementById("cardsRow").style.display = "flex";
   renderCard("card-current", current);
   renderCard("card-block", block);
   renderCard("card-potential", potential);
