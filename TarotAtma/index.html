@@ -28,6 +28,20 @@ body {
   color: #f5f5f5;
 }
 
+
+.insight-phrase {
+  display: block;
+  margin-top: 12px;
+  font-size: 1.15rem;
+  color: #f5d27a;
+  font-weight: 500;
+  line-height: 1.45;
+  text-shadow: 0 0 6px rgba(0,0,0,0.4);
+}
+ 
+
+
+  
 /* Contenedor principal */
 .table {
   width: 100%;
@@ -725,6 +739,80 @@ function renderCard(id, data) {
   card.classList.add("show");
 }
 
+
+function generateInsightPhrase(current, block, potential) {
+
+  const templates = [
+
+    `Desde la energía de **${current.title}**, reconoces la presencia de **${block.title}**, y al abrirte a **${potential.title}** descubres un camino más alineado contigo.`,
+
+    `Tu estado actual de **${current.title}** ilumina cómo **${block.title}** te limita, pero es **${potential.title}** quien te recuerda hacia dónde estás destinado a crecer.`,
+
+    `La fuerza de **${current.title}** suaviza la tensión de **${block.title}**, permitiendo que **${potential.title}** tome forma con claridad.`,
+
+    `Cuando habitas **${current.title}**, ves con honestidad cómo **${block.title}** te frena; aun así, **${potential.title}** te invita a avanzar con valentía.`,
+
+    `Tu energía de **${current.title}** te prepara para transformar **${block.title}**, abriendo espacio para el potencial de **${potential.title}**.`,
+
+    `El presente te habla a través de **${current.title}**; el bloqueo aparece como **${block.title}**, pero tu alma ya reconoce el llamado de **${potential.title}**.`,
+
+    `En este momento, **${current.title}** sostiene tu centro, **${block.title}** revela lo que pide ser liberado, y **${potential.title}** señala la dirección hacia la que tu vida quiere crecer.`,
+
+    `La vibración de **${current.title}** ilumina la sombra de **${block.title}**, permitiendo que **${potential.title}** se manifieste con mayor fluidez.`,
+
+    `Tu lectura muestra que **${current.title}** es tu punto de partida, **${block.title}** el aprendizaje pendiente, y **${potential.title}** la puerta que se abre cuando eliges avanzar.`,
+
+    `El equilibrio entre **${current.title}**, **${block.title}** y **${potential.title}** revela un mensaje claro: estás listo para un cambio más profundo del que imaginas.`,
+
+    `La vida te invita a honrar **${current.title}**, a soltar **${block.title}**, y a caminar hacia **${potential.title}** con determinación.`,
+
+    `Tu energía actual de **${current.title}** te recuerda tu poder; **${block.title}** te muestra tu resistencia; **${potential.title}** te revela tu destino posible.`,
+
+    `Desde **${current.title}** puedes ver con claridad cómo **${block.title}** te desvía, pero **${potential.title}** te devuelve al camino esencial.`,
+
+    `La presencia de **${current.title}** te centra, la lección de **${block.title}** te despierta, y la promesa de **${potential.title}** te impulsa.`,
+
+    `Tu alma se expresa a través de **${current.title}**, reconoce la carga de **${block.title}**, y se expande hacia **${potential.title}**.`,
+
+    `El mensaje es claro: **${current.title}** te sostiene, **${block.title}** te desafía, y **${potential.title}** te transforma.`,
+
+    `La energía de **${current.title}** abre una grieta en **${block.title}**, por donde comienza a entrar la luz de **${potential.title}**.`,
+
+    `Cuando integras **${current.title}**, comprendes la raíz de **${block.title}**, y desde ahí puedes recibir **${potential.title}**.`,
+
+    `Tu camino se ordena cuando reconoces **${current.title}**, aceptas **${block.title}**, y eliges **${potential.title}**.`,
+
+    `La vida te muestra que **${current.title}** es tu verdad presente, **${block.title}** tu sombra activa, y **${potential.title}** tu expansión inevitable.`,
+
+    `El movimiento comienza en **${current.title}**, se libera en **${block.title}**, y florece en **${potential.title}**.`,
+
+    `Tu energía de **${current.title}** revela lo que **${block.title}** intenta ocultar, y te guía hacia la claridad de **${potential.title}**.`,
+
+    `La combinación de **${current.title}**, **${block.title}** y **${potential.title}** te recuerda que todo proceso tiene un inicio, un obstáculo y una revelación.`,
+
+    `Desde **${current.title}** puedes observar sin juicio **${block.title}**, y así permitir que **${potential.title}** se despliegue.`,
+
+    `Tu lectura revela que **${current.title}** te fortalece, **${block.title}** te enseña, y **${potential.title}** te eleva.`,
+
+    `El presente te pide habitar **${current.title}**, comprender **${block.title}**, y confiar en **${potential.title}**.`,
+
+    `La sabiduría de **${current.title}** te muestra el origen de **${block.title}**, y te prepara para recibir **${potential.title}**.`,
+
+    `Tu proceso interior une **${current.title}**, **${block.title}** y **${potential.title}** en una misma dirección: tu expansión.`,
+
+    `La energía de **${current.title}** te recuerda quién eres, **${block.title}** te muestra lo que ya no necesitas, y **${potential.title}** te revela lo que puedes llegar a ser.`,
+
+    `Hoy comprendes que **${current.title}** es tu base, **${block.title}** tu desafío, y **${potential.title}** tu destino en apertura.`
+  ];
+
+  return templates[Math.floor(Math.random() * templates.length)];
+}
+
+  
+
+
+
+  
 /* Móvil */
 const mobileContainer = document.getElementById("mobileCardsContainer");
 const nextBtn = document.getElementById("nextCardBtn");
@@ -827,7 +915,17 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   renderCard("card-current", current);
   renderCard("card-block", block);
   renderCard("card-potential", potential);
-  document.getElementById("atmaMessage").style.display = "block";
+  // Generar la frase personalizada
+const phrase = generateInsightPhrase(current, block, potential);
+
+// Mostrar el mensaje + la frase
+const msg = document.getElementById("atmaMessage");
+msg.innerHTML = `
+  Tus cartas del Tarot Atma dicen...<br><br>
+  <span class="insight-phrase">${phrase}</span>
+`;
+msg.style.display = "block";
+
 });
 </script>
 
