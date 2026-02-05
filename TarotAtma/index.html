@@ -740,93 +740,417 @@ function renderCard(id, data) {
 }
 
 
+
+
+// ======================================================
+//  SEMÁNTICA VIBRACIONAL — 8 FRAGMENTOS POR CADA CARTA
+//  (ninguno empieza por "te...")
+// ======================================================
+
+const semantic = {
+  current: {
+    Presencia: [
+      "ancla en lo real",
+      "devuelve al único lugar donde algo puede cambiar: este instante",
+      "calma la mente que se adelanta al futuro",
+      "abre un espacio interno donde las decisiones se vuelven más sobrias",
+      "sostiene en medio de lo que se mueve alrededor",
+      "recuerda que aquí ya hay más recursos de los que parece",
+      "invita a habitar el cuerpo y no solo la cabeza",
+      "centra para que puedas responder en vez de reaccionar"
+    ],
+    Gratitud: [
+      "amplía lo que ya funciona en tu vida",
+      "reconoce que no empiezas desde cero",
+      "transforma la queja en una mirada más amplia",
+      "abre la puerta a recibir más de lo que valoras",
+      "suaviza la dureza con la que juzgas tu camino",
+      "pone luz en lo que sí está a favor",
+      "conecta con la sensación de estar sostenido",
+      "honra lo que ya está presente"
+    ],
+    Claridad: [
+      "ilumina lo esencial y deja a un lado lo accesorio",
+      "muestra la verdad que ya intuías pero no querías mirar",
+      "ordena lo que antes parecía un caos interno",
+      "permite tomar decisiones sin tanta confusión emocional",
+      "separa lo que es tuyo de lo que no te corresponde",
+      "muestra el siguiente paso sin necesidad de ver el final",
+      "disipa fantasías que distraían de lo real",
+      "invita a mirar de frente lo que ya está maduro para cambiar"
+    ],
+    Confianza: [
+      "sostiene incluso cuando no se ve todo el camino",
+      "recuerda que es posible avanzar sin garantías absolutas",
+      "evita rendirse antes de tiempo",
+      "permite caminar con firmeza en medio de la incertidumbre",
+      "conecta con la sensación de que algo dentro sabe por dónde ir",
+      "apoya en la experiencia y no solo en los miedos",
+      "recuerda que ya has atravesado retos antes",
+      "anima a dar el paso que es coherente contigo"
+    ],
+    Apertura: [
+      "afloja defensas que ya no protegen, solo aíslan",
+      "permite recibir apoyo donde antes solo había sospecha",
+      "abre espacio para que entren posibilidades nuevas",
+      "invita a escuchar antes de cerrar la puerta",
+      "muestra que no todo cambio es peligroso",
+      "conecta con la curiosidad en lugar del juicio automático",
+      "deja entrar aire fresco en estructuras viejas",
+      "facilita decir sí a lo que viene a sumar"
+    ],
+    Inspiración: [
+      "enciende una chispa que saca de la inercia",
+      "conecta con ideas que devuelven ganas de moverse",
+      "abre un cauce creativo que pide ser tomado en serio",
+      "recuerda que no todo tiene que ser esfuerzo pesado",
+      "muestra caminos que no se habían considerado",
+      "invita a jugar con las posibilidades",
+      "recupera entusiasmo donde había apatía",
+      "impulsa a dar un paso alineado con lo que se siente dentro"
+    ],
+    Calma: [
+      "baja el volumen del ruido interno",
+      "devuelve un ritmo más humano y sostenible",
+      "evita sobrerreaccionar ante lo que ocurre",
+      "crea un espacio donde la emoción se asienta y la visión se aclara",
+      "permite ver el problema sin convertirlo en catástrofe",
+      "sostiene para no decidir desde el impulso",
+      "recuerda que no todo se resuelve corriendo",
+      "invita a respirar antes de responder"
+    ],
+    Expansión: [
+      "muestra que ya no cabes en versiones antiguas de ti",
+      "abre espacio para permitirte ser más de lo que eras",
+      "invita a dejar de encogerse para encajar",
+      "recuerda que la energía está lista para ocupar más lugar",
+      "impulsa a explorar territorios que antes se evitaban",
+      "ayuda a soltar límites que ya no tienen sentido",
+      "conecta con una sensación de crecimiento inevitable",
+      "anima a decir sí a oportunidades que antes se rechazaban"
+    ],
+    Creatividad: [
+      "propone formas nuevas de abordar lo de siempre",
+      "recuerda que no hace falta hacerlo como todos",
+      "abre caminos donde antes solo había pared",
+      "invita a expresar lo que llevaba tiempo guardado",
+      "encuentra soluciones fuera del guion habitual",
+      "valida que la propia manera también es válida",
+      "impulsa a probar sin necesidad de garantías",
+      "devuelve juego donde solo había exigencia"
+    ],
+    Valentía: [
+      "impulsa a atravesar lo que se venía evitando",
+      "recuerda que el miedo no tiene por qué decidir",
+      "sostiene el temblor interno mientras se avanza",
+      "invita a hacer lo correcto aunque no sea cómodo",
+      "conecta con la fuerza cuando parecía que no se podía",
+      "muestra que el riesgo también puede traer vida nueva",
+      "anima a poner límites donde antes se callaba",
+      "acompaña mientras se elige lo que es coherente"
+    ],
+    Aceptación: [
+      "permite dejar de pelear con lo que ya es un hecho",
+      "disuelve parte del sufrimiento que viene de resistirse",
+      "abre un espacio de paz desde el que sí se puede actuar",
+      "mira la realidad sin adornarla ni negarla",
+      "recuerda que aceptar no es rendirse, es partir de lo real",
+      "invita a soltar la fantasía de que todo pudo ser distinto",
+      "recupera energía que se gastaba en lucha interna",
+      "da una base firme para decidir el siguiente movimiento"
+    ],
+    Enfoque: [
+      "ordena la energía hacia lo que importa ahora",
+      "ayuda a dejar de dispersarse en mil frentes",
+      "invita a elegir una dirección clara y sostenerla",
+      "recuerda que no todo merece la misma atención",
+      "permite avanzar con menos desgaste",
+      "distingue lo prioritario de lo accesorio",
+      "muestra dónde poner la fuerza para que rinda",
+      "alinea con un movimiento más simple y efectivo"
+    ]
+  },
+
+  block: {
+    Miedo: [
+      "se interpone como una sombra entre tú y lo que deseas",
+      "hace imaginar peligros que no siempre son reales",
+      "frena antes de comprobar de qué eres capaz",
+      "distorsiona la percepción de tu propia fuerza",
+      "convence de que es más seguro no intentarlo",
+      "encoge justo cuando la vida pide expandirse",
+      "hace dudar incluso de lo que ya se sabe hacer",
+      "mantiene en lugares conocidos pero demasiado pequeños"
+    ],
+    Duda: [
+      "erosiona la decisión hasta dejarla en pausa",
+      "genera vueltas sin llegar a ninguna parte",
+      "desconecta de la intuición más profunda",
+      "lleva a buscar confirmación constante fuera",
+      "cuestiona incluso lo que ya se había elegido",
+      "mantiene en un casi que nunca se concreta",
+      "roba claridad en momentos clave",
+      "frena más por indecisión que por falta de recursos"
+    ],
+    Impaciencia: [
+      "empuja a forzar procesos que necesitan madurar",
+      "saca del presente para vivir solo en el resultado",
+      "hace abandonar justo antes de ver frutos",
+      "rompe el ritmo natural de lo que se estaba gestando",
+      "lleva a decisiones precipitadas que luego pesan",
+      "impide ver que ya hay movimiento, aunque no sea inmediato",
+      "hace sentir que siempre se va tarde",
+      "desconecta del valor de cada paso intermedio"
+    ],
+    Autoexigencia: [
+      "convierte cada avance en algo insuficiente",
+      "borra la memoria de todo lo ya logrado",
+      "endurece la mirada hacia uno mismo más que hacia otros",
+      "impide descansar incluso cuando es necesario",
+      "instala una sensación de deuda permanente",
+      "apaga el disfrute de lo que se construye",
+      "exige perfección donde solo hace falta honestidad",
+      "mantiene en una carrera que nunca termina"
+    ],
+    Escasez: [
+      "hace ver límites donde hay posibilidades",
+      "reduce la percepción de lo que es posible",
+      "convence de que nunca es suficiente",
+      "lleva a competir donde podría haber colaboración",
+      "hace aferrarse por miedo a perder",
+      "desconecta de la abundancia ya presente",
+      "empuja a decidir desde el miedo a quedarse sin nada",
+      "impide ver recursos que ya están disponibles"
+    ],
+    Control: [
+      "rigidiza el movimiento y deja sin margen de improvisación",
+      "instala desconfianza hacia la vida y los propios procesos",
+      "bloquea el flujo que aparece cuando se afloja un poco",
+      "mantiene en tensión constante por miedo a que algo falle",
+      "hace cargar con más de lo que corresponde",
+      "impide delegar incluso estando saturado",
+      "hace creer que si no se controla, todo se derrumba",
+      "cierra la puerta a ser sorprendido para bien"
+    ],
+    RuidoMental: [
+      "llena la mente de vueltas sin conclusión",
+      "dispersa lejos de lo que realmente importa",
+      "impide escuchar la voz más tranquila que hay dentro",
+      "activa reacciones automáticas en lugar de elecciones conscientes",
+      "consume energía sin aportar claridad",
+      "atrapa en escenarios hipotéticos",
+      "aleja del silencio donde se ordenan las cosas",
+      "confunde pensamiento con verdad"
+    ],
+    Procrastinación: [
+      "aplaza decisiones que ya están maduras",
+      "congela acciones que harían bien",
+      "mantiene en un punto intermedio que cansa",
+      "hace perder oportunidades que no esperan siempre",
+      "deja una sensación de deuda con uno mismo",
+      "desconecta de la satisfacción de avanzar",
+      "alimenta la ilusión de que mañana será más fácil sin cambiar nada",
+      "acostumbra a vivir en el casi sin llegar al sí"
+    ],
+    Apego: [
+      "ata a situaciones que ya cumplieron su ciclo",
+      "impide soltar lo que ya no nutre",
+      "bloquea la entrada de experiencias nuevas",
+      "hace sostener más peso del necesario",
+      "mantiene la mirada en el pasado en lugar del futuro",
+      "confunde seguridad con costumbre",
+      "impide despedirse de versiones antiguas de uno mismo",
+      "ancla en lugares donde ya no hay crecimiento"
+    ],
+    Comparación: [
+      "desconecta del propio ritmo y proceso",
+      "mide el valor con reglas ajenas",
+      "roba la alegría de los propios avances",
+      "hace sentir menos incluso estando creciendo",
+      "distrae de lo que sí se puede hacer hoy",
+      "empuja a imitar en lugar de escuchar la propia forma",
+      "hace olvidar lo que hace único",
+      "mantiene la mirada fuera en vez de hacia dentro"
+    ],
+    Culpa: [
+      "mantiene pagando por errores de los que ya se aprendió",
+      "cierra el corazón hacia uno mismo",
+      "impide recibir lo bueno que llega",
+      "carga con más responsabilidad de la que corresponde",
+      "ata al pasado y a lo que ya no se puede cambiar",
+      "hace dudar de si se merece avanzar",
+      "bloquea el perdón propio",
+      "mantiene vivas historias que podrían cerrarse"
+    ],
+    Desalineación: [
+      "desvía de lo que es coherente con lo que sientes",
+      "lleva a decir sí donde querías decir no",
+      "rompe la sensación de integridad interna",
+      "deja la sensación de estar fuera de lugar",
+      "empuja en direcciones que no representan de verdad",
+      "desconecta del propósito más profundo",
+      "cansa más de lo necesario porque va contra la propia verdad",
+      "invita a revisar si lo que haces está alineado con lo que eres"
+    ]
+  },
+
+  potential: {
+    Prosperidad: [
+      "abre caminos donde el esfuerzo empieza a dar frutos visibles",
+      "recuerda que es posible recibir a la altura de lo que entregas",
+      "invita a confiar en un crecimiento sostenido, no solo puntual",
+      "muestra oportunidades que antes pasaban desapercibidas",
+      "conecta con una relación más sana con el dinero y los recursos",
+      "anima a valorar tiempo, energía y talento",
+      "ayuda a construir una base material más estable",
+      "recuerda que prosperar también es un acto de amor propio"
+    ],
+    AmorConsciente: [
+      "eleva la forma de vincularte contigo y con otros",
+      "invita a amar sin perderte en el otro",
+      "recuerda que el amor sano incluye límites claros",
+      "ayuda a elegir relaciones que suman a tu camino",
+      "conecta con la honestidad emocional",
+      "anima a comunicar lo que sientes con respeto",
+      "muestra que puedes sostener vínculos más maduros",
+      "recuerda que el primer acto de amor es hacia ti"
+    ],
+    Flujo: [
+      "restaura un movimiento más natural en tu vida",
+      "invita a dejar de forzar lo que no se da",
+      "ayuda a reconocer dónde la vida ya empuja a favor",
+      "conecta con un ritmo más orgánico y menos tenso",
+      "muestra que no todo requiere lucha para avanzar",
+      "anima a confiar en los ciclos de avance y pausa",
+      "recuerda que soltar también es una forma de avanzar",
+      "permite sentir que no siempre remas contra corriente"
+    ],
+    Manifestación: [
+      "acerca a la realidad lo que antes era solo una idea",
+      "invita a alinear intención, emoción y acción",
+      "muestra que lo sembrado con constancia toma forma",
+      "ayuda a concretar en vez de quedarse solo en el deseo",
+      "recuerda que ver resultados tangibles también es posible",
+      "anima a dar pasos pequeños pero consistentes",
+      "conecta con la satisfacción de ver algo nacer de ti",
+      "muestra que la visión puede hacerse materia"
+    ],
+    Abundancia: [
+      "expande la sensación de estar sostenido por la vida",
+      "recuerda que no todo se mide solo en dinero",
+      "ayuda a ver recursos, apoyo y posibilidades alrededor",
+      "invita a recibir sin culpa lo que llega a tu puerta",
+      "conecta con la idea de que hay suficiente también para ti",
+      "anima a soltar la mentalidad de carencia",
+      "muestra que dar y recibir pueden estar en equilibrio",
+      "recuerda que la abundancia empieza en cómo te miras"
+    ],
+    Propósito: [
+      "alinea con una dirección que tiene sentido profundo",
+      "recuerda que la vida no es solo supervivencia",
+      "invita a poner energía en lo que te hace sentir vivo",
+      "ayuda a reconocer qué actividades nutren de verdad",
+      "muestra que tu camino tiene un hilo conductor",
+      "anima a honrar lo que sabes que has venido a aportar",
+      "conecta con una motivación más estable que la aprobación externa",
+      "recuerda que tu tiempo y tu talento importan"
+    ],
+    Unidad: [
+      "devuelve la sensación de estar en tu sitio",
+      "recuerda que no estás separado de la vida que te rodea",
+      "ayuda a integrar partes de ti que sentías opuestas",
+      "invita a reconciliarte contigo y con tu historia",
+      "conecta con una paz que no depende tanto de lo externo",
+      "muestra que puedes pertenecer sin dejar de ser tú",
+      "anima a ver el vínculo entre lo que sientes, piensas y haces",
+      "recuerda que no tienes que sostenerlo todo solo"
+    ],
+    ClaridadSuperior: [
+      "eleva la mirada por encima del ruido inmediato",
+      "ayuda a ver el panorama completo, no solo el detalle",
+      "invita a decidir desde una sabiduría más profunda",
+      "conecta con intuiciones que traen calma, no ansiedad",
+      "muestra el sentido de procesos que parecían caóticos",
+      "anima a confiar en una comprensión que va más allá de la lógica",
+      "recuerda que hay una parte de ti que ya sabe",
+      "ordena prioridades desde un lugar más sereno"
+    ],
+    ExpansiónFinanciera: [
+      "abre posibilidades de crecimiento económico coherente contigo",
+      "invita a valorar tu trabajo de forma más justa",
+      "ayuda a tomar decisiones más conscientes con el dinero",
+      "muestra oportunidades de ingreso que antes no veías",
+      "anima a salir de acuerdos que ya no sostienen",
+      "recuerda que mereces estabilidad y expansión material",
+      "conecta con una relación más madura con tus recursos",
+      "impulsa a construir una base financiera más sólida"
+    ],
+    Magnetismo: [
+      "atrae experiencias alineadas con tu verdad",
+      "recuerda que no siempre es necesario perseguir cuando estás centrado",
+      "ayuda a emitir una presencia más clara y auténtica",
+      "invita a ser tú mismo sin disfraz para conectar mejor",
+      "muestra que lo que es para ti también te busca",
+      "anima a confiar en tu valor sin sobreesfuerzo",
+      "conecta con una fuerza tranquila que llama lo adecuado",
+      "recuerda que tu energía habla incluso antes que tus palabras"
+    ],
+    Oportunidad: [
+      "se presenta como una puerta que antes no se veía",
+      "invita a dar un paso que puede cambiar el escenario",
+      "recuerda que no todo se repite, algunas cosas son únicas",
+      "ayuda a ver el momento adecuado para moverse",
+      "anima a decir sí cuando algo resuena de verdad",
+      "muestra que estás más preparado de lo que crees",
+      "conecta con la sensación de estar en el lugar correcto",
+      "recuerda que a veces solo hace falta un gesto valiente"
+    ],
+    Renacimiento: [
+      "marca el cierre de una etapa y el inicio de otra más honesta",
+      "invita a soltar identidades que ya no representan",
+      "recuerda que se puede empezar de nuevo sin negar la historia",
+      "ayuda a transformar dolor en fuerza y comprensión",
+      "muestra que no se vuelve al inicio, sino a un nuevo nivel",
+      "anima a permitir cambios profundos sin culpa",
+      "conecta con una sensación de vida renovada",
+      "recuerda que cada final trae consigo una semilla nueva"
+    ]
+  }
+};
+
+
+// ======================================================
+//  GENERADOR DE FRASE VIBRACIONAL
+// ======================================================
+
 function generateInsightPhrase(current, block, potential) {
+  const c = semantic.current[current.title];
+  const b = semantic.block[block.title];
+  const p = semantic.potential[potential.title];
+
+  if (!c || !b || !p) {
+    return "Hay un mensaje en movimiento, pero alguna de las energías no está bien definida en el sistema.";
+  }
+
+  const cPart = c[Math.floor(Math.random() * c.length)];
+  const bPart = b[Math.floor(Math.random() * b.length)];
+  const pPart = p[Math.floor(Math.random() * p.length)];
 
   const templates = [
-
-    `La energía de ${current.title} te muestra lo que está vivo en ti; ${block.title} señala lo que pesa, y ${potential.title} revela hacia dónde puedes expandirte.`,
-
-    `Desde ${current.title} comprendes la raíz de ${block.title}, y así se abre el camino hacia ${potential.title}.`,
-
-    `Tu presente marcado por ${current.title} ilumina la tensión de ${block.title}, permitiendo que ${potential.title} tome forma.`,
-
-    `${current.title} sostiene tu centro, ${block.title} te muestra el aprendizaje pendiente, y ${potential.title} te recuerda tu dirección natural.`,
-
-    `Cuando habitas ${current.title}, ves con claridad cómo ${block.title} te frena; aun así, ${potential.title} te invita a avanzar.`,
-
-    `La vibración de ${current.title} suaviza la carga de ${block.title}, abriendo espacio para ${potential.title}.`,
-
-    `Tu lectura revela que ${current.title} es tu punto de partida, ${block.title} el desafío, y ${potential.title} la puerta que se abre.`,
-
-    `El equilibrio entre ${current.title}, ${block.title} y ${potential.title} muestra un proceso que ya está en movimiento dentro de ti.`,
-
-    `La vida te invita a honrar ${current.title}, a soltar ${block.title}, y a caminar hacia ${potential.title}.`,
-
-    `Tu energía actual de ${current.title} te recuerda tu poder; ${block.title} te muestra lo que pide ser liberado; ${potential.title} te revela lo que está naciendo.`,
-
-    `Desde ${current.title} puedes observar sin juicio ${block.title}, y así permitir que ${potential.title} se despliegue.`,
-
-    `El presente te pide habitar ${current.title}, comprender ${block.title}, y confiar en ${potential.title}.`,
-
-    `La fuerza de ${current.title} ilumina la sombra de ${block.title}, permitiendo que ${potential.title} florezca.`,
-
-    `Tu proceso interior une ${current.title}, ${block.title} y ${potential.title} en una misma dirección: tu expansión.`,
-
-    `La energía de ${current.title} te recuerda quién eres; ${block.title} te muestra lo que ya no necesitas; ${potential.title} te revela lo que puedes llegar a ser.`,
-
-    `Hoy comprendes que ${current.title} es tu base, ${block.title} tu desafío, y ${potential.title} tu horizonte.`,
-
-    `La presencia de ${current.title} te centra, la lección de ${block.title} te despierta, y la promesa de ${potential.title} te impulsa.`,
-
-    `El movimiento comienza en ${current.title}, se libera en ${block.title}, y florece en ${potential.title}.`,
-
-    `Tu energía de ${current.title} revela lo que ${block.title} intenta ocultar, guiándote hacia la claridad de ${potential.title}.`,
-
-    `La combinación de ${current.title}, ${block.title} y ${potential.title} te recuerda que todo proceso tiene un inicio, un obstáculo y una revelación.`,
-
-    `Desde ${current.title} puedes ver con honestidad ${block.title}, y así abrirte a ${potential.title}.`,
-
-    `Tu lectura muestra que ${current.title} te fortalece, ${block.title} te enseña, y ${potential.title} te eleva.`,
-
-    `La vida te muestra que ${current.title} es tu verdad presente, ${block.title} tu sombra activa, y ${potential.title} tu expansión inevitable.`,
-
-    `La energía de ${current.title} abre una grieta en ${block.title}, por donde comienza a entrar la luz de ${potential.title}.`,
-
-    `Cuando integras ${current.title}, comprendes la raíz de ${block.title}, y desde ahí puedes recibir ${potential.title}.`,
-
-    `Tu camino se ordena cuando reconoces ${current.title}, aceptas ${block.title}, y eliges ${potential.title}.`,
-
-    `La sabiduría de ${current.title} te muestra el origen de ${block.title}, y te prepara para recibir ${potential.title}.`,
-
-    `Lo que hoy se mueve en ti como ${current.title} te permite ver con honestidad la raíz de ${block.title}, y desde esa claridad nace la posibilidad real de ${potential.title}.`,
-
-    `Tu proceso revela que ${current.title} sostiene tu presente, ${block.title} te muestra el punto donde aún te contraes, y ${potential.title} te recuerda que tu expansión sigue intacta.`,
-
-    `La presencia de ${current.title} abre un espacio interno donde ${block.title} deja de dominar, y es ahí donde ${potential.title} comienza a tomar forma.`,
-
-    `Cuando reconoces la verdad de ${current.title}, puedes mirar de frente ${block.title} sin miedo, y desde esa valentía se despliega ${potential.title}.`,
-
-    `Tu energía actual de ${current.title} ilumina lo que ${block.title} intenta ocultar, y esa luz es precisamente lo que permite que ${potential.title} se manifieste.`,
-
-    `El mensaje es sutil pero firme: ${current.title} te centra, ${block.title} te confronta, y ${potential.title} te invita a dar un paso que ya estás preparado para dar.`,
-
-    `La vida te muestra que en la vibración de ${current.title} hay una clave para liberar ${block.title}, y al hacerlo, el camino hacia ${potential.title} se vuelve inevitable.`,
-
-    `Tu lectura señala un movimiento interno: desde ${current.title} emerges con más claridad, atraviesas la densidad de ${block.title}, y te abres a la amplitud de ${potential.title}.`,
-
-    `Lo que hoy se expresa como ${current.title} te da la fuerza para transformar ${block.title}, y esa transformación es la puerta directa hacia ${potential.title}.`,
-
-    `En el cruce entre ${current.title}, ${block.title} y ${potential.title} hay un mensaje profundo: tu alma ya sabe hacia dónde avanzar, solo necesitas escucharte con más honestidad.`,
-
-    `Tu alma se expresa a través de ${current.title}, reconoce la carga de ${block.title}, y se expande hacia ${potential.title}.`,
-
-    `El mensaje es claro: ${current.title} te sostiene, ${block.title} te desafía, y ${potential.title} te transforma.`,
-
-    `La energía de ${current.title} te recuerda tu esencia, ${block.title} te muestra tu resistencia, y ${potential.title} te revela tu destino posible.`
+    `La energía de ${current.title} ${cPart}, mientras ${block.title} ${bPart}; desde ahí, ${potential.title} ${pPart}.`,
+    `Ahora se activa ${current.title}, que ${cPart}. Al mismo tiempo, ${block.title} ${bPart}, y por eso ${potential.title} ${pPart}.`,
+    `En tu presente aparece ${current.title} y ${cPart}; frente a ello, ${block.title} ${bPart}. La dirección es clara: ${potential.title} ${pPart}.`,
+    `Cuando se hace consciente ${current.title} y ${cPart}, también ves cómo ${block.title} ${bPart}. Ese es el punto donde ${potential.title} ${pPart}.`,
+    `Tu proceso actual está teñido de ${current.title}, que ${cPart}. El desafío viene de ${block.title}, que ${bPart}; aun así, ${potential.title} ${pPart}.`,
+    `Desde la frecuencia de ${current.title}, que ${cPart}, se revela el peso de ${block.title}, que ${bPart}. En ese contraste, ${potential.title} ${pPart}.`
   ];
 
   return templates[Math.floor(Math.random() * templates.length)];
 }
+
+
+
+
 
   
 
