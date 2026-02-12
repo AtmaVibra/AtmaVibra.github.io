@@ -249,6 +249,17 @@ button:disabled {
 }
 
 
+/* Evitar cortes y guiones en TODOS los móviles */
+.card-title,
+.card-type {
+  hyphens: none !important;        /* nunca guiones */
+  word-break: keep-all !important; /* no partir palabras */
+  overflow-wrap: anywhere !important; /* si no cabe, baja entera */
+}
+
+
+
+
 .card-teaching {
   font-size: 0.8rem;
   color: #2f3b2f;
