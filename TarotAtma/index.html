@@ -356,16 +356,16 @@ button:disabled {
   }
   
   
-    /* Ajuste de títulos de carta en móvil */
-.card-title {
+    .card-title {
   font-size: 0.85rem;
   text-align: center;
   line-height: 1.15;
   white-space: normal;
-  overflow-wrap: anywhere;   /* ⭐ permite bajar la palabra ENTERA */
-  word-break: keep-all;      /* ⭐ NO partir palabras */
-  hyphens: none;             /* ⭐ NO guiones */
+  overflow-wrap: anywhere;
+  word-break: break-word;   /* ⭐ permite partir la palabra */
+  hyphens: auto;            /* ⭐ Chrome ya no la recorta */
 }
+
 
 
 /* Ajuste de títulos de bloque en móvil */
