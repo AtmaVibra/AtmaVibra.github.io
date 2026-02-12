@@ -220,6 +220,7 @@ button:disabled {
 }
 
 
+/* TÍTULO DEL BLOQUE (Energía actual, Bloqueo, Potencial) */
 .card-type {
   font-size: 0.85rem;        /* más grande */
   font-weight: 700;          /* más presencia */
@@ -229,23 +230,23 @@ button:disabled {
   margin-bottom: 6px;
   text-align: center;        /* centrado real */
   white-space: normal;       /* permite saltos de línea */
-  word-break: break-word;    /* evita cortes feos */
+  overflow-wrap: break-word; /* evita desbordes */
+  word-break: keep-all;      /* NO partir palabras */
+  hyphens: manual;           /* NO añadir guiones */
 }
 
-
-
+/* TÍTULO DE LA CARTA (Valentía, Procrastinación, etc.) */
 .card-title {
   font-size: 0.9rem;
   font-weight: 700;
   margin-bottom: 4px;
   color: #1f2b1f;
   text-align: center;
-  white-space: normal;
+  white-space: normal;        /* permite saltos */
   overflow-wrap: break-word;  /* evita desbordes */
-  word-break: keep-all;       /* evita que parta la palabra */
-  hyphens: auto;
+  word-break: keep-all;       /* NO partir palabras */
+  hyphens: manual;            /* NO guiones automáticos */
 }
-
 
 
 .card-teaching {
@@ -340,26 +341,29 @@ button:disabled {
   }
   
   
-    /* Ajuste de títulos en móvil */
-  .card-title {
+    /* Ajuste de títulos de carta en móvil */
+.card-title {
   font-size: 0.85rem;
   text-align: center;
   line-height: 1.15;
   white-space: normal;
   overflow-wrap: break-word;
-  word-break: keep-all;   /* ⭐ clave para que NO se corte */
+  word-break: keep-all;   /* NO cortar palabras */
+  hyphens: manual;        /* NO guiones */
+}
+
+/* Ajuste de títulos de bloque en móvil */
+.card-type {
+  font-size: 0.9rem;       /* más grande en móvil */
+  text-align: center;      /* centrado real */
+  line-height: 1.2;        /* más aire */
+  white-space: normal;     /* permite saltos */
+  overflow-wrap: break-word;
+  word-break: keep-all;    /* NO cortar palabras */
+  hyphens: manual;         /* NO guiones */
 }
 
 
-
-  /* Ajuste de títulos de bloque en móvil */
-  .card-type {
-    font-size: 0.9rem;      /* más grande en móvil */
-    text-align: center;     /* centrado real */
-    line-height: 1.2;       /* más aire */
-    white-space: normal;    /* permite saltos */
-    word-break: break-word; /* evita cortes feos */
-  }
 
   
   
