@@ -373,14 +373,23 @@ button:disabled {
   width: 100%;
   aspect-ratio: 2 / 3;
   flex-shrink: 0;
-  margin-bottom: 8px;
-  max-width: 100%;
-  height: auto;
+  margin: 0;            /* ⭐ SIN márgenes → la imagen toca los bordes */
 }
 
+
  .card-inner {
-  padding: 4px;   /* reduce el padding para que la imagen crezca más */
+  padding: 0;   /* ⭐ SIN padding → la imagen crece hasta los bordes */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: auto;
+  flex: 1;
+  border: none;
+  background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
+  border-radius: 8px;
+  box-sizing: border-box;
 }
+
 
 .card-image {
   width: 100%;
