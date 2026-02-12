@@ -327,14 +327,15 @@ button:disabled {
   }
 
   /* Contenedor móvil: 3 cartas alineadas */
-  #mobileCardsContainer {
-    display: none;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 8px;
-  }
+#mobileCardsContainer {
+  display: none;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;   /* ⭐ CORRECTO */
+  align-items: stretch;
+  gap: 8px;
+}
+
 
   /* Cartas ajustadas para ocupar el ancho */
   .card {
