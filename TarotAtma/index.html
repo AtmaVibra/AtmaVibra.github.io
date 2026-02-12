@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
@@ -39,8 +39,6 @@ body {
   text-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
  
-
-
   
 /* Contenedor principal */
 .table {
@@ -363,6 +361,33 @@ button:disabled {
     display: none !important;
   }
 }
+
+
+/* Contenedor que mantiene proporción 2:3 (forma de carta) */
+.card-image-wrapper {
+  width: 100%;          /* mismo ancho que la carta de texto */
+  aspect-ratio: 2 / 3;  /* proporción de carta real */
+  position: relative;
+  margin-top: 12px;
+}
+
+/* Imagen de la carta ilustrada */
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* rellena sin deformarse */
+  border-radius: 26px;
+  box-shadow:
+    0 0 0 4px rgba(0, 180, 120, 0.25),
+    0 0 18px rgba(0, 180, 120, 0.35),
+    0 8px 18px rgba(0,0,0,0.25);
+}
+
+
+
+
+
+  
 </style>
 </head>
 <body>
@@ -410,6 +435,11 @@ button:disabled {
         </div>
       </div>
 
+
+      <div id="cardImageContainer-current"></div>
+
+      
+
       <div class="card" id="card-block">
         <div class="card-inner">
           <div class="card-type">Bloqueo</div>
@@ -420,6 +450,12 @@ button:disabled {
         </div>
       </div>
 
+      
+
+      <div id="cardImageContainer-block"></div>
+
+      
+
       <div class="card" id="card-potential">
         <div class="card-inner">
           <div class="card-type">Potencial</div>
@@ -429,6 +465,11 @@ button:disabled {
           <div class="card-affirmation"></div>
         </div>
       </div>
+
+
+</div> <!-- cierre de card-potential -->
+
+      
 
     </div>
 
@@ -442,6 +483,29 @@ button:disabled {
 <script>
 /* Mazo */
 
+
+
+const cardImages = {
+  "Presencia": "cartas/Presencia.jpg",
+  "Gratitud": "cartas/Gratitud.jpg",
+  "Claridad": "cartas/Claridad.jpg",
+  "Confianza": "cartas/Confianza.jpg",
+  "Apertura": "cartas/Apertura.jpg",
+  "Inspiración": "cartas/Inspiración.jpg",
+  "Calma": "cartas/Calma.jpg",
+  "Expansión": "cartas/Expansión.jpg",
+  "Creatividad": "cartas/Creatividad.jpg",
+  "Valentía": "cartas/Valentía.jpg",
+  "Aceptación": "cartas/Aceptación.jpg",
+  "Coherencia Interna": "cartas/Coherencia Interna.jpg",
+  "Enfoque": "cartas/Enfoque.jpg"
+};
+
+  
+
+
+
+  
 const deck = {
 
   /* ───────────────────────────────
@@ -756,6 +820,24 @@ function renderCard(id, data) {
   card.querySelector(".card-affirmation").textContent = data.affirmation;
   card.classList.add("show");
 }
+
+
+  function renderCardImage(containerId, title) {
+  const cont = document.getElementById(containerId);
+  const ruta = cardImages[title];
+
+  if (!ruta) {
+    cont.innerHTML = "";
+    return;
+  }
+
+  cont.innerHTML = `
+    <div class="card-image-wrapper">
+      <img src="${ruta}" class="card-image">
+    </div>
+  `;
+}
+
 
 
 
@@ -1219,10 +1301,14 @@ const nextBtn = document.getElementById("nextCardBtn");
 
 let mobileCards = [];
 let mobileIndex = 0;
+  
 
 function createMobileCard(card) {
+  const ruta = cardImages[card.title];
+
   const div = document.createElement("div");
   div.className = "card show mobile-card";
+
   div.innerHTML = `
     <div class="card-inner">
       <div class="card-type">${card.type}</div>
@@ -1231,9 +1317,17 @@ function createMobileCard(card) {
       <div class="card-action">Acción: ${card.action}</div>
       <div class="card-affirmation">${card.affirmation}</div>
     </div>
+
+    ${ruta ? `
+      <div class="card-image-wrapper">
+        <img src="${ruta}" class="card-image">
+      </div>
+    ` : ""}
   `;
+
   return div;
 }
+
 
 function showNextMobileCard() {
   if (mobileIndex >= mobileCards.length) return;
@@ -1326,6 +1420,14 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   renderCard("card-current", current);
   renderCard("card-block", block);
   renderCard("card-potential", potential);
+
+  // Mostrar imágenes
+renderCardImage("cardImageContainer-current", current.title);
+renderCardImage("cardImageContainer-block", block.title);
+renderCardImage("cardImageContainer-potential", potential.title);
+
+
+  
   // Generar la frase personalizada
 const phrase = generateInsightPhrase(current, block, potential);
 
