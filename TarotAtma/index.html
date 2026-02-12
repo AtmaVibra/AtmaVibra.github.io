@@ -928,7 +928,7 @@ function renderCard(id, data) {
   const card = document.getElementById(id);
 
   // Insertar imagen
- const imgContainer = document.getElementById(`cardImageContainer-${id.split("-")[1]}`);
+ const imgContainer = card.querySelector("[id^='cardImageContainer']");
  
   const ruta = cardImages[data.title];
 
