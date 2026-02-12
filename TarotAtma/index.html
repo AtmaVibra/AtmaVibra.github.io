@@ -365,11 +365,16 @@ button:disabled {
 
 /* Contenedor que mantiene proporción 2:3 (forma de carta) */
 .card-image-wrapper {
-  width: 100%;          /* mismo ancho que la carta de texto */
-  aspect-ratio: 2 / 3;  /* proporción de carta real */
+  width: 100%;
+  aspect-ratio: 2 / 3;
   position: relative;
-  margin-top: 12px;
+
+  /* MÁS GRANDE DENTRO DEL RECUADRO */
+  margin-top: 4px;          /* menos margen arriba */
+  margin-bottom: 4px;       /* menos margen abajo */
+  height: calc(100% + 14px); /* un pelín más grande */
 }
+
 
 /* Imagen de la carta ilustrada */
 .card-image {
