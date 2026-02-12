@@ -229,13 +229,14 @@ button:disabled {
 }
 
 .card-title {
-  font-size: 0.9rem;          /* un puntito más pequeño */
+  font-size: 0.9rem;        /* un poco más pequeño */
   font-weight: 700;
   margin-bottom: 4px;
   color: #1f2b1f;
-  text-align: center;         /* centrado */
-  white-space: normal;        /* permite saltos de línea */
-  word-break: break-word;     /* evita que se corte feo */
+  text-align: center;       /* centrado real */
+  white-space: normal;      /* permite saltos de línea */
+  word-break: break-word;   /* evita cortes feos */
+  hyphens: auto;            /* añade guion si hace falta */
 }
 
 
@@ -329,6 +330,18 @@ button:disabled {
     width: 190px !important;
     height: auto !important;
   }
+  
+  
+    /* Ajuste de títulos en móvil */
+  .card-title {
+    font-size: 0.85rem;   /* un poco más pequeño */
+    text-align: center;   /* centrado real */
+    line-height: 1.15;    /* más espacio para palabras largas */
+  }
+
+  
+  
+  
 
   /* Contenedor móvil: 3 cartas alineadas */
 #mobileCardsContainer {
