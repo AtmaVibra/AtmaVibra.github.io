@@ -221,12 +221,18 @@ button:disabled {
 
 
 .card-type {
-  font-size: 0.7rem;
+  font-size: 0.85rem;        /* más grande */
+  font-weight: 700;          /* más presencia */
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;    /* un poco menos separadas */
   color: #4A5F4A;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  text-align: center;        /* centrado real */
+  white-space: normal;       /* permite saltos de línea */
+  word-break: break-word;    /* evita cortes feos */
 }
+
+
 
 .card-title {
   font-size: 0.9rem;        /* un poco más pequeño */
@@ -337,6 +343,16 @@ button:disabled {
     font-size: 0.85rem;   /* un poco más pequeño */
     text-align: center;   /* centrado real */
     line-height: 1.15;    /* más espacio para palabras largas */
+  }
+
+
+  /* Ajuste de títulos de bloque en móvil */
+  .card-type {
+    font-size: 0.9rem;      /* más grande en móvil */
+    text-align: center;     /* centrado real */
+    line-height: 1.2;       /* más aire */
+    white-space: normal;    /* permite saltos */
+    word-break: break-word; /* evita cortes feos */
   }
 
   
