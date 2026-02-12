@@ -235,15 +235,17 @@ button:disabled {
 
 
 .card-title {
-  font-size: 0.9rem;        /* un poco más pequeño */
+  font-size: 0.9rem;
   font-weight: 700;
   margin-bottom: 4px;
   color: #1f2b1f;
-  text-align: center;       /* centrado real */
-  white-space: normal;      /* permite saltos de línea */
-  word-break: break-word;   /* evita cortes feos */
-  hyphens: auto;            /* añade guion si hace falta */
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;  /* evita desbordes */
+  word-break: keep-all;       /* evita que parta la palabra */
+  hyphens: auto;
 }
+
 
 
 .card-teaching {
@@ -340,10 +342,14 @@ button:disabled {
   
     /* Ajuste de títulos en móvil */
   .card-title {
-    font-size: 0.85rem;   /* un poco más pequeño */
-    text-align: center;   /* centrado real */
-    line-height: 1.15;    /* más espacio para palabras largas */
-  }
+  font-size: 0.85rem;
+  text-align: center;
+  line-height: 1.15;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: keep-all;   /* ⭐ clave para que NO se corte */
+}
+
 
 
   /* Ajuste de títulos de bloque en móvil */
