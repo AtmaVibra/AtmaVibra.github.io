@@ -371,9 +371,15 @@ button:disabled {
 /* Contenedor que mantiene proporción 2:3 (forma de carta) */
 .card-image-wrapper {
   width: 100%;
-  aspect-ratio: 2 / 3;   /* ⭐ proporción real de carta */
-  flex-shrink: 0;        /* ⭐ evita que se encoja */
+  aspect-ratio: 2 / 3;
+  flex-shrink: 0;
   margin-bottom: 8px;
+  max-width: 100%;
+  height: auto;
+}
+
+ .card-inner {
+  padding: 4px;   /* reduce el padding para que la imagen crezca más */
 }
 
 .card-image {
@@ -383,7 +389,6 @@ button:disabled {
   border-radius: 18px;
   box-shadow: none;
 }
-
 
 
 
