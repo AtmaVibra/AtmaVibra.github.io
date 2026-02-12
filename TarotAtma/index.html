@@ -427,6 +427,9 @@ button:disabled {
 
       <div class="card" id="card-current">
         <div class="card-inner">
+
+   <div id="cardImageContainer-current"></div>
+         
           <div class="card-type">Energía actual</div>
           <div class="card-title">—</div>
           <div class="card-teaching">Aquí aparecerá la lectura de tu energía actual.</div>
@@ -434,14 +437,15 @@ button:disabled {
           <div class="card-affirmation"></div>
         </div>
       </div>
-
-
-      <div id="cardImageContainer-current"></div>
+  
 
       
 
       <div class="card" id="card-block">
         <div class="card-inner">
+
+            <div id="cardImageContainer-block"></div>
+         
           <div class="card-type">Bloqueo</div>
           <div class="card-title">—</div>
           <div class="card-teaching">Aquí aparecerá el patrón que está frenando tu expansión.</div>
@@ -451,13 +455,12 @@ button:disabled {
       </div>
 
       
-
-      <div id="cardImageContainer-block"></div>
-
       
-
       <div class="card" id="card-potential">
         <div class="card-inner">
+         
+         <div id="cardImageContainer-potential"></div>
+         
           <div class="card-type">Potencial</div>
           <div class="card-title">—</div>
           <div class="card-teaching">Aquí aparecerá el potencial que se abre para ti.</div>
@@ -814,12 +817,30 @@ function getRandomCard(type) {
 /* PC */
 function renderCard(id, data) {
   const card = document.getElementById(id);
+
+  // Insertar imagen
+  const imgContainer = card.querySelector(`#cardImageContainer-${id.split("-")[1]}`);
+  const ruta = cardImages[data.title];
+
+  if (ruta) {
+    imgContainer.innerHTML = `
+      <div class="card-image-wrapper">
+        <img src="${ruta}" class="card-image">
+      </div>
+    `;
+  } else {
+    imgContainer.innerHTML = "";
+  }
+
+  // Insertar texto
   card.querySelector(".card-title").textContent = data.title;
   card.querySelector(".card-teaching").textContent = data.teaching;
   card.querySelector(".card-action").textContent = "Acción: " + data.action;
   card.querySelector(".card-affirmation").textContent = data.affirmation;
+
   card.classList.add("show");
 }
+
 
 
   function renderCardImage(containerId, title) {
@@ -1303,6 +1324,7 @@ let mobileCards = [];
 let mobileIndex = 0;
   
 
+ 
 function createMobileCard(card) {
   const ruta = cardImages[card.title];
 
@@ -1311,22 +1333,24 @@ function createMobileCard(card) {
 
   div.innerHTML = `
     <div class="card-inner">
+
+      ${ruta ? `
+        <div class="card-image-wrapper">
+          <img src="${ruta}" class="card-image">
+        </div>
+      ` : ""}
+
       <div class="card-type">${card.type}</div>
       <div class="card-title">${card.title}</div>
       <div class="card-teaching">${card.teaching}</div>
       <div class="card-action">Acción: ${card.action}</div>
       <div class="card-affirmation">${card.affirmation}</div>
     </div>
-
-    ${ruta ? `
-      <div class="card-image-wrapper">
-        <img src="${ruta}" class="card-image">
-      </div>
-    ` : ""}
   `;
 
   return div;
 }
+
 
 
 function showNextMobileCard() {
