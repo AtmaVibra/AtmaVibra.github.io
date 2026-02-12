@@ -208,16 +208,18 @@ button:disabled {
 }
 
 .card-inner {
-  padding: 8px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;              /* separación limpia */
-  height: auto;          /* ⭐ el texto ya NO fuerza la altura */
-  border: none;          /* ⭐ SIN BORDE */
+  gap: 8px;
+  height: auto;
+  flex: 1;
+  border: none;
   background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
   border-radius: 8px;
   box-sizing: border-box;
 }
+
 
 
 /* TÍTULO DEL BLOQUE (Energía actual, Bloqueo, Potencial) */
@@ -251,17 +253,6 @@ button:disabled {
 .no-break {
   white-space: nowrap;
 }
-
-
-/* Evitar cortes y guiones en TODOS los móviles */
-.card-title,
-.card-type {
-  hyphens: none !important;        /* nunca guiones */
-  word-break: keep-all !important; /* no partir palabras */
-  overflow-wrap: anywhere !important; /* si no cabe, baja entera */
-}
-
-
 
 
 .card-teaching {
@@ -379,10 +370,6 @@ button:disabled {
   hyphens: none;         /* NO guiones */
 }
 
-
-
-  
-  
   
 
   /* Contenedor móvil: 3 cartas alineadas */
@@ -399,14 +386,25 @@ button:disabled {
 
   /* Cartas ajustadas para ocupar el ancho */
   .card {
-    width: 34%;
-    min-height: auto;
-    padding: 6px;
-  }
+  flex: 0 0 36%;
+  min-height: auto;
+  padding: 6px;
+}
+
 
   .card-inner {
-    padding: 6px;
-  }
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: auto;
+  flex: 1;
+  border: none;
+  background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
 
   /* Botón Revelar Carta debajo */
   #nextCardBtn {
@@ -437,18 +435,6 @@ button:disabled {
 }
 
 
- .card-inner {
-  padding: 0;   /* ⭐ SIN padding → la imagen crece hasta los bordes */
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  height: auto;
-  flex: 1;
-  border: none;
-  background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
-  border-radius: 8px;
-  box-sizing: border-box;
-}
 
 
 .card-image {
