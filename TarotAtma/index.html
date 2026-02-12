@@ -347,10 +347,11 @@ button:disabled {
   text-align: center;
   line-height: 1.15;
   white-space: normal;
-  overflow-wrap: break-word;
-  word-break: keep-all;   /* NO cortar palabras */
-  hyphens: none;        /* NO guiones */
+  overflow-wrap: anywhere;   /* ⭐ permite bajar la palabra ENTERA */
+  word-break: keep-all;      /* ⭐ NO partir palabras */
+  hyphens: none;             /* ⭐ NO guiones */
 }
+
 
 /* Ajuste de títulos de bloque en móvil */
 .card-type {
