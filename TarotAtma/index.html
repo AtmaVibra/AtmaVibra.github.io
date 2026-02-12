@@ -469,10 +469,7 @@ button:disabled {
         </div>
       </div>
 
-
-</div> <!-- cierre de card-potential -->
-
-      
+    
 
     </div>
 
@@ -857,7 +854,8 @@ function renderCard(id, data) {
   const card = document.getElementById(id);
 
   // Insertar imagen
-  const imgContainer = card.querySelector(`#cardImageContainer-${id.split("-")[1]}`);
+ const imgContainer = document.getElementById(`cardImageContainer-${id.split("-")[1]}`);
+ 
   const ruta = cardImages[data.title];
 
   if (ruta) {
