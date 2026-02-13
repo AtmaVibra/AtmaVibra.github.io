@@ -296,6 +296,7 @@ button:disabled {
 
   /* Responsive móvil – restaurado como el original */
 /* Responsive móvil – ajustado para que la primera carta se vea bien y el botón también */
+/* Responsive móvil – restaurado como el original */
 @media (max-width: 600px) {
 
   .atma-message {
@@ -367,41 +368,42 @@ button:disabled {
     hyphens: none;
   }
 
-  /* ⭐ CARTAS UNA DEBAJO DE OTRA */
+  /* ⭐ CORREGIDO: ahora las cartas se apilan verticalmente */
   #mobileCardsContainer {
     display: none;
     width: 100%;
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: column;   /* ← antes era row, por eso la 2ª se iba a la derecha */
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 16px;
   }
 
-  /* ⭐ CARTA DE TAMAÑO PERFECTO (ni gigante ni enana) */
+  /* ⭐ CORREGIDO: tamaño estable, sin estirarse */
   .card {
     width: 100%;
-    min-height: 240px;     /* ← tamaño ideal para ver el botón */
-    padding: 8px;
-    flex: none;
+    min-height: 260px;        /* ← antes era auto, por eso se hacía gigante */
+    padding: 6px;
+    flex: none;               /* ← evita que crezca sin límite */
   }
 
-  /* ⭐ INTERIOR SIN ESTIRARSE */
+  /* ⭐ CORREGIDO: evita que el interior empuje la carta hacia abajo */
   .card-inner {
-    padding: 10px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
     gap: 8px;
     height: auto;
-    flex: none;
+    flex: none;               /* ← antes era flex:1, causaba el estiramiento */
     border: none;
     background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
     border-radius: 8px;
     box-sizing: border-box;
   }
 
-  /* ⭐ IMAGEN AJUSTADA PARA QUE NO OCUPE TODA LA PANTALLA */
+  /* Imagen estable en móvil */
   .card-image-wrapper {
     width: 100%;
-    max-height: 160px;     /* ← límite para que la carta no sea gigante */
-    overflow: hidden;
+    height: auto;
   }
 
   .card-image {
@@ -411,7 +413,7 @@ button:disabled {
   }
 
   #nextCardBtn {
-    margin-top: 18px;
+    margin-top: 22px;
     display: none;
   }
 
@@ -419,6 +421,7 @@ button:disabled {
     display: none !important;
   }
 }
+
 
 
 
