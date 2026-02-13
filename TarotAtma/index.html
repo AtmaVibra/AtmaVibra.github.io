@@ -366,32 +366,48 @@ button:disabled {
     hyphens: none;
   }
 
+  /* ⭐ CORREGIDO: ahora las cartas se apilan verticalmente */
   #mobileCardsContainer {
-    display: none; /* ⭐ NO TOCO ESTO */
+    display: none;
     width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;   /* ← antes era row, por eso la 2ª se iba a la derecha */
+    justify-content: flex-start;
     align-items: stretch;
-    gap: 8px;
+    gap: 16px;
   }
 
+  /* ⭐ CORREGIDO: tamaño estable, sin estirarse */
   .card {
-    flex: 0 0 32%;
-    min-height: auto;
+    width: 100%;
+    min-height: 260px;        /* ← antes era auto, por eso se hacía gigante */
     padding: 6px;
+    flex: none;               /* ← evita que crezca sin límite */
   }
 
+  /* ⭐ CORREGIDO: evita que el interior empuje la carta hacia abajo */
   .card-inner {
     padding: 8px;
     display: flex;
     flex-direction: column;
     gap: 8px;
     height: auto;
-    flex: 1;
+    flex: none;               /* ← antes era flex:1, causaba el estiramiento */
     border: none;
     background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
     border-radius: 8px;
     box-sizing: border-box;
+  }
+
+  /* Imagen estable en móvil */
+  .card-image-wrapper {
+    width: 100%;
+    height: auto;
+  }
+
+  .card-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 
   #nextCardBtn {
@@ -403,6 +419,7 @@ button:disabled {
     display: none !important;
   }
 }
+
 
 @media (min-width: 601px) {
   #nextCardBtn {
