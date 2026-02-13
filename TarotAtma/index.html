@@ -295,6 +295,7 @@ button:disabled {
 
 
   /* Responsive móvil – restaurado como el original */
+/* Responsive móvil – ajustado para que la primera carta se vea bien y el botón también */
 @media (max-width: 600px) {
 
   .atma-message {
@@ -366,42 +367,41 @@ button:disabled {
     hyphens: none;
   }
 
-  /* ⭐ CORREGIDO: ahora las cartas se apilan verticalmente */
+  /* ⭐ CARTAS UNA DEBAJO DE OTRA */
   #mobileCardsContainer {
     display: none;
     width: 100%;
-    flex-direction: column;   /* ← antes era row, por eso la 2ª se iba a la derecha */
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: 16px;
+    flex-direction: column;
+    gap: 20px;
   }
 
-  /* ⭐ CORREGIDO: tamaño estable, sin estirarse */
+  /* ⭐ CARTA DE TAMAÑO PERFECTO (ni gigante ni enana) */
   .card {
     width: 100%;
-    min-height: 260px;        /* ← antes era auto, por eso se hacía gigante */
-    padding: 6px;
-    flex: none;               /* ← evita que crezca sin límite */
+    min-height: 240px;     /* ← tamaño ideal para ver el botón */
+    padding: 8px;
+    flex: none;
   }
 
-  /* ⭐ CORREGIDO: evita que el interior empuje la carta hacia abajo */
+  /* ⭐ INTERIOR SIN ESTIRARSE */
   .card-inner {
-    padding: 8px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 8px;
     height: auto;
-    flex: none;               /* ← antes era flex:1, causaba el estiramiento */
+    flex: none;
     border: none;
     background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
     border-radius: 8px;
     box-sizing: border-box;
   }
 
-  /* Imagen estable en móvil */
+  /* ⭐ IMAGEN AJUSTADA PARA QUE NO OCUPE TODA LA PANTALLA */
   .card-image-wrapper {
     width: 100%;
-    height: auto;
+    max-height: 160px;     /* ← límite para que la carta no sea gigante */
+    overflow: hidden;
   }
 
   .card-image {
@@ -411,7 +411,7 @@ button:disabled {
   }
 
   #nextCardBtn {
-    margin-top: 22px;
+    margin-top: 18px;
     display: none;
   }
 
@@ -419,6 +419,7 @@ button:disabled {
     display: none !important;
   }
 }
+
 
 
 @media (min-width: 601px) {
