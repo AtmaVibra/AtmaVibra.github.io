@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
@@ -14,7 +14,7 @@
   --card-height: 230px;
 }
 
-/* Fondo */
+/* Fondo — PERFECTO, NO SE TOCA */
 body {
   margin: 0;
   min-height: 100vh;
@@ -28,7 +28,7 @@ body {
   color: #f5f5f5;
 }
 
-
+/* Frase vibracional */
 .insight-phrase {
   display: block;
   margin-top: 12px;
@@ -38,8 +38,7 @@ body {
   line-height: 1.45;
   text-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
- 
-  
+
 /* Contenedor principal */
 .table {
   width: 100%;
@@ -103,6 +102,7 @@ body {
   color: rgba(255,255,255,0.7);
 }
 
+/* Botones generales */
 button {
   padding: 9px 18px;
   border-radius: 999px;
@@ -140,13 +140,12 @@ button:disabled {
 .atma-message {
   display: none;
   margin-top: 28px;
-  font-size: 1.35rem;   /* un poco más grande */
+  font-size: 1.35rem;
   font-weight: 700;
-  color: #f5d27a;       /* dorado */
+  color: #f5d27a;
   text-align: center;
   letter-spacing: 0.03em;
 }
-
 
 /* Área oráculo */
 .oracle-area {
@@ -185,10 +184,15 @@ button:disabled {
   padding: 20px 0;
 }
 
+
+
+
+
+
 .card {
   width: var(--card-width);
-  height: auto;          /* ⭐ la carta se adapta al contenido */
-  min-height: 360px;      /* ⭐ elimina la altura forzada */
+  height: auto;
+  min-height: 360px;
   border-radius: 12px;
   background: rgb(216, 232, 214);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.4);
@@ -200,7 +204,6 @@ button:disabled {
   transform: translateY(20px) scale(0.96);
   transition: opacity .4s ease, transform .4s ease;
 }
-
 
 .card.show {
   opacity: 1;
@@ -220,40 +223,36 @@ button:disabled {
   box-sizing: border-box;
 }
 
-
-
-/* TÍTULO DEL BLOQUE (Energía actual, Bloqueo, Potencial) */
+/* TÍTULO DEL BLOQUE */
 .card-type {
-  font-size: 0.85rem;        /* más grande */
-  font-weight: 700;          /* más presencia */
+  font-size: 0.85rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;    /* un poco menos separadas */
+  letter-spacing: 0.12em;
   color: #4A5F4A;
   margin-bottom: 6px;
-  text-align: center;        /* centrado real */
-  white-space: normal;       /* permite saltos de línea */
-  overflow-wrap: break-word; /* evita desbordes */
-  word-break: keep-all;      /* NO partir palabras */
-  hyphens: manual;           /* NO añadir guiones */
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  hyphens: manual;
 }
 
-/* TÍTULO DE LA CARTA (Valentía, Procrastinación, etc.) */
+/* TÍTULO DE LA CARTA */
 .card-title {
   font-size: 0.9rem;
   font-weight: 700;
   margin-bottom: 4px;
   color: #1f2b1f;
   text-align: center;
-  white-space: normal;        /* permite saltos */
-  word-break: keep-all;       /* NO partir palabras */
-  hyphens: manual;            /* NO guiones automáticos */
+  white-space: normal;
+  word-break: keep-all;
+  hyphens: manual;
 }
-
 
 .no-break {
   white-space: nowrap;
 }
-
 
 .card-teaching {
   font-size: 0.8rem;
@@ -292,13 +291,12 @@ button:disabled {
   }
 }
 
-
-
-  /* Responsive móvil – restaurado como el original */
-/* Responsive móvil – ajustado para que la primera carta se vea bien y el botón también */
-/* Responsive móvil – restaurado como el original */
+/* ============================
+   📱 MÓVIL — AJUSTADO CON RIGOR
+   ============================ */
 @media (max-width: 600px) {
 
+  /* El mensaje vibracional se verá centrado */
   .atma-message {
     color: #f5d27a !important;
     text-align: center;
@@ -368,59 +366,82 @@ button:disabled {
     hyphens: none;
   }
 
-  /* ⭐ CORREGIDO: ahora las cartas se apilan verticalmente */
+  /* ⭐ CONTENEDOR MÓVIL: 3 cartas en vertical, sin scroll */
   #mobileCardsContainer {
     display: none;
     width: 100%;
-    flex-direction: column;   /* ← antes era row, por eso la 2ª se iba a la derecha */
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: 16px;
-  }
-
-  /* ⭐ CORREGIDO: tamaño estable, sin estirarse */
-  .card {
-    width: 100%;
-    min-height: 260px;        /* ← antes era auto, por eso se hacía gigante */
-    padding: 6px;
-    flex: none;               /* ← evita que crezca sin límite */
-  }
-
-  /* ⭐ CORREGIDO: evita que el interior empuje la carta hacia abajo */
-  .card-inner {
-    padding: 8px;
-    display: flex;
+    height: 100vh;              /* ← clave: las 3 cartas caben sin scroll */
     flex-direction: column;
-    gap: 8px;
-    height: auto;
-    flex: none;               /* ← antes era flex:1, causaba el estiramiento */
-    border: none;
-    background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
-    border-radius: 8px;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 4px;
+    padding: 4px 0 8px;
     box-sizing: border-box;
   }
 
-  /* Imagen estable en móvil */
-  .card-image-wrapper {
-    width: 100%;
-    height: auto;
+  /* ⭐ Cada carta ocupa 1/3 exacto de la pantalla */
+  .mobile-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .card-image {
+  .mobile-card-inner {
     width: 100%;
-    height: auto;
+    max-width: 360px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ⭐ Botones móviles */
+  .mobile-top-btn,
+  .mobile-bottom-btn {
+    width: 70%;
+    max-width: 220px;
+    text-align: center;
+  }
+
+  /* ⭐ Imagen centrada y estable */
+  .mobile-image-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .mobile-image {
+    max-height: 26vh;     /* ← 3 imágenes + botones = sin scroll */
+    width: auto;
+    max-width: 70%;
     object-fit: contain;
+    display: block;
+    margin: 0 auto;
   }
 
-  #nextCardBtn {
-    margin-top: 22px;
+  /* ⭐ Texto de la carta (oculto hasta pulsar “Leer carta”) */
+  .mobile-details {
     display: none;
+    font-size: 0.8rem;
+    color: #2f3b2f;
+    text-align: center;
+    padding: 4px 8px 0;
+  }
+
+  /* Ocultar versión PC */
+  #nextCardBtn {
+    display: none !important;
   }
 
   #cardsRow {
     display: none !important;
   }
 }
+
 
 
 
@@ -444,10 +465,6 @@ button:disabled {
   object-fit: contain;
 }
 
-
-
-  
-  
 </style>
 </head>
 <body>
@@ -467,83 +484,73 @@ button:disabled {
     </div>
   </div>
 
-  
   <div class="oracle-area" id="oracleArea">
 
-  <div class="oracle-image-wrapper" id="oracleImageWrapper">
-    <img src="tacocartas.png" class="oracle-circle" id="oracleCircle">
-  </div>
-
-  <div class="cards-area">
-
-    <!-- Contenedor móvil -->
-    <div id="mobileCardsContainer"></div>
-
-    <!-- Botón móvil -->
-    <button id="nextCardBtn">Revelar Carta</button>
-
-    <!-- Cartas PC -->
-    <div class="cards-row" id="cardsRow">
-
-      <div class="card" id="card-current">
-        <div class="card-inner">
-
-   <div id="cardImageContainer-current"></div>
-         
-          <div class="card-type">Energía actual</div>
-          <div class="card-title">—</div>
-          <div class="card-teaching">Aquí aparecerá la lectura de tu energía actual.</div>
-          <div class="card-action"></div>
-          <div class="card-affirmation"></div>
-        </div>
-      </div>
-  
-
-      
-
-      <div class="card" id="card-block">
-        <div class="card-inner">
-
-            <div id="cardImageContainer-block"></div>
-         
-          <div class="card-type">Bloqueo</div>
-          <div class="card-title">—</div>
-          <div class="card-teaching">Aquí aparecerá el patrón que está frenando tu expansión.</div>
-          <div class="card-action"></div>
-          <div class="card-affirmation"></div>
-        </div>
-      </div>
-
-      
-      
-      <div class="card" id="card-potential">
-        <div class="card-inner">
-         
-         <div id="cardImageContainer-potential"></div>
-         
-          <div class="card-type">Potencial</div>
-          <div class="card-title">—</div>
-          <div class="card-teaching">Aquí aparecerá el potencial que se abre para ti.</div>
-          <div class="card-action"></div>
-          <div class="card-affirmation"></div>
-        </div>
-      </div>
-
-    
-
+    <div class="oracle-image-wrapper" id="oracleImageWrapper">
+      <img src="tacocartas.png" class="oracle-circle" id="oracleCircle">
     </div>
 
-    <!-- ⭐ MENSAJE DEBAJO DE LAS CARTAS (PC) ⭐ -->
-    <div id="atmaMessage" class="atma-message">Tus cartas del Tarot Atma dicen...</div>
+    <div class="cards-area">
 
-  </div>   <!-- cierre de cards-area -->
-</div>     <!-- cierre de oracle-area -->
-</div>     <!-- cierre de table -->
+      <!-- ⭐ CONTENEDOR MÓVIL (3 cartas en vertical) -->
+      <div id="mobileCardsContainer"></div>
+
+      <!-- ⭐ Botón móvil (se ocultará, pero lo dejamos por compatibilidad) -->
+      <button id="nextCardBtn">Revelar Carta</button>
+
+      <!-- ⭐ CARTAS PC (NO SE TOCAN) -->
+      <div class="cards-row" id="cardsRow">
+
+        <div class="card" id="card-current">
+          <div class="card-inner">
+            <div id="cardImageContainer-current"></div>
+            <div class="card-type">Energía actual</div>
+            <div class="card-title">—</div>
+            <div class="card-teaching">Aquí aparecerá la lectura de tu energía actual.</div>
+            <div class="card-action"></div>
+            <div class="card-affirmation"></div>
+          </div>
+        </div>
+
+        <div class="card" id="card-block">
+          <div class="card-inner">
+            <div id="cardImageContainer-block"></div>
+            <div class="card-type">Bloqueo</div>
+            <div class="card-title">—</div>
+            <div class="card-teaching">Aquí aparecerá el patrón que está frenando tu expansión.</div>
+            <div class="card-action"></div>
+            <div class="card-affirmation"></div>
+          </div>
+        </div>
+
+        <div class="card" id="card-potential">
+          <div class="card-inner">
+            <div id="cardImageContainer-potential"></div>
+            <div class="card-type">Potencial</div>
+            <div class="card-title">—</div>
+            <div class="card-teaching">Aquí aparecerá el potencial que se abre para ti.</div>
+            <div class="card-action"></div>
+            <div class="card-affirmation"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ⭐ MENSAJE DEBAJO DE LAS CARTAS (PC y móvil) -->
+      <div id="atmaMessage" class="atma-message">Tus cartas del Tarot Atma dicen...</div>
+
+    </div> <!-- cierre cards-area -->
+  </div>   <!-- cierre oracle-area -->
+</div>     <!-- cierre table -->
 
 <script>
+
+
+
+
+
+
 /* Mazo */
-
-
 
 const cardImages = {
 
@@ -903,7 +910,6 @@ const deck = {
 };
 
 /* Utilidades */
-
 function getRandomCard(type) {
   const group = deck[type];
   return group[Math.floor(Math.random() * group.length)];
@@ -914,8 +920,7 @@ function renderCard(id, data) {
   const card = document.getElementById(id);
 
   // Insertar imagen
- const imgContainer = card.querySelector("[id^='cardImageContainer']");
- 
+  const imgContainer = card.querySelector("[id^='cardImageContainer']");
   const ruta = cardImages[data.title];
 
   if (ruta) {
@@ -937,9 +942,7 @@ function renderCard(id, data) {
   card.classList.add("show");
 }
 
-
-
-  function renderCardImage(containerId, title) {
+function renderCardImage(containerId, title) {
   const cont = document.getElementById(containerId);
   const ruta = cardImages[title];
 
@@ -954,7 +957,6 @@ function renderCard(id, data) {
     </div>
   `;
 }
-
 
 
 
@@ -1403,110 +1405,134 @@ function generateInsightPhrase(current, block, potential) {
   return templates[Math.floor(Math.random() * templates.length)];
 }
 
+/* ======================================================
+   MÓVIL — NUEVA LÓGICA COMPLETA
+   ====================================================== */
 
-
-
-
-  
-
-
-
-  
-/* Móvil */
 const mobileContainer = document.getElementById("mobileCardsContainer");
 const nextBtn = document.getElementById("nextCardBtn");
 
 let mobileCards = [];
 let mobileIndex = 0;
-  
 
- 
-function createMobileCard(card) {
+/* Crear carta móvil con:
+   - Botón superior “Revelar siguiente” (solo en carta 1 y 2)
+   - Imagen centrada
+   - Botón “Leer carta”
+   - Texto oculto hasta pulsar
+*/
+function createMobileCard(card, index) {
   const ruta = cardImages[card.title];
 
   const div = document.createElement("div");
   div.className = "card show mobile-card";
 
-  div.innerHTML = `
-    <div class="card-inner">
+  const inner = document.createElement("div");
+  inner.className = "card-inner mobile-card-inner";
 
-      ${ruta ? `
-        <div class="card-image-wrapper">
-          <img src="${ruta}" class="card-image">
-        </div>
-      ` : ""}
+  /* Botón superior (solo carta 1 y 2) */
+  const topBtn = document.createElement("button");
+  topBtn.className = "mobile-top-btn";
+  topBtn.innerHTML = "Revelar<br>siguiente";
 
-      <div class="card-type">${card.type}</div>
-      <div class="card-title">${card.title}</div>
-      <div class="card-teaching">${card.teaching}</div>
-      <div class="card-action">Acción: ${card.action}</div>
-      <div class="card-affirmation">${card.affirmation}</div>
-    </div>
+  if (index < 2) {
+    topBtn.addEventListener("click", showNextMobileCard);
+  } else {
+    topBtn.style.visibility = "hidden"; // tercera carta NO lo lleva
+  }
+
+  /* Imagen */
+  const imgWrapper = document.createElement("div");
+  imgWrapper.className = "mobile-image-wrapper";
+
+  if (ruta) {
+    const img = document.createElement("img");
+    img.src = ruta;
+    img.className = "mobile-image";
+    imgWrapper.appendChild(img);
+  }
+
+  /* Texto oculto */
+  const details = document.createElement("div");
+  details.className = "mobile-details";
+  details.innerHTML = `
+    <div class="card-type">${card.type}</div>
+    <div class="card-title">${card.title}</div>
+    <div class="card-teaching">${card.teaching}</div>
+    <div class="card-action">Acción: ${card.action}</div>
+    <div class="card-affirmation">${card.affirmation}</div>
   `;
 
+  /* Botón inferior: Leer carta */
+  const bottomBtn = document.createElement("button");
+  bottomBtn.className = "mobile-bottom-btn";
+  bottomBtn.textContent = "Leer carta";
+
+  bottomBtn.addEventListener("click", () => {
+    const visible = details.style.display === "block";
+    details.style.display = visible ? "none" : "block";
+    bottomBtn.textContent = visible ? "Leer carta" : "Ocultar carta";
+  });
+
+  /* Ensamblar */
+  inner.appendChild(topBtn);
+  inner.appendChild(imgWrapper);
+  inner.appendChild(bottomBtn);
+  inner.appendChild(details);
+
+  div.appendChild(inner);
   return div;
 }
 
-
-
+/* Mostrar siguiente carta */
 function showNextMobileCard() {
   if (mobileIndex >= mobileCards.length) return;
 
-  const card = createMobileCard(mobileCards[mobileIndex]);
-  mobileContainer.appendChild(card);
+  const cardElement = createMobileCard(mobileCards[mobileIndex], mobileIndex);
+  mobileContainer.appendChild(cardElement);
   mobileIndex++;
 
+  /* Si ya están las 3 cartas → generar frase vibracional */
   if (mobileIndex === mobileCards.length) {
-    nextBtn.style.display = "none";
-
-    const restart = document.createElement("button");
-    restart.textContent = "Barajar y revelar de nuevo";
-    restart.classList.add("restart-btn");
-    restart.onclick = resetMobileView;
+    const phrase = generateInsightPhrase(
+      mobileCards[0],
+      mobileCards[1],
+      mobileCards[2]
+    );
 
     const msg = document.getElementById("atmaMessage");
-    const phrase = generateInsightPhrase(
-  mobileCards[0],
-  mobileCards[1],
-  mobileCards[2]
-);
+    msg.innerHTML = `
+      Las cartas de tu Tarot ATMA dicen:<br><br>
+      <span class="insight-phrase">${phrase}</span>
+    `;
+    msg.style.display = "block";
 
-msg.innerHTML = `
-  Tus cartas del Tarot Atma dicen...<br><br>
-  <span class="insight-phrase">${phrase}</span>
-`;
-msg.style.display = "block";
-
-
-    // Orden: mensaje y debajo el botón
-    nextBtn.insertAdjacentElement("afterend", msg);
-    msg.insertAdjacentElement("afterend", restart);
+    /* Activar scroll SOLO ahora */
+    document.body.classList.add("with-message");
   }
 }
 
+/* Reset móvil */
 function resetMobileView() {
-  document.getElementById("headerSection").style.display = "flex";
-  document.getElementById("oracleImageWrapper").style.display = "flex";
-  document.getElementById("cardsRow").style.display = "flex";
-
   mobileContainer.style.display = "none";
   mobileContainer.innerHTML = "";
-  nextBtn.style.display = "none";
-
   mobileIndex = 0;
   mobileCards = [];
 
-  const restartBtn = document.querySelector(".restart-btn");
-  if (restartBtn) restartBtn.remove();
+  const msg = document.getElementById("atmaMessage");
+  msg.style.display = "none";
+  msg.innerHTML = "Tus cartas del Tarot Atma dicen...";
 
-  document.getElementById("atmaMessage").style.display = "none";
+  document.body.classList.remove("with-message");
 }
 
 nextBtn.addEventListener("click", showNextMobileCard);
 
 /* Botón barajar */
 document.getElementById("drawBtn").addEventListener("click", () => {
-  document.getElementById("atmaMessage").style.display = "none";
+  const msg = document.getElementById("atmaMessage");
+  msg.style.display = "none";
+  msg.innerHTML = "Tus cartas del Tarot Atma dicen...";
 
   const current = getRandomCard("current");
   const block = getRandomCard("block");
@@ -1518,32 +1544,42 @@ document.getElementById("drawBtn").addEventListener("click", () => {
     document.getElementById("oracleImageWrapper").style.display = "none";
     document.getElementById("cardsRow").style.display = "none";
 
+    resetMobileView();
+
     mobileCards = [
       { type: "Energía actual", ...current },
       { type: "Bloqueo", ...block },
       { type: "Potencial", ...potential }
     ];
 
-    mobileIndex = 0;
-    mobileContainer.innerHTML = "";
     mobileContainer.style.display = "flex";
-
-    nextBtn.style.display = "block";
-    nextBtn.textContent = "Revelar Carta";
-
-    showNextMobileCard();
+    showNextMobileCard(); // primera carta
     return;
   }
 
-  // PC
+  // PC (intacto)
   document.getElementById("cardsRow").style.display = "flex";
   renderCard("card-current", current);
   renderCard("card-block", block);
   renderCard("card-potential", potential);
 
+  const phrase = generateInsightPhrase(current, block, potential);
+  msg.innerHTML = `
+    Tus cartas del Tarot Atma dicen...<br><br>
+    <span class="insight-phrase">${phrase}</span>
+  `;
+  msg.style.display = "block";
+});
 
-  
-  // Generar la frase personalizada
+
+
+  // PC
+document.getElementById("cardsRow").style.display = "flex";
+renderCard("card-current", current);
+renderCard("card-block", block);
+renderCard("card-potential", potential);
+
+// Generar la frase personalizada
 const phrase = generateInsightPhrase(current, block, potential);
 
 // Mostrar el mensaje + la frase
@@ -1559,3 +1595,4 @@ msg.style.display = "block";
 
 </body>
 </html>
+
