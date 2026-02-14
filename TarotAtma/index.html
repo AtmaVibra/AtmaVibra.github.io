@@ -1557,7 +1557,7 @@ document.getElementById("drawBtn").addEventListener("click", () => {
     return;
   }
 
-  // PC (intacto)
+    // PC (intacto)
   document.getElementById("cardsRow").style.display = "flex";
   renderCard("card-current", current);
   renderCard("card-block", block);
@@ -1570,29 +1570,9 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   `;
   msg.style.display = "block";
 });
-
-
-
-  // PC
-document.getElementById("cardsRow").style.display = "flex";
-renderCard("card-current", current);
-renderCard("card-block", block);
-renderCard("card-potential", potential);
-
-// Generar la frase personalizada
-const phrase = generateInsightPhrase(current, block, potential);
-
-// Mostrar el mensaje + la frase
-const msg = document.getElementById("atmaMessage");
-msg.innerHTML = `
-  Tus cartas del Tarot Atma dicen...<br><br>
-  <span class="insight-phrase">${phrase}</span>
-`;
-msg.style.display = "block";
-
-});
 </script>
 
 </body>
 </html>
+
 
