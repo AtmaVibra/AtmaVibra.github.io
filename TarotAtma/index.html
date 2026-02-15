@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
@@ -28,7 +28,6 @@ body {
   color: #f5f5f5;
 }
 
-
 .insight-phrase {
   display: block;
   margin-top: 12px;
@@ -38,8 +37,7 @@ body {
   line-height: 1.45;
   text-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
- 
-  
+
 /* Contenedor principal */
 .table {
   width: 100%;
@@ -140,13 +138,12 @@ button:disabled {
 .atma-message {
   display: none;
   margin-top: 28px;
-  font-size: 1.35rem;   /* un poco más grande */
+  font-size: 1.35rem;
   font-weight: 700;
-  color: #f5d27a;       /* dorado */
+  color: #f5d27a;
   text-align: center;
   letter-spacing: 0.03em;
 }
-
 
 /* Área oráculo */
 .oracle-area {
@@ -169,287 +166,102 @@ button:disabled {
   object-fit: contain;
 }
 
-/* Cartas */
-.cards-area {
+/* ============================================================
+   MODO MÓVIL — AQUÍ VIENE TODO LO QUE QUIERES
+============================================================ */
+
+/* Contenedor de las 3 cartas móviles */
+#mobileCardsContainer {
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* arriba, centro, abajo */
   align-items: center;
+  height: 100vh;                  /* ocupa toda la pantalla */
+  overflow: hidden;               /* sin scroll */
+  padding: 0;
 }
 
-.cards-row {
+/* Carta móvil: solo imagen, sin recuadro */
+.mobile-card {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  height: 33.33vh;                /* un tercio exacto */
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-  width: 100%;
-  padding: 20px 0;
+  align-items: center;
+  position: relative;             /* necesario para botones */
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
 }
 
-.card {
-  width: var(--card-width);
-  height: auto;          /* ⭐ la carta se adapta al contenido */
-  min-height: 360px;      /* ⭐ elimina la altura forzada */
-  border-radius: 12px;
-  background: rgb(216, 232, 214);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.4);
-  padding: 10px;
+/* Contenedor interno */
+.mobile-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;             /* botones flotan dentro */
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(20px) scale(0.96);
-  transition: opacity .4s ease, transform .4s ease;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
-
-.card.show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.card-inner {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  height: auto;
-  flex: none;
-  border: none;
-  background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
-  border-radius: 8px;
-  box-sizing: border-box;
-}
-
-
-
-/* TÍTULO DEL BLOQUE (Energía actual, Bloqueo, Potencial) */
-.card-type {
-  font-size: 0.85rem;        /* más grande */
-  font-weight: 700;          /* más presencia */
-  text-transform: uppercase;
-  letter-spacing: 0.12em;    /* un poco menos separadas */
-  color: #4A5F4A;
-  margin-bottom: 6px;
-  text-align: center;        /* centrado real */
-  white-space: normal;       /* permite saltos de línea */
-  overflow-wrap: break-word; /* evita desbordes */
-  word-break: keep-all;      /* NO partir palabras */
-  hyphens: manual;           /* NO añadir guiones */
-}
-
-/* TÍTULO DE LA CARTA (Valentía, Procrastinación, etc.) */
-.card-title {
-  font-size: 0.9rem;
-  font-weight: 700;
-  margin-bottom: 4px;
-  color: #1f2b1f;
-  text-align: center;
-  white-space: normal;        /* permite saltos */
-  word-break: keep-all;       /* NO partir palabras */
-  hyphens: manual;            /* NO guiones automáticos */
-}
-
-
-.no-break {
-  white-space: nowrap;
-}
-
-
-.card-teaching {
-  font-size: 0.8rem;
-  color: #2f3b2f;
-  flex: 1;
-}
-
-.card-action {
-  font-size: 0.75rem;
-  color: #0b5a3a;
-  margin-top: 6px;
-}
-
-.card-affirmation {
-  font-size: 0.7rem;
-  font-style: italic;
-  color: #3b4b3b;
-  margin-top: 4px;
-}
-
-/* Animación móvil */
-.mobile-card {
-  opacity: 0;
-  transform: translateX(-40px);
-  animation: slideInMobile .4s ease forwards;
-}
-
-@keyframes slideInMobile {
-  from {
-    opacity: 0;
-    transform: translateX(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-
-
-  /* Responsive móvil – restaurado como el original */
-/* Responsive móvil – ajustado para que la primera carta se vea bien y el botón también */
-/* Responsive móvil – restaurado como el original */
-@media (max-width: 600px) {
-
-  .atma-message {
-    color: #f5d27a !important;
-    text-align: center;
-  }
-
-  .restart-btn {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-  }
-
-  .header {
-    flex-direction: column;
-    text-align: center;
-    gap: 12px;
-  }
-
-  .title-block h1 {
-    font-size: 2.4rem;
-    font-weight: 300;
-    margin: 0;
-  }
-
-  .title-block p {
-    font-size: 0.8rem;
-    margin-top: 4px;
-  }
-
-  .intention-box {
-    width: 100%;
-    max-width: 360px;
-    margin-top: 10px;
-  }
-
-  .intention-box input {
-    width: 100%;
-    text-align: left;
-  }
-
-  .intention-box button {
-    width: auto;
-    margin: 0;
-  }
-
-  .oracle-circle {
-    width: 190px !important;
-    height: auto !important;
-  }
-
-  .card-title {
-    font-size: 0.8rem;
-    text-align: center;
-    line-height: 1.15;
-    white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    hyphens: auto;
-  }
-
-  .card-type {
-    font-size: 0.9rem;
-    text-align: center;
-    line-height: 1.2;
-    white-space: normal;
-    overflow-wrap: break-word;
-    word-break: keep-all;
-    hyphens: none;
-  }
-
-  /* ⭐ CORREGIDO: ahora las cartas se apilan verticalmente */
-  #mobileCardsContainer {
-    display: none;
-    width: 100%;
-    flex-direction: column;   /* ← antes era row, por eso la 2ª se iba a la derecha */
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: 16px;
-  }
-
-  /* ⭐ CORREGIDO: tamaño estable, sin estirarse */
-  .card {
-    width: 100%;
-    min-height: 260px;        /* ← antes era auto, por eso se hacía gigante */
-    padding: 6px;
-    flex: none;               /* ← evita que crezca sin límite */
-  }
-
-  /* ⭐ CORREGIDO: evita que el interior empuje la carta hacia abajo */
-  .card-inner {
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    height: auto;
-    flex: none;               /* ← antes era flex:1, causaba el estiramiento */
-    border: none;
-    background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
-    border-radius: 8px;
-    box-sizing: border-box;
-  }
-
-  /* Imagen estable en móvil */
-  .card-image-wrapper {
-    width: 100%;
-    height: auto;
-  }
-
-  .card-image {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
-
-  #nextCardBtn {
-    margin-top: 22px;
-    display: none;
-  }
-
-  #cardsRow {
-    display: none !important;
-  }
-}
-
-
-
-
-@media (min-width: 601px) {
-  #nextCardBtn {
-    display: none !important;
-  }
-}
-
-.card-image-wrapper {
-  width: 100%;
-  height: auto;
-  flex-shrink: 0;
-  margin: 0;
-}
-
-.card-image {
-  width: 100%;
-  height: auto;
+/* Imagen de la carta */
+.mobile-image {
+  max-height: 90%;
+  width: auto;
   object-fit: contain;
 }
 
+/* Texto al pulsar "Leer carta" */
+.mobile-details {
+  display: none;
+  margin-top: 10px;
+  background: rgba(255,255,255,0.9);
+  padding: 12px;
+  border-radius: 10px;
+  width: 90%;
+  text-align: center;
+}
+
+/* Botones laterales */
+.mobile-top-btn,
+.mobile-bottom-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: #ff8c42;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Izquierda */
+.mobile-top-btn {
+  left: 10px;
+}
+
+/* Derecha */
+.mobile-bottom-btn {
+  right: 10px;
+}
 
 
-  
-  
+
 </style>
 </head>
+
+
 <body>
 
 <div class="table">
