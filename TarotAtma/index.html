@@ -714,7 +714,7 @@ const deck = {
   ]
 };
 
-/*/* Utilidades */
+/* Utilidades */
 function getRandomCard(type) {
   const group = deck[type];
   return group[Math.floor(Math.random() * group.length)];
@@ -763,9 +763,6 @@ function renderCardImage(containerId, title) {
     </div>
   `;
 }
-
-
-
 
 
 
@@ -1214,23 +1211,16 @@ function generateInsightPhrase(current, block, potential) {
 }
 
 
+/* ============================
+      MÓVIL (VERSIÓN ORIGINAL)
+   ============================ */
 
-
-
-  
-
-
-
-  
-/* Móvil */
 const mobileContainer = document.getElementById("mobileCardsContainer");
 const nextBtn = document.getElementById("nextCardBtn");
 
 let mobileCards = [];
 let mobileIndex = 0;
-  
 
- 
 function createMobileCard(card) {
   const ruta = cardImages[card.title];
 
@@ -1257,8 +1247,6 @@ function createMobileCard(card) {
   return div;
 }
 
-
-
 function showNextMobileCard() {
   if (mobileIndex >= mobileCards.length) return;
 
@@ -1276,19 +1264,17 @@ function showNextMobileCard() {
 
     const msg = document.getElementById("atmaMessage");
     const phrase = generateInsightPhrase(
-  mobileCards[0],
-  mobileCards[1],
-  mobileCards[2]
-);
+      mobileCards[0],
+      mobileCards[1],
+      mobileCards[2]
+    );
 
-msg.innerHTML = `
-  Tus cartas del Tarot Atma dicen...<br><br>
-  <span class="insight-phrase">${phrase}</span>
-`;
-msg.style.display = "block";
+    msg.innerHTML = `
+      Tus cartas del Tarot Atma dicen...<br><br>
+      <span class="insight-phrase">${phrase}</span>
+    `;
+    msg.style.display = "block";
 
-
-    // Orden: mensaje y debajo el botón
     nextBtn.insertAdjacentElement("afterend", msg);
     msg.insertAdjacentElement("afterend", restart);
   }
@@ -1351,18 +1337,14 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   renderCard("card-block", block);
   renderCard("card-potential", potential);
 
+  const phrase = generateInsightPhrase(current, block, potential);
 
-  
-  // Generar la frase personalizada
-const phrase = generateInsightPhrase(current, block, potential);
-
-// Mostrar el mensaje + la frase
-const msg = document.getElementById("atmaMessage");
-msg.innerHTML = `
-  Tus cartas del Tarot Atma dicen...<br><br>
-  <span class="insight-phrase">${phrase}</span>
-`;
-msg.style.display = "block";
+  const msg = document.getElementById("atmaMessage");
+  msg.innerHTML = `
+    Tus cartas del Tarot Atma dicen...<br><br>
+    <span class="insight-phrase">${phrase}</span>
+  `;
+  msg.style.display = "block";
 
 });
 </script>
