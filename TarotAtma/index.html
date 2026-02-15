@@ -159,41 +159,28 @@ button {
   object-fit: contain;
 }
 
-/* ============================================================
-   MODO MÓVIL — SIN AFECTAR A LA PANTALLA INICIAL
-============================================================ */
+
+/* ============================
+   SEGUNDA PANTALLA (MÓVIL)
+   3 CARTAS EN 3 TERCIOS
+============================ */
 
 #mobileCardsContainer {
-  display: none; /* 🔥 evita letras al volver */
+  display: none;              /* oculto al inicio */
   flex-direction: column;
+  height: 100vh;              /* ocupa toda la pantalla */
   justify-content: space-between;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
   padding: 0;
+  overflow: hidden;
 }
 
 .mobile-card {
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  height: 33.33vh;
+  height: 33.33vh;            /* un tercio exacto */
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-}
-
-.mobile-card-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
 .mobile-image {
@@ -202,32 +189,28 @@ button {
   object-fit: contain;
 }
 
-.mobile-details {
-  display: none;
-  margin-top: 10px;
-  background: rgba(255,255,255,0.9);
-  padding: 12px;
-  border-radius: 10px;
-  width: 90%;
-  text-align: center;
-}
-
+/* Botones laterales */
 .mobile-top-btn,
 .mobile-bottom-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
   background: #ff8c42;
   color: white;
   border: none;
   padding: 10px 14px;
   border-radius: 8px;
   font-size: 14px;
+  z-index: 10;
 }
 
 .mobile-top-btn { left: 10px; }
 .mobile-bottom-btn { right: 10px; }
+
+
+
+
+
 
 
 
@@ -327,6 +310,26 @@ button {
 </div>     <!-- cierre de table -->
 
 <script>
+
+const drawBtn = document.getElementById("drawBtn"); 
+const table = document.querySelector(".table"); 
+const oracleArea = document.querySelector(".oracle-area"); 
+const mobileContainer = document.getElementById("mobileCardsContainer");
+
+drawBtn.addEventListener("click", () => {
+
+  // Ocultar pantalla principal
+  table.style.display = "none";
+
+  // Ocultar taco SOLO en la segunda pantalla
+  oracleArea.style.display = "none";
+
+  // Mostrar cartas móviles
+  mobileContainer.style.display = "flex";
+});
+
+
+
 
 document.getElementById("cardsRow").style.display = "none";
 
