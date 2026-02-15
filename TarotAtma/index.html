@@ -714,8 +714,7 @@ const deck = {
   ]
 };
 
-/* Utilidades */
-
+/*/* Utilidades */
 function getRandomCard(type) {
   const group = deck[type];
   return group[Math.floor(Math.random() * group.length)];
@@ -726,8 +725,7 @@ function renderCard(id, data) {
   const card = document.getElementById(id);
 
   // Insertar imagen
- const imgContainer = card.querySelector("[id^='cardImageContainer']");
- 
+  const imgContainer = card.querySelector("[id^='cardImageContainer']");
   const ruta = cardImages[data.title];
 
   if (ruta) {
@@ -749,9 +747,8 @@ function renderCard(id, data) {
   card.classList.add("show");
 }
 
-
-
-  function renderCardImage(containerId, title) {
+/* Renderizar imagen en PC */
+function renderCardImage(containerId, title) {
   const cont = document.getElementById(containerId);
   const ruta = cardImages[title];
 
@@ -766,6 +763,7 @@ function renderCard(id, data) {
     </div>
   `;
 }
+
 
 
 
