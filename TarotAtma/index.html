@@ -225,6 +225,14 @@ button {
 .mobile-top-btn { left: 10px; }
 .mobile-bottom-btn { right: 10px; }
 
+
+/* OCULTAR LAS CARTAS PC EN MÓVIL */
+@media (max-width: 600px) {
+  #cardsRow {
+    display: none !important;
+  }
+}
+
 </style>
 </head>
 
@@ -321,9 +329,10 @@ button {
 </div>     <!-- cierre de table -->
 
 <script>
+
+document.getElementById("cardsRow").style.display = "none";
+
 /* Mazo */
-
-
 
 const cardImages = {
 
