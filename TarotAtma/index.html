@@ -14,10 +14,6 @@
   --card-height: 230px;
 }
 
-#nextCardBtn {
-  display: none;
-}
-
 /* Fondo */
 body {
   margin: 0;
@@ -27,12 +23,11 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  /* 🔥 RESTAURADO: antes NO era flex */
-  display: block !important;
-
+  display: flex;
+  justify-content: center;
   color: #f5f5f5;
 }
+
 
 .insight-phrase {
   display: block;
@@ -43,7 +38,8 @@ body {
   line-height: 1.45;
   text-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
-
+ 
+  
 /* Contenedor principal */
 .table {
   width: 100%;
@@ -53,17 +49,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin: 0 auto; /* 🔥 centrado */
 }
 
 /* Header */
 .header {
-  display: flex !important;
-  flex-direction: column !important; /* 🔥 restaurado */
-  justify-content: center !important;
-  align-items: center !important;
-  text-align: center !important;
-  gap: 12px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
 }
 
 .title-block h1 {
@@ -89,9 +82,11 @@ body {
   flex-direction: column;
   gap: 8px;
   max-width: 360px;
-  margin: 0 auto; /* 🔥 centrado */
-  text-align: center;
-  align-items: center;
+}
+
+.intention-box label {
+  font-size: 0.8rem;
+  opacity: 0.9;
 }
 
 .intention-box input {
@@ -102,8 +97,6 @@ body {
   color: #fff;
   outline: none;
   font-size: 0.9rem;
-  width: 100%;
-  max-width: 320px;
 }
 
 .intention-box input::placeholder {
@@ -123,102 +116,340 @@ button {
   font-size: 0.75rem;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
   transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
-  width: 100%;
-  max-width: 320px; /* 🔥 centrado */
+}
+
+button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+}
+
+button:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
 }
 
 /* MENSAJE GLOBAL */
 .atma-message {
   display: none;
   margin-top: 28px;
-  font-size: 1.35rem;
+  font-size: 1.35rem;   /* un poco más grande */
   font-weight: 700;
-  color: #f5d27a;
+  color: #f5d27a;       /* dorado */
   text-align: center;
   letter-spacing: 0.03em;
 }
 
+
 /* Área oráculo */
 .oracle-area {
-  display: flex !important;
-  flex-direction: column !important; /* 🔥 restaurado */
-  justify-content: center !important;
-  align-items: center !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 32px;
+  flex-wrap: wrap;
 }
 
 .oracle-image-wrapper {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
-
-.oracle-circle {
-  width: 260px !important;
-  height: auto !important;
-  object-fit: contain;
-}
-
-
-/* ============================
-   SEGUNDA PANTALLA (MÓVIL)
-   3 CARTAS EN 3 TERCIOS
-============================ */
-
-#mobileCardsContainer {
-  display: none;              /* oculto al inicio */
-  flex-direction: column;
-  height: 100vh;              /* ocupa toda la pantalla */
-  justify-content: space-between;
-  padding: 0;
-  overflow: hidden;
-}
-
-.mobile-card {
-  height: 33.33vh;            /* un tercio exacto */
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
 
-.mobile-image {
-  max-height: 90%;
-  width: auto;
+.oracle-circle {
+  width: 260px;
+  height: auto;
   object-fit: contain;
 }
 
-/* Botones laterales */
-.mobile-top-btn,
-.mobile-bottom-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #ff8c42;
-  color: white;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 14px;
-  z-index: 10;
+/* Cartas */
+.cards-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.mobile-top-btn { left: 10px; }
-.mobile-bottom-btn { right: 10px; }
+.cards-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.card {
+  width: var(--card-width);
+  height: auto;          /* ⭐ la carta se adapta al contenido */
+  min-height: 360px;      /* ⭐ elimina la altura forzada */
+  border-radius: 12px;
+  background: rgb(216, 232, 214);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px) scale(0.96);
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.card-inner {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: auto;
+  flex: none;
+  border: none;
+  background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+
+
+/* TÍTULO DEL BLOQUE (Energía actual, Bloqueo, Potencial) */
+.card-type {
+  font-size: 0.85rem;        /* más grande */
+  font-weight: 700;          /* más presencia */
+  text-transform: uppercase;
+  letter-spacing: 0.12em;    /* un poco menos separadas */
+  color: #4A5F4A;
+  margin-bottom: 6px;
+  text-align: center;        /* centrado real */
+  white-space: normal;       /* permite saltos de línea */
+  overflow-wrap: break-word; /* evita desbordes */
+  word-break: keep-all;      /* NO partir palabras */
+  hyphens: manual;           /* NO añadir guiones */
+}
+
+/* TÍTULO DE LA CARTA (Valentía, Procrastinación, etc.) */
+.card-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #1f2b1f;
+  text-align: center;
+  white-space: normal;        /* permite saltos */
+  word-break: keep-all;       /* NO partir palabras */
+  hyphens: manual;            /* NO guiones automáticos */
+}
+
+
+.no-break {
+  white-space: nowrap;
+}
+
+
+.card-teaching {
+  font-size: 0.8rem;
+  color: #2f3b2f;
+  flex: 1;
+}
+
+.card-action {
+  font-size: 0.75rem;
+  color: #0b5a3a;
+  margin-top: 6px;
+}
+
+.card-affirmation {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: #3b4b3b;
+  margin-top: 4px;
+}
+
+/* Animación móvil */
+.mobile-card {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: slideInMobile .4s ease forwards;
+}
+
+@keyframes slideInMobile {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+
+  /* Responsive móvil – restaurado como el original */
+/* Responsive móvil – ajustado para que la primera carta se vea bien y el botón también */
+/* Responsive móvil – restaurado como el original */
+@media (max-width: 600px) {
+
+  .atma-message {
+    color: #f5d27a !important;
+    text-align: center;
+  }
+
+  .restart-btn {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .title-block h1 {
+    font-size: 2.4rem;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  .title-block p {
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
+
+  .intention-box {
+    width: 100%;
+    max-width: 360px;
+    margin-top: 10px;
+  }
+
+  .intention-box input {
+    width: 100%;
+    text-align: left;
+  }
+
+  .intention-box button {
+    width: auto;
+    margin: 0;
+  }
+
+  .oracle-circle {
+    width: 190px !important;
+    height: auto !important;
+  }
+
+  .card-title {
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: 1.15;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .card-type {
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+    hyphens: none;
+  }
+
+  /* ⭐ CORREGIDO: ahora las cartas se apilan verticalmente */
+  #mobileCardsContainer {
+    display: none;
+    width: 100%;
+    flex-direction: column;   /* ← antes era row, por eso la 2ª se iba a la derecha */
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  /* ⭐ CORREGIDO: tamaño estable, sin estirarse */
+  .card {
+    width: 100%;
+    min-height: 260px;        /* ← antes era auto, por eso se hacía gigante */
+    padding: 6px;
+    flex: none;               /* ← evita que crezca sin límite */
+  }
+
+  /* ⭐ CORREGIDO: evita que el interior empuje la carta hacia abajo */
+  .card-inner {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: auto;
+    flex: none;               /* ← antes era flex:1, causaba el estiramiento */
+    border: none;
+    background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  /* Imagen estable en móvil */
+  .card-image-wrapper {
+    width: 100%;
+    height: auto;
+  }
+
+  .card-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  #nextCardBtn {
+    margin-top: 22px;
+    display: none;
+  }
+
+  #cardsRow {
+    display: none !important;
+  }
+}
 
 
 
 
+@media (min-width: 601px) {
+  #nextCardBtn {
+    display: none !important;
+  }
+}
+
+.card-image-wrapper {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
 
 
 
-
+  
+  
 </style>
 </head>
-
-
-
 <body>
 
 <div class="table">
@@ -246,31 +477,7 @@ button {
   <div class="cards-area">
 
     <!-- Contenedor móvil -->
-    <div id="mobileCardsContainer">
-
-  <!-- Carta 1: Energía actual -->
-  <div class="mobile-card" id="mobile-card-1">
-    <button class="mobile-top-btn" id="nextBtn1">Revelar siguiente</button>
-    <img id="mobileImage1" class="mobile-image" src="" alt="">
-    <button class="mobile-bottom-btn" id="readBtn1">Leer carta</button>
-  </div>
-
-  <!-- Carta 2: Bloqueo -->
-  <div class="mobile-card" id="mobile-card-2">
-    <button class="mobile-top-btn" id="nextBtn2">Revelar siguiente</button>
-    <img id="mobileImage2" class="mobile-image" src="" alt="">
-    <button class="mobile-bottom-btn" id="readBtn2">Leer carta</button>
-  </div>
-
-  <!-- Carta 3: Potencial -->
-  <div class="mobile-card" id="mobile-card-3">
-    <button class="mobile-top-btn" id="nextBtn3">Revelar siguiente</button>
-    <img id="mobileImage3" class="mobile-image" src="" alt="">
-    <button class="mobile-bottom-btn" id="readBtn3">Leer carta</button>
-  </div>
-
-</div>
-
+    <div id="mobileCardsContainer"></div>
 
     <!-- Botón móvil -->
     <button id="nextCardBtn">Revelar Carta</button>
@@ -334,30 +541,9 @@ button {
 </div>     <!-- cierre de table -->
 
 <script>
-
-const drawBtn = document.getElementById("drawBtn"); 
-const table = document.querySelector(".table"); 
-const oracleArea = document.querySelector(".oracle-area"); 
-const mobileContainer = document.getElementById("mobileCardsContainer");
-
-drawBtn.addEventListener("click", () => {
-
-  // Ocultar pantalla principal
-  table.style.display = "none";
-
-  // Ocultar taco SOLO en la segunda pantalla
-  oracleArea.style.display = "none";
-
-  // Mostrar cartas móviles
-  mobileContainer.style.display = "flex";
-});
-
-
-
-
-document.getElementById("cardsRow").style.display = "none";
-
 /* Mazo */
+
+
 
 const cardImages = {
 
@@ -717,6 +903,7 @@ const deck = {
 };
 
 /* Utilidades */
+
 function getRandomCard(type) {
   const group = deck[type];
   return group[Math.floor(Math.random() * group.length)];
@@ -727,7 +914,8 @@ function renderCard(id, data) {
   const card = document.getElementById(id);
 
   // Insertar imagen
-  const imgContainer = card.querySelector("[id^='cardImageContainer']");
+ const imgContainer = card.querySelector("[id^='cardImageContainer']");
+ 
   const ruta = cardImages[data.title];
 
   if (ruta) {
@@ -749,8 +937,9 @@ function renderCard(id, data) {
   card.classList.add("show");
 }
 
-/* Renderizar imagen en PC */
-function renderCardImage(containerId, title) {
+
+
+  function renderCardImage(containerId, title) {
   const cont = document.getElementById(containerId);
   const ruta = cardImages[title];
 
@@ -765,6 +954,8 @@ function renderCardImage(containerId, title) {
     </div>
   `;
 }
+
+
 
 
 
@@ -1213,16 +1404,23 @@ function generateInsightPhrase(current, block, potential) {
 }
 
 
-/* ============================
-      MÓVIL (VERSIÓN ORIGINAL)
-   ============================ */
 
+
+
+  
+
+
+
+  
+/* Móvil */
 const mobileContainer = document.getElementById("mobileCardsContainer");
 const nextBtn = document.getElementById("nextCardBtn");
 
 let mobileCards = [];
 let mobileIndex = 0;
+  
 
+ 
 function createMobileCard(card) {
   const ruta = cardImages[card.title];
 
@@ -1249,6 +1447,8 @@ function createMobileCard(card) {
   return div;
 }
 
+
+
 function showNextMobileCard() {
   if (mobileIndex >= mobileCards.length) return;
 
@@ -1266,17 +1466,19 @@ function showNextMobileCard() {
 
     const msg = document.getElementById("atmaMessage");
     const phrase = generateInsightPhrase(
-      mobileCards[0],
-      mobileCards[1],
-      mobileCards[2]
-    );
+  mobileCards[0],
+  mobileCards[1],
+  mobileCards[2]
+);
 
-    msg.innerHTML = `
-      Tus cartas del Tarot Atma dicen...<br><br>
-      <span class="insight-phrase">${phrase}</span>
-    `;
-    msg.style.display = "block";
+msg.innerHTML = `
+  Tus cartas del Tarot Atma dicen...<br><br>
+  <span class="insight-phrase">${phrase}</span>
+`;
+msg.style.display = "block";
 
+
+    // Orden: mensaje y debajo el botón
     nextBtn.insertAdjacentElement("afterend", msg);
     msg.insertAdjacentElement("afterend", restart);
   }
@@ -1339,14 +1541,18 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   renderCard("card-block", block);
   renderCard("card-potential", potential);
 
-  const phrase = generateInsightPhrase(current, block, potential);
 
-  const msg = document.getElementById("atmaMessage");
-  msg.innerHTML = `
-    Tus cartas del Tarot Atma dicen...<br><br>
-    <span class="insight-phrase">${phrase}</span>
-  `;
-  msg.style.display = "block";
+  
+  // Generar la frase personalizada
+const phrase = generateInsightPhrase(current, block, potential);
+
+// Mostrar el mensaje + la frase
+const msg = document.getElementById("atmaMessage");
+msg.innerHTML = `
+  Tus cartas del Tarot Atma dicen...<br><br>
+  <span class="insight-phrase">${phrase}</span>
+`;
+msg.style.display = "block";
 
 });
 </script>
