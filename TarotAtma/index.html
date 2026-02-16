@@ -300,149 +300,111 @@ button:disabled {
 /* Responsive móvil – restaurado como el original */
 
 @media (max-width: 600px) {
-
-    .atma-message {
-        color: #f5d27a !important;
-        text-align: center;
-    }
-
-    .restart-btn {
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-    }
-
-    .header {
-        flex-direction: column;
-        text-align: center;
-        gap: 12px;
-    }
-
-    title-block h1 {
-        font-size: 2.4rem;
-        font-weight: 300;
-        margin: 0;
-    }
-
-    .title-block p {
-        font-size: 0.8rem;
-        margin-top: 4px;
-    }
-
-    .intention-box {
-        width: 100%;
-        max-width: 360px;
-        margin-top: 10px;
-    }
-
-    .intention-box input {
-        width: 100%;
-        text-align: left;
-    }
-
-    .intention-box button {
-        width: auto;
-        margin: 0;
-    }
-
-    .oracle-circle {
-        width: 170px !important;   /* antes 190 */
-        height: auto !important;
-    }
-
-    /* CONTENEDOR DE CARTAS EN MÓVIL */
-    #mobileCardsContainer {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: stretch;
-        gap: 12px;
-    }
-
-    /* CARTAS MÁS PEQUEÑAS (SIN ROMPER NADA) */
-    .card {
-        width: 100%;
-        min-height: 180px;   /* antes 260 */
-        padding: 4px;        /* antes 6 */
-        flex: none;
-        border-radius: 12px;
-        box-sizing: border-box;
-    }
-
-    .card-inner {
-        padding: 6px;        /* antes 8 */
-        display: flex;
-        flex-direction: column;
-        gap: 4px;            /* antes 8 */
-        height: auto;
-        flex: none;
-        border: none;
-        background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
-        border-radius: 8px;
-        box-sizing: border-box;
-    }
-
-    .card-image-wrapper {
-        width: 100%;
-        height: auto;
-        flex-shrink: 0;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-    .card-image {
-        width: 70%;          /* antes 100% */
-        height: auto;
-        object-fit: contain;
-    }
-
-    .card-title {
-        font-size: 0.75rem;  /* antes 0.8 */
-        text-align: center;
-        line-height: 1.15;
-        white-space: normal;
-        overflow-wrap: anywhere;
-        word-break: break-word;
-        hyphens: auto;
-    }
-
-    .card-type {
-        font-size: 0.75rem;  /* antes 0.9 */
-        text-align: center;
-        line-height: 1.2;
-        white-space: normal;
-        overflow-wrap: break-word;
-        word-break: keep-all;
-        hyphens: none;
-    }
-
-    .card-teaching {
-        font-size: 0.7rem;
-    }
-
-    .card-action {
-        font-size: 0.65rem;
-    }
-
-    .card-affirmation {
-        font-size: 0.6rem;
-        font-style: italic;
-    }
-
-    /* Botón móvil */
-    #nextCardBtn {
-        margin-top: 22px;
-        display: none !important;
-    }
-
-    /* Ocultar cartas PC en móvil */
-    #cardsRow {
-        display: none !important;
-    }
+ .atma-message {
+ color: #f5d27a !important;
+ text-align: center;
+ }
+ .restart-btn {
+ margin-left: auto;
+ margin-right: auto;
+ display: block;
+ }
+ .header {
+ flex-direction: column;
+ text-align: center;
+ gap: 12px;
+ }
+ .title-block h1 {
+ font-size: 2.4rem;
+ font-weight: 300;
+ margin: 0;
+ }
+ .title-block p {
+ font-size: 0.8rem;
+ margin-top: 4px;
+ }
+ .intention-box {
+ width: 100%;
+ max-width: 360px;
+ margin-top: 10px;
+ }
+ .intention-box input {
+ width: 100%;
+ text-align: left;
+ }
+ .intention-box button {
+ width: auto;
+ margin: 0;
+ }
+ .oracle-circle {
+ width: 190px !important;
+ height: auto !important;
+ }
+ .card-title {
+ font-size: 0.8rem;
+ text-align: center;
+ line-height: 1.15;
+ white-space: normal;
+ overflow-wrap: anywhere;
+ word-break: break-word;
+ hyphens: auto;
+ }
+ .card-type {
+ font-size: 0.9rem;
+ text-align: center;
+ line-height: 1.2;
+ white-space: normal;
+ overflow-wrap: break-word;
+ word-break: keep-all;
+ hyphens: none;
+ }
+ /* CORREGIDO: ahora las cartas se apilan verticalmente */
+ #mobileCardsContainer {
+ display: none;
+ width: 100%;
+ flex-direction: column; /* ← antes era row, por eso la 2ª se iba a la derecha */
+ justify-content: flex-start;
+ align-items: stretch;
+ gap: 16px;
+ }
+ /* CORREGIDO: tamaño estable, sin estirarse */
+ .card {
+ width: 100%;
+ min-height: 260px; /* ← antes era auto, por eso se hacía gigante */
+ padding: 6px;
+ flex: none; /* ← evita que crezca sin límite */
+ }
+ /* CORREGIDO: evita que el interior empuje la carta hacia abajo */
+ .card-inner {
+ padding: 8px;
+ display: flex;
+ flex-direction: column;
+ gap: 8px;
+ height: auto;
+ flex: none; /* ← antes era flex:1, causaba el estiramiento */
+ border: none;
+ background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
+ border-radius: 8px;
+ box-sizing: border-box;
+ }
+ /* Imagen estable en móvil */
+ .card-image-wrapper {
+ width: 100%;
+ height: auto;
+ }
+ .card-image {
+ width: 100%;
+ height: auto;
+ object-fit: contain;
+ }
+ #nextCardBtn {
+ margin-top: 22px;
+ display: none;
+ }
+ #cardsRow {
+ display: none !important;
+ }
 }
-
 
 
   
