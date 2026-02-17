@@ -1384,33 +1384,9 @@ const semantic = {
 
 
 // ======================================================
-//  GENERADOR DE FRASE VIBRACIONAL
+//  YA NO USAMOS LA FRASE VIBRACIONAL
 // ======================================================
-
-function generateInsightPhrase(current, block, potential) {
-  const c = semantic.current[current.title];
-  const b = semantic.block[block.title];
-  const p = semantic.potential[potential.title];
-
-  if (!c || !b || !p) {
-    return "Hay un mensaje en movimiento, pero alguna de las energías no está bien definida en el sistema.";
-  }
-
-  const cPart = c[Math.floor(Math.random() * c.length)];
-  const bPart = b[Math.floor(Math.random() * b.length)];
-  const pPart = p[Math.floor(Math.random() * p.length)];
-
-  const templates = [
-    `La energía de ${current.title} ${cPart}, mientras ${block.title} ${bPart}; desde ahí, ${potential.title} ${pPart}.`,
-    `Ahora se activa ${current.title}, que ${cPart}. Al mismo tiempo, ${block.title} ${bPart}, y por eso ${potential.title} ${pPart}.`,
-    `En tu presente aparece ${current.title} y ${cPart}; frente a ello, ${block.title} ${bPart}. La dirección es clara: ${potential.title} ${pPart}.`,
-    `Cuando se hace consciente ${current.title} y ${cPart}, también ves cómo ${block.title} ${bPart}. Ese es el punto donde ${potential.title} ${pPart}.`,
-    `Tu proceso actual está teñido de ${current.title}, que ${cPart}. El desafío viene de ${block.title}, que ${bPart}; aun así, ${potential.title} ${pPart}.`,
-    `Desde la frecuencia de ${current.title}, que ${cPart}, se revela el peso de ${block.title}, que ${bPart}. En ese contraste, ${potential.title} ${pPart}.`
-  ];
-
-  return templates[Math.floor(Math.random() * templates.length)];
-}
+// (Puedes borrar generateInsightPhrase si quieres, ya no se usa)
 
 /* Móvil */
 const mobileContainer = document.getElementById("mobileCardsContainer");
@@ -1418,7 +1394,6 @@ const nextBtn = document.getElementById("nextCardBtn");
 
 let mobileCards = [];
 let mobileIndex = 0;
-
 
 function createMobileCard(card) {
   const ruta = cardImages[card.title];
@@ -1446,8 +1421,6 @@ function createMobileCard(card) {
   return div;
 }
 
-
-
 function showNextMobileCard() {
   if (mobileIndex >= mobileCards.length) return;
 
@@ -1464,16 +1437,6 @@ function showNextMobileCard() {
     restart.onclick = resetMobileView;
 
     const msg = document.getElementById("atmaMessage");
-    const phrase = generateInsightPhrase(
-      mobileCards[0],
-      mobileCards[1],
-      mobileCards[2]
-    );
-
-    msg.innerHTML = `
-      Tus cartas del Tarot Atma dicen...<br><br>
-      <span class="insight-phrase">${phrase}</span>
-    `;
     msg.style.display = "block";
 
     // ⭐ IA EN MÓVIL
@@ -1483,7 +1446,7 @@ function showNextMobileCard() {
       mobileCards[2].title
     );
 
-    nextBtn.insertAdjacentElement("afterend", msg);
+    // Solo insertamos el botón, NO movemos el mensaje
     msg.insertAdjacentElement("afterend", restart);
   }
 }
@@ -1503,15 +1466,24 @@ function resetMobileView() {
   const restartBtn = document.querySelector(".restart-btn");
   if (restartBtn) restartBtn.remove();
 
-  document.getElementById("atmaMessage").style.display = "none";
+  const msg = document.getElementById("atmaMessage");
+  msg.style.display = "none";
+  msg.innerHTML = "";
+
+  const resp = document.getElementById("respuestaIA");
+  if (resp) resp.innerHTML = "";
 }
 
 nextBtn.addEventListener("click", showNextMobileCard);
 
-
 /* Botón barajar */
 document.getElementById("drawBtn").addEventListener("click", () => {
-  document.getElementById("atmaMessage").style.display = "none";
+  const msg = document.getElementById("atmaMessage");
+  msg.style.display = "none";
+  msg.innerHTML = "";
+
+  const resp = document.getElementById("respuestaIA");
+  if (resp) resp.innerHTML = "";
 
   const current = getRandomCard("current");
   const block = getRandomCard("block");
@@ -1546,19 +1518,66 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   renderCard("card-block", block);
   renderCard("card-potential", potential);
 
-  const phrase = generateInsightPhrase(current, block, potential);
-
-  const msg = document.getElementById("atmaMessage");
-  msg.innerHTML = `
-    Tus cartas del Tarot Atma dicen...<br><br>
-    <span class="insight-phrase">${phrase}</span>
-  `;
   msg.style.display = "block";
 
-  // ⭐ IA EN PC (CORREGIDO)
+  // ⭐ IA EN PC
   generarMensajeIA(current.title, block.title, potential.title);
 });
 
+// ======================================================
+//  FUNCIÓN IA (LECTURA GENERAL SI NO HAY INTENCIÓN)
+// ======================================================
+
+async function generarMensajeIA(nombreActual, nombreBloqueo, nombrePotencial) {
+  let intencionUsuario = document.getElementById("intention").value.trim();
+
+  if (intencionUsuario === "") {
+    intencionUsuario = "Haz una lectura general basada en estas tres cartas.";
+  }
+
+  const contenedor = document.getElementById("atmaMessage");
+  contenedor.innerText = "Consultando al oráculo...";
+
+  try {
+    const respuesta = await fetch("TU_ENDPOINT_DE_IA", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer TU_API_KEY"
+      },
+      body: JSON.stringify({
+        prompt: `
+El usuario ha escrito: "${intencionUsuario}".
+
+Las cartas reveladas han sido:
+1. Energía actual: ${nombreActual}
+2. Bloqueo: ${nombreBloqueo}
+3. Potencial: ${nombrePotencial}
+
+Genera un mensaje espiritual, libre, impredecible y creativo que:
+- conecte la intención del usuario (si existe) con las 3 cartas
+- si NO hay intención, haz una lectura general
+- interprete la energía combinada de las cartas
+- ofrezca una visión profunda, poética o intuitiva
+- no siga un formato fijo
+- fluya como un mensaje canalizado
+
+No expliques el proceso. Solo entrega el mensaje.
+`,
+        max_tokens: 300,
+        temperature: 1.4,
+        top_p: 1.0
+      })
+    });
+
+    const data = await respuesta.json();
+    const mensaje = data.choices?.[0]?.text?.trim() || "No se pudo generar respuesta.";
+
+    contenedor.innerText = mensaje;
+  } catch (error) {
+    contenedor.innerText = "Error al conectar con el oráculo.";
+  }
+}
 
 </script>
   
