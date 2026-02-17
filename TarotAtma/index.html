@@ -1536,7 +1536,8 @@ async function generarMensajeIA(nombreActual, nombreBloqueo, nombrePotencial) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer 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"
+        "Authorization": "Bearer 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",
+        "OpenAI-Project": "default"   // ⭐ NECESARIO PARA CLAVES sk-proj-
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
@@ -1569,6 +1570,7 @@ No expliques el proceso. Solo entrega el mensaje.
     });
 
     const data = await respuesta.json();
+    console.log("RESPUESTA OPENAI:", data);
 
     const mensaje = data?.choices?.[0]?.message?.content?.trim();
 
@@ -1578,6 +1580,7 @@ No expliques el proceso. Solo entrega el mensaje.
     contenedor.innerText = "Error al conectar con el oráculo.";
   }
 }
+
 
 
 </script>
