@@ -534,7 +534,16 @@ button:disabled {
     </div>
 
     <!-- ⭐ MENSAJE DEBAJO DE LAS CARTAS (PC) ⭐ -->
-    <div id="atmaMessage" class="atma-message">Tus cartas del Tarot Atma dicen...</div>
+    <div id="atmaMessage" class="atma-message">Tus cartas del Tarot Atma dicen...</div
+
+
+<div id="respuestaIA" 
+     style="margin-top:20px; white-space:pre-wrap; font-size:1.1rem; color:#f5d27a; text-align:center;">
+</div>
+
+
+
+                                                                                   
 
   </div>   <!-- cierre de cards-area -->
 </div>     <!-- cierre de oracle-area -->
@@ -1405,12 +1414,6 @@ function generateInsightPhrase(current, block, potential) {
 
 
 
-
-
-  
-
-
-
   
 /* Móvil */
 const mobileContainer = document.getElementById("mobileCardsContainer");
@@ -1553,9 +1556,63 @@ msg.innerHTML = `
   <span class="insight-phrase">${phrase}</span>
 `;
 msg.style.display = "block";
+  generarMensajeIA(nombreActual, nombreBloqueo, nombrePotencial);
+
 
 });
 </script>
+<script>
+async function generarMensajeIA(nombreActual, nombreBloqueo, nombrePotencial) {
 
+  const intencionUsuario = document.getElementById("intention").value.trim();
+
+  const contenedor = document.getElementById("respuestaIA");
+  contenedor.innerText = "Consultando al oráculo...";
+
+  try {
+    const respuesta = await fetch("TU_ENDPOINT_DE_IA", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer TU_API_KEY"
+      },
+      body: JSON.stringify({
+        prompt: `
+El usuario ha escrito: "${intencionUsuario}".
+
+Las cartas reveladas han sido:
+1. Energía actual: ${nombreActual}
+2. Bloqueo: ${nombreBloqueo}
+3. Potencial: ${nombrePotencial}
+
+Genera un mensaje espiritual, libre, impredecible y creativo que:
+- conecte la intención del usuario con las 3 cartas
+- interprete la energía combinada de las cartas
+- ofrezca una visión profunda, poética o intuitiva
+- no siga un formato fijo
+- no sea breve si no quiere
+- fluya como un mensaje canalizado o de oráculo
+
+No expliques el proceso. Solo entrega el mensaje.
+`,
+        max_tokens: 300,
+        temperature: 1.4,
+        top_p: 1.0,
+        frequency_penalty: 0.5,
+        presence_penalty: 0.6
+      })
+    });
+
+    const data = await respuesta.json();
+    const mensaje = data.choices?.[0]?.text?.trim() || "No se pudo generar respuesta.";
+
+    contenedor.innerText = mensaje;
+
+  } catch (error) {
+    contenedor.innerText = "Error al conectar con la IA.";
+  }
+}
+</script>
+  
 </body>
 </html>
