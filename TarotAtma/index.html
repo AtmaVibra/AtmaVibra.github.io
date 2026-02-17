@@ -295,14 +295,21 @@ button:disabled {
 
 
   /* Responsive móvil – restaurado como el original */
+/* Responsive móvil – ajustado para que la primera carta se vea bien y el botón también */
+/* Responsive móvil – restaurado como el original */
 @media (max-width: 600px) {
 
-  /* Bloquear scroll mientras salen las cartas */
-  body.no-scroll {
-    overflow: hidden;
+  .atma-message {
+    color: #f5d27a !important;
+    text-align: center;
   }
 
-  /* Header */
+  .restart-btn {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
   .header {
     flex-direction: column;
     text-align: center;
@@ -310,12 +317,13 @@ button:disabled {
   }
 
   .title-block h1 {
-    font-size: 2rem;
+    font-size: 2.4rem;
+    font-weight: 300;
     margin: 0;
   }
 
   .title-block p {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     margin-top: 4px;
   }
 
@@ -327,102 +335,90 @@ button:disabled {
 
   .intention-box input {
     width: 100%;
+    text-align: left;
+  }
+
+  .intention-box button {
+    width: auto;
+    margin: 0;
   }
 
   .oracle-circle {
-    width: 170px !important;
+    width: 190px !important;
     height: auto !important;
   }
 
-  /* Ocultar versión desktop */
-  #cardsRow {
-    display: none !important;
+  .card-title {
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: 1.15;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
   }
 
-  /* Contenedor móvil */
+  .card-type {
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+    hyphens: none;
+  }
+
+  /* ⭐ CORREGIDO: ahora las cartas se apilan verticalmente */
   #mobileCardsContainer {
     display: none;
     width: 100%;
-    flex-direction: column;
+    flex-direction: column;   /* ← antes era row, por eso la 2ª se iba a la derecha */
+    justify-content: flex-start;
     align-items: stretch;
-    gap: 12px;
-    padding: 10px 0;
+    gap: 16px;
   }
 
-  /* Cartas más pequeñas y proporcionales */
+  /* ⭐ CORREGIDO: tamaño estable, sin estirarse */
   .card {
     width: 100%;
-    height: 28vh;              /* 🔥 proporción equilibrada */
-    min-height: unset;
+    min-height: 260px;        /* ← antes era auto, por eso se hacía gigante */
     padding: 6px;
-    flex: none;
+    flex: none;               /* ← evita que crezca sin límite */
+  }
+
+  /* ⭐ CORREGIDO: evita que el interior empuje la carta hacia abajo */
+  .card-inner {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: auto;
+    flex: none;               /* ← antes era flex:1, causaba el estiramiento */
+    border: none;
+    background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
+    border-radius: 8px;
     box-sizing: border-box;
   }
 
-  .card-inner {
-    height: 100%;
-    padding: 6px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 4px;
-  }
-
-  /* Imagen proporcional */
+  /* Imagen estable en móvil */
   .card-image-wrapper {
-    height: 35%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    height: auto;
   }
 
   .card-image {
-    max-height: 100%;
-    width: auto;
+    width: 100%;
+    height: auto;
     object-fit: contain;
   }
 
-  /* Tipografía compacta */
-  .card-type {
-    font-size: 0.65rem;
-    text-align: center;
-    line-height: 1.1;
-  }
-
-  .card-title {
-    font-size: 0.75rem;
-    text-align: center;
-    line-height: 1.1;
-  }
-
-  .card-teaching {
-    font-size: 0.7rem;
-    line-height: 1.15;
-  }
-
-  .card-action {
-    font-size: 0.65rem;
-  }
-
-  .card-affirmation {
-    font-size: 0.6rem;
-  }
-
-  /* Botón revelar */
   #nextCardBtn {
-    margin-top: 16px;
+    margin-top: 22px;
+    display: none;
   }
 
-  /* Mensaje vibracional */
-  .atma-message {
-    color: #f5d27a !important;
-    text-align: center;
-    padding: 20px 10px;
-  }
-
-  .restart-btn {
-    margin: 20px auto;
-    display: block;
+  #cardsRow {
+    display: none !important;
   }
 }
 
@@ -1521,8 +1517,6 @@ document.getElementById("drawBtn").addEventListener("click", () => {
     document.getElementById("headerSection").style.display = "none";
     document.getElementById("oracleImageWrapper").style.display = "none";
     document.getElementById("cardsRow").style.display = "none";
-    document.body.classList.add("no-scroll");
-
 
     mobileCards = [
       { type: "Energía actual", ...current },
@@ -1559,8 +1553,6 @@ msg.innerHTML = `
   <span class="insight-phrase">${phrase}</span>
 `;
 msg.style.display = "block";
-  document.body.classList.remove("no-scroll");
-
 
 });
 </script>
