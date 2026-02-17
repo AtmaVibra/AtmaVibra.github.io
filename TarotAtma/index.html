@@ -1446,7 +1446,7 @@ function showNextMobileCard() {
       mobileCards[2].title
     );
 
-    // Solo insertamos el botón, NO movemos el mensaje
+    // Insertamos el botón debajo del mensaje
     msg.insertAdjacentElement("afterend", restart);
   }
 }
@@ -1469,9 +1469,6 @@ function resetMobileView() {
   const msg = document.getElementById("atmaMessage");
   msg.style.display = "none";
   msg.innerHTML = "";
-
-  const resp = document.getElementById("respuestaIA");
-  if (resp) resp.innerHTML = "";
 }
 
 nextBtn.addEventListener("click", showNextMobileCard);
@@ -1481,9 +1478,6 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   const msg = document.getElementById("atmaMessage");
   msg.style.display = "none";
   msg.innerHTML = "";
-
-  const resp = document.getElementById("respuestaIA");
-  if (resp) resp.innerHTML = "";
 
   const current = getRandomCard("current");
   const block = getRandomCard("block");
@@ -1525,7 +1519,7 @@ document.getElementById("drawBtn").addEventListener("click", () => {
 });
 
 // ======================================================
-//  FUNCIÓN IA (LECTURA GENERAL SI NO HAY INTENCIÓN)
+//  FUNCIÓN IA (OPENAI OFICIAL)
 // ======================================================
 
 async function generarMensajeIA(nombreActual, nombreBloqueo, nombrePotencial) {
@@ -1539,14 +1533,18 @@ async function generarMensajeIA(nombreActual, nombreBloqueo, nombrePotencial) {
   contenedor.innerText = "Consultando al oráculo...";
 
   try {
-    const respuesta = await fetch("TU_ENDPOINT_DE_IA", {
+    const respuesta = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer TU_API_KEY"
+        "Authorization": "Bearer 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"
       },
       body: JSON.stringify({
-        prompt: `
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "user",
+            content: `
 El usuario ha escrito: "${intencionUsuario}".
 
 Las cartas reveladas han sido:
@@ -1563,17 +1561,22 @@ Genera un mensaje espiritual, libre, impredecible y creativo que:
 - fluya como un mensaje canalizado
 
 No expliques el proceso. Solo entrega el mensaje.
-`,
+`
+          }
+        ],
         max_tokens: 300,
-        temperature: 1.4,
-        top_p: 1.0
+        temperature: 1.4
       })
     });
 
     const data = await respuesta.json();
-    const mensaje = data.choices?.[0]?.text?.trim() || "No se pudo generar respuesta.";
+
+    const mensaje =
+      data.choices?.[0]?.message?.content?.trim() ||
+      "No se pudo generar respuesta.";
 
     contenedor.innerText = mensaje;
+
   } catch (error) {
     contenedor.innerText = "Error al conectar con el oráculo.";
   }
