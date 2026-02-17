@@ -1443,7 +1443,6 @@ function showNextMobileCard() {
     const msg = document.getElementById("atmaMessage");
     msg.style.display = "block";
 
-    // ⭐ IA EN MÓVIL
     generarMensajeIA(
       mobileCards[0].title,
       mobileCards[1].title,
@@ -1487,7 +1486,6 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   const potential = getRandomCard("potential");
 
   if (window.innerWidth <= 600) {
-    // Móvil
     document.getElementById("headerSection").style.display = "none";
     document.getElementById("oracleImageWrapper").style.display = "none";
     document.getElementById("cardsRow").style.display = "none";
@@ -1509,7 +1507,6 @@ document.getElementById("drawBtn").addEventListener("click", () => {
     return;
   }
 
-  // PC
   document.getElementById("cardsRow").style.display = "flex";
   renderCard("card-current", current);
   renderCard("card-block", block);
@@ -1517,7 +1514,6 @@ document.getElementById("drawBtn").addEventListener("click", () => {
 
   msg.style.display = "block";
 
-  // ⭐ IA EN PC
   generarMensajeIA(current.title, block.title, potential.title);
 });
 
@@ -1574,16 +1570,15 @@ No expliques el proceso. Solo entrega el mensaje.
 
     const data = await respuesta.json();
 
-    const mensaje =
-      data.choices?.[0]?.message?.content?.trim() ||
-      "No se pudo generar respuesta.";
+    const mensaje = data?.choices?.[0]?.message?.content?.trim();
 
-    contenedor.innerText = mensaje;
+    contenedor.innerText = mensaje || "No se pudo generar respuesta.";
 
   } catch (error) {
     contenedor.innerText = "Error al conectar con el oráculo.";
   }
 }
+
 
 </script>
   
