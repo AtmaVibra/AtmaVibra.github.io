@@ -1518,7 +1518,7 @@ document.getElementById("drawBtn").addEventListener("click", () => {
 });
 
 // ======================================================
-//  FUNCIÓN IA (OPENAI OFICIAL)
+//  FUNCIÓN IA (OPENAI OFICIAL) — FRASE CORTA
 // ======================================================
 
 async function generarMensajeIA(nombreActual, nombreBloqueo, nombrePotencial) {
@@ -1537,7 +1537,7 @@ async function generarMensajeIA(nombreActual, nombreBloqueo, nombrePotencial) {
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer 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",
-        "OpenAI-Project": "default"   // ⭐ NECESARIO PARA CLAVES sk-proj-
+        "OpenAI-Project": "default"
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
@@ -1545,27 +1545,20 @@ async function generarMensajeIA(nombreActual, nombreBloqueo, nombrePotencial) {
           {
             role: "user",
             content: `
-El usuario ha escrito: "${intencionUsuario}".
+Texto del usuario: "${intencionUsuario}"
 
-Las cartas reveladas han sido:
-1. Energía actual: ${nombreActual}
-2. Bloqueo: ${nombreBloqueo}
-3. Potencial: ${nombrePotencial}
+Cartas:
+- Energía actual: ${nombreActual}
+- Bloqueo: ${nombreBloqueo}
+- Potencial: ${nombrePotencial}
 
-Genera un mensaje espiritual, libre, impredecible y creativo que:
-- conecte la intención del usuario (si existe) con las 3 cartas
-- si NO hay intención, haz una lectura general
-- interprete la energía combinada de las cartas
-- ofrezca una visión profunda, poética o intuitiva
-- no siga un formato fijo
-- fluya como un mensaje canalizado
-
-No expliques el proceso. Solo entrega el mensaje.
+Devuélveme SOLO una frase corta (máximo 30 palabras) que conecte estas tres cartas con el texto del usuario. sé original. Que la frase tenga sentido total y haga reflexionar.
+No des explicaciones. No des formato. Solo la frase.
 `
           }
         ],
-        max_tokens: 300,
-        temperature: 1.4
+        max_tokens: 50,
+        temperature: 1.2
       })
     });
 
@@ -1577,10 +1570,10 @@ No expliques el proceso. Solo entrega el mensaje.
     contenedor.innerText = mensaje || "No se pudo generar respuesta.";
 
   } catch (error) {
+    console.error(error);
     contenedor.innerText = "Error al conectar con el oráculo.";
   }
 }
-
 
 
 </script>
