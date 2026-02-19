@@ -299,32 +299,66 @@ button:disabled {
   
 @media (max-width: 600px) {
 
-  /* El cuerpo permite scroll general (para la frase vibracional) */
-  body {
-    overflow-y: auto;
-    height: auto;
+  /* Mantener la primera pantalla intacta y centrada */
+  .header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
   }
 
-  /* Contenedor de cartas: ocupa SOLO la pantalla */
+  .title-block h1,
+  .title-block p {
+    text-align: center;
+    width: 100%;
+  }
+
+  .intention-box {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intention-box input {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Ocultar botón en la primera pantalla */
+  #nextCardBtn {
+    display: none;
+    margin-top: 14px;
+    font-size: 0.75rem;
+    padding: 8px 14px;
+  }
+
+  /* Contenedor de cartas móvil */
   #mobileCardsContainer {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     width: 100%;
-    max-height: 100vh;        /* ⭐ Las 3 cartas deben caber aquí */
-    overflow: hidden;         /* ⭐ No scroll dentro */
-    padding: 0 8px;
+    padding: 0 10px;
     box-sizing: border-box;
+
+    /* ⭐ Las 3 cartas deben caber sin scroll */
+    max-height: calc(100vh - 40px);
+    overflow: hidden;
   }
 
-  /* Cada carta más pequeña */
+  /* Carta compacta */
   .card {
     width: 100%;
-    max-width: 240px;         /* ⭐ Más estrechas */
+    max-width: 260px;
     margin: 0 auto;
-    padding: 6px;
+    padding: 8px;
     border-radius: 10px;
-    min-height: 160px;        /* ⭐ Mucho más compactas */
+
+    /* ⭐ Altura reducida */
+    min-height: 180px;
   }
 
   /* Interior compacto */
@@ -333,20 +367,21 @@ button:disabled {
     gap: 6px;
   }
 
-  /* Imagen reducida */
+  /* Imagen proporcionada y sin cortes */
   .card-image-wrapper {
     width: 100%;
-    max-height: 110px;        /* ⭐ Imagen más pequeña */
+    height: auto;
+    max-height: 120px;   /* ⭐ Imagen más pequeña */
     overflow: hidden;
   }
 
   .card-image {
     width: 100%;
     height: auto;
-    object-fit: contain;
+    object-fit: contain; /* ⭐ No se corta */
   }
 
-  /* Tipografías reducidas */
+  /* Tipografías más pequeñas */
   .card-type {
     font-size: 0.75rem;
   }
@@ -367,22 +402,21 @@ button:disabled {
     font-size: 0.6rem;
   }
 
-  /* Botón siguiente carta */
-  #nextCardBtn {
-    margin-top: 12px;
-    font-size: 0.75rem;
-    padding: 8px 14px;
-  }
-
   /* Mensaje IA (frase vibracional) */
   .atma-message {
     font-size: 1rem;
     padding: 0 10px;
     margin-top: 20px;
+    text-align: center;
+  }
+
+  /* Ocultar las cartas de escritorio */
+  #cardsRow {
+    display: none !important;
   }
 }
 
-
+  
 
 
 @media (min-width: 601px) {
