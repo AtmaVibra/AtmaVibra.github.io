@@ -294,116 +294,50 @@ button:disabled {
 
 
 
-  /* Responsive móvil – restaurado como el original */
-/* Responsive móvil – ajustado para que la primera carta se vea bien y el botón también */
-/* Responsive móvil – restaurado como el original */
+
+  
+  
 @media (max-width: 600px) {
 
-  .atma-message {
-    color: #f5d27a !important;
-    text-align: center;
+  /* El cuerpo permite scroll general (para la frase vibracional) */
+  body {
+    overflow-y: auto;
+    height: auto;
   }
 
-  .restart-btn {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-  }
-
-  .header {
-    flex-direction: column;
-    text-align: center;
-    gap: 12px;
-  }
-
-  .title-block h1 {
-    font-size: 2.4rem;
-    font-weight: 300;
-    margin: 0;
-  }
-
-  .title-block p {
-    font-size: 0.8rem;
-    margin-top: 4px;
-  }
-
-  .intention-box {
-    width: 100%;
-    max-width: 360px;
-    margin-top: 10px;
-  }
-
-  .intention-box input {
-    width: 100%;
-    text-align: left;
-  }
-
-  .intention-box button {
-    width: auto;
-    margin: 0;
-  }
-
-  .oracle-circle {
-    width: 190px !important;
-    height: auto !important;
-  }
-
-  .card-title {
-    font-size: 0.8rem;
-    text-align: center;
-    line-height: 1.15;
-    white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    hyphens: auto;
-  }
-
-  .card-type {
-    font-size: 0.9rem;
-    text-align: center;
-    line-height: 1.2;
-    white-space: normal;
-    overflow-wrap: break-word;
-    word-break: keep-all;
-    hyphens: none;
-  }
-
-  /* ⭐ CORREGIDO: ahora las cartas se apilan verticalmente */
+  /* Contenedor de cartas: ocupa SOLO la pantalla */
   #mobileCardsContainer {
-    display: none;
-    width: 100%;
-    flex-direction: column;   /* ← antes era row, por eso la 2ª se iba a la derecha */
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: 16px;
-  }
-
-  /* ⭐ CORREGIDO: tamaño estable, sin estirarse */
-  .card {
-    width: 100%;
-    min-height: 260px;        /* ← antes era auto, por eso se hacía gigante */
-    padding: 6px;
-    flex: none;               /* ← evita que crezca sin límite */
-  }
-
-  /* ⭐ CORREGIDO: evita que el interior empuje la carta hacia abajo */
-  .card-inner {
-    padding: 8px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    height: auto;
-    flex: none;               /* ← antes era flex:1, causaba el estiramiento */
-    border: none;
-    background: radial-gradient(circle at top, #f9fbf8 0%, #e8f0e6 40%, #d8e8d6 100%);
-    border-radius: 8px;
+    gap: 10px;
+    width: 100%;
+    max-height: 100vh;        /* ⭐ Las 3 cartas deben caber aquí */
+    overflow: hidden;         /* ⭐ No scroll dentro */
+    padding: 0 8px;
     box-sizing: border-box;
   }
 
-  /* Imagen estable en móvil */
+  /* Cada carta más pequeña */
+  .card {
+    width: 100%;
+    max-width: 240px;         /* ⭐ Más estrechas */
+    margin: 0 auto;
+    padding: 6px;
+    border-radius: 10px;
+    min-height: 160px;        /* ⭐ Mucho más compactas */
+  }
+
+  /* Interior compacto */
+  .card-inner {
+    padding: 6px;
+    gap: 6px;
+  }
+
+  /* Imagen reducida */
   .card-image-wrapper {
     width: 100%;
-    height: auto;
+    max-height: 110px;        /* ⭐ Imagen más pequeña */
+    overflow: hidden;
   }
 
   .card-image {
@@ -412,13 +346,39 @@ button:disabled {
     object-fit: contain;
   }
 
-  #nextCardBtn {
-    margin-top: 22px;
-    display: none;
+  /* Tipografías reducidas */
+  .card-type {
+    font-size: 0.75rem;
   }
 
-  #cardsRow {
-    display: none !important;
+  .card-title {
+    font-size: 0.8rem;
+  }
+
+  .card-teaching {
+    font-size: 0.7rem;
+  }
+
+  .card-action {
+    font-size: 0.65rem;
+  }
+
+  .card-affirmation {
+    font-size: 0.6rem;
+  }
+
+  /* Botón siguiente carta */
+  #nextCardBtn {
+    margin-top: 12px;
+    font-size: 0.75rem;
+    padding: 8px 14px;
+  }
+
+  /* Mensaje IA (frase vibracional) */
+  .atma-message {
+    font-size: 1rem;
+    padding: 0 10px;
+    margin-top: 20px;
   }
 }
 
@@ -444,6 +404,9 @@ button:disabled {
   object-fit: contain;
 }
 
+
+
+  
 
 
   
