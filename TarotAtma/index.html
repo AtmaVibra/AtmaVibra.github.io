@@ -348,14 +348,14 @@ button:disabled {
     position: relative;
   }
 
-  /* Imagen de la carta: más grande, sin recortes, completa */
+  /* Imagen de la carta: más grande, sin recuadro, completa */
   .mobile-card-small-img {
     width: 100%;
-    height: 180px;        /* tamaño imponente */
-    object-fit: contain;  /* NO recorta la imagen */
-    background: #f3f3f3;  /* fondo neutro detrás de la carta */
-    border-radius: 10px;
-    padding: 4px;         /* pequeño margen interior */
+    height: 200px;       /* más grande e imponente */
+    object-fit: contain; /* NO recorta la imagen */
+    background: transparent; /* sin recuadro */
+    padding: 0;              /* sin marco interior */
+    border-radius: 0;        /* sin esquinas redondeadas extra */
   }
 
   /* Botón LEER CARTA debajo */
