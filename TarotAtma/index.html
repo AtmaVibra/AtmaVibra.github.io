@@ -1467,6 +1467,20 @@ function showNextMobileCard() {
   // Si ya mostramos las 3 → ocultar botón
   if (mobileIndex === mobileCards.length) {
     nextBtn.style.display = "none";
+
+    // ⭐ Mostrar frase vibracional al terminar las 3 cartas
+    const phrase = generateInsightPhrase(
+      mobileCards[0],
+      mobileCards[1],
+      mobileCards[2]
+    );
+
+    const msg = document.getElementById("atmaMessage");
+    msg.innerHTML = `
+      Tus cartas del Tarot Atma dicen...<br><br>
+      <span class="insight-phrase">${phrase}</span>
+    `;
+    msg.style.display = "block";
   }
 }
 
