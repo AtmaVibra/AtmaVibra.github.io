@@ -299,7 +299,7 @@ button:disabled {
   
 @media (max-width: 600px) {
 
-  /* Mantener la primera pantalla intacta y centrada */
+  /* Mantener pantalla inicial intacta */
   .header {
     flex-direction: column;
     text-align: center;
@@ -309,12 +309,6 @@ button:disabled {
     align-items: center;
   }
 
-  .title-block h1,
-  .title-block p {
-    text-align: center;
-    width: 100%;
-  }
-
   .intention-box {
     width: 100%;
     max-width: 360px;
@@ -322,95 +316,69 @@ button:disabled {
     text-align: center;
   }
 
-  .intention-box input {
-    width: 100%;
-    text-align: center;
-  }
-
-  /* Ocultar botón en la primera pantalla */
   #nextCardBtn {
-    display: none;
-    margin-top: 14px;
-    font-size: 0.75rem;
-    padding: 8px 14px;
+    display: none !important;
   }
 
-  /* Contenedor de cartas móvil */
+  /* NUEVO DISEÑO MÓVIL */
   #mobileCardsContainer {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 18px;
     width: 100%;
-    padding: 0 10px;
+    padding: 0 12px;
     box-sizing: border-box;
-
-    /* ⭐ Las 3 cartas deben caber sin scroll */
-    max-height: calc(100vh - 40px);
+    max-height: calc(100vh - 20px);
     overflow: hidden;
   }
 
-  /* Carta compacta */
-  .card {
-    width: 100%;
-    max-width: 260px;
-    margin: 0 auto;
-    padding: 8px;
+  .mobile-card-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .mobile-card-image {
+    width: 55%;
+    max-width: 180px;
     border-radius: 10px;
-
-    /* ⭐ Altura reducida */
-    min-height: 180px;
+    object-fit: contain;
   }
 
-  /* Interior compacto */
-  .card-inner {
-    padding: 6px;
-    gap: 6px;
-  }
-
-  /* Imagen proporcionada y sin cortes */
-  .card-image-wrapper {
-    width: 100%;
-    height: auto;
-    max-height: 120px;   /* ⭐ Imagen más pequeña */
-    overflow: hidden;
-  }
-
-  .card-image {
-    width: 100%;
-    height: auto;
-    object-fit: contain; /* ⭐ No se corta */
-  }
-
-  /* Tipografías más pequeñas */
-  .card-type {
-    font-size: 0.75rem;
-  }
-
-  .card-title {
+  .mobile-card-button {
+    width: 35%;
+    padding: 10px 12px;
     font-size: 0.8rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f5d27a, #f29b4c);
+    color: #1b1305;
+    border: none;
+    cursor: pointer;
   }
 
-  .card-teaching {
-    font-size: 0.7rem;
+  .mobile-card-text {
+    display: none;
+    background: #f9fbf8;
+    color: #1b1b1b;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    line-height: 1.3;
   }
 
-  .card-action {
-    font-size: 0.65rem;
+  .mobile-card-text button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    background: #f29b4c;
+    border: none;
+    color: #1b1305;
+    font-weight: 600;
   }
 
-  .card-affirmation {
-    font-size: 0.6rem;
-  }
-
-  /* Mensaje IA (frase vibracional) */
-  .atma-message {
-    font-size: 1rem;
-    padding: 0 10px;
-    margin-top: 20px;
-    text-align: center;
-  }
-
-  /* Ocultar las cartas de escritorio */
   #cardsRow {
     display: none !important;
   }
@@ -1449,24 +1417,56 @@ function createMobileCard(card) {
 function showNextMobileCard() {
   if (mobileIndex >= mobileCards.length) return;
 
-  const card = createMobileCard(mobileCards[mobileIndex]);
-  mobileContainer.appendChild(card);
+  const card = mobileCards[mobileIndex];
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "mobile-card-wrapper";
+
+  const img = document.createElement("img");
+  img.src = cardImages[card.title];
+  img.className = "mobile-card-image";
+
+  const btn = document.createElement("button");
+  btn.className = "mobile-card-button";
+  btn.textContent = "Leer carta";
+
+  const textBox = document.createElement("div");
+  textBox.className = "mobile-card-text";
+  textBox.innerHTML = `
+    <strong>${card.type}: ${card.title}</strong><br><br>
+    ${card.teaching}<br><br>
+    <em>${card.action}</em><br><br>
+    <strong>${card.affirmation}</strong><br><br>
+    <button class="flip-back">Voltear carta</button>
+  `;
+
+  btn.onclick = () => {
+    img.style.display = "none";
+    btn.style.display = "none";
+    textBox.style.display = "block";
+  };
+
+  textBox.querySelector(".flip-back").onclick = () => {
+    img.style.display = "block";
+    btn.style.display = "block";
+    textBox.style.display = "none";
+  };
+
+  wrapper.appendChild(img);
+  wrapper.appendChild(btn);
+  wrapper.appendChild(textBox);
+
+  mobileContainer.appendChild(wrapper);
+
   mobileIndex++;
 
   if (mobileIndex === mobileCards.length) {
     nextBtn.style.display = "none";
+  }
+}
 
-    const restart = document.createElement("button");
-    restart.textContent = "Barajar y revelar de nuevo";
-    restart.classList.add("restart-btn");
-    restart.onclick = resetMobileView;
 
-    const msg = document.getElementById("atmaMessage");
-    const phrase = generateInsightPhrase(
-  mobileCards[0],
-  mobileCards[1],
-  mobileCards[2]
-);
+  
 
 msg.innerHTML = `
   Tus cartas del Tarot Atma dicen...<br><br>
