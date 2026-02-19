@@ -330,16 +330,17 @@ button:disabled {
   /* CONTENEDOR DE 3 COLUMNAS FIJAS */
   #mobileCardsContainer {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* 3 columnas fijas */
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 12px;
     width: 100%;
     padding: 0 10px;
-    margin-top: 40px; /* más abajo */
+    margin-top: 40px;
   }
 
   /* Carta pequeña */
   .mobile-card-small {
-    width: 100%; /* ahora ocupa su columna completa */
+    width: 95%; /* evita que se expanda demasiado */
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -347,12 +348,12 @@ button:disabled {
     position: relative;
   }
 
-  /* Imagen pequeña horizontal */
+  /* Imagen pequeña con altura fija (SOLUCIÓN AL PROBLEMA) */
   .mobile-card-small-img {
     width: 100%;
-    height: auto;
+    height: 150px;      /* tamaño estable para las 3 */
+    object-fit: cover;  /* recorta sin deformar */
     border-radius: 10px;
-    object-fit: cover;
   }
 
   /* Botón LEER CARTA debajo */
@@ -385,8 +386,8 @@ button:disabled {
 
   /* Cuadro interior verde suave */
   .mobile-card-overlay-content {
-    background: #dff3e3; /* verde suave */
-    color: #1a1a1a;      /* texto oscuro */
+    background: #dff3e3;
+    color: #1a1a1a;
     padding: 24px;
     border-radius: 14px;
     width: 88%;
@@ -397,7 +398,7 @@ button:disabled {
     font-size: 1.15rem;
     line-height: 1.5;
     box-shadow: 0 4px 18px rgba(0,0,0,0.25);
-    border: 2px solid #b7e4c7; /* borde verde claro */
+    border: 2px solid #b7e4c7;
   }
 
   /* Botón VOLVER */
@@ -406,9 +407,9 @@ button:disabled {
     width: 100%;
     padding: 12px;
     border-radius: 10px;
-    background: #95d5b2; /* verde medio */
+    background: #95d5b2;
     border: none;
-    color: #0b3d2e;      /* texto verde oscuro */
+    color: #0b3d2e;
     font-weight: 700;
     font-size: 1rem;
   }
@@ -449,8 +450,10 @@ button:disabled {
   }
 }
 
-  
 
+
+
+  
 
 @media (min-width: 601px) {
   #nextCardBtn {
