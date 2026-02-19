@@ -327,24 +327,23 @@ button:disabled {
     text-align: center;
   }
 
-  /* Contenedor horizontal de cartas pequeñas */
+  /* CONTENEDOR DE 3 COLUMNAS FIJAS */
   #mobileCardsContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 columnas fijas */
+    gap: 12px;
     width: 100%;
     padding: 0 10px;
-    margin-top: 20px;
+    margin-top: 40px; /* más abajo */
   }
 
   /* Carta pequeña */
   .mobile-card-small {
-    width: 32%;
+    width: 100%; /* ahora ocupa su columna completa */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     position: relative;
   }
 
@@ -360,7 +359,7 @@ button:disabled {
   .mobile-card-small-btn {
     width: 100%;
     padding: 8px;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     border-radius: 10px;
     background: linear-gradient(135deg, #f5d27a, #f29b4c);
     color: #1b1305;
@@ -426,6 +425,22 @@ button:disabled {
     border: none;
     font-weight: 600;
     text-align: center;
+  }
+
+  /* Botón Barajar de nuevo */
+  .restart-btn-mobile {
+    margin-top: 20px;
+    padding: 12px 20px;
+    width: 80%;
+    font-size: 1rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f5d27a, #f29b4c);
+    color: #1b1305;
+    border: none;
+    font-weight: 600;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* Ocultar cartas de escritorio */
