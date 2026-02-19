@@ -164,7 +164,7 @@ button:disabled {
 }
 
 .oracle-circle {
-  width: 260px;
+  width: 180px;
   height: auto;
   object-fit: contain;
 }
@@ -339,13 +339,16 @@ button:disabled {
 
   /* Carta pequeña */
   .mobile-card-small {
-    width: 95%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border-radius: 14px;     /* redondea el contenedor */
+  overflow: hidden;        /* hace que la imagen respete el borde redondeado */
+}
+
 
   /* Imagen con marco ajustado y esquinas redondeadas */
   .mobile-card-small-img {
