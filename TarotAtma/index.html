@@ -1501,6 +1501,17 @@ function showNextMobileCard() {
       <span class="insight-phrase">${phrase}</span>
     `;
     msg.style.display = "block";
+
+    // --- Botón "Barajar de nuevo" ---
+    const restartBtn = document.createElement("button");
+    restartBtn.className = "restart-btn-mobile";
+    restartBtn.textContent = "Barajar de nuevo";
+
+    restartBtn.onclick = () => {
+      resetMobileView();
+    };
+
+    msg.appendChild(restartBtn);
   }
 }
 
