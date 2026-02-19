@@ -299,7 +299,7 @@ button:disabled {
   
 @media (max-width: 600px) {
 
-  /* Mantener pantalla inicial intacta */
+  /* Pantalla inicial intacta */
   .header {
     flex-direction: column;
     text-align: center;
@@ -320,7 +320,7 @@ button:disabled {
     display: none !important;
   }
 
-  /* NUEVO DISEÑO MÓVIL */
+  /* Contenedor móvil */
   #mobileCardsContainer {
     display: flex;
     flex-direction: column;
@@ -332,6 +332,7 @@ button:disabled {
     overflow: hidden;
   }
 
+  /* Carta móvil: imagen + botón */
   .mobile-card-wrapper {
     display: flex;
     flex-direction: row;
@@ -358,6 +359,7 @@ button:disabled {
     cursor: pointer;
   }
 
+  /* Texto de la carta */
   .mobile-card-text {
     display: none;
     background: #f9fbf8;
@@ -1368,51 +1370,20 @@ function generateInsightPhrase(current, block, potential) {
   return templates[Math.floor(Math.random() * templates.length)];
 }
 
-
-
-
-
   
+/* ============================
+   MÓVIL
+============================ */
 
-
-
-  
-/* Móvil */
 const mobileContainer = document.getElementById("mobileCardsContainer");
 const nextBtn = document.getElementById("nextCardBtn");
 
 let mobileCards = [];
 let mobileIndex = 0;
-  
 
- 
-function createMobileCard(card) {
-  const ruta = cardImages[card.title];
-
-  const div = document.createElement("div");
-  div.className = "card show mobile-card";
-
-  div.innerHTML = `
-    <div class="card-inner">
-
-      ${ruta ? `
-        <div class="card-image-wrapper">
-          <img src="${ruta}" class="card-image">
-        </div>
-      ` : ""}
-
-      <div class="card-type">${card.type}</div>
-      <div class="card-title">${card.title}</div>
-      <div class="card-teaching">${card.teaching}</div>
-      <div class="card-action">Acción: ${card.action}</div>
-      <div class="card-affirmation">${card.affirmation}</div>
-    </div>
-  `;
-
-  return div;
-}
-
-
+/* ============================
+   NUEVA FUNCIÓN MÓVIL
+============================ */
 
 function showNextMobileCard() {
   if (mobileIndex >= mobileCards.length) return;
@@ -1465,21 +1436,9 @@ function showNextMobileCard() {
   }
 }
 
-
-  
-
-msg.innerHTML = `
-  Tus cartas del Tarot Atma dicen...<br><br>
-  <span class="insight-phrase">${phrase}</span>
-`;
-msg.style.display = "block";
-
-
-    // Orden: mensaje y debajo el botón
-    nextBtn.insertAdjacentElement("afterend", msg);
-    msg.insertAdjacentElement("afterend", restart);
-  }
-}
+/* ============================
+   RESET MÓVIL
+============================ */
 
 function resetMobileView() {
   document.getElementById("headerSection").style.display = "flex";
@@ -1501,7 +1460,10 @@ function resetMobileView() {
 
 nextBtn.addEventListener("click", showNextMobileCard);
 
-/* Botón barajar */
+/* ============================
+   BOTÓN BARAJAR
+============================ */
+
 document.getElementById("drawBtn").addEventListener("click", () => {
   document.getElementById("atmaMessage").style.display = "none";
 
@@ -1509,8 +1471,8 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   const block = getRandomCard("block");
   const potential = getRandomCard("potential");
 
+  /* ======== MÓVIL ======== */
   if (window.innerWidth <= 600) {
-    // Móvil
     document.getElementById("headerSection").style.display = "none";
     document.getElementById("oracleImageWrapper").style.display = "none";
     document.getElementById("cardsRow").style.display = "none";
@@ -1525,34 +1487,30 @@ document.getElementById("drawBtn").addEventListener("click", () => {
     mobileContainer.innerHTML = "";
     mobileContainer.style.display = "flex";
 
-    nextBtn.style.display = "block";
-    nextBtn.textContent = "Revelar Carta";
-
+    // Mostrar las 3 imágenes directamente
     showNextMobileCard();
+    showNextMobileCard();
+    showNextMobileCard();
+
     return;
   }
 
-  // PC
+  /* ======== PC ======== */
   document.getElementById("cardsRow").style.display = "flex";
   renderCard("card-current", current);
   renderCard("card-block", block);
   renderCard("card-potential", potential);
 
+  const phrase = generateInsightPhrase(current, block, potential);
 
-  
-  // Generar la frase personalizada
-const phrase = generateInsightPhrase(current, block, potential);
-
-// Mostrar el mensaje + la frase
-const msg = document.getElementById("atmaMessage");
-msg.innerHTML = `
-  Tus cartas del Tarot Atma dicen...<br><br>
-  <span class="insight-phrase">${phrase}</span>
-`;
-msg.style.display = "block";
-
+  const msg = document.getElementById("atmaMessage");
+  msg.innerHTML = `
+    Tus cartas del Tarot Atma dicen...<br><br>
+    <span class="insight-phrase">${phrase}</span>
+  `;
+  msg.style.display = "block";
 });
 </script>
-
 </body>
 </html>
+
