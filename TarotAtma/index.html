@@ -338,7 +338,7 @@ button:disabled {
   }
 
   /* Carta pequeña */
-  .mobile-card-small {
+ .mobile-card-small {
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -346,17 +346,19 @@ button:disabled {
   align-items: center;
   gap: 10px;
   border-radius: 14px;
-  overflow: hidden; /* obliga a la imagen a respetar el borde */
+  overflow: hidden;
+  height: 270px;   /* 🔥 altura fija para todas las cartas */
 }
 
 .mobile-card-small-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;   /* ahora sí respeta el borde redondeado */
-  border-radius: 14px; /* opcional, pero ayuda */
+  height: 100%;     /* 🔥 rellena el contenedor */
+  object-fit: cover; /* 🔥 respeta el borde redondeado */
+  border-radius: 14px;
   background: transparent;
   padding: 0;
 }
+
 
 
   /* Botón LEER CARTA */
