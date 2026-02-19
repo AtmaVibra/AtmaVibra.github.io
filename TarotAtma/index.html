@@ -327,33 +327,35 @@ button:disabled {
     text-align: center;
   }
 
-  /* CONTENEDOR DE 3 COLUMNAS FIJAS */
+  /* CONTENEDOR DE 3 COLUMNAS FIJAS (cartas alineadas izq-centro-dcha) */
   #mobileCardsContainer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 12px;
     width: 100%;
     padding: 0 10px;
-    margin-top: 40px;
+    margin-top: 55px; /* más abajo en la pantalla */
   }
 
   /* Carta pequeña */
   .mobile-card-small {
-    width: 95%; /* evita que se expanda demasiado */
+    width: 95%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     position: relative;
   }
 
-  /* Imagen pequeña con altura fija (SOLUCIÓN AL PROBLEMA) */
+  /* Imagen de la carta: más grande, sin recortes, completa */
   .mobile-card-small-img {
     width: 100%;
-    height: 150px;      /* tamaño estable para las 3 */
-    object-fit: cover;  /* recorta sin deformar */
+    height: 180px;        /* tamaño imponente */
+    object-fit: contain;  /* NO recorta la imagen */
+    background: #f3f3f3;  /* fondo neutro detrás de la carta */
     border-radius: 10px;
+    padding: 4px;         /* pequeño margen interior */
   }
 
   /* Botón LEER CARTA debajo */
@@ -369,7 +371,7 @@ button:disabled {
     text-align: center;
   }
 
-  /* Vista ampliada */
+  /* Vista ampliada (overlay) */
   .mobile-card-overlay {
     position: fixed;
     top: 0;
@@ -386,8 +388,8 @@ button:disabled {
 
   /* Cuadro interior verde suave */
   .mobile-card-overlay-content {
-    background: #dff3e3;
-    color: #1a1a1a;
+    background: #dff3e3; /* verde suave */
+    color: #1a1a1a;      /* texto oscuro */
     padding: 24px;
     border-radius: 14px;
     width: 88%;
@@ -398,18 +400,18 @@ button:disabled {
     font-size: 1.15rem;
     line-height: 1.5;
     box-shadow: 0 4px 18px rgba(0,0,0,0.25);
-    border: 2px solid #b7e4c7;
+    border: 2px solid #b7e4c7; /* borde verde claro */
   }
 
-  /* Botón VOLVER */
+  /* Botón VOLVER dentro del overlay */
   .mobile-card-overlay-content button {
     margin-top: 20px;
     width: 100%;
     padding: 12px;
     border-radius: 10px;
-    background: #95d5b2;
+    background: #95d5b2; /* verde medio */
     border: none;
-    color: #0b3d2e;
+    color: #0b3d2e;      /* texto verde oscuro */
     font-weight: 700;
     font-size: 1rem;
   }
@@ -428,7 +430,7 @@ button:disabled {
     text-align: center;
   }
 
-  /* Botón Barajar de nuevo */
+  /* Botón Barajar de nuevo (debajo de la frase vibracional) */
   .restart-btn-mobile {
     margin-top: 20px;
     padding: 12px 20px;
@@ -444,7 +446,7 @@ button:disabled {
     margin-right: auto;
   }
 
-  /* Ocultar cartas de escritorio */
+  /* Ocultar cartas de escritorio en móvil */
   #cardsRow {
     display: none !important;
   }
