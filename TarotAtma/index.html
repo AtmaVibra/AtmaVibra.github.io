@@ -376,7 +376,7 @@ button:disabled {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.75);
+    background: rgba(0,0,0,0.65);
     display: none;
     justify-content: center;
     align-items: center;
@@ -384,27 +384,34 @@ button:disabled {
     z-index: 9999;
   }
 
+  /* Cuadro interior verde suave */
   .mobile-card-overlay-content {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    width: 90%;
+    background: #dff3e3; /* verde suave */
+    color: #1a1a1a;      /* texto oscuro */
+    padding: 24px;
+    border-radius: 14px;
+    width: 88%;
+    max-width: 420px;
     max-height: 85vh;
     overflow-y: auto;
     text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.4;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+    border: 2px solid #b7e4c7; /* borde verde claro */
   }
 
+  /* Botón VOLVER */
   .mobile-card-overlay-content button {
-    margin-top: 16px;
+    margin-top: 20px;
     width: 100%;
     padding: 12px;
     border-radius: 10px;
-    background: #f29b4c;
+    background: #95d5b2; /* verde medio */
     border: none;
-    color: #1b1305;
-    font-weight: 600;
+    color: #0b3d2e;      /* texto verde oscuro */
+    font-weight: 700;
+    font-size: 1rem;
   }
 
   /* Botón Revelar siguiente */
