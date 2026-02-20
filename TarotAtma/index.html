@@ -296,6 +296,60 @@ button:disabled {
 }
 
 
+/* ============================
+   OVERLAY PC
+============================ */
+
+.desktop-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.65);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 9999;
+}
+
+.desktop-overlay-content {
+  background: #dff3e3;
+  color: #1a1a1a;
+  padding: 30px;
+  border-radius: 20px;
+  width: 600px;
+  max-width: 90%;
+  box-sizing: border-box;
+  max-height: 85vh;
+  overflow-y: auto;
+  text-align: center;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+  border: 2px solid #b7e4c7;
+}
+
+.desktop-overlay-content img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.desktop-back-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: #95d5b2;
+  border: none;
+  color: #0b3d2e;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+  
 
 
   
@@ -360,9 +414,6 @@ button:disabled {
   background: transparent;
   padding: 0;
 }
-
-
-
 
 
   /* Botón LEER CARTA */
@@ -493,8 +544,6 @@ button:disabled {
   height: auto;
   object-fit: contain;
 }
-
-
 
 
   
@@ -651,8 +700,6 @@ const cardImages = {
 };
 
   
-
-
 
   
 const deck = {
@@ -952,6 +999,7 @@ const deck = {
     }
   ]
 };
+  
 
 /* Utilidades */
 
@@ -1005,7 +1053,6 @@ function renderCard(id, data) {
     </div>
   `;
 }
-
 
 
 
@@ -1615,24 +1662,82 @@ document.getElementById("drawBtn").addEventListener("click", () => {
 
     return;
   }
-  /* ======== PC ======== */
-  document.getElementById("cardsRow").style.display = "flex";
-  renderCard("card-current", current);
-  renderCard("card-block", block);
-  renderCard("card-potential", potential);
 
-  const phrase = generateInsightPhrase(current, block, potential);
 
-  const msg = document.getElementById("atmaMessage");
-  msg.innerHTML = `
-    Tus cartas del Tarot Atma dicen...<br><br>
-    <span class="insight-phrase">${phrase}</span>
-  `;
-  msg.style.display = "block";
-});
 
   
+ /* ======== PC ======== */
+document.getElementById("cardsRow").style.display = "flex";
+renderCard("card-current", current);
+renderCard("card-block", block);
+renderCard("card-potential", potential);
+
+// ⭐ ACTIVAR OVERLAY AL HACER CLIC EN CADA CARTA (PC)
+document.getElementById("card-current").onclick = () => {
+  openDesktopOverlay({ type: "Energía actual", ...current });
+};
+
+document.getElementById("card-block").onclick = () => {
+  openDesktopOverlay({ type: "Bloqueo", ...block });
+};
+
+document.getElementById("card-potential").onclick = () => {
+  openDesktopOverlay({ type: "Potencial", ...potential });
+};
+
+// ⭐ FRASE VIBRACIONAL
+const phrase = generateInsightPhrase(current, block, potential);
+
+const msg = document.getElementById("atmaMessage");
+msg.innerHTML = `
+  Tus cartas del Tarot Atma dicen...<br><br>
+  <span class="insight-phrase">${phrase}</span>
+`;
+msg.style.display = "block";
+
 </script>
+
+<!-- OVERLAY PC -->
+<div id="desktopOverlay" class="desktop-overlay">
+  <div class="desktop-overlay-content">
+    <div id="desktopOverlayImage"></div>
+    <h3 id="desktopOverlayTitle"></h3>
+    <p id="desktopOverlayTeaching"></p>
+    <p id="desktopOverlayAction"></p>
+    <p id="desktopOverlayAffirmation"></p>
+
+    <button class="desktop-back-btn" onclick="closeDesktopOverlay()">VOLVER</button>
+  </div>
+</div>
+
+<script>
+
+// ⭐ FUNCIONES DEL OVERLAY (solo una vez, al final del script)
+function openDesktopOverlay(cardData) {
+  document.getElementById("desktopOverlayImage").innerHTML = `
+    <img src="${cardImages[cardData.title]}" />
+  `;
+
+  document.getElementById("desktopOverlayTitle").textContent =
+    `${cardData.type}: ${cardData.title}`;
+
+  document.getElementById("desktopOverlayTeaching").textContent =
+    cardData.teaching;
+
+  document.getElementById("desktopOverlayAction").textContent =
+    "Acción: " + cardData.action;
+
+  document.getElementById("desktopOverlayAffirmation").textContent =
+    cardData.affirmation;
+
+  document.getElementById("desktopOverlay").style.display = "flex";
+}
+
+function closeDesktopOverlay() {
+  document.getElementById("desktopOverlay").style.display = "none";
+}
+
+</script>
+
 </body>
 </html>
-
