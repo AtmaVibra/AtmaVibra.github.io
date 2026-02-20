@@ -399,8 +399,8 @@ button:disabled {
     width: 92%;
     max-width: 420px;
 
-    margin-left: 12%;     /* 🔥 movimiento real hacia la izquierda */
-    margin-right: 0;       /* 🔥 evita que se recentre */
+    position: relative;
+    left: -4%;              /* 🔥 movimiento real hacia la izquierda */
     
     box-sizing: border-box;
     max-height: 85vh;
@@ -411,7 +411,6 @@ button:disabled {
     box-shadow: 0 4px 18px rgba(0,0,0,0.25);
     border: 2px solid #b7e4c7;
 }
-
 
 
   /* Botón VOLVER */
@@ -428,18 +427,21 @@ button:disabled {
   }
 
   /* Botón Revelar siguiente */
-  #nextCardBtn {
+#nextCardBtn {
     display: none;
     margin: 20px auto 10px auto;
     padding: 12px 20px;
     font-size: 0.9rem;
     border-radius: 12px;
-    background: linear-gradient(135deg, #d8925b, #a65a3a); /* cobre rojizo suave */
-    color: #1b1305;
+
+    background: linear-gradient(135deg, #e07a4f, #b44a2a); /* cobre rojizo más vivo */
+    color: #fffdf8; /* contraste fuerte y elegante */
+    
     border: none;
-    font-weight: 600;
+    font-weight: 700;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35); /* más presencia */
 }
 
 
