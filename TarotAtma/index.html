@@ -1459,13 +1459,22 @@ function generateInsightPhrase(current, block, potential) {
    MÓVIL
 ============================ */
 
+/* 🔊 SONIDO DE REVELAR */
+function playRevealSound() {
+  const s = document.getElementById("revealSound");
+  if (s) {
+    s.currentTime = 0;
+    s.play();
+  }
+}
+
 const mobileContainer = document.getElementById("mobileCardsContainer");
 const nextBtn = document.getElementById("nextCardBtn");
 
 let mobileCards = [];
 let mobileIndex = 0;
 
-  
+
 /* ============================
    NUEVA FUNCIÓN MÓVIL
    (CARTAS PEQUEÑAS EN HORIZONTAL)
@@ -1473,6 +1482,11 @@ let mobileIndex = 0;
 
 function showNextMobileCard() {
   if (mobileIndex >= mobileCards.length) return;
+
+  /* 🔊 SONIDO AL REVELAR CADA CARTA (2ª y 3ª) */
+  if (mobileIndex > 0) {
+    playRevealSound();
+  }
 
   const card = mobileCards[mobileIndex];
 
@@ -1554,7 +1568,6 @@ function showNextMobileCard() {
 }
 
 
-  
 /* ============================
    RESET MÓVIL
 ============================ */
@@ -1579,6 +1592,7 @@ function resetMobileView() {
 
 nextBtn.addEventListener("click", showNextMobileCard);
 
+
 /* ============================
    BOTÓN BARAJAR
 ============================ */
@@ -1589,7 +1603,6 @@ document.getElementById("drawBtn").addEventListener("click", () => {
   const current = getRandomCard("current");
   const block = getRandomCard("block");
   const potential = getRandomCard("potential");
-
 
   /* ======== MÓVIL ======== */
   if (window.innerWidth <= 600) {
@@ -1610,11 +1623,15 @@ document.getElementById("drawBtn").addEventListener("click", () => {
     nextBtn.style.display = "block";
     nextBtn.textContent = "Revelar siguiente";
 
+    /* 🔊 SONIDO AL REVELAR LA PRIMERA CARTA */
+    playRevealSound();
+
     // Mostrar solo la primera carta
     showNextMobileCard();
 
     return;
   }
+
   /* ======== PC ======== */
   document.getElementById("cardsRow").style.display = "flex";
   renderCard("card-current", current);
@@ -1633,5 +1650,8 @@ document.getElementById("drawBtn").addEventListener("click", () => {
 
   
 </script>
+
+  <audio id="revealSound" src="Revelar.mp3" preload="auto"></audio>
+
 </body>
 </html>
