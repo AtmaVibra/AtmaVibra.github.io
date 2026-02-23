@@ -295,9 +295,6 @@ button:disabled {
   }
 }
 
-
-
-
   
   
 @media (max-width: 600px) {
@@ -360,8 +357,6 @@ button:disabled {
   background: transparent;
   padding: 0;
 }
-
-
 
 
 
@@ -447,7 +442,6 @@ button:disabled {
     box-shadow: 0 4px 14px rgba(0,0,0,0.35); /* más presencia */
 }
 
-
   
   /* Botón Barajar de nuevo — Azul claro metálico */
 .restart-btn-mobile {
@@ -490,9 +484,6 @@ button:disabled {
   }
 }
 
-
-
-
   
 
 @media (min-width: 601px) {
@@ -525,7 +516,8 @@ button:disabled {
   background: rgba(0,0,0,0.85);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* 🔵 ahora se pega arriba */
+  padding-top: 10px; /* pequeño margen para que no toque el borde */
   z-index: 99999;
 }
 
