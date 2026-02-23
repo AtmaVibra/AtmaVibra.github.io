@@ -495,8 +495,16 @@ button:disabled {
 }
 
 
+/* 🔍 EFECTO DE AGRANDAR IMAGEN EN MÓVIL */
+.mobile-card-small-img.enlarge {
+  transform: scale(1.8);
+  transition: transform 0.25s ease;
+  z-index: 9999;
+  position: relative;
+}
 
 
+  
   
   
 </style>
@@ -1498,10 +1506,17 @@ function showNextMobileCard() {
   img.src = cardImages[card.title];
   img.className = "mobile-card-small-img";
 
+  /* 🔍 AGRANDAR / REDUCIR AL TOCAR */
+  img.onclick = () => {
+    img.classList.toggle("enlarge");
+  };
+
   const btn = document.createElement("button");
   btn.className = "mobile-card-small-btn";
   btn.textContent = "LEER CARTA";
 
+
+  
   // --- Vista ampliada ---
   const overlay = document.createElement("div");
   overlay.className = "mobile-card-overlay";
