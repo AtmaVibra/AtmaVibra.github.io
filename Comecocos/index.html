@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Oráculo ATMA - Comecocos 3D</title>
+
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: radial-gradient(circle, #0d3b2e, #06251c);
+        font-family: 'Arial', sans-serif;
+        color: white;
+    }
+
+    #mensajeFinal {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        padding: 20px;
+        background: rgba(0,0,0,0.7);
+        border-radius: 10px;
+        text-align: center;
+        font-size: 1.5rem;
+        display: none;
+    }
+
+    #volver {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 15px 25px;
+        background: gold;
+        color: black;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        display: none;
+    }
+
+    #opciones {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 20px;
+    }
+
+    .btn {
+        padding: 15px 20px;
+        background: rgba(255,255,255,0.2);
+        border: 2px solid gold;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background: gold;
+        color: black;
+    }
+</style>
+</head>
+
+<body>
+
+<div id="mensajeFinal"></div>
+<div id="volver" onclick="volverWeb()">Volver a la web</div>
+<div id="opciones"></div>
+
+<!-- THREE.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+// --------------------------------------------------
+// FRASES VIBRACIONALES
+// --------------------------------------------------
+const frases = [
+    "Hoy tu energía se expande hacia lo que deseas atraer.",
+    "La abundancia fluye hacia ti cuando actúas desde la calma.",
+    "Lo que buscas también te está buscando.",
+    "Tu respiración es tu refugio.",
+    "Acepta lo que llega, suelta lo que se va.",
+    "El desapego abre caminos que el miedo no ve.",
+    "Hoy eliges responder, no reaccionar.",
+    "Tu intuición es más sabia de lo que crees.",
+    "La calma no se busca, se permite.",
+    "Confía en el proceso, incluso cuando no lo entiendas."
+];
+
+// --------------------------------------------------
+// ESCENA 3D
+// --------------------------------------------------
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 100);
+camera.position.set(0, 1.5, 3);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// Luz
+const light = new THREE.PointLight(0xffffff, 2);
+light.position.set(2, 3, 4);
+scene.add(light);
+
+// --------------------------------------------------
+// CREAR COMECOS 3D (4 caras plegadas)
+// --------------------------------------------------
+const group = new THREE.Group();
+scene.add(group);
+
+const loader = new THREE.TextureLoader();
+
+const colores = [
+    "textures/color1.jpg",
+    "textures/color2.jpg",
+    "textures/color3.jpg",
+    "textures/color4.jpg"
+];
+
+for (let i = 0; i < 4; i++) {
+    const geometry = new THREE.PlaneGeometry(1, 1);
+    const material = new THREE.MeshPhongMaterial({
+        map: loader.load(colores[i]),
+        side: THREE.DoubleSide
+    });
+
+    const flap = new THREE.Mesh(geometry, material);
+    flap.position.set(Math.cos(i * Math.PI/2), Math.sin(i * Math.PI/2), 0);
+    flap.rotation.z = i * Math.PI/2;
+    flap.rotation.x = -Math.PI/2;
+
+    group.add(flap);
+}
+
+// Animación suave tipo “respiración”
+let t = 0;
+function animate() {
+    requestAnimationFrame(animate);
+    t += 0.02;
+    group.rotation.x = Math.sin(t) * 0.2;
+    group.rotation.y += 0.01;
+    renderer.render(scene, camera);
+}
+animate();
+
+// --------------------------------------------------
+// INTERACCIÓN
+// --------------------------------------------------
+const opcionesDiv = document.getElementById("opciones");
+const mensajeFinal = document.getElementById("mensajeFinal");
+const volverBtn = document.getElementById("volver");
+
+function mostrarOpciones(lista, callback) {
+    opcionesDiv.innerHTML = "";
+    lista.forEach(op => {
+        const btn = document.createElement("div");
+        btn.className = "btn";
+        btn.textContent = op;
+        btn.onclick = () => callback(op);
+        opcionesDiv.appendChild(btn);
+    });
+}
+
+// Paso 1: elegir color
+mostrarOpciones(["Sol", "Luna", "Ojo", "Loto"], elegirColor);
+
+function elegirColor(color) {
+    mostrarOpciones(["1", "2", "3", "4"], elegirNumero);
+}
+
+function elegirNumero(num) {
+    mostrarOpciones(["1", "2", "3", "4"], revelarMensaje);
+}
+
+function revelarMensaje() {
+    opcionesDiv.style.display = "none";
+    const frase = frases[Math.floor(Math.random() * frases.length)];
+    mensajeFinal.textContent = frase;
+    mensajeFinal.style.display = "block";
+    volverBtn.style.display = "block";
+}
+
+function volverWeb() {
+    window.location.href = "https://tuweb.com"; // CAMBIA ESTA URL
+}
+
+</script>
+
+</body>
+</html>
