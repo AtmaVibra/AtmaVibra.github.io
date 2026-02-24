@@ -18,15 +18,17 @@
         left: 50%;
         transform: translateX(-50%);
         width: 80%;
-        max-width: 600px;
-        padding: 20px;
-        background: rgba(0,0,0,0.75);
-        border-radius: 10px;
+        max-width: 700px;
+        padding: 30px 25px;
+        background: rgba(0,0,0,0.8);
+        border-radius: 14px;
         text-align: center;
-        font-size: 1.4rem;
+        font-size: 2rem;
+        line-height: 1.4;
         display: none;
         z-index: 5;
-        border: 1px solid rgba(255,215,0,0.6);
+        border: 1px solid rgba(255,215,0,0.8);
+        box-shadow: 0 0 25px rgba(255,215,0,0.35);
     }
 
     #volver {
@@ -34,7 +36,7 @@
         bottom: 30px;
         left: 50%;
         transform: translateX(-50%);
-        padding: 12px 22px;
+        padding: 12px 26px;
         background: gold;
         color: black;
         border-radius: 10px;
@@ -42,6 +44,8 @@
         cursor: pointer;
         display: none;
         z-index: 5;
+        border: none;
+        font-size: 1rem;
     }
 
     #opciones {
@@ -49,20 +53,20 @@
         bottom: 40px;
         left: 50%;
         transform: translateX(-50%);
-        display: none;
-        gap: 20px;
+        display: flex;
+        gap: 16px;
         z-index: 5;
     }
 
     .btn {
         padding: 12px 18px;
-        background: rgba(0,0,0,0.6);
+        background: rgba(0,0,0,0.7);
         border: 2px solid gold;
         border-radius: 10px;
         cursor: pointer;
         font-size: 1.1rem;
         transition: 0.3s;
-        min-width: 80px;
+        min-width: 90px;
         text-align: center;
     }
 
@@ -76,14 +80,14 @@
 <body>
 
 <div id="mensajeFinal"></div>
-<div id="volver" onclick="volverWeb()">Volver</div>
+<button id="volver" onclick="volverWeb()">Volver</button>
 <div id="opciones"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
 // --------------------------------------------------
-// FRASES
+// FRASES VIBRACIONALES
 // --------------------------------------------------
 const frases = [
     "Hoy tu energía se expande hacia lo que deseas atraer.",
@@ -95,156 +99,145 @@ const frases = [
     "Hoy eliges responder, no reaccionar.",
     "Tu intuición es más sabia de lo que crees.",
     "La calma no se busca, se permite.",
-    "Confía en el proceso, incluso cuando no lo entiendas."
+    "Confía en el proceso, incluso cuando no lo entiendas.",
     "Tu energía se alinea con lo que estás preparado para recibir.",
-"La calma que buscas ya vive dentro de ti.",
-"Hoy eliges caminar con suavidad y claridad.",
-"El universo te sostiene incluso cuando no lo ves.",
-"Respira: estás exactamente donde necesitas estar.",
-"Cada pensamiento consciente abre un nuevo camino.",
-"Tu alma sabe el ritmo perfecto para ti.",
-"Lo que hoy agradeces, mañana florece.",
-"El silencio también habla, si sabes escucharlo.",
-"Tu intuición es un faro que nunca se apaga.",
-"Hoy eliges confiar más que temer.",
-"El universo responde a tu vibración, no a tu prisa.",
-"Lo que sueltas te libera.",
-"Tu luz interior es más fuerte que cualquier duda.",
-"Cada respiración te devuelve a tu centro.",
-"Hoy eliges ver belleza en lo simple.",
-"Tu presencia transforma el espacio que habitas.",
-"Lo que buscas también te está buscando.",
-"El equilibrio llega cuando dejas de forzarlo.",
-"Tu paz es tu mayor riqueza.",
-"Hoy eliges avanzar sin cargar lo que pesa.",
-"El universo abre puertas cuando tú abres tu corazón.",
-"Tu energía crea tu realidad.",
-"Lo que hoy aceptas deja de limitarte.",
-"Cada día es una oportunidad para renacer.",
-"Tu alma no tiene prisa.",
-"Hoy eliges escuchar más a tu interior.",
-"La claridad llega cuando la mente se aquieta.",
-"Tu camino se ilumina paso a paso.",
-"Lo que te inspira te guía.",
-"Hoy eliges soltar el control y abrazar la confianza.",
-"Tu vibración atrae lo que mereces.",
-"El amor propio es tu brújula.",
-"Cada emoción trae un mensaje.",
-"Hoy eliges ver posibilidades donde antes veías límites.",
-"Tu calma es un acto de amor hacia ti mismo.",
-"El universo conspira a favor de tu expansión.",
-"Lo que te hace bien, te hace crecer.",
-"Hoy eliges ser tu propio refugio.",
-"Tu luz interior nunca se apaga.",
-"Cada paso consciente es un paso hacia tu verdad.",
-"Hoy eliges honrar tu energía.",
-"Tu alma recuerda lo que tu mente olvida.",
-"Lo que hoy siembras, mañana florece.",
-"Hoy eliges respirar antes de reaccionar.",
-"Tu intuición siempre te muestra el camino correcto.",
-"El universo te escucha cuando hablas con el corazón.",
-"Hoy eliges confiar en el proceso.",
-"Tu energía es medicina.",
-"Cada día puedes empezar de nuevo.",
-"Hoy eliges soltar lo que ya no vibra contigo.",
-"Tu calma abre caminos invisibles.",
-"El universo te acompaña en cada paso.",
-"Hoy eliges ver con los ojos del alma.",
-"Tu vibración es tu lenguaje más poderoso.",
-"Lo que te trae paz es tu verdadero camino.",
-"Hoy eliges agradecer incluso lo pequeño.",
-"Tu alma siempre sabe hacia dónde ir.",
-"Cada respiración te acerca a tu esencia.",
-"Hoy eliges ser amable contigo mismo.",
-"Tu luz interior guía tu camino.",
-"El universo responde a tu autenticidad.",
-"Hoy eliges confiar en tu proceso interno.",
-"Tu energía crea tu experiencia.",
-"Cada día es una oportunidad para expandirte.",
-"Hoy eliges escuchar tu intuición.",
-"Tu calma es tu superpoder.",
-"El universo te sostiene en cada decisión.",
-"Hoy eliges avanzar con suavidad.",
-"Tu alma vibra en armonía con lo que amas.",
-"Cada pensamiento consciente transforma tu realidad.",
-"Hoy eliges ver la magia en lo cotidiano.",
-"Tu energía atrae lo que resuena contigo.",
-"El universo te abre puertas cuando tú abres tu corazón.",
-"Hoy eliges caminar con presencia.",
-"Tu luz interior ilumina tu camino.",
-"Cada respiración te devuelve a tu centro.",
-"Hoy eliges confiar en tu intuición.",
-"Tu alma sabe el camino.",
-"El universo te acompaña en silencio.",
-"Hoy eliges soltar lo que pesa.",
-"Tu vibración es tu guía.",
-"Cada día puedes renacer.",
-"Hoy eliges ver belleza en lo simple.",
-"Tu calma transforma tu mundo.",
-"El universo responde a tu gratitud.",
-"Hoy eliges avanzar sin miedo.",
-"Tu energía es sagrada.",
-"Cada paso consciente te acerca a tu verdad.",
-"Hoy eliges honrar tu proceso.",
-"Tu alma brilla incluso en la oscuridad.",
-"El universo te escucha.",
-"Hoy eliges confiar en tu luz.",
-"Tu vibración crea tu realidad.",
-"Cada respiración es un regreso a ti.",
-"Hoy eliges ser tu propio hogar.",
-"Tu calma es tu fortaleza.",
-"El universo te sostiene.",
-"Hoy eliges caminar con amor.",
-"Tu alma siempre sabe.",
-"Cada día es una oportunidad para expandirte.",
-"Hoy eliges confiar en tu intuición.",
-"Tu energía abre caminos.",
-"El universo te acompaña.",
-"Hoy eliges soltar lo que ya no vibra contigo.",
-"Tu luz interior nunca se apaga."
-
+    "La calma que buscas ya vive dentro de ti.",
+    "Hoy eliges caminar con suavidad y claridad.",
+    "El universo te sostiene incluso cuando no lo ves.",
+    "Respira: estás exactamente donde necesitas estar.",
+    "Cada pensamiento consciente abre un nuevo camino.",
+    "Tu alma sabe el ritmo perfecto para ti.",
+    "Lo que hoy agradeces, mañana florece.",
+    "El silencio también habla, si sabes escucharlo.",
+    "Tu intuición es un faro que nunca se apaga.",
+    "Hoy eliges confiar más que temer.",
+    "El universo responde a tu vibración, no a tu prisa.",
+    "Lo que sueltas te libera.",
+    "Tu luz interior es más fuerte que cualquier duda.",
+    "Cada respiración te devuelve a tu centro.",
+    "Hoy eliges ver belleza en lo simple.",
+    "Tu presencia transforma el espacio que habitas.",
+    "El equilibrio llega cuando dejas de forzarlo.",
+    "Tu paz es tu mayor riqueza.",
+    "Hoy eliges avanzar sin cargar lo que pesa.",
+    "El universo abre puertas cuando tú abres tu corazón.",
+    "Tu energía crea tu realidad.",
+    "Lo que hoy aceptas deja de limitarte.",
+    "Cada día es una oportunidad para renacer.",
+    "Tu alma no tiene prisa.",
+    "Hoy eliges escuchar más a tu interior.",
+    "La claridad llega cuando la mente se aquieta.",
+    "Tu camino se ilumina paso a paso.",
+    "Lo que te inspira te guía.",
+    "Hoy eliges soltar el control y abrazar la confianza.",
+    "Tu vibración atrae lo que mereces.",
+    "El amor propio es tu brújula.",
+    "Cada emoción trae un mensaje.",
+    "Hoy eliges ver posibilidades donde antes veías límites.",
+    "Tu calma es un acto de amor hacia ti mismo.",
+    "El universo conspira a favor de tu expansión.",
+    "Lo que te hace bien, te hace crecer.",
+    "Hoy eliges ser tu propio refugio.",
+    "Tu luz interior nunca se apaga.",
+    "Cada paso consciente es un paso hacia tu verdad.",
+    "Hoy eliges honrar tu energía.",
+    "Tu alma recuerda lo que tu mente olvida.",
+    "Lo que hoy siembras, mañana florece.",
+    "Hoy eliges respirar antes de reaccionar.",
+    "Tu intuición siempre te muestra el camino correcto.",
+    "El universo te escucha cuando hablas con el corazón.",
+    "Hoy eliges confiar en el proceso.",
+    "Tu energía es medicina.",
+    "Cada día puedes empezar de nuevo.",
+    "Hoy eliges soltar lo que ya no vibra contigo.",
+    "Tu calma abre caminos invisibles.",
+    "El universo te acompaña en cada paso.",
+    "Hoy eliges ver con los ojos del alma.",
+    "Tu vibración es tu lenguaje más poderoso.",
+    "Lo que te trae paz es tu verdadero camino.",
+    "Hoy eliges agradecer incluso lo pequeño.",
+    "Tu alma siempre sabe hacia dónde ir.",
+    "Cada respiración te acerca a tu esencia.",
+    "Hoy eliges ser amable contigo mismo.",
+    "Tu luz interior guía tu camino.",
+    "El universo responde a tu autenticidad.",
+    "Hoy eliges confiar en tu proceso interno.",
+    "Tu energía crea tu experiencia.",
+    "Cada día es una oportunidad para expandirte.",
+    "Hoy eliges escuchar tu intuición.",
+    "Tu calma es tu superpoder.",
+    "El universo te sostiene en cada decisión.",
+    "Hoy eliges avanzar con suavidad.",
+    "Tu alma vibra en armonía con lo que amas.",
+    "Cada pensamiento consciente transforma tu realidad.",
+    "Hoy eliges ver la magia en lo cotidiano.",
+    "Tu energía atrae lo que resuena contigo.",
+    "Hoy eliges caminar con presencia.",
+    "Tu luz interior ilumina tu camino.",
+    "Cada respiración te devuelve a tu centro.",
+    "Hoy eliges ser tu propio hogar.",
+    "Tu calma es tu fortaleza.",
+    "El universo te sostiene."
 ];
 
 // --------------------------------------------------
-// ESCENA
+// ESCENA 3D
 // --------------------------------------------------
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 100);
-camera.position.set(0, 1.5, 4);
+const camera = new THREE.PerspectiveCamera(
+    60,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    100
+);
+camera.position.set(0, 1.6, 4);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// Fondo
+// Fondo cósmico
 const fondoTexture = new THREE.TextureLoader().load("textures/fondo.jpg");
 const fondoGeometry = new THREE.PlaneGeometry(30, 20);
-const fondoMaterial = new THREE.MeshBasicMaterial({ map: fondoTexture, side: THREE.DoubleSide });
+const fondoMaterial = new THREE.MeshBasicMaterial({
+    map: fondoTexture,
+    side: THREE.DoubleSide
+});
 const fondo = new THREE.Mesh(fondoGeometry, fondoMaterial);
 fondo.position.set(0, 0, -8);
 scene.add(fondo);
 
-// Luz
-scene.add(new THREE.PointLight(0xffffff, 2, 20).position.set(2, 4, 5));
-scene.add(new THREE.AmbientLight(0x888888));
+// Luces (corregido: sin errores que rompan la escena)
+const pointLight = new THREE.PointLight(0xffffff, 2, 30);
+pointLight.position.set(3, 5, 6);
+scene.add(pointLight);
+
+const ambientLight = new THREE.AmbientLight(0x888888);
+scene.add(ambientLight);
 
 // --------------------------------------------------
-// PARTICULAS
+// PARTÍCULAS DORADAS
 // --------------------------------------------------
-const particleCount = 200;
+const particleCount = 220;
 const particlesGeometry = new THREE.BufferGeometry();
 const positions = new Float32Array(particleCount * 3);
 for (let i = 0; i < particleCount; i++) {
-    positions[i*3]   = (Math.random() - 0.5) * 10;
-    positions[i*3+1] = Math.random() * 5 - 1;
+    positions[i*3]   = (Math.random() - 0.5) * 12;
+    positions[i*3+1] = Math.random() * 6 - 1.5;
     positions[i*3+2] = (Math.random() - 0.5) * 10;
 }
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-const particlesMaterial = new THREE.PointsMaterial({ color: 0xffd700, size: 0.05 });
-scene.add(new THREE.Points(particlesGeometry, particlesMaterial));
+const particlesMaterial = new THREE.PointsMaterial({
+    color: 0xffd700,
+    size: 0.06,
+    transparent: true,
+    opacity: 0.85
+});
+const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+scene.add(particles);
 
 // --------------------------------------------------
-// COMECOS
+// COMECOS 3D (GRANDE, ICONOS GRANDES)
 // --------------------------------------------------
 const group = new THREE.Group();
 scene.add(group);
@@ -270,52 +263,77 @@ const flaps = [];
 for (let i = 0; i < 4; i++) {
     const flapGroup = new THREE.Group();
 
-    const baseGeo = new THREE.PlaneGeometry(1.8, 1.8);
-    const baseMat = new THREE.MeshPhongMaterial({ map: loader.load(colores[i]), side: THREE.DoubleSide });
+    // Cara base (más grande)
+    const baseGeo = new THREE.PlaneGeometry(2.4, 2.4);
+    const baseMat = new THREE.MeshPhongMaterial({
+        map: loader.load(colores[i]),
+        side: THREE.DoubleSide
+    });
     const base = new THREE.Mesh(baseGeo, baseMat);
     base.rotation.x = -Math.PI / 2;
 
-    const iconGeo = new THREE.PlaneGeometry(1.0, 1.0);
-    const iconMat = new THREE.MeshBasicMaterial({ map: loader.load(iconos[i]), transparent: true });
+    // Icono (mucho más grande)
+    const iconGeo = new THREE.PlaneGeometry(1.6, 1.6);
+    const iconMat = new THREE.MeshBasicMaterial({
+        map: loader.load(iconos[i]),
+        transparent: true
+    });
     const icon = new THREE.Mesh(iconGeo, iconMat);
-    icon.position.set(0, 0.01, 0);
+    icon.position.set(0, 0.02, 0);
     icon.rotation.x = -Math.PI / 2;
 
     flapGroup.add(base);
     flapGroup.add(icon);
 
     const angle = i * Math.PI / 2;
-    flapGroup.position.set(Math.cos(angle) * 1.2, 0, Math.sin(angle) * 1.2);
+    flapGroup.position.set(Math.cos(angle) * 1.6, 0, Math.sin(angle) * 1.6);
     flapGroup.lookAt(0, 0, 0);
 
     group.add(flapGroup);
     flaps.push(flapGroup);
 }
 
+// Escala general del comecocos (más grande)
+group.scale.set(1.2, 1.2, 1.2);
+
 // --------------------------------------------------
-// ANIMACIÓN
+// ANIMACIÓN (PLEGADO LENTO, MOVIMIENTO SUAVE)
 // --------------------------------------------------
 let t = 0;
 let foldProgress = 0;
-let foldDirection = 0;
+let foldDirection = 0; // -1 cerrando, 1 abriendo, 0 quieto
 
 function animate() {
     requestAnimationFrame(animate);
 
     t += 0.01;
-    group.position.y = Math.sin(t * 0.7) * 0.1;
-    group.rotation.y += 0.003;
 
+    // Movimiento suave del grupo (siempre centrado, pero vivo)
+    group.position.y = Math.sin(t * 0.5) * 0.12;
+    group.rotation.y += 0.0025;
+
+    // Partículas flotando
+    const pos = particlesGeometry.attributes.position.array;
+    for (let i = 0; i < particleCount; i++) {
+        pos[i*3+1] += 0.002;
+        if (pos[i*3+1] > 4) pos[i*3+1] = -2;
+    }
+    particlesGeometry.attributes.position.needsUpdate = true;
+
+    // Plegado lento (C: plegado lento)
     if (foldDirection !== 0) {
-        foldProgress += foldDirection * 0.05;
+        const speed = 0.03; // más lento
+        foldProgress += foldDirection * speed;
         foldProgress = Math.max(0, Math.min(1, foldProgress));
 
-        const angle = foldProgress * (Math.PI / 3);
+        const angle = foldProgress * (Math.PI / 3); // hasta ~60º
         flaps.forEach((fg, idx) => {
             fg.rotation.x = (idx % 2 === 0 ? 1 : -1) * angle;
         });
 
-        if (foldProgress === 0 || foldProgress === 1) foldDirection = 0;
+        if (foldProgress === 0 || foldProgress === 1) {
+            foldDirection = 0;
+        }
     }
 
     renderer.render(scene, camera);
@@ -323,7 +341,7 @@ function animate() {
 animate();
 
 // --------------------------------------------------
-// LÓGICA
+// LÓGICA DEL JUEGO (MECÁNICA CLÁSICA)
 // --------------------------------------------------
 const opcionesDiv = document.getElementById("opciones");
 const mensajeFinal = document.getElementById("mensajeFinal");
@@ -341,38 +359,46 @@ function mostrarOpciones(lista, callback) {
     });
 }
 
+// Animación de abrir/cerrar N veces
 function abrirCerrar(veces, callback) {
     let count = 0;
     function ciclo() {
-        if (count >= veces) return callback();
+        if (count >= veces) {
+            if (callback) callback();
+            return;
+        }
         foldDirection = 1;
         setTimeout(() => {
             foldDirection = -1;
             setTimeout(() => {
                 count++;
                 ciclo();
-            }, 300);
-        }, 300);
+            }, 350); // tiempo plegado lento
+        }, 350);
     }
     ciclo();
 }
 
+// Inicio: elegir color
 mostrarOpciones(["Sol", "Luna", "Ojo", "Loto"], elegirColor);
 
 function elegirColor(color) {
-    abrirCerrar(color.length, () => {
+    const letras = color.length; // LUNA = 4, etc.
+    abrirCerrar(letras, () => {
         mostrarOpciones(["1", "2", "3", "4"], elegirNumero1);
     });
 }
 
 function elegirNumero1(num) {
-    abrirCerrar(parseInt(num), () => {
+    const n = parseInt(num, 10);
+    abrirCerrar(n, () => {
         mostrarOpciones(["1", "2", "3", "4"], elegirNumero2);
     });
 }
 
 function elegirNumero2(num) {
-    abrirCerrar(parseInt(num), () => {
+    const n = parseInt(num, 10);
+    abrirCerrar(n, () => {
         const frase = frases[Math.floor(Math.random() * frases.length)];
         opcionesDiv.style.display = "none";
         mensajeFinal.textContent = frase;
@@ -382,11 +408,13 @@ function elegirNumero2(num) {
 }
 
 function volverWeb() {
+    // Ajusta la ruta según tu estructura
     window.location.href = "../index.html";
 }
 
+// Responsive
 window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
