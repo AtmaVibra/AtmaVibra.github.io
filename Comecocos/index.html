@@ -3,28 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <title>Oráculo ATMA - Comecocos 3D</title>
-
 <style>
     body {
         margin: 0;
         overflow: hidden;
-        background: radial-gradient(circle, #0d3b2e, #06251c);
+        background: black;
         font-family: 'Arial', sans-serif;
         color: white;
     }
 
+    #overlayInicio {
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle, #0d3b2e, #020b08);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: opacity 0.8s ease;
+    }
+
+    #overlayInicio h1 {
+        font-size: 2.4rem;
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+    }
+
+    #overlayInicio p {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        margin-bottom: 30px;
+        text-align: center;
+        max-width: 400px;
+    }
+
+    #btnEntrar {
+        padding: 15px 30px;
+        background: gold;
+        color: black;
+        border-radius: 999px;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        font-size: 1.1rem;
+        box-shadow: 0 0 20px rgba(255,215,0,0.6);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    #btnEntrar:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(255,215,0,0.9);
+    }
+
     #mensajeFinal {
         position: absolute;
-        top: 20%;
+        top: 15%;
         left: 50%;
         transform: translateX(-50%);
         width: 80%;
+        max-width: 600px;
         padding: 20px;
-        background: rgba(0,0,0,0.7);
+        background: rgba(0,0,0,0.75);
         border-radius: 10px;
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         display: none;
+        z-index: 5;
+        border: 1px solid rgba(255,215,0,0.6);
     }
 
     #volver {
@@ -32,13 +78,14 @@
         bottom: 30px;
         left: 50%;
         transform: translateX(-50%);
-        padding: 15px 25px;
+        padding: 12px 22px;
         background: gold;
         color: black;
         border-radius: 10px;
         font-weight: bold;
         cursor: pointer;
         display: none;
+        z-index: 5;
     }
 
     #opciones {
@@ -46,18 +93,21 @@
         bottom: 40px;
         left: 50%;
         transform: translateX(-50%);
-        display: flex;
+        display: none;
         gap: 20px;
+        z-index: 5;
     }
 
     .btn {
-        padding: 15px 20px;
-        background: rgba(255,255,255,0.2);
+        padding: 12px 18px;
+        background: rgba(0,0,0,0.6);
         border: 2px solid gold;
         border-radius: 10px;
         cursor: pointer;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         transition: 0.3s;
+        min-width: 80px;
+        text-align: center;
     }
 
     .btn:hover {
@@ -66,19 +116,29 @@
     }
 </style>
 </head>
-
 <body>
+
+<div id="overlayInicio">
+    <h1>El Oráculo ATMA</h1>
+    <p>Elige, respira, observa. Este comecocos es un portal a mensajes vibracionales de calma, abundancia y presencia.</p>
+    <button id="btnEntrar">Entrar al Oráculo</button>
+</div>
 
 <div id="mensajeFinal"></div>
 <div id="volver" onclick="volverWeb()">Volver a la web</div>
 <div id="opciones"></div>
 
-<!-- THREE.JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
 // --------------------------------------------------
-// FRASES VIBRACIONALES
+// SONIDOS
+// --------------------------------------------------
+const sonidoAbrir = new Audio("sounds/open.mp3");
+const sonidoCerrar = new Audio("sounds/close.mp3");
+
+// --------------------------------------------------
+// FRASES VIBRACIONALES (puedes añadir muchas más)
 // --------------------------------------------------
 const frases = [
     "Hoy tu energía se expande hacia lo que deseas atraer.",
@@ -90,7 +150,48 @@ const frases = [
     "Hoy eliges responder, no reaccionar.",
     "Tu intuición es más sabia de lo que crees.",
     "La calma no se busca, se permite.",
-    "Confía en el proceso, incluso cuando no lo entiendas."
+    "Confía en el proceso, incluso cuando no lo entiendas.",
+    "Tu paz interior es tu verdadera riqueza.",
+    "Cada pensamiento que eliges es una semilla que plantas.",
+    "Hoy eliges soltar la prisa y abrazar el ritmo de tu alma.",
+    "La abundancia comienza en lo que agradeces, no en lo que te falta.",
+    "No necesitas controlar todo para estar en paz.",
+    "Lo que hoy parece un bloqueo, mañana puede ser un desvío perfecto.",
+    "Tu valor no depende de lo que haces, sino de lo que eres.",
+    "Respira: este momento es suficiente.",
+    "Cuando sueltas el miedo, el camino se aclara.",
+    "La vida siempre te está mostrando algo, incluso en el silencio.",
+    "Hoy eliges hablarte con amabilidad.",
+    "Cada vez que respiras profundo, vuelves a casa.",
+    "La paciencia también es una forma de confianza.",
+    "No estás atrasado, estás en tu propio tiempo.",
+    "La abundancia también es tener calma en el corazón.",
+    "Tu mente puede ser un templo o una tormenta: hoy eliges el templo.",
+    "Nada externo puede darte la paz que nace dentro de ti.",
+    "Hoy eliges ver oportunidades donde antes veías límites.",
+    "El desapego no es indiferencia, es libertad.",
+    "Permítete recibir sin culpa.",
+    "Tu presencia es más poderosa que tus preocupaciones.",
+    "Cada día puedes empezar de nuevo, incluso a mitad del día.",
+    "La ansiedad se disuelve cuando vuelves al ahora.",
+    "No tienes que demostrar nada para merecer descanso.",
+    "La vida también se sostiene en lo que no ves.",
+    "Hoy eliges confiar un poco más que ayer.",
+    "Tu corazón sabe el camino, aunque tu mente dude.",
+    "La abundancia también es tener tiempo para ti.",
+    "Lo que hoy sueltas abre espacio a lo que realmente es para ti.",
+    "Tu calma es un acto de rebeldía en un mundo acelerado.",
+    "La gratitud transforma lo que tienes en suficiente.",
+    "Hoy eliges no pelear con lo que sientes, sino escucharlo.",
+    "Cada respiración consciente es un regreso a ti.",
+    "No estás solo: la vida te acompaña en cada paso.",
+    "La verdadera fuerza es poder ser suave contigo mismo.",
+    "Hoy eliges ver belleza en lo simple.",
+    "La abundancia comienza en tu forma de mirarte.",
+    "Tu alma no tiene prisa.",
+    "Lo que hoy aceptas deja de dominarte.",
+    "La calma no es ausencia de ruido, es presencia en medio de él."
+    // Añade aquí todas las que quieras, puedes llegar a 200+ sin problema
 ];
 
 // --------------------------------------------------
@@ -98,19 +199,54 @@ const frases = [
 // --------------------------------------------------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 100);
-camera.position.set(0, 1.5, 3);
+camera.position.set(0, 1.5, 4);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+// Fondo plano detrás
+const fondoTexture = new THREE.TextureLoader().load("textures/fondo.jpg");
+const fondoGeometry = new THREE.PlaneGeometry(30, 20);
+const fondoMaterial = new THREE.MeshBasicMaterial({
+    map: fondoTexture,
+    side: THREE.DoubleSide
+});
+const fondo = new THREE.Mesh(fondoGeometry, fondoMaterial);
+fondo.position.set(0, 0, -8);
+scene.add(fondo);
+
 // Luz
 const light = new THREE.PointLight(0xffffff, 2);
-light.position.set(2, 3, 4);
+light.position.set(2, 4, 5);
 scene.add(light);
 
+const ambient = new THREE.AmbientLight(0x888888);
+scene.add(ambient);
+
 // --------------------------------------------------
-// CREAR COMECOS 3D (4 caras plegadas)
+// PARTICULAS DORADAS
+// --------------------------------------------------
+const particleCount = 300;
+const particlesGeometry = new THREE.BufferGeometry();
+const positions = new Float32Array(particleCount * 3);
+for (let i = 0; i < particleCount; i++) {
+    positions[i*3]   = (Math.random() - 0.5) * 15;
+    positions[i*3+1] = Math.random() * 8 - 2;
+    positions[i*3+2] = (Math.random() - 0.5) * 10 - 2;
+}
+particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+const particlesMaterial = new THREE.PointsMaterial({
+    color: 0xffd700,
+    size: 0.05,
+    transparent: true,
+    opacity: 0.8
+});
+const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+scene.add(particles);
+
+// --------------------------------------------------
+// COMECOS 3D CON ICONOS
 // --------------------------------------------------
 const group = new THREE.Group();
 scene.add(group);
@@ -124,38 +260,125 @@ const colores = [
     "textures/color4.jpg"
 ];
 
+const iconos = [
+    "textures/sol.png",
+    "textures/luna.png",
+    "textures/ojo.png",
+    "textures/loto.png"
+];
+
+const flaps = [];
+const flapGroups = [];
+
 for (let i = 0; i < 4; i++) {
-    const geometry = new THREE.PlaneGeometry(1, 1);
-    const material = new THREE.MeshPhongMaterial({
+    const flapGroup = new THREE.Group();
+
+    const baseGeo = new THREE.PlaneGeometry(1.4, 1.4);
+    const baseMat = new THREE.MeshPhongMaterial({
         map: loader.load(colores[i]),
         side: THREE.DoubleSide
     });
+    const base = new THREE.Mesh(baseGeo, baseMat);
+    base.rotation.x = -Math.PI / 2;
 
-    const flap = new THREE.Mesh(geometry, material);
-    flap.position.set(Math.cos(i * Math.PI/2), Math.sin(i * Math.PI/2), 0);
-    flap.rotation.z = i * Math.PI/2;
-    flap.rotation.x = -Math.PI/2;
+    const iconGeo = new THREE.PlaneGeometry(0.7, 0.7);
+    const iconMat = new THREE.MeshBasicMaterial({
+        map: loader.load(iconos[i]),
+        transparent: true
+    });
+    const icon = new THREE.Mesh(iconGeo, iconMat);
+    icon.position.set(0, 0.01, 0);
+    icon.rotation.x = -Math.PI / 2;
 
-    group.add(flap);
+    flapGroup.add(base);
+    flapGroup.add(icon);
+
+    const angle = i * Math.PI / 2;
+    flapGroup.position.set(Math.cos(angle) * 0.7, 0, Math.sin(angle) * 0.7);
+    flapGroup.lookAt(0, 0, 0);
+
+    group.add(flapGroup);
+    flaps.push(flapGroup);
+    flapGroups.push(flapGroup);
 }
 
-// Animación suave tipo “respiración”
+// Estado de plegado
+let foldPhase = 0; // 0 = neutro, 1 = abriendo, -1 = cerrando
+let foldProgress = 0;
+let autoBreath = true;
+
+// --------------------------------------------------
+// ANIMACIÓN PRINCIPAL
+// --------------------------------------------------
 let t = 0;
 function animate() {
     requestAnimationFrame(animate);
-    t += 0.02;
-    group.rotation.x = Math.sin(t) * 0.2;
-    group.rotation.y += 0.01;
+    t += 0.01;
+
+    // respiración suave del grupo
+    if (autoBreath) {
+        group.rotation.y += 0.003;
+        group.position.y = Math.sin(t * 0.7) * 0.1;
+    }
+
+    // partículas flotando
+    const pos = particlesGeometry.attributes.position.array;
+    for (let i = 0; i < particleCount; i++) {
+        pos[i*3+1] += 0.002;
+        if (pos[i*3+1] > 4) pos[i*3+1] = -2;
+    }
+    particlesGeometry.attributes.position.needsUpdate = true;
+
+    // animación de plegado
+    if (foldPhase !== 0) {
+        const speed = 0.04;
+        foldProgress += speed * foldPhase;
+        if (foldProgress > 1) {
+            foldProgress = 1;
+            foldPhase = 0;
+            autoBreath = true;
+        }
+        if (foldProgress < 0) {
+            foldProgress = 0;
+            foldPhase = 0;
+            autoBreath = true;
+        }
+
+        const angle = foldProgress * (Math.PI / 3); // hasta ~60º
+        flaps.forEach((fg, idx) => {
+            fg.rotation.x = (idx % 2 === 0 ? 1 : -1) * angle;
+        });
+    }
+
     renderer.render(scene, camera);
 }
 animate();
 
 // --------------------------------------------------
-// INTERACCIÓN
+// LÓGICA DEL JUEGO
 // --------------------------------------------------
 const opcionesDiv = document.getElementById("opciones");
 const mensajeFinal = document.getElementById("mensajeFinal");
 const volverBtn = document.getElementById("volver");
+const overlayInicio = document.getElementById("overlayInicio");
+const btnEntrar = document.getElementById("btnEntrar");
+
+let estado = 0; // 0: color, 1: número1, 2: número2
+let colorElegido = null;
+let numero1 = null;
+
+btnEntrar.onclick = () => {
+    overlayInicio.style.opacity = "0";
+    setTimeout(() => {
+        overlayInicio.style.display = "none";
+        iniciarJuego();
+    }, 800);
+};
+
+function iniciarJuego() {
+    opcionesDiv.style.display = "flex";
+    mostrarOpciones(["Sol", "Luna", "Ojo", "Loto"], elegirColor);
+}
 
 function mostrarOpciones(lista, callback) {
     opcionesDiv.innerHTML = "";
@@ -168,15 +391,52 @@ function mostrarOpciones(lista, callback) {
     });
 }
 
-// Paso 1: elegir color
-mostrarOpciones(["Sol", "Luna", "Ojo", "Loto"], elegirColor);
-
-function elegirColor(color) {
-    mostrarOpciones(["1", "2", "3", "4"], elegirNumero);
+function animarAperturaCierre(veces, callback) {
+    let count = 0;
+    function ciclo() {
+        if (count >= veces) {
+            if (callback) callback();
+            return;
+        }
+        autoBreath = false;
+        foldPhase = 1;
+        sonidoAbrir.currentTime = 0;
+        sonidoAbrir.play().catch(()=>{});
+        setTimeout(() => {
+            foldPhase = -1;
+            sonidoCerrar.currentTime = 0;
+            sonidoCerrar.play().catch(()=>{});
+            setTimeout(() => {
+                count++;
+                ciclo();
+            }, 250);
+        }, 250);
+    }
+    ciclo();
 }
 
-function elegirNumero(num) {
-    mostrarOpciones(["1", "2", "3", "4"], revelarMensaje);
+function elegirColor(color) {
+    colorElegido = color;
+    const letras = color.length;
+    animarAperturaCierre(letras, () => {
+        estado = 1;
+        mostrarOpciones(["1", "2", "3", "4"], elegirNumero1);
+    });
+}
+
+function elegirNumero1(num) {
+    numero1 = parseInt(num, 10);
+    animarAperturaCierre(numero1, () => {
+        estado = 2;
+        mostrarOpciones(["1", "2", "3", "4"], elegirNumero2);
+    });
+}
+
+function elegirNumero2(num) {
+    const numero2 = parseInt(num, 10);
+    animarAperturaCierre(numero2, () => {
+        revelarMensaje();
+    });
 }
 
 function revelarMensaje() {
@@ -188,9 +448,15 @@ function revelarMensaje() {
 }
 
 function volverWeb() {
-    window.location.href = "https://tuweb.com"; // CAMBIA ESTA URL
+    window.location.href = "https://tuweb.com"; // cámbialo por tu URL real
 }
 
+// Responsive
+window.addEventListener("resize", () => {
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
 </script>
 
 </body>
