@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Plegado Sagrado Atma</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
     body {
         margin: 0;
@@ -12,18 +14,57 @@
         color: white;
     }
 
+    /* INSTRUCCIONES */
+    #instrucciones {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.85);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        text-align: center;
+        z-index: 20;
+    }
+
+    #instrucciones h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: gold;
+    }
+
+    #instrucciones p {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        max-width: 500px;
+        margin-bottom: 30px;
+    }
+
+    #btnJugar {
+        padding: 14px 28px;
+        background: gold;
+        color: black;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    /* MENSAJE FINAL */
     #mensajeFinal {
         position: absolute;
         top: 15%;
         left: 50%;
         transform: translateX(-50%);
-        width: 80%;
-        max-width: 700px;
-        padding: 30px 25px;
+        width: 85%;
+        max-width: 600px;
+        padding: 25px;
         background: rgba(0,0,0,0.8);
         border-radius: 14px;
         text-align: center;
-        font-size: 2rem;
+        font-size: 1.8rem;
         line-height: 1.4;
         display: none;
         z-index: 5;
@@ -48,12 +89,13 @@
         font-size: 1rem;
     }
 
+    /* BOTONES DE OPCIONES */
     #opciones {
         position: absolute;
         bottom: 40px;
         left: 50%;
         transform: translateX(-50%);
-        display: flex;
+        display: none;
         gap: 16px;
         z-index: 5;
     }
@@ -64,7 +106,7 @@
         border: 2px solid gold;
         border-radius: 10px;
         cursor: pointer;
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         transition: 0.3s;
         min-width: 90px;
         text-align: center;
@@ -78,6 +120,17 @@
 </head>
 
 <body>
+
+<!-- INSTRUCCIONES -->
+<div id="instrucciones">
+    <h1>Plegado Sagrado Atma</h1>
+    <p>
+        Elige un símbolo. El plegado se abrirá y cerrará según su energía.  
+        Después elige un número, y luego otro.  
+        El mensaje final será tu guía vibracional del momento.
+    </p>
+    <button id="btnJugar">Comenzar</button>
+</div>
 
 <div id="mensajeFinal"></div>
 <button id="volver" onclick="volverWeb()">Volver</button>
@@ -180,8 +233,9 @@ const frases = [
     "El universo te sostiene."
 ];
 
+
 // --------------------------------------------------
-// ESCENA 3D
+// ESCENA
 // --------------------------------------------------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -190,54 +244,29 @@ const camera = new THREE.PerspectiveCamera(
     0.1,
     100
 );
-camera.position.set(0, 1.6, 4);
+camera.position.set(0, 1.4, 3.5);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// Fondo cósmico
+// Fondo
 const fondoTexture = new THREE.TextureLoader().load("textures/fondo.jpg");
-const fondoGeometry = new THREE.PlaneGeometry(30, 20);
-const fondoMaterial = new THREE.MeshBasicMaterial({
-    map: fondoTexture,
-    side: THREE.DoubleSide
-});
-const fondo = new THREE.Mesh(fondoGeometry, fondoMaterial);
+const fondo = new THREE.Mesh(
+    new THREE.PlaneGeometry(30, 20),
+    new THREE.MeshBasicMaterial({ map: fondoTexture, side: THREE.DoubleSide })
+);
 fondo.position.set(0, 0, -8);
 scene.add(fondo);
 
-// Luces (corregido: sin errores que rompan la escena)
-const pointLight = new THREE.PointLight(0xffffff, 2, 30);
-pointLight.position.set(3, 5, 6);
-scene.add(pointLight);
-
-const ambientLight = new THREE.AmbientLight(0x888888);
-scene.add(ambientLight);
+// Luces
+const light = new THREE.PointLight(0xffffff, 2);
+light.position.set(3, 5, 6);
+scene.add(light);
+scene.add(new THREE.AmbientLight(0x888888));
 
 // --------------------------------------------------
-// PARTÍCULAS DORADAS
-// --------------------------------------------------
-const particleCount = 220;
-const particlesGeometry = new THREE.BufferGeometry();
-const positions = new Float32Array(particleCount * 3);
-for (let i = 0; i < particleCount; i++) {
-    positions[i*3]   = (Math.random() - 0.5) * 12;
-    positions[i*3+1] = Math.random() * 6 - 1.5;
-    positions[i*3+2] = (Math.random() - 0.5) * 10;
-}
-particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-const particlesMaterial = new THREE.PointsMaterial({
-    color: 0xffd700,
-    size: 0.06,
-    transparent: true,
-    opacity: 0.85
-});
-const particles = new THREE.Points(particlesGeometry, particlesMaterial);
-scene.add(particles);
-
-// --------------------------------------------------
-// COMECOS 3D (GRANDE, ICONOS GRANDES)
+// COMECOS (AJUSTADO PARA MÓVIL)
 // --------------------------------------------------
 const group = new THREE.Group();
 scene.add(group);
@@ -263,22 +292,24 @@ const flaps = [];
 for (let i = 0; i < 4; i++) {
     const flapGroup = new THREE.Group();
 
-    // Cara base (más grande)
-    const baseGeo = new THREE.PlaneGeometry(2.4, 2.4);
-    const baseMat = new THREE.MeshPhongMaterial({
-        map: loader.load(colores[i]),
-        side: THREE.DoubleSide
-    });
-    const base = new THREE.Mesh(baseGeo, baseMat);
+    // Cara base (más pequeña para móvil)
+    const base = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.6, 1.6),
+        new THREE.MeshPhongMaterial({
+            map: loader.load(colores[i]),
+            side: THREE.DoubleSide
+        })
+    );
     base.rotation.x = -Math.PI / 2;
 
-    // Icono (mucho más grande)
-    const iconGeo = new THREE.PlaneGeometry(1.6, 1.6);
-    const iconMat = new THREE.MeshBasicMaterial({
-        map: loader.load(iconos[i]),
-        transparent: true
-    });
-    const icon = new THREE.Mesh(iconGeo, iconMat);
+    // Icono (grande pero proporcionado)
+    const icon = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.1, 1.1),
+        new THREE.MeshBasicMaterial({
+            map: loader.load(iconos[i]),
+            transparent: true
+        })
+    );
     icon.position.set(0, 0.02, 0);
     icon.rotation.x = -Math.PI / 2;
 
@@ -286,54 +317,40 @@ for (let i = 0; i < 4; i++) {
     flapGroup.add(icon);
 
     const angle = i * Math.PI / 2;
-    flapGroup.position.set(Math.cos(angle) * 1.6, 0, Math.sin(angle) * 1.6);
+    flapGroup.position.set(Math.cos(angle) * 1.1, 0, Math.sin(angle) * 1.1);
     flapGroup.lookAt(0, 0, 0);
 
     group.add(flapGroup);
     flaps.push(flapGroup);
 }
 
-// Escala general del comecocos (más grande)
-group.scale.set(1.2, 1.2, 1.2);
+// Escala general ajustada
+group.scale.set(1.0, 1.0, 1.0);
 
 // --------------------------------------------------
-// ANIMACIÓN (PLEGADO LENTO, MOVIMIENTO SUAVE)
+// ANIMACIÓN
 // --------------------------------------------------
 let t = 0;
 let foldProgress = 0;
-let foldDirection = 0; // -1 cerrando, 1 abriendo, 0 quieto
+let foldDirection = 0;
 
 function animate() {
     requestAnimationFrame(animate);
 
     t += 0.01;
+    group.position.y = Math.sin(t * 0.5) * 0.08;
+    group.rotation.y += 0.002;
 
-    // Movimiento suave del grupo (siempre centrado, pero vivo)
-    group.position.y = Math.sin(t * 0.5) * 0.12;
-    group.rotation.y += 0.0025;
-
-    // Partículas flotando
-    const pos = particlesGeometry.attributes.position.array;
-    for (let i = 0; i < particleCount; i++) {
-        pos[i*3+1] += 0.002;
-        if (pos[i*3+1] > 4) pos[i*3+1] = -2;
-    }
-    particlesGeometry.attributes.position.needsUpdate = true;
-
-    // Plegado lento (C: plegado lento)
     if (foldDirection !== 0) {
-        const speed = 0.03; // más lento
-        foldProgress += foldDirection * speed;
+        foldProgress += foldDirection * 0.03;
         foldProgress = Math.max(0, Math.min(1, foldProgress));
 
-        const angle = foldProgress * (Math.PI / 3); // hasta ~60º
+        const angle = foldProgress * (Math.PI / 3);
         flaps.forEach((fg, idx) => {
             fg.rotation.x = (idx % 2 === 0 ? 1 : -1) * angle;
         });
 
-        if (foldProgress === 0 || foldProgress === 1) {
-            foldDirection = 0;
-        }
+        if (foldProgress === 0 || foldProgress === 1) foldDirection = 0;
     }
 
     renderer.render(scene, camera);
@@ -341,11 +358,18 @@ function animate() {
 animate();
 
 // --------------------------------------------------
-// LÓGICA DEL JUEGO (MECÁNICA CLÁSICA)
+// LÓGICA DEL JUEGO
 // --------------------------------------------------
 const opcionesDiv = document.getElementById("opciones");
 const mensajeFinal = document.getElementById("mensajeFinal");
 const volverBtn = document.getElementById("volver");
+const instrucciones = document.getElementById("instrucciones");
+const btnJugar = document.getElementById("btnJugar");
+
+btnJugar.onclick = () => {
+    instrucciones.style.display = "none";
+    mostrarOpciones(["Sol", "Luna", "Ojo", "Loto"], elegirColor);
+};
 
 function mostrarOpciones(lista, callback) {
     opcionesDiv.style.display = "flex";
@@ -359,46 +383,36 @@ function mostrarOpciones(lista, callback) {
     });
 }
 
-// Animación de abrir/cerrar N veces
 function abrirCerrar(veces, callback) {
     let count = 0;
     function ciclo() {
-        if (count >= veces) {
-            if (callback) callback();
-            return;
-        }
+        if (count >= veces) return callback();
         foldDirection = 1;
         setTimeout(() => {
             foldDirection = -1;
             setTimeout(() => {
                 count++;
                 ciclo();
-            }, 350); // tiempo plegado lento
+            }, 350);
         }, 350);
     }
     ciclo();
 }
 
-// Inicio: elegir color
-mostrarOpciones(["Sol", "Luna", "Ojo", "Loto"], elegirColor);
-
 function elegirColor(color) {
-    const letras = color.length; // LUNA = 4, etc.
-    abrirCerrar(letras, () => {
+    abrirCerrar(color.length, () => {
         mostrarOpciones(["1", "2", "3", "4"], elegirNumero1);
     });
 }
 
 function elegirNumero1(num) {
-    const n = parseInt(num, 10);
-    abrirCerrar(n, () => {
+    abrirCerrar(parseInt(num), () => {
         mostrarOpciones(["1", "2", "3", "4"], elegirNumero2);
     });
 }
 
 function elegirNumero2(num) {
-    const n = parseInt(num, 10);
-    abrirCerrar(n, () => {
+    abrirCerrar(parseInt(num), () => {
         const frase = frases[Math.floor(Math.random() * frases.length)];
         opcionesDiv.style.display = "none";
         mensajeFinal.textContent = frase;
@@ -408,11 +422,9 @@ function elegirNumero2(num) {
 }
 
 function volverWeb() {
-    // Ajusta la ruta según tu estructura
     window.location.href = "../index.html";
 }
 
-// Responsive
 window.addEventListener("resize", () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -422,3 +434,13 @@ window.addEventListener("resize", () => {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
