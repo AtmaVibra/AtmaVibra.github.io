@@ -6,147 +6,142 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-    body {
-        margin: 0;
-        overflow: hidden;
-        background: black;
-        font-family: Arial, sans-serif;
-        color: white;
-    }
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    font-family: Arial, sans-serif;
+    color: white;
+  }
 
-    /* INSTRUCCIONES */
-    #instrucciones {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.85);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 30px;
-        text-align: center;
-        z-index: 20;
-    }
+  #instrucciones {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    text-align: center;
+    z-index: 20;
+  }
 
-    #instrucciones h1 {
-        font-size: 2rem;
-        margin-bottom: 20px;
-        color: gold;
-    }
+  #instrucciones h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: gold;
+  }
 
-    #instrucciones p {
-        font-size: 1.2rem;
-        line-height: 1.5;
-        max-width: 500px;
-        margin-bottom: 30px;
-    }
+  #instrucciones p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    max-width: 500px;
+    margin-bottom: 30px;
+  }
 
-    #btnJugar {
-        padding: 14px 28px;
-        background: gold;
-        color: black;
-        border: none;
-        border-radius: 10px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        cursor: pointer;
-    }
+  #btnJugar {
+    padding: 14px 28px;
+    background: gold;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
-    /* ICONO FLOTANTE SELECCIONADO */
-    #iconoSeleccionado {
-        position: absolute;
-        top: 8%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 120px;
-        height: 120px;
-        opacity: 0.9;
-        display: none;
-        z-index: 10;
-    }
+  #iconoSeleccionado {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 140px;
+    opacity: 0.9;
+    display: none;
+    z-index: 10;
+  }
 
-    /* MENSAJE FINAL */
-    #mensajeFinal {
-        position: absolute;
-        top: 14%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 85%;
-        max-width: 600px;
-        padding: 25px;
-        background: rgba(0,0,0,0.8);
-        border-radius: 14px;
-        text-align: center;
-        font-size: 1.8rem;
-        line-height: 1.4;
-        display: none;
-        z-index: 5;
-        border: 1px solid rgba(255,215,0,0.8);
-        box-shadow: 0 0 25px rgba(255,215,0,0.35);
-    }
+  #mensajeFinal {
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    max-width: 600px;
+    padding: 25px;
+    background: rgba(0,0,0,0.8);
+    border-radius: 14px;
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 1.4;
+    display: none;
+    z-index: 5;
+    border: 1px solid rgba(255,215,0,0.8);
+    box-shadow: 0 0 25px rgba(255,215,0,0.35);
+  }
 
-    #volver {
-        position: absolute;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 12px 26px;
-        background: gold;
-        color: black;
-        border-radius: 10px;
-        font-weight: bold;
-        cursor: pointer;
-        display: none;
-        z-index: 5;
-        border: none;
-        font-size: 1rem;
-    }
+  #volver {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 26px;
+    background: gold;
+    color: black;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    display: none;
+    z-index: 5;
+    border: none;
+    font-size: 1rem;
+  }
 
-    /* BOTONES 2×2 */
-    #opciones {
-        position: absolute;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-        z-index: 5;
-        width: 80%;
-        max-width: 350px;
-    }
+  #opciones {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    z-index: 5;
+    width: 80%;
+    max-width: 350px;
+  }
 
-    .btn {
-        padding: 14px 18px;
-        background: rgba(255,255,255,0.85);
-        border: 2px solid gold;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 1.3rem;
-        transition: 0.3s;
-        text-align: center;
-        color: black;
-        font-weight: bold;
-    }
+  .btn {
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.85);
+    border: 2px solid gold;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: 0.3s;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+  }
 
-    .btn:hover {
-        background: gold;
-        color: black;
-    }
+  .btn:hover {
+    background: gold;
+    color: black;
+  }
 </style>
 </head>
 
 <body>
 
-<!-- INSTRUCCIONES -->
 <div id="instrucciones">
-    <h1>Plegado Sagrado Atma</h1>
-    <p>
-        Elige un símbolo. El plegado se abrirá y cerrará según su energía.  
-        Después elige un número, y luego otro.  
-        El mensaje final será tu guía vibracional del momento.
-    </p>
-    <button id="btnJugar">Comenzar</button>
+  <h1>Plegado Sagrado Atma</h1>
+  <p>
+    Elige un símbolo. El plegado se abrirá y cerrará según su energía.<br>
+    Después elige un número, y luego otro.<br>
+    El mensaje final será tu guía vibracional del momento.
+  </p>
+  <button id="btnJugar">Comenzar</button>
 </div>
 
 <img id="iconoSeleccionado" src="" alt="seleccionado">
@@ -254,132 +249,126 @@ const frases = [
 ];
 
 
-// --------------------------------------------------
 // ESCENA
-// --------------------------------------------------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
-    55,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    100
+  45,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  100
 );
-camera.position.set(0, 1.0, 3.4);
+// Cámara algo elevada, pero bastante frontal
+camera.position.set(0, 1.0, 4.0);
+camera.lookAt(0, 1.0, 0);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // Fondo
-const fondoTexture = new THREE.TextureLoader().load("textures/fondo.jpg");
+const loader = new THREE.TextureLoader();
+const fondoTexture = loader.load("textures/fondo.jpg");
 const fondo = new THREE.Mesh(
-    new THREE.PlaneGeometry(30, 20),
-    new THREE.MeshBasicMaterial({ map: fondoTexture, side: THREE.DoubleSide })
+  new THREE.PlaneGeometry(30, 20),
+  new THREE.MeshBasicMaterial({ map: fondoTexture, side: THREE.DoubleSide })
 );
 fondo.position.set(0, 0, -8);
 scene.add(fondo);
 
 // Luces
-scene.add(new THREE.PointLight(0xffffff, 2).position.set(3, 5, 6));
+const pLight = new THREE.PointLight(0xffffff, 2);
+pLight.position.set(3, 5, 6);
+scene.add(pLight);
 scene.add(new THREE.AmbientLight(0x888888));
 
-// --------------------------------------------------
-// COMECOS (CORREGIDO)
-// --------------------------------------------------
+// COMECOS
 const group = new THREE.Group();
 scene.add(group);
 
-const loader = new THREE.TextureLoader();
-
 const colores = [
-    "textures/color1.jpg",
-    "textures/color2.jpg",
-    "textures/color3.jpg",
-    "textures/color4.jpg"
+  "textures/color1.jpg",
+  "textures/color2.jpg",
+  "textures/color3.jpg",
+  "textures/color4.jpg"
 ];
 
 const iconos = [
-    "textures/sol.png",
-    "textures/luna.png",
-    "textures/ojo.png",
-    "textures/loto.png"
+  "textures/sol.png",
+  "textures/luna.png",
+  "textures/ojo.png",
+  "textures/loto.png"
 ];
 
 const flaps = [];
 
 for (let i = 0; i < 4; i++) {
-    const flapGroup = new THREE.Group();
+  const flapGroup = new THREE.Group();
 
-    // Fondo visible SIEMPRE
-    const base = new THREE.Mesh(
-        new THREE.PlaneGeometry(1.3, 1.3),
-        new THREE.MeshPhongMaterial({
-            map: loader.load(colores[i]),
-            side: THREE.DoubleSide
-        })
-    );
-    base.rotation.x = -Math.PI / 2;
+  // Fondo visible
+  const base = new THREE.Mesh(
+    new THREE.PlaneGeometry(1.0, 1.0),
+    new THREE.MeshPhongMaterial({
+      map: loader.load(colores[i]),
+      side: THREE.DoubleSide
+    })
+  );
+  base.rotation.x = -Math.PI / 2;
 
-    // Icono PNG transparente (más pequeño para que se vea el fondo)
-    const icon = new THREE.Mesh(
-        new THREE.PlaneGeometry(0.9, 0.9),
-        new THREE.MeshBasicMaterial({
-            map: loader.load(iconos[i]),
-            transparent: true
-        })
-    );
-    icon.position.set(0, 0.02, 0);
-    icon.rotation.x = -Math.PI / 2;
+  // Icono PNG transparente (más pequeño para ver el fondo)
+  const icon = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.7, 0.7),
+    new THREE.MeshBasicMaterial({
+      map: loader.load(iconos[i]),
+      transparent: true
+    })
+  );
+  icon.position.set(0, 0.02, 0);
+  icon.rotation.x = -Math.PI / 2;
 
-    flapGroup.add(base);
-    flapGroup.add(icon);
+  flapGroup.add(base);
+  flapGroup.add(icon);
 
-    const angle = i * Math.PI / 2;
-    flapGroup.position.set(Math.cos(angle) * 0.95, 0, Math.sin(angle) * 0.95);
-    flapGroup.lookAt(0, 0, 0);
+  const angle = i * Math.PI / 2;
+  flapGroup.position.set(Math.cos(angle) * 0.8, 0, Math.sin(angle) * 0.8);
+  flapGroup.lookAt(0, 0, 0);
 
-    group.add(flapGroup);
-    flaps.push(flapGroup);
+  group.add(flapGroup);
+  flaps.push(flapGroup);
 }
 
-// Subir comecocos
-group.position.y = 1.0;
+// Posición y escala del comecocos
+group.position.y = 1.4;
+// Ligera inclinación hacia la cámara (lo que querías)
+group.rotation.x = -0.35;
+// Más pequeño para no cortarse en móvil
+group.scale.set(0.6, 0.6, 0.6);
 
-// Escala general (más pequeño para no cortarse)
-group.scale.set(0.75, 0.75, 0.75);
-
-// --------------------------------------------------
 // ANIMACIÓN
-// --------------------------------------------------
-let t = 0;
 let foldProgress = 0;
 let foldDirection = 0;
 
 function animate() {
-    requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 
-    t += 0.01;
-    group.rotation.y += 0.0015;
+  group.rotation.y += 0.0012;
 
-    if (foldDirection !== 0) {
-        foldProgress += foldDirection * 0.03;
-        foldProgress = Math.max(0, Math.min(1, foldProgress));
+  if (foldDirection !== 0) {
+    foldProgress += foldDirection * 0.03;
+    foldProgress = Math.max(0, Math.min(1, foldProgress));
 
-        const angle = foldProgress * (Math.PI / 3);
-        flaps.forEach((fg, idx) => {
-            fg.rotation.x = (idx % 2 === 0 ? 1 : -1) * angle;
-        });
+    const angle = foldProgress * (Math.PI / 3);
+    flaps.forEach((fg, idx) => {
+      fg.rotation.x = (idx % 2 === 0 ? 1 : -1) * angle;
+    });
 
-        if (foldProgress === 0 || foldProgress === 1) foldDirection = 0;
-    }
+    if (foldProgress === 0 || foldProgress === 1) foldDirection = 0;
+  }
 
-    renderer.render(scene, camera);
+  renderer.render(scene, camera);
 }
 animate();
 
-// --------------------------------------------------
 // LÓGICA DEL JUEGO
-// --------------------------------------------------
 const opcionesDiv = document.getElementById("opciones");
 const mensajeFinal = document.getElementById("mensajeFinal");
 const volverBtn = document.getElementById("volver");
@@ -388,78 +377,87 @@ const btnJugar = document.getElementById("btnJugar");
 const iconoSeleccionado = document.getElementById("iconoSeleccionado");
 
 btnJugar.onclick = () => {
-    instrucciones.style.display = "none";
-    mostrarOpciones(["Sol", "Luna", "Ojo", "Loto"], elegirColor);
+  instrucciones.style.display = "none";
+  mostrarOpciones(["Sol", "Luna", "Ojo", "Loto"], elegirColor);
 };
 
 function mostrarOpciones(lista, callback) {
-    opcionesDiv.style.display = "grid";
-    opcionesDiv.innerHTML = "";
-    lista.forEach(op => {
-        const btn = document.createElement("div");
-        btn.className = "btn";
-        btn.textContent = op;
-        btn.onclick = () => callback(op);
-        opcionesDiv.appendChild(btn);
-    });
+  opcionesDiv.style.display = "grid";
+  opcionesDiv.innerHTML = "";
+  lista.forEach(op => {
+    const btn = document.createElement("div");
+    btn.className = "btn";
+    btn.textContent = op;
+    btn.onclick = () => callback(op);
+    opcionesDiv.appendChild(btn);
+  });
 }
 
 function abrirCerrar(veces, callback) {
-    let count = 0;
-    function ciclo() {
-        if (count >= veces) return callback();
-        foldDirection = 1;
-        setTimeout(() => {
-            foldDirection = -1;
-            setTimeout(() => {
-                count++;
-                ciclo();
-            }, 350);
-        }, 350);
-    }
-    ciclo();
+  let count = 0;
+  function ciclo() {
+    if (count >= veces) return callback();
+    foldDirection = 1;
+    setTimeout(() => {
+      foldDirection = -1;
+      setTimeout(() => {
+        count++;
+        ciclo();
+      }, 350);
+    }, 350);
+  }
+  ciclo();
 }
 
 function elegirColor(color) {
-    // Mostrar icono flotante arriba
-    const index = ["Sol","Luna","Ojo","Loto"].indexOf(color);
-    iconoSeleccionado.src = iconos[index];
-    iconoSeleccionado.style.display = "block";
+  const index = ["Sol","Luna","Ojo","Loto"].indexOf(color);
+  iconoSeleccionado.src = iconos[index];
+  iconoSeleccionado.style.display = "block";
 
-    abrirCerrar(color.length, () => {
-        mostrarOpciones(["1", "2", "3", "4"], elegirNumero1);
-    });
+  abrirCerrar(color.length, () => {
+    mostrarOpciones(["1", "2", "3", "4"], elegirNumero1);
+  });
 }
 
 function elegirNumero1(num) {
-    abrirCerrar(parseInt(num), () => {
-        mostrarOpciones(["1", "2", "3", "4"], elegirNumero2);
-    });
+  abrirCerrar(parseInt(num), () => {
+    mostrarOpciones(["1", "2", "3", "4"], elegirNumero2);
+  });
 }
 
 function elegirNumero2(num) {
-    abrirCerrar(parseInt(num), () => {
-        const frase = frases[Math.floor(Math.random() * frases.length)];
-        opcionesDiv.style.display = "none";
-        mensajeFinal.textContent = frase;
-        mensajeFinal.style.display = "block";
-        volverBtn.style.display = "block";
-    });
+  abrirCerrar(parseInt(num), () => {
+    const frase = frases[Math.floor(Math.random() * frases.length)];
+    opcionesDiv.style.display = "none";
+    mensajeFinal.textContent = frase;
+    mensajeFinal.style.display = "block";
+    volverBtn.style.display = "block";
+  });
 }
 
 function volverWeb() {
-    window.location.href = "../index.html";
+  window.location.href = "../index.html";
 }
 
 window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
 });
 </script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 
