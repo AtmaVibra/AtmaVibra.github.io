@@ -1,67 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
 <title>Plegado Sagrado Atma</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  html, body { height: 100%; margin: 0; background: black; font-family: Arial, sans-serif; color: white; }
-  #instrucciones {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    padding: 30px; text-align: center; z-index: 20;
-  }
-  #btnJugar {
-    padding: 14px 28px; background: gold; color: black; border: none;
-    border-radius: 10px; font-size: 1.2rem; font-weight: bold; cursor: pointer;
-  }
-  #iconoSeleccionado {
-    position: absolute; top: 6%; left: 50%; transform: translateX(-50%);
-    width: 140px; height: 140px; opacity: 0.95; display: none; z-index: 10;
-  }
-  #mensajeFinal {
-    position: absolute; top: 22%; left: 50%; transform: translateX(-50%);
-    width: 85%; max-width: 600px; padding: 22px;
-    background: rgba(0,0,0,0.85); border-radius: 14px; text-align: center;
-    font-size: 1.7rem; line-height: 1.4; display: none; z-index: 5;
-    border: 1px solid rgba(255,215,0,0.8); box-shadow: 0 0 25px rgba(255,215,0,0.35);
-  }
-  #volver {
-    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-    padding: 12px 26px; background: gold; color: black; border-radius: 10px;
-    font-weight: bold; cursor: pointer; display: none; z-index: 5; border: none;
-  }
-  #opciones {
-    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
-    z-index: 5; width: 80%; max-width: 340px;
-  }
-  .btn {
-    padding: 14px 18px; background: rgba(255,255,255,0.95);
-    border: 2px solid gold; border-radius: 10px; cursor: pointer;
-    font-size: 1.25rem; font-weight: bold; color: black; text-align: center;
-  }
+  html, body { height:100
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />%; margin:0; background; color:white; }
+; inset:0; background:center; align-items:black; font-family:Arial, sans-serif  #instrucciones { position:fixed:rgba(0,0,0,0.85); display:flex; flex-direction:column; justify-content:center; padding:20; }
+  #btnJugar28px; background:gold; color:black:pointer; }
+  #iconoSeleccionado { position:30px; text-align:center; z-index { padding:14px ; border:none; border-radius:10px; font-size:1.2rem; font-weight:bold; cursor:absolute; top:6:translateX(-50%); width:140px; height:140px; opacity: position:absoluteX(-50%); width:85%; left:50%; transform0.95; display:none; z-index:10; }
+  #mensajeFinal {; top:22%; left:50%; transform:translate%; max-width:600; background:rgbapx; padding:22px(0,0,0,0.85); border-radius:14px; text0.8); box-shadow-align:center; font-size:1.7rem; line-height:1.4; display:none; z-index:5; border:1px solid rgba(255,215,0,:0 0 25px rgba(255  #volver { position:absolute; bottom:30px; left:50%; transform:translateX(-50%); padding:gold; color:black10px; font-weight:bold; cursor:pointer; display:none; z-index:5; border:none; }
+  #opciones,215,0,0.35); }
+:12px 26px; background; border-radius: { position:absolute:50%; transform:translateX(-50%);; width:80%; max-width:340px; }
+  .btn { padding:14px 18px; background; bottom:40px; left display:grid; grid-template-columns:repeat(2,1fr); gap:14px; z-index:5:rgba(255,255,255,0.95); border:2px solid gold; border-radius:10px; cursor:pointer; font-size; text-align:center; }
 </style>
 </head>
 <body>
 
-<div id="instrucciones">
-  <h1>Mensaje Celestial<br>Atma</h1>
-  <p>
-    Elige un símbolo.<br>El plegado se abrirá y cerrará según su energía.<br>
-    Después elige un número, y luego otro.<br><br> El mensaje final será<br>tu guía vibracional.
-  </p>
-  <button id="btnJugar">Comenzar</button>
+<div id="instrucciones">:1.25rem; font-weight:bold; color:black
+  <h1>Mensaje Celestial<br>Atma</h1>. El plegado se abrir número, y luegoComenzar</button>
 </div>
 
-<img id="iconoSeleccionado" src="" alt="">
-<div id="mensajeFinal"></div>
-<button id="volver" onclick="location.reload()">Volver</button>
-<div id="opciones"></div>
+<img id="iconoSeleccionado" src="" alt=""></div>
+<button id="volver" onclick="location.reload()">
+  <p>Elige un símboloá y cerrará según su energía.<br>Después elige un otro. El mensaje final será tu guía vibracional.</p>
+  <button id="btnJugar">
+<div id="mensajeFinal">Volver</button>
+<div id="opciones"></script>
+<script>ande hacia lo que deseas atraer.",
+  "La abundancia fluye hacia ti cuando confío en lo quepectiveCamera(45, 0.1, 200);
+camera</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
 // FRASES
+
 const frases = [
   "Hoy tu energía se expande hacia lo que deseas atraer.",
   "La abundancia fluye hacia ti cuando actúas desde la calma.",
@@ -172,270 +144,328 @@ const frases = [
 ];
 
 
+
 // ESCENA
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-camera.position.set(0, 1.1, 4.0);
-camera.lookAt(0, 1.1, 0);
+const camera = new THREE.Pers, window.innerWidth / window.innerHeight.position.set(0, 1.1, 4.0);
+camera.lookAt(0, 1.1, GLRenderer({ ant(window.innerWidth);
+renderer.setPixelRatio(window.devicePixelRatio || 1);
+document.body.append.TextureLoader();
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
-document.body.appendChild(renderer.domElement);
-
-const loader = new THREE.TextureLoader();
-
-// FONDO (ajustado para cubrir pantalla)
-const fondo = new THREE.Mesh(
-  new THREE.PlaneGeometry(40, 40),
-  new THREE.MeshBasicMaterial({
-    map: loader.load("textures/fondoatma.jpg"),
-    side: THREE.DoubleSide
-  })
-);
+// se escala para cubrir la pantalla
+const THREE.PlaneGeometry(1, 1);
+const fondoMat = new THREE.Mesh: THREE.DoubleSide });
+const fondo = new THREE.MeshMat);
 fondo.position.set(0, 0, -10);
-scene.add(fondo);
+0);
+
+const renderer = new THREE.Webialias: true });
+renderer.setSize, window.innerHeightChild(renderer.domElement);
+
+const loader = new THREE FONDO: plano que fondoGeom = newBasicMaterial({ map: loader.load("textures/fondo.jpg"), side(fondoGeom, fondoscene.add(fondo);
+
+function updateFondoScale() {
+  const dist = Math.abs(camera.position.z - fondo.position = THREE.Math.de);
+  const height = 2 * Math.tan(v  const width = heightWidth / window.inner.scale.set(width();
 
 // LUCES
-const pLight = new THREE.PointLight(0xffffff, 1.8);
-pLight.position.set(3, 5, 6);
-scene.add(pLight);
-scene.add(new THREE.AmbientLight(0xaaaaaa));
-
-// PARTICULAS
+const pLight = new THREE.add(pLight);
+scene.add(new THREE.AmbientLight(0xaaaaULAS
 const particlesCount = 200;
-const positions = new Float32Array(particlesCount * 3);
-for (let i = 0; i < particlesCount; i++) {
-  positions[i*3] = (Math.random() - 0.5) * 6;
-  positions[i*3+1] = Math.random() * 4 - 1;
-  positions[i*3+2] = -3 - Math.random() * 3;
+const Float32Array(particles.z);
+  const vFOVgToRad(camera.fovFOV / 2) * dist;
+ * (window.innerHeight);
+  fondo, height, 1);
 }
-const particlesGeometry = new THREE.BufferGeometry();
-particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-const particles = new THREE.Points(particlesGeometry, new THREE.PointsMaterial({
-  color: 0xffd700, size: 0.05, transparent: true, opacity: 0.8
-}));
-scene.add(particles);
+updateFondoScale.PointLight(0xffffff, 1.8);
+pLight.position.set(3, 5, 6);
+sceneaa));
 
-// COMECOS (grupo principal)
+// PARTIC positions = newCount * 3);
+for (let i = 0; i < particlesCount; i++) {
+ = (Math.random() - 0.5) * 6;
+  positions[i*3+2] = -3 - Mathconst particlesGeometryGeometry();
+particles('position', newconst particles =sMaterial({ color(particles);
+
+//
 const group = new THREE.Group();
 scene.add(group);
 
-// RUTAS (asegúrate que los archivos existen exactamente con estos nombres)
-const colores = [
-  "textures/color1.jpg",
-  "textures/color2.jpg",
-  "textures/color3.jpg",
-  "textures/color4.jpg"
-];
-const iconos = [
-  "textures/sol.png",
-  "textures/luna.png",
-  "textures/ojo.png",
-  "textures/loto.png"
-];
+// RUTAS (asegúrateos)
+const colores = ["textures/color/color2.jpg","textures/color4.jpg"];
+const/sol.png","textures  positions[i*3][i*3+1] = Math.random() * 4 - 1;
+  positions.random() * 3;
+}
+ = new THREE.BufferGeometry.setAttribute THREE.BufferAttribute(positions, 3));
+ new THREE.Points(particlesGeometry, new THREE.Point: 0xffd700, size: 0.05, transparent: true, opacity: 0.8 }));
+scene.add GRUPO PRINCIPAL que existen con estos nombres exact1.jpg","textures/color3.jpg","textures iconos = ["textures/luna.png","textures/ojo.png","textures flaps = [];
+const // para raycasting/occlusion
 
-const flaps = [];
-
-// BLOQUE: fondos + iconos exteriores e interiores + sombras + separación y renderOrder
-for (let i = 0; i < 4; i++) {
-  const flapGroup = new THREE.Group();
-
-  // Fondo (plano base)
-  const baseMat = new THREE.MeshPhongMaterial({
-    map: loader.load(colores[i]),
-    side: THREE.DoubleSide
-  });
-  const base = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), baseMat);
+// Crear interior + icono interior
+for (  const flapGroupfondo del flap)
+ side: THREE.DoubleSide });
+  const.Mesh(new THREE.Pl baseMat);
   base.position.z = 0;
 
-  // Sombra exterior (delante)
-  const shadowOutMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.35, depthWrite: false });
-  const shadowOut = new THREE.Mesh(new THREE.PlaneGeometry(0.78, 0.78), shadowOutMat);
-  shadowOut.renderOrder = 2;
+ (delante)
+  constMaterial({ color:true, opacity:0.35 });
+  const shadowOut = new THREE.Mesh(new THREE.Plane);
   shadowOut.position.z = 0.06;
+  shadow/loto.png"];
 
-  // Icono exterior (por delante)
-  const iconOutTex = loader.load(iconos[i]);
-  const iconOutMat = new THREE.MeshBasicMaterial({ map: iconOutTex, transparent: true, depthWrite: false, depthTest: false });
-  const iconOut = new THREE.Mesh(new THREE.PlaneGeometry(0.65, 0.65), iconOutMat);
-  iconOut.renderOrder = 3;
-  iconOut.position.z = 0.07;
+const flapBases = []; flaps: fondo + sombra exterior + icono exterior + sombralet i = 0; i < 4; i++) {
+ = new THREE.Group();
 
-  // Sombra interior (detrás)
-  const shadowInMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.35, depthWrite: false });
-  const shadowIn = new THREE.Mesh(new THREE.PlaneGeometry(0.78, 0.78), shadowInMat);
-  shadowIn.renderOrder = 2;
-  shadowIn.position.z = -0.06;
+  // base (  const baseMat = new THREE.MeshPhongMaterial({ map: loader.load(colores[i]), base = new THREEaneGeometry(1,1),  // sombra exterior shadowOutMat = new THREE.MeshBasic:0x000000, transparentGeometry(0.78,0.78), shadowOutMatOut.renderOrder = 2;
+
+  // icono exterior (delante)
+  const THREE.MeshBasicMaterial({ map: loader });
+  const icon  iconOut.positionOut.renderOrder = interior (detrás)
+  const shadow({ color:0x000000, opacity:0.35 });
+  const shadowIn = new THREE.Mesh(new THREE.Plane.z = -0.06;
+  shadow 2;
   shadowIn.visible = false;
 
-  // Icono interior (detrás), dado la vuelta
-  const iconInTex = loader.load(iconos[i]);
-  const iconInMat = new THREE.MeshBasicMaterial({ map: iconInTex, transparent: true, depthWrite: false, depthTest: false });
-  const iconIn = new THREE.Mesh(new THREE.PlaneGeometry(0.65, 0.65), iconInMat);
+  // iconás), dado la vuelta
+  const iconInMat = new THREE.Mesh iconOutMat = new.load(iconos[i]), transparent:trueOut = new THREE.Mesh(new THREE.PlaneGeometry(0.65,0.65), iconOutMat);
+.z = 0.07;
+  icon 3;
+
+  // sombraInMat = new THREE.MeshBasicMaterial, transparent:trueGeometry(0.78,0.78), shadowInMat);
+  shadowIn.positionIn.renderOrder =o interior (detrBasicMaterial({ map: loader.load(iconos[i]), transparentaneGeometry(0.65In.rotation.y = Math.PI;
   iconIn.renderOrder = 3;
+  icon;
+
+  flapGroup.add,1=Luna,2=Ojo,3=L = 0.75;
+  flapGroup.position.set(Math 0, Math.sin(angle referencias
+  flap { base, iconOutOut, shadowIn };
+
+:true });
+  const iconIn = new THREE.Mesh(new THREE.Pl,0.65), iconInMat);
   iconIn.position.z = -0.07;
-  iconIn.rotation.y = Math.PI;
-  iconIn.visible = false;
+  iconIn.visible = false(base, shadowOut, iconOut, shadowIn, iconIn);
 
-  flapGroup.add(base);
-  flapGroup.add(shadowOut);
-  flapGroup.add(iconOut);
-  flapGroup.add(shadowIn);
-  flapGroup.add(iconIn);
-
+  // posición alrededor del centro (0=Soloto)
   const angle = i * (Math.PI / 2);
-  const radius = 0.75;
-  flapGroup.position.set(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
-  flapGroup.lookAt(Math.cos(angle) * 2, 0, Math.sin(angle) * 2);
+  const radius.cos(angle) * radius, 0, Math.sin(angle) * radius);
+  flapGroup.lookAt(Math.cos(angle) * 2,) * 2);
 
-  // Guardar referencias para manipular visibilidad
-  flapGroup.userData = { iconOut, iconIn, shadowOut, shadowIn };
-
-  group.add(flapGroup);
-  flaps.push(flapGroup);
-}
-
-// Mantener tu inclinación EXACTA y escala
-group.position.y = 1.0;
-group.scale.set(0.8, 0.8, 0.8);
-group.rotation.x = -0.14;
-
-// PLEGADO (sin cambios)
+  // guardarGroup.userData =, iconIn, shadow  group.add(flap(flapGroup);
+  flapGroup);
+  flaps.pushBases.push(base);
+.position.y = 1..rotation.x = -0
 let foldProgress = 0;
-let foldDirection = 0;
-const foldMaxAngle = Math.PI / 3;
+const fold/3;
 let bloqueado = false;
-function easeInOutQuad(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+function){ return t<0.5 ? 2*t*t : -1+(4-2*t)*t; }
+ión
+const raycasterVec = new THREE.Vector3();
+
+// selected index (-1 = none)
+let selectedIndex está oculto desde la cámara por alguno
+function isOccludedPos, ignoreBase) {
+  const camPos dir = worldPos.clone = raycaster.inter}
+
+// Mantener inclinación y escala
+group0;
+group.scale.set(0.8,0.8,0.8);
+group.14;
+
+// PLEGADO = 0;
+let foldDirectionMaxAngle = Math.PI easeInOutQuad(t
+// RAYCASTER para comprobar oclus = new THREE.Raycaster();
+const tmp = -1;
+
+// función que comprueba si un punto en world de los planos baseFromCamera(world = camera.position.clone();
+  const().sub(camPos);
+  const dist = dir.length();
+  dir.normalize();
+  raycaster.set(camPos, dir);
+  const intersectsBases, true);
+  forsectObjects(flap (let inter of intersects.object === ignore    if (inter.distance;
+}
 
 // ANIMACIÓN
-function animate() {
+function animate  group.rotation 0) {
+    foldProgress * 0.03;
+    foldProgress = Math.maxQuad(foldProgress = eased * foldMax.forEach((fg, idx) => fg.rotation);
+  }
+
+  // actualizarGeometry.attributes.position.array;
+    pos[i*3+1] +=) {
+    if (interBase) continue;
+ < dist - 1e-4) return true;
+  }
+  return false() {
   requestAnimationFrame(animate);
-  group.rotation.y += 0.01;
 
-  if (foldDirection !== 0) {
-    foldProgress += foldDirection * 0.03;
-    foldProgress = Math.max(0, Math.min(1, foldProgress));
-    const eased = easeInOutQuad(foldProgress);
-    const angle = eased * foldMaxAngle;
-    flaps.forEach((fg, idx) => fg.rotation.x = (idx % 2 === 0 ? 1 : -1) * angle);
+.y += 0.01;
+
+  if (foldDirection !== += foldDirection(0, Math.min(1, foldProgress));
+    const eased = easeInOut);
+    const angleAngle;
+    flaps.x = (idx % 2 === 0 ? 1 : -1) * angle partículas
+  const pos = particles  for (let i = 0; i < particlesCount; i++) {
+ 0.01;
+    if (pos[i*3+1] > 3) pos[i*3+1] = -1 - Math.random()*2;
+  }
+.attributes.position seleccionado
+  if (selectedIndex >= < flaps.length) {
+In, shadowIn, base } = fg.userDataWorldPosition(tmp, base);
+    // si otros planos, ocult = !occluded;
+    // comprobar si la cámara está en el lado interior
+    const normal3(0,0,1).applyQuaternion3();
+    fg.getWorldCam = camera.positionWorldPos);
+    const camInside = normal.dot(toCam) < 0;
+ && camInside) {
+;
+      shadowIn  particlesGeometry.needsUpdate = true;
+
+  // Control de visibilidad y oclusión para el flap 0 && selectedIndex    const fg = flaps[selectedIndex];
+    const { icon;
+    iconIn.getVec);
+    const occluded = isOccludedFromCamera(tmpVec está ocluido porarlo; si no, mostrarlo
+    iconIn.visible = !occluded;
+    shadowIn.visible aproximando por la normal del flap = new THREE.Vector(fg.quaternion);
+    const flapWorldPos = new THREE.VectorPosition(flapWorldPos);
+    const to.clone().sub(flap    if (iconIn.visible      iconIn.material.depthTest = false.material.depthTest = false;
+      icon 100;
+      shadow 90;
+    } else {
+      iconIn.material;
+      shadowIn.material.depthTestIn.renderOrder = 2;
+    }
   }
 
-  const pos = particlesGeometry.attributes.position.array;
-  for (let i = 0; i < particlesCount; i++) {
-    pos[i * 3 + 1] += 0.01;
-    if (pos[i * 3 + 1] > 3) pos[i * 3 + 1] = -1 - Math.random() * 2;
-  }
-  particlesGeometry.attributes.position.needsUpdate = true;
-
-  renderer.render(scene, camera);
-}
-animate();
-
-// LÓGICA DEL JUEGO
-const opcionesDiv = document.getElementById("opciones");
-const mensajeFinal = document.getElementById("mensajeFinal");
+ (scene, camera);
+ estructura, soloconst opcionesDiv = document.getElementById("opciones");
+ById("mensajeFinal");
 const volverBtn = document.getElementById("volver");
 const instrucciones = document.getElementById("instrucciones");
-const btnJugar = document.getElementById("btnJugar");
-const iconoSeleccionado = document.getElementById("iconoSeleccionado");
+const btnJugar = document.getElementconst iconoSeleccionoSeleccionado");
 
-btnJugar.onclick = () => {
-  instrucciones.style.display = "none";
-  mostrarOpciones(["Sol","Luna","Ojo","Loto"], elegirColor);
+btnJugar.onclick.style.display =Luna","Ojo","Loto"], elegirColorByIn.renderOrder =In.renderOrder =.depthTest = true = true;
+      icon 3;
+      shadowIn.renderOrder = renderer.render}
+animate();
+
+// JUEGO (sin tocar comportamiento)
+const mensajeFinal = document.getElementById("btnJugar");
+ado = document.getElementById("icon = () => {
+  instrucciones "none";
+  mostrarOpciones(["Sol","Index);
 };
 
 function mostrarOpciones(lista, callback) {
-  opcionesDiv.style.display = "grid";
-  opcionesDiv.innerHTML = "";
-  lista.forEach(op => {
-    const btn = document.createElement("div");
+  opcionesDiv  lista.forEach((div");
     btn.className = "btn";
     btn.textContent = op;
-    btn.onclick = () => { if (!bloqueado) callback(op); };
-    opcionesDiv.appendChild(btn);
-  });
-}
-
-function abrirCerrar(veces, callback) {
+    btn.onclick = () => { if (!bloqueado) callback(idx); };
+    opciones abrirCerrar(veces, callback) {
   let count = 0;
-  function ciclo() {
-    if (count >= veces) { bloqueado = false; return callback(); }
-    foldDirection = 1; foldProgress = 0;
-    setTimeout(() => {
-      foldDirection = -1; foldProgress = 1;
-      setTimeout(() => { count++; ciclo(); }, 350);
+  function) { bloqueado = false = 0;
+    setTimeout setTimeout(() =>(); }, 350);
     }, 350);
   }
   ciclo();
 }
 
-// CORRECCIÓN: mapeo robusto por nombre y comprobación segura
-const nameToIndex = { sol: 0, luna: 1, ojo: 2, loto: 3 };
+// NUEVO: (robusto y seguro se mueve al interior.
+function elegir.style.display = "grid";
+  opcionesDiv.innerHTML = "";
+op, idx) => {
+    const btn = document.createElement("Div.appendChild(btn);
+  });
+}
 
-function elegirColor(color) {
-  bloqueado = true;
-  const key = String(color).toLowerCase().trim();
-  const index = (key in nameToIndex) ? nameToIndex[key] : -1;
+function ciclo() {
+    if (count >= veces; return callback(); }
+    foldDirection = 1; foldProgress(() => {
+      foldDirection = -1; foldProgress = 1;
+      { count++; ciclo elegir por índice). Solo el seleccionadoColorByIndex(index true;
 
-  // Mostrar imagen seleccionada en el elemento HTML
-  if (index >= 0) {
-    iconoSeleccionado.src = iconos[index];
-    iconoSeleccionado.style.display = "block";
-  } else {
-    iconoSeleccionado.style.display = "none";
+  if (typeof index !== 'number por seguridad
+    selectedIndex = -1;
+    flaps.for, iconIn, shadowOut, shadowIn } = fg.userData;
+      = true;
+      shadowOut.visible = true;
+      iconIn.visible = false;
+      shadow(1, () => mostrarOpciones(["1","2","3","4"], elegir;
   }
+
+  // mostrar en el HTML el icon.src = iconos[indexado.style.display = "block";
 
   // Restaurar todos los flaps a estado por defecto
-  flaps.forEach(fg => {
-    const { iconOut, iconIn, shadowOut, shadowIn } = fg.userData;
+  flOut, shadowIn } =Out.visible = true = false;
+    shadow) {
+  bloqueado =' || index < 0 || index >= flaps.length) {
+    // restaurarEach(fg => {
+      const { iconOut iconOut.visibleIn.visible = false;
+      iconIn.rotation.y = Math.PI;
+    });
+    abrirCerrarNumero1));
+    returno seleccionado
+  iconoSeleccionado];
+  iconoSeleccionaps.forEach(fg => {
+    const { iconOut, iconIn, shadow fg.userData;
     iconOut.visible = true;
-    shadowOut.visible = true;
-    iconIn.visible = false;
-    shadowIn.visible = false;
-    iconIn.rotation.y = Math.PI;
+    shadow;
+    iconIn.visible;
+    iconIn.rotationIn.visible = false;
+    shadowIn.material.depthTest = true;
+    shadowOut.material.depthTest = trueIn.renderOrder = el flap seleccionado (dado la vuelta  const { iconOutOut, shadowIn } = selected.userData;
+  iconOut.visible;
+  // marcamos iconIn visible; su vis decidirá en animate = true;
+  shadow.y = Math.PI;
+
+ Index para la lógica de oclusión en animate()
+  selectedIndex/cerrar con número.y = Math.PI;
+    iconIn.material.depthTest = true.depthTest = true;
+    iconOut.material;
+    iconIn.renderOrder = 3;
+    shadow 2;
   });
 
-  // Si index válido, solo ese flap cambia: exterior oculto, interior visible (dado la vuelta)
-  if (index >= 0 && flaps[index]) {
-    const { iconOut, iconIn, shadowOut, shadowIn } = flaps[index].userData;
-    iconOut.visible = false;
-    shadowOut.visible = false;
-    iconIn.visible = true;
-    shadowIn.visible = true;
-    iconIn.rotation.y = Math.PI;
-  }
+  // Solo: ocultar exterior y preparar interior)
+  const selected = flaps[index];
+, iconIn, shadow = false;
+  shadowOut.visible = falseibilidad final se() por oclusión
+  iconIn.visibleIn.visible = true;
+  iconIn.rotation // actualizar selected = index;
 
-  abrirCerrar(color.length, () => mostrarOpciones(["1","2","3","4"], elegirNumero1));
+  // abrir de ciclos igual a index+1 (mantiene variación)
+  abrirCerrar(index + 1, () => mostrarOpciones(["1","2 true;
+  abrirCerrar2));
+}
+
+function elegirNumero2(num(parseInt(num), () frases.length)];
+";
+    mensajeFinalBtn.style.display}
+
+// Resize: actualizar renderer, cámara y fondo
+window.addEventListener("resize", () => {
+  rendererWidth, window.inner.aspect = window.innerHeight;
+  cameraMatrix();
+  updateFondoScale();
+});
+</script>
+</body>","3","4"], elegirNumero1));
 }
 
 function elegirNumero1(num) {
+  bloqueado =(parseInt(num), () => mostrarOpciones(["1","2","3","4"], elegirNumero) {
   bloqueado = true;
-  abrirCerrar(parseInt(num), () => mostrarOpciones(["1","2","3","4"], elegirNumero2));
-}
-
-function elegirNumero2(num) {
-  bloqueado = true;
-  abrirCerrar(parseInt(num), () => {
-    mensajeFinal.textContent = frases[Math.floor(Math.random() * frases.length)];
-    opcionesDiv.style.display = "none";
-    mensajeFinal.style.display = "block";
-    volverBtn.style.display = "block";
+  abrirCerrar => {
+    mensajeFinal.textContent = frases[Math.floor(Math.random() *    opcionesDiv.style.display = "none.style.display = "block";
+    volver = "block";
     bloqueado = false;
   });
-}
-
-// Ajuste de tamaño: recargar para mantener layout exacto (igual que tenías)
-window.addEventListener("resize", () => location.reload());
-</script>
-</body>
+.setSize(window.innerHeight);
+  camera.innerWidth / window.updateProjection
 </html>
 
 
 
 
-
-
-
-
+  
 
