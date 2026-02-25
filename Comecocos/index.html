@@ -19,7 +19,7 @@
 
 <div id="instrucciones">
   <h1>Mensaje Celestial<br>Atma</h1>
-  <p>Elige un símbolo. El plegado se abrirá y cerrará según su energía.<br>Después elige un número, y luego otro. El mensaje final será tu guía vibracional.</p>
+  <p>Elige un símbolo.<br>El plegado se abrirá y cerrará según su energía.<br>Después elige un número, y luego otro.<br><br>El mensaje final será tu<br>guía vibracional.</p>
   <button id="btnJugar">Comenzar</button>
 </div>
 
@@ -142,7 +142,7 @@ const loader = new THREE.TextureLoader();
 
 // FONDO: plano que se escala para cubrir la pantalla
 const fondoGeom = new THREE.PlaneGeometry(1, 1);
-const fondoMat = new THREE.MeshBasicMaterial({ map: loader.load("textures/fondo.jpg"), side: THREE.DoubleSide });
+const fondoMat = new THREE.MeshBasicMaterial({ map: loader.load("textures/fondoatma.jpg"), side: THREE.DoubleSide });
 const fondo = new THREE.Mesh(fondoGeom, fondoMat);
 fondo.position.set(0, 0, -10);
 scene.add(fondo);
