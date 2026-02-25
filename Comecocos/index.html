@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Mensaje Celestial<br> Atma</title>
+<title>Plegado Sagrado Atma</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -55,11 +55,11 @@
 <body>
 
 <div id="instrucciones">
-  <h1>Plegado Sagrado Atma</h1>
+  <h1>Mensaje Celestial<br>Atma</h1>
   <p>
     Elige un símbolo.<br> El plegado se abrirá y cerrará según su energía.<br>
-    Después elige un número, y luego otro.<br>
-    El mensaje final será tu <br> guía vibracional del momento.
+    Después elige un número, y luego otro.<br><br>
+    El mensaje final será tu <br>guía vibracional del momento.
   </p>
   <button id="btnJugar">Comenzar</button>
 </div>
@@ -182,7 +182,6 @@ const frases = [
      "Hoy confío en lo que siento."
 ];
 
-
 // ESCENA
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -192,13 +191,7 @@ const camera = new THREE.PerspectiveCamera(
   100
 );
 
-// 📱 Ajuste móvil / 💻 PC
-if (window.innerWidth < 768) {
-  camera.position.set(0, 1.4, 5.5);
-} else {
-  camera.position.set(0, 1.1, 4.0);
-}
-
+camera.position.set(0, 1.1, 4.0);
 camera.lookAt(0, 1.1, 0);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -257,10 +250,11 @@ const iconos = [
 
 const flaps = [];
 
-// FLAPS PERFECTOS (fondos + iconos visibles)
+// ⭐ FLAPS CORREGIDOS: fondos + iconos visibles por fuera
 for (let i = 0; i < 4; i++) {
   const flapGroup = new THREE.Group();
 
+  // Fondo
   const base = new THREE.Mesh(
     new THREE.PlaneGeometry(1, 1),
     new THREE.MeshPhongMaterial({
@@ -269,6 +263,7 @@ for (let i = 0; i < 4; i++) {
     })
   );
 
+  // Icono
   const icon = new THREE.Mesh(
     new THREE.PlaneGeometry(0.65, 0.65),
     new THREE.MeshBasicMaterial({
@@ -281,20 +276,27 @@ for (let i = 0; i < 4; i++) {
   flapGroup.add(base);
   flapGroup.add(icon);
 
+  // Posición alrededor del centro
   const angle = i * (Math.PI / 2);
   const radius = 0.75;
 
   flapGroup.position.set(Math.cos(angle)*radius, 0, Math.sin(angle)*radius);
-  flapGroup.lookAt(0, 0, 0);
+
+  // ⭐ ORIENTACIÓN CORRECTA: mirar hacia afuera
+  flapGroup.lookAt(
+    Math.cos(angle)*2,
+    0,
+    Math.sin(angle)*2
+  );
 
   group.add(flapGroup);
   flaps.push(flapGroup);
 }
 
-// Ajuste móvil/PC
+// Mantener tu inclinación EXACTA
 group.position.y = 1.0;
 group.scale.set(0.8, 0.8, 0.8);
-group.rotation.x = window.innerWidth < 768 ? -0.10 : -0.14;
+group.rotation.x = -0.14;
 
 // PLEGADO
 let foldProgress = 0;
@@ -396,6 +398,9 @@ window.addEventListener("resize",()=>location.reload());
 
 </body>
 </html>
+
+
+
 
 
 
