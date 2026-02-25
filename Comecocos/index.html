@@ -72,6 +72,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
+
+  
 // FRASES
 const frases = [
   "Hoy tu energía se expande hacia lo que deseas atraer.",
@@ -182,6 +184,7 @@ const frases = [
      "Hoy confío en lo que siento."
 ];
 
+
 // ESCENA
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -250,7 +253,7 @@ const iconos = [
 
 const flaps = [];
 
-// ⭐ FLAPS: mismos que tú, pero girados para que no se vean negros
+// ⭐ FLAPS: EXACTAMENTE IGUALES A LOS TUYOS, SOLO GIRADOS 180º PARA QUE SE VEAN
 for (let i = 0; i < 4; i++) {
   const flapGroup = new THREE.Group();
 
@@ -262,7 +265,8 @@ for (let i = 0; i < 4; i++) {
       side: THREE.DoubleSide
     })
   );
-  // Giro 180º para que mire hacia la cámara
+
+  // Giro 180º para que mire hacia fuera
   base.rotation.y = Math.PI;
 
   // Icono
@@ -273,9 +277,10 @@ for (let i = 0; i < 4; i++) {
       transparent: true
     })
   );
-  icon.position.z = 0.02;
-  // Mismo giro que el fondo
+
+  // Mismo giro + separación
   icon.rotation.y = Math.PI;
+  icon.position.z = 0.02;
 
   flapGroup.add(base);
   flapGroup.add(icon);
@@ -284,13 +289,17 @@ for (let i = 0; i < 4; i++) {
   const angle = i * (Math.PI / 2);
   const radius = 0.75;
 
-  flapGroup.position.set(Math.cos(angle)*radius, 0, Math.sin(angle)*radius);
+  flapGroup.position.set(
+    Math.cos(angle) * radius,
+    0,
+    Math.sin(angle) * radius
+  );
 
   // Orientación hacia fuera (igual que tenías)
   flapGroup.lookAt(
-    Math.cos(angle)*2,
+    Math.cos(angle) * 2,
     0,
-    Math.sin(angle)*2
+    Math.sin(angle) * 2
   );
 
   group.add(flapGroup);
@@ -402,19 +411,6 @@ window.addEventListener("resize",()=>location.reload());
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
