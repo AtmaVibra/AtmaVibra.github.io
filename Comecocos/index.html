@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Plegado Sagrado Atma</title>
+<title>Mensaje Celestial Atma</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -290,9 +290,12 @@ const fondo = new THREE.Mesh(
 fondo.position.set(0, 0, -8);
 scene.add(fondo);
 
-// Luces
-scene.add(new THREE.PointLight(0xffffff, 2).position.set(3, 5, 6));
-scene.add(new THREE.AmbientLight(0xaaaaaa));
+// Luces (corregido)
+const pLight = new THREE.PointLight(0xffffff, 2);
+pLight.position.set(3, 5, 6);
+scene.add(pLight);
+const ambient = new THREE.AmbientLight(0xaaaaaa);
+scene.add(ambient);
 
 // Partículas doradas
 const particlesCount = 200;
@@ -374,7 +377,7 @@ group.rotation.x = -0.14;
 // ANIMACIÓN PLEGADO
 let foldProgress = 0;
 let foldDirection = 0;
-let foldMaxAngle = Math.PI / 3;
+const foldMaxAngle = Math.PI / 3;
 
 function easeInOutQuad(t) {
   return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
@@ -517,6 +520,15 @@ window.addEventListener("resize", () => {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
 
 
 
