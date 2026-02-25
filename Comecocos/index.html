@@ -72,7 +72,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
-
   
 // FRASES
 const frases = [
@@ -184,8 +183,6 @@ const frases = [
      "Hoy confío en lo que siento."
 ];
 
-
-
 // ESCENA
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -204,12 +201,15 @@ document.body.appendChild(renderer.domElement);
 
 const loader = new THREE.TextureLoader();
 
-// Fondo
+// ⭐ FONDO AJUSTADO A TODA LA PANTALLA
 const fondo = new THREE.Mesh(
-  new THREE.PlaneGeometry(30, 20),
-  new THREE.MeshBasicMaterial({ map: loader.load("textures/fondo.jpg"), side: THREE.DoubleSide })
+  new THREE.PlaneGeometry(40, 40),
+  new THREE.MeshBasicMaterial({
+    map: loader.load("textures/fondo.jpg"),
+    side: THREE.DoubleSide
+  })
 );
-fondo.position.set(0, 0, -8);
+fondo.position.set(0, 0, -10);
 scene.add(fondo);
 
 // Luces
@@ -254,7 +254,7 @@ const iconos = [
 
 const flaps = [];
 
-// ⭐ FLAPS: iconos por fuera + iconos por dentro + sombra
+// ⭐ FLAPS: iconos por fuera + iconos por dentro + sombra + separación real
 for (let i = 0; i < 4; i++) {
   const flapGroup = new THREE.Group();
 
@@ -266,9 +266,19 @@ for (let i = 0; i < 4; i++) {
       side: THREE.DoubleSide
     })
   );
-
-  // Giro 180º para que mire hacia fuera
   base.rotation.y = Math.PI;
+
+  // SOMBRA EXTERIOR
+  const shadowOut = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.75, 0.75),
+    new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      transparent: true,
+      opacity: 0.35
+    })
+  );
+  shadowOut.rotation.y = Math.PI;
+  shadowOut.position.z = 0.05;
 
   // ICONO EXTERIOR
   const iconOut = new THREE.Mesh(
@@ -279,19 +289,18 @@ for (let i = 0; i < 4; i++) {
     })
   );
   iconOut.rotation.y = Math.PI;
-  iconOut.position.z = 0.03;
+  iconOut.position.z = 0.06;
 
-  // SOMBRA EXTERIOR
-  const shadowOut = new THREE.Mesh(
-    new THREE.PlaneGeometry(0.7, 0.7),
+  // SOMBRA INTERIOR
+  const shadowIn = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.75, 0.75),
     new THREE.MeshBasicMaterial({
       color: 0x000000,
       transparent: true,
       opacity: 0.35
     })
   );
-  shadowOut.rotation.y = Math.PI;
-  shadowOut.position.z = 0.02;
+  shadowIn.position.z = -0.05;
 
   // ICONO INTERIOR
   const iconIn = new THREE.Mesh(
@@ -301,18 +310,7 @@ for (let i = 0; i < 4; i++) {
       transparent: true
     })
   );
-  iconIn.position.z = -0.03;
-
-  // SOMBRA INTERIOR
-  const shadowIn = new THREE.Mesh(
-    new THREE.PlaneGeometry(0.7, 0.7),
-    new THREE.MeshBasicMaterial({
-      color: 0x000000,
-      transparent: true,
-      opacity: 0.35
-    })
-  );
-  shadowIn.position.z = -0.02;
+  iconIn.position.z = -0.06;
 
   flapGroup.add(base);
   flapGroup.add(shadowOut);
@@ -448,12 +446,7 @@ window.addEventListener("resize",()=>location.reload());
 </html>
 
 
-
-
   
-
-
-
 
 
 
