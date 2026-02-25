@@ -263,6 +263,7 @@ const frases = [
      "Hoy confío en lo que siento."
 ];
 
+
 // ESCENA
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -290,9 +291,7 @@ fondo.position.set(0, 0, -8);
 scene.add(fondo);
 
 // Luces
-const pLight = new THREE.PointLight(0xffffff, 2);
-pLight.position.set(3, 5, 6);
-scene.add(pLight);
+scene.add(new THREE.PointLight(0xffffff, 2).position.set(3, 5, 6));
 scene.add(new THREE.AmbientLight(0xaaaaaa));
 
 // Partículas doradas
@@ -518,3 +517,13 @@ window.addEventListener("resize", () => {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
