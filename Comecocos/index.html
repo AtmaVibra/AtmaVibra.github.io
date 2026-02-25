@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>Plegado Sagrado Atma</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
   html, body { height: 100%; margin: 0; background: black; font-family: Arial, sans-serif; color: white; }
   #instrucciones {
@@ -43,13 +44,14 @@
   }
 </style>
 </head>
+
 <body>
 
 <div id="instrucciones">
   <h1>Mensaje Celestial<br>Atma</h1>
   <p>
-    Elige un símbolo. El plegado se abrirá y cerrará según su energía.<br>
-    Después elige un número, y luego otro. El mensaje final será tu guía vibracional.
+    Elige un símbolo.<br>El plegado se abrirá y cerrará según su energía.<br>
+    Después elige un número, y luego otro.<br><br> El mensaje final será<br> tu guía vibracional.
   </p>
   <button id="btnJugar">Comenzar</button>
 </div>
@@ -61,8 +63,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-
   
+// FRASES
 // FRASES
 const frases = [
   "Hoy tu energía se expande hacia lo que deseas atraer.",
@@ -249,16 +251,13 @@ for (let i = 0; i < 4; i++) {
     side: THREE.DoubleSide
   });
   const base = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), baseMat);
-  // Mantener la orientación del fondo tal como tienes (no cambiamos posición global)
-  // Si necesitas que el frente apunte hacia fuera, se puede rotar; aquí respetamos tu configuración.
-  // Lo colocamos en z = 0 (centro del flap)
   base.position.z = 0;
 
-  // Sombra exterior (ligera, detrás del icono exterior)
+  // Sombra exterior (ligera, delante)
   const shadowOutMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.35, depthWrite: false });
   const shadowOut = new THREE.Mesh(new THREE.PlaneGeometry(0.78, 0.78), shadowOutMat);
   shadowOut.renderOrder = 2;
-  shadowOut.position.z = 0.06; // por delante del plano base
+  shadowOut.position.z = 0.06;
 
   // Icono exterior (por delante)
   const iconOutTex = loader.load(iconos[i]);
@@ -267,18 +266,21 @@ for (let i = 0; i < 4; i++) {
   iconOut.renderOrder = 3;
   iconOut.position.z = 0.07;
 
-  // Sombra interior (ligera, detrás del icono interior)
+  // Sombra interior (ligera, detrás)
   const shadowInMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.35, depthWrite: false });
   const shadowIn = new THREE.Mesh(new THREE.PlaneGeometry(0.78, 0.78), shadowInMat);
   shadowIn.renderOrder = 2;
-  shadowIn.position.z = -0.06; // por detrás del plano base
+  shadowIn.position.z = -0.06;
+  shadowIn.visible = false; // inicialmente oculto
 
-  // Icono interior (por detrás)
+  // Icono interior (por detrás), dado la vuelta (rotación Y)
   const iconInTex = loader.load(iconos[i]);
   const iconInMat = new THREE.MeshBasicMaterial({ map: iconInTex, transparent: true, depthWrite: false, depthTest: false });
   const iconIn = new THREE.Mesh(new THREE.PlaneGeometry(0.65, 0.65), iconInMat);
   iconIn.renderOrder = 3;
   iconIn.position.z = -0.07;
+  iconIn.rotation.y = Math.PI; // dado la vuelta
+  iconIn.visible = false; // inicialmente oculto
 
   // Añadir en orden: base (z=0), sombras e iconos con separación real
   flapGroup.add(base);
@@ -295,7 +297,14 @@ for (let i = 0; i < 4; i++) {
   // Orientar cada flap hacia fuera (manteniendo tu lookAt original)
   flapGroup.lookAt(Math.cos(angle) * 2, 0, Math.sin(angle) * 2);
 
-  // Guardar referencia
+  // Guardar referencias en objeto para manipular visibilidad fácilmente
+  flapGroup.userData = {
+    iconOut,
+    iconIn,
+    shadowOut,
+    shadowIn
+  };
+
   group.add(flapGroup);
   flaps.push(flapGroup);
 }
@@ -340,7 +349,7 @@ function animate() {
 }
 animate();
 
-// LÓGICA DEL JUEGO (sin cambios)
+// LÓGICA DEL JUEGO (sin tocar estructura, solo comportamiento de iconos)
 const opcionesDiv = document.getElementById("opciones");
 const mensajeFinal = document.getElementById("mensajeFinal");
 const volverBtn = document.getElementById("volver");
@@ -378,11 +387,37 @@ function abrirCerrar(veces, callback) {
   ciclo();
 }
 
+// NUEVO: comportamiento solicitado
 function elegirColor(color) {
   bloqueado = true;
   const index = ["Sol","Luna","Ojo","Loto"].indexOf(color);
+  // Mostrar imagen seleccionada en el elemento HTML (sin cambiar lógica visual del cubo)
   iconoSeleccionado.src = iconos[index];
   iconoSeleccionado.style.display = "block";
+
+  // Primero, restaurar todos los flaps a estado por defecto:
+  flaps.forEach(fg => {
+    const { iconOut, iconIn, shadowOut, shadowIn } = fg.userData;
+    iconOut.visible = true;
+    shadowOut.visible = true;
+    iconIn.visible = false;
+    shadowIn.visible = false;
+    // asegurar rotación interior dada la vuelta
+    iconIn.rotation.y = Math.PI;
+  });
+
+  // Ahora, para el flap seleccionado: ocultar icono exterior y mostrar icono interior dado la vuelta
+  const selected = flaps[index];
+  if (selected) {
+    const { iconOut, iconIn, shadowOut, shadowIn } = selected.userData;
+    iconOut.visible = false;
+    shadowOut.visible = false;
+    iconIn.visible = true;
+    shadowIn.visible = true;
+    // asegurar que el icono interior esté dado la vuelta
+    iconIn.rotation.y = Math.PI;
+  }
+
   abrirCerrar(color.length, () => mostrarOpciones(["1","2","3","4"], elegirNumero1));
 }
 
@@ -410,5 +445,6 @@ window.addEventListener("resize", () => location.reload());
 
 
 
-  
+
+
 
