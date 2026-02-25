@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Mensaje Celestial Atma</title>
+<title>Plegado Sagrado Atma</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -135,13 +135,11 @@
 <body>
 
 <div id="instrucciones">
-  <h1>Mensaje Celestial Atma</h1>
+  <h1>Plegado Sagrado Atma</h1>
   <p>
-    Elige un símbolo.<br> 
-    El plegado se abrirá y cerrará <br> 
-    según su energía.<br>
-    Después, elige un número, y luego otro.<br><br>
-    El mensaje final será tu <br> guía vibracional de este momento.
+    Elige un símbolo. El plegado se abrirá y cerrará según su energía.<br>
+    Después elige un número, y luego otro.<br>
+    El mensaje final será tu guía vibracional del momento.
   </p>
   <button id="btnJugar">Comenzar</button>
 </div>
@@ -265,7 +263,6 @@ const frases = [
      "Hoy confío en lo que siento."
 ];
 
-
 // ESCENA
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -283,7 +280,7 @@ document.body.appendChild(renderer.domElement);
 
 const loader = new THREE.TextureLoader();
 
-// Fondo
+// Fondo general
 const fondoTexture = loader.load("textures/fondo.jpg");
 const fondo = new THREE.Mesh(
   new THREE.PlaneGeometry(30, 20),
@@ -292,12 +289,11 @@ const fondo = new THREE.Mesh(
 fondo.position.set(0, 0, -8);
 scene.add(fondo);
 
-// Luces (corregido)
+// Luces
 const pLight = new THREE.PointLight(0xffffff, 2);
 pLight.position.set(3, 5, 6);
 scene.add(pLight);
-const ambient = new THREE.AmbientLight(0xaaaaaa);
-scene.add(ambient);
+scene.add(new THREE.AmbientLight(0xaaaaaa));
 
 // Partículas doradas
 const particlesCount = 200;
@@ -338,18 +334,22 @@ const iconos = [
 
 const flaps = [];
 
+// FLAPS CORREGIDOS: fondos + iconos visibles, 4 lados claros
 for (let i = 0; i < 4; i++) {
   const flapGroup = new THREE.Group();
 
+  // Fondo (colorX.jpg)
   const base = new THREE.Mesh(
-    new THREE.PlaneGeometry(0.95, 0.95),
+    new THREE.PlaneGeometry(1, 1),
     new THREE.MeshPhongMaterial({
       map: loader.load(colores[i]),
       side: THREE.DoubleSide
     })
   );
-  base.rotation.x = -Math.PI / 2;
+  // Plano vertical mirando hacia fuera
+  base.position.z = 0.0;
 
+  // Icono (PNG)
   const icon = new THREE.Mesh(
     new THREE.PlaneGeometry(0.65, 0.65),
     new THREE.MeshBasicMaterial({
@@ -357,24 +357,27 @@ for (let i = 0; i < 4; i++) {
       transparent: true
     })
   );
-  icon.position.set(0, 0.02, 0);
-  icon.rotation.x = -Math.PI / 2;
+  icon.position.z = 0.02;
 
   flapGroup.add(base);
   flapGroup.add(icon);
 
-  const angle = i * Math.PI / 2;
-  flapGroup.position.set(Math.cos(angle) * 0.75, 0, Math.sin(angle) * 0.75);
+  // Colocar cada flap alrededor del centro
+  const angle = i * (Math.PI / 2);
+  const radius = 0.75;
+  flapGroup.position.set(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
+
+  // Orientar cada flap hacia el centro (como pétalos)
   flapGroup.lookAt(0, 0, 0);
 
   group.add(flapGroup);
   flaps.push(flapGroup);
 }
 
-// posición / escala / inclinación
-group.position.y = 1.0;
-group.scale.set(0.6, 0.6, 0.6);
-group.rotation.x = -0.14;
+// posición / escala / inclinación global
+group.position.y = 1.0;      // más abajo
+group.scale.set(0.8, 0.8, 0.8);
+group.rotation.x = -0.14;    // inclinación suave
 
 // ANIMACIÓN PLEGADO
 let foldProgress = 0;
@@ -409,6 +412,7 @@ function animate() {
     const eased = easeInOutQuad(foldProgress);
     const angle = eased * foldMaxAngle;
     flaps.forEach((fg, idx) => {
+      // plegado alterno hacia dentro/fuera
       fg.rotation.x = (idx % 2 === 0 ? 1 : -1) * angle;
     });
   }
@@ -510,7 +514,7 @@ function elegirNumero2(num) {
 }
 
 function volverWeb() {
-  window.location.href = "../index.html";
+  location.reload();
 }
 
 window.addEventListener("resize", () => {
@@ -522,6 +526,19 @@ window.addEventListener("resize", () => {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 
