@@ -250,7 +250,7 @@ const iconos = [
 
 const flaps = [];
 
-// ⭐ FLAPS CORREGIDOS: fondos + iconos visibles por fuera
+// ⭐ FLAPS: mismos que tú, pero girados para que no se vean negros
 for (let i = 0; i < 4; i++) {
   const flapGroup = new THREE.Group();
 
@@ -262,6 +262,8 @@ for (let i = 0; i < 4; i++) {
       side: THREE.DoubleSide
     })
   );
+  // Giro 180º para que mire hacia la cámara
+  base.rotation.y = Math.PI;
 
   // Icono
   const icon = new THREE.Mesh(
@@ -272,17 +274,19 @@ for (let i = 0; i < 4; i++) {
     })
   );
   icon.position.z = 0.02;
+  // Mismo giro que el fondo
+  icon.rotation.y = Math.PI;
 
   flapGroup.add(base);
   flapGroup.add(icon);
 
-  // Posición alrededor del centro
+  // Posición alrededor del centro (igual que tenías)
   const angle = i * (Math.PI / 2);
   const radius = 0.75;
 
   flapGroup.position.set(Math.cos(angle)*radius, 0, Math.sin(angle)*radius);
 
-  // ⭐ ORIENTACIÓN CORRECTA: mirar hacia afuera
+  // Orientación hacia fuera (igual que tenías)
   flapGroup.lookAt(
     Math.cos(angle)*2,
     0,
@@ -398,8 +402,6 @@ window.addEventListener("resize",()=>location.reload());
 
 </body>
 </html>
-
-
 
 
 
