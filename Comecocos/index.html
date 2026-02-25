@@ -185,6 +185,7 @@ const frases = [
 ];
 
 
+
 // ESCENA
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -253,7 +254,7 @@ const iconos = [
 
 const flaps = [];
 
-// ⭐ FLAPS: EXACTAMENTE IGUALES A LOS TUYOS, SOLO GIRADOS 180º PARA QUE SE VEAN
+// ⭐ FLAPS: iconos por fuera + iconos por dentro + sombra
 for (let i = 0; i < 4; i++) {
   const flapGroup = new THREE.Group();
 
@@ -269,23 +270,57 @@ for (let i = 0; i < 4; i++) {
   // Giro 180º para que mire hacia fuera
   base.rotation.y = Math.PI;
 
-  // Icono
-  const icon = new THREE.Mesh(
+  // ICONO EXTERIOR
+  const iconOut = new THREE.Mesh(
     new THREE.PlaneGeometry(0.65, 0.65),
     new THREE.MeshBasicMaterial({
       map: loader.load(iconos[i]),
       transparent: true
     })
   );
+  iconOut.rotation.y = Math.PI;
+  iconOut.position.z = 0.03;
 
-  // Mismo giro + separación
-  icon.rotation.y = Math.PI;
-  icon.position.z = 0.02;
+  // SOMBRA EXTERIOR
+  const shadowOut = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.7, 0.7),
+    new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      transparent: true,
+      opacity: 0.35
+    })
+  );
+  shadowOut.rotation.y = Math.PI;
+  shadowOut.position.z = 0.02;
+
+  // ICONO INTERIOR
+  const iconIn = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.65, 0.65),
+    new THREE.MeshBasicMaterial({
+      map: loader.load(iconos[i]),
+      transparent: true
+    })
+  );
+  iconIn.position.z = -0.03;
+
+  // SOMBRA INTERIOR
+  const shadowIn = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.7, 0.7),
+    new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      transparent: true,
+      opacity: 0.35
+    })
+  );
+  shadowIn.position.z = -0.02;
 
   flapGroup.add(base);
-  flapGroup.add(icon);
+  flapGroup.add(shadowOut);
+  flapGroup.add(iconOut);
+  flapGroup.add(shadowIn);
+  flapGroup.add(iconIn);
 
-  // Posición alrededor del centro (igual que tenías)
+  // Posición alrededor del centro
   const angle = i * (Math.PI / 2);
   const radius = 0.75;
 
@@ -295,7 +330,7 @@ for (let i = 0; i < 4; i++) {
     Math.sin(angle) * radius
   );
 
-  // Orientación hacia fuera (igual que tenías)
+  // Orientación hacia fuera
   flapGroup.lookAt(
     Math.cos(angle) * 2,
     0,
@@ -411,6 +446,11 @@ window.addEventListener("resize",()=>location.reload());
 
 </body>
 </html>
+
+
+
+
+  
 
 
 
